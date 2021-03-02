@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.where(user: current_user)
+    @projects = Project.all
+    @user = current_user
   end
   def show
     @project = Project.find(params[:id])
