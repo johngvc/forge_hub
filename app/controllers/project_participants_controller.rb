@@ -1,12 +1,14 @@
 class ProjectParticipantsController < ApplicationController
   before_action :find_projectid, only: %i[index new]
-  
+
   def index
     @participants = ProjectParticipant.where(project_id: @project.id)
   end
+
   def new
     @project_participants = ProjectParticipant.new
   end
+
   def create
     @project_participants = ProjectParticipant.new(project_participants_params)
     @project_participants.user = current_user
@@ -19,11 +21,12 @@ class ProjectParticipantsController < ApplicationController
   end
 
   private
+
   def find_projectid
     @project = Project.find(params[:project_id])
   end
+
   def project_participants_params
     params.require(:project_participants).permit(:project_id, :is_founder, :inivted_on, :accepted_on, :clearence_level)
   end
-
 end
