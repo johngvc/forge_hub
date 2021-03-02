@@ -1,2 +1,13 @@
-<%= "#{@project.name}" %>
-<%= button_to "destroy", projects_destroy_path, method: :delete, class: "btn btn-success", style: "width: 160px;"%>
+<h1> <%= "#{@project.name}" %> </h1>
+
+<h2><% @participants.each do |participant| %></h2>
+<ul>
+  <li><%= "#{participant.user.name}" %></li>
+  <% if participant.is_founder == true %>
+  <li>Status: Founder</li>
+  <% else %>
+  <li>Status: Participant</li>
+  <% end %>
+</ul>
+<%= button_to "destroy", projects_destroy_path, method: :delete, class: "btn
+btn-success", style: "width: 160px;"%>
