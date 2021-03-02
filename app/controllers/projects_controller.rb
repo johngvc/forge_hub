@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
   end
 
   def create_participant(project)
-    @project_participant = ProjectParticipant.new(user_id: current_user.id, project_participant_id: 1, project_id: project.id, is_founder: true, invited_on: DateTime.now, accepted_on: DateTime.now)
+    @project_participant = ProjectParticipant.new(user_id: current_user.id, project_participant_id: 1, project_id: project[:id], is_founder: true, invited_on: DateTime.now, accepted_on: DateTime.now)
     if @project_participant.save
       return @project_participant, notice: "User is now a project participant"
     else
