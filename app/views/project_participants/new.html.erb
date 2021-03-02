@@ -8,8 +8,8 @@
             <h4 class="heading text-center"><strong>You're in the right place</strong></h4>
           </div>
         </div>
-        <%= simple_form_for(@project) do |f| %>
-          <%=f.input :name %>
+        <%= simple_form_for(@project_participant) do |f| %>
+          <%= f.input :name %>
           <%= f.input :description %>
           <%= f.input :linkedin_url %>
           <%= f.input :github_url %>
