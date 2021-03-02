@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :find_id, only: %i[show edit update]
-  
+  before_action :find_id, only: %i[show edit update destroy]
+
   def index
     @projects = Project.all
     @user = current_user
@@ -34,7 +34,8 @@ class ProjectsController < ApplicationController
     end
   end
   def destroy
-    
+    @project.destroy
+    redirect_to projects_path
   end
 
   private
