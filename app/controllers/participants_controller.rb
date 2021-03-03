@@ -1,4 +1,5 @@
 class ParticipantsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index]
   before_action :find_project_id, only: %i[index new create]
 
   def index
