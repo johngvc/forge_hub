@@ -54,6 +54,15 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def new_join_request
+    @join_request = JoinRequest.new(join_request_params)
+    @join_request.user = current_user
+    if @join_request.save
+      redirect_to project_path(@project.id), notice: "Sent request to join #{@project.name}. The founder will reply shortly."
+    else
+      render :new, notice: "Error. Your request to join #{@project.name} could not be sent. Please try again."
+  end
+
   private
 
   def find_id
@@ -62,5 +71,9 @@ class ProjectsController < ApplicationController
 
   def projects_params
     params.require(:project).permit(:name, :description, :linkedin_url, :github_url, :trello_url)
+  end
+
+  def join_request_params
+    params.require(:join_request).permit(:project_id)
   end
 end
