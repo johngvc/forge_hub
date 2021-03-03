@@ -3,7 +3,7 @@ class ProjectPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-
+  end
     def index?
       true
     end
@@ -39,5 +39,5 @@ class ProjectPolicy < ApplicationPolicy
     def owner_ou_admin?
       record.user == user || user.admin
     end
-  end
+  
 end
