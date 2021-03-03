@@ -41,9 +41,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    authorize @project # pundit authorization
   end
 
   def update
+    authorize @project # pundit authorization
     @project = Project.find(projects_params)
     @project.update = (projects_params)
     if @project.save
@@ -54,6 +56,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+  authorize @project # pundit authorization
   @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
     if @participant.is_founder?
       @project.destroy
@@ -76,7 +79,7 @@ class ProjectsController < ApplicationController
 
   private
 
-  def find_id
+  def set_project
     @project = Project.find(params[:id])
   end
 

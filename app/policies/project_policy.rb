@@ -12,8 +12,29 @@ class ProjectPolicy < ApplicationPolicy
       true
     end
 
+    def edit?
+      # user ==> current_user
+      # record ==> @project
+      owner?
+    end
+
+    def update
+      owner?
+    end
+
     def show?
       true
+    end
+
+    def destroy?
+      owner?
+    end
+
+
+    private
+
+    def owner?
+      record.user == user
     end
   end
 end
