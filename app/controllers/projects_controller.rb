@@ -5,13 +5,16 @@ class ProjectsController < ApplicationController
     @projects = Project.all
     @user = current_user
   end
+
   def show
     @project = Project.find(params[:id])
     @participants = Participant.where(project_id: @project[:id])
   end
+
   def new
     @project = Project.new
   end
+
   def create
     @project = Project.new(projects_params)
     project_id = @project[:id]
@@ -32,16 +35,6 @@ class ProjectsController < ApplicationController
       redirect to_to new_project_path, notice: "The project was saved but #{current_user.name} failed to be saved as a project participant, please delete the project and try again."
     end
   end
-
-  # def create_participant(project)
-  #   @project_participant = ProjectParticipant.new(user_id: current_user.id, project_participant_id: 1, project_id: project[:id], is_founder: true, invited_on: DateTime.now, accepted_on: DateTime.now)
-  #   @project_participants.user = current_user
-  #   if @project_participant.save
-  #     notice: "User is now a project participant"
-  #   else
-  #     notice: "something went wrong, user not saved as a project participant"
-  #   end
-  # end
 
   def edit
   end
