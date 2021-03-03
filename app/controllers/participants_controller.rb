@@ -1,5 +1,6 @@
 class ParticipantsController < ApplicationController
-  before_action :find_project_id, only: %i[index new create]
+  before_action :authenticate_user!, except: [:index]
+  before_action :find_project_id, only: [:index, :new, :create]
 
   def index
     @participants = Participant.where(project_id: @project.id)
