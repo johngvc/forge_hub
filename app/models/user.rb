@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :projects, through: :project_participants
+
   devise :omniauthable, omniauth_providers: %i[linkedin]
+  has_many :projects, through: :participants
 end
 

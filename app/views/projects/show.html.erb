@@ -9,4 +9,14 @@
       <li><%= "Status: Participant" %></li>
     <% end %>
   </ul>
+
+<%= link_to project_new_join_request_path(@project) do %>
+  <div class="btn btn-success", style="width: 180px">join this project!</div>
+<% end %>
+
+<%= link_to project_destroy_path(@project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
+  <div class="btn btn-success", style="width: 180px">delete this project!</div>
+<% end %>
+
+
 <% end %>

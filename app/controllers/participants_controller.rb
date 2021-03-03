@@ -1,5 +1,6 @@
 class ParticipantsController < ApplicationController
-  before_action :find_project_id, only: %i[index new create]
+  before_action :authenticate_user!, except: %i[index]
+  before_action :set_participant, only: %i[index new create]
 
   def index
     @participants = Participant.where(project_id: @project.id)
@@ -21,12 +22,11 @@ class ParticipantsController < ApplicationController
 
   private
 
-  def find_project_id
+  def set_participant
     @project = Project.find(params[:project_id])
   end
 
   def participants_params
     params.require(:participants).permit(:project_id, :is_founder, :invited_at, :accepted_at, :clearence_level)
   end
-
 end

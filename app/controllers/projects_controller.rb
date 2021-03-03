@@ -1,24 +1,27 @@
 class ProjectsController < ApplicationController
-  before_action :find_id, only: %i[edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_project, only: %i[show edit update destroy]
 
   def index
-    @projects = Project.all
+    # @projects = Project.all
+    @projects = policy_scope(Project)
     @user = current_user
   end
 
   def show
-    @project = Project.find(params[:id])
     @participants = Participant.where(project_id: @project[:id])
   end
 
   def new
     @project = Project.new
+    authorize @project # pundit authorization
   end
 
   def create
     @project = Project.new(projects_params)
     project_id = @project[:id]
     @project.user = current_user
+    authorize @project # pundit authorization ANTES DE SALVAR
     if @project.save
       create_participant(@project)
     else
@@ -50,30 +53,34 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.destroy
-    redirect_to projects_path
+    @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
+    if @participant.is_founder?
+      @project.destroy
+      redirect_to project_path, notice: "Project deleted."
+    else
+      redirect_to project_path(@project), notice: "Projects can only be deleted by founders."
+    end
   end
 
   def new_join_request
-    @join_request = JoinRequest.new(join_request_params)
-    @join_request.user = current_user
+    @user = current_user
+    @project = Project.find(params[:project_id])
+    @join_request = JoinRequest.create(project_id: @project.id, user_id: @user.id, created_at: DateTime.now)
     if @join_request.save
-      redirect_to project_path(@project.id), notice: "Sent request to join #{@project.name}. The founder will reply shortly."
+      redirect_to project_path(@project.id), notice: "Sent request to join #{@project.name}. Expect a reply from the founder(s) shortly."
     else
       render :new, notice: "Error. Your request to join #{@project.name} could not be sent. Please try again."
+    end
   end
 
   private
 
-  def find_id
+  def set_project
     @project = Project.find(params[:id])
+    authorize @project # pundit authorization
   end
 
   def projects_params
     params.require(:project).permit(:name, :description, :linkedin_url, :github_url, :trello_url)
-  end
-
-  def join_request_params
-    params.require(:join_request).permit(:project_id)
   end
 end
