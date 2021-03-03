@@ -9,4 +9,10 @@
       <li><%= "Status: Participant" %></li>
     <% end %>
   </ul>
+
+<%= link_to user_adoption_confirm_path(id: @adoption.id), method: :post do %>
+  <div class="btn btn-success", style="width: 180px">confirm adoption</div>
+<% end %>
+
+
 <% end %>
