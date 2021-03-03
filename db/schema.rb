@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_014721) do
+ActiveRecord::Schema.define(version: 2021_03_03_155935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2021_03_03_014721) do
     t.boolean "is_founder", default: false
     t.datetime "invited_at"
     t.datetime "accepted_at"
+    t.bigint "join_requests_id"
+    t.index ["join_requests_id"], name: "index_participants_on_join_requests_id"
     t.index ["participant_id"], name: "index_participants_on_participant_id"
     t.index ["project_id"], name: "index_participants_on_project_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_014721) do
 
   add_foreign_key "join_requests", "projects"
   add_foreign_key "join_requests", "users"
+  add_foreign_key "participants", "join_requests", column: "join_requests_id"
   add_foreign_key "participants", "participants"
   add_foreign_key "participants", "projects"
   add_foreign_key "participants", "users"
