@@ -1,15 +1,14 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_id, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_project, only: %i[show edit update destroy]
 
   def index
-    @projects = Project.all
+    # @projects = Project.all
+    @projects = policy_scope(Project)
     @user = current_user
   end
 
   def show
-    authorize @project # pundit authorization
-    @project = Project.find(params[:id])
     @participants = Participant.where(project_id: @project[:id])
   end
 
@@ -41,11 +40,9 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    authorize @project # pundit authorization
   end
 
   def update
-    authorize @project # pundit authorization
     @project = Project.find(projects_params)
     @project.update = (projects_params)
     if @project.save
@@ -56,8 +53,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-  authorize @project # pundit authorization
-  @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
+    @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
     if @participant.is_founder?
       @project.destroy
       redirect_to project_path, notice: "Project deleted."
@@ -81,10 +77,10 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+    authorize @project # pundit authorization
   end
 
   def projects_params
     params.require(:project).permit(:name, :description, :linkedin_url, :github_url, :trello_url)
   end
-
 end

@@ -4,6 +4,10 @@ class ProjectPolicy < ApplicationPolicy
       scope.all
     end
 
+    def index?
+      true
+    end
+
     def new?
       true
     end
@@ -29,7 +33,6 @@ class ProjectPolicy < ApplicationPolicy
     def destroy?
       owner?
     end
-
 
     private
 
