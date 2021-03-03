@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :profiles, only: %i[show]  do
+  resources :profiles, only: %i[show] do
     post '/join_request_authorize/:join_request_id', to: 'profiles#join_request_authorize', as: :join_request_authorize
     get '/joint_requests_pending', to: 'profiles#pending_join_requests', as: :pending_join_requests
   end
