@@ -10,8 +10,8 @@
     <% end %>
   </ul>
 
-<%= link_to user_adoption_confirm_path(id: @adoption.id), method: :post do %>
-  <div class="btn btn-success", style="width: 180px">confirm adoption</div>
+<%= link_to project_new_join_request_path(@project) do %>
+  <div class="btn btn-success", style="width: 180px">join this project!</div>
 <% end %>
 
 
