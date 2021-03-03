@@ -50,8 +50,13 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.destroy
-    redirect_to project_path
+  @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
+    if @participant.is_founder?
+      @project.destroy
+      redirect_to project_path, notice: "Project deleted."
+    else
+      redirect_to project_path(@project), notice: "Projects can only be deleted by founders."
+    end
   end
 
   def new_join_request

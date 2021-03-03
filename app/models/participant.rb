@@ -1,6 +1,6 @@
 class Participant < ApplicationRecord
   belongs_to :user
   belongs_to :project
-  has_many :join_requests
+  has_many :join_requests, dependent: :destroy
 
 end
