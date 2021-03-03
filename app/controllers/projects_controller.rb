@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :find_id, only: %i[edit update destroy]
+  before_action :authenticate_user!, except: [:index]
+  before_action :find_id, only: [:edit, :update, :destroy]
 
   def index
     @projects = Project.all
