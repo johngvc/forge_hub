@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_002647) do
+ActiveRecord::Schema.define(version: 2021_03_03_014721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "join_requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.boolean "request_pending", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_join_requests_on_project_id"
+    t.index ["user_id"], name: "index_join_requests_on_user_id"
+  end
 
   create_table "participants", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -52,6 +62,8 @@ ActiveRecord::Schema.define(version: 2021_03_03_002647) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "join_requests", "projects"
+  add_foreign_key "join_requests", "users"
   add_foreign_key "participants", "participants"
   add_foreign_key "participants", "projects"
   add_foreign_key "participants", "users"

@@ -29,19 +29,4 @@ class ParticipantsController < ApplicationController
     params.require(:participants).permit(:project_id, :is_founder, :invited_at, :accepted_at, :clearence_level)
   end
 
-
-  create_table "participants", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "project_id", null: false
-    t.bigint "participant_id"
-    t.boolean "is_founder", default: false
-    t.datetime "invited_at"
-    t.datetime "accepted_at"
-    t.index ["participant_id"], name: "index_participants_on_participant_id"
-    t.index ["project_id"], name: "index_participants_on_project_id"
-    t.index ["user_id"], name: "index_participants_on_user_id"
-
-
-
-
 end
