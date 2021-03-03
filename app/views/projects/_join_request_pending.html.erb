@@ -1,0 +1,37 @@
+<% if @join_requests.empty? %>
+  <p>There are currently no pending requests from users who wish to join the project</p>
+
+<else>
+  <h4>Pending join requests:</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Request by:</th>
+        <th scope="col">Request</th>
+        <th scope="col">authorize / refuse</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @join_requests.each do |request| %>
+        <% number = 0 %>
+        <tr>
+          <td><%= number += 1 %></td>
+          <td><%= request.user.name %></td>
+          <td><%= request.message %></td>
+          <td>
+            <%= link_to project_join_request_authorize_path(request.id), method: :post do %>
+              <div class="btn btn-success", style="width: 180px">authorize</div>
+            <% end %>
+            <%= link_to project_join_request_refuse_path(request.id), method: :post do %>
+              <div class="btn btn-success", style="width: 180px">refuse</div>
+            <% end %>
+          </td>
+          <td>TODO - MESSAGE BACK MODAL</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>

@@ -71,6 +71,29 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def join_request_pending
+    @project = Project.find(params[:id])
+    @participant = Participant.where(user_id: current_user.id, project_id: @project.id)
+    if @participant.is_founder?
+      @join_requests = @participant.map do |project|
+        JoinRequest.where(project_id: project.project_id, request_pending: true)
+    else
+      @join_requests = []
+    end
+  end
+
+  def join_request_authorize
+    @join_request = JoinRequest.find(params[:id])
+    @join_request.request_pending = false
+    @join_request.save
+    @project = @join_request.project
+    @user = @join_request.user
+    redirect_to project_participant_create(@user, @project)
+  end
+
+  def join_request_refuse
+  end
+
   private
 
   def find_id
