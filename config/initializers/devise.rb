@@ -25,7 +25,8 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
+  config.omniauth :linkedin, ENV['CLIENT_ID'], ENV['CLIENT_SECRET']
+  # config.omniauth :linkedin, Rails.application.credentials[:linkedin][:api_id], Rails.application.credentials[:linkedin][:api_key]
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
