@@ -56,9 +56,6 @@ class ProjectsController < ApplicationController
 
   private
 
-  # def participants_params
-  #   params.require(:project).permit(user_id: current_user.id, project_participant_id: 1, project_id: @project.id, is_founder: true, invited_on: DateTime.now, accepted_on: DateTime.now)
-  # end
   def find_id
     @project = Project.find(params[:id])
   end
