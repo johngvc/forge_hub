@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   def show
     @number = 0
     @project = Project.find(params[:id])
-    @participants = Participant.where(project_id: @project[:id])
+    @project_participants = Participant.where(project_id: @project[:id])
     join_request_pending(@project)
   end
 
@@ -20,7 +20,6 @@ class ProjectsController < ApplicationController
       participation.is_founder? ? JoinRequest.where(project_id: participation.project.id, request_pending: true) : nil
     end
   end
-
 
   def new
     @project = Project.new
@@ -72,8 +71,9 @@ class ProjectsController < ApplicationController
 
   def new_join_request
     @user = current_user
+    @message = params[:request_message]
     @project = Project.find(params[:project_id])
-    @join_request = JoinRequest.create(project_id: @project.id, user_id: @user.id, created_at: DateTime.now)
+    @join_request = JoinRequest.create(project_id: @project.id, user_id: @user.id, created_at: DateTime.now, content: @message)
     if @join_request.save
       redirect_to project_path(@project.id), notice: "Sent request to join #{@project.name}. Expect a reply from the founder(s) shortly."
     else

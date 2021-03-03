@@ -1,7 +1,4 @@
-<% if join_requests.first.empty? %>
-  <p>There are currently no pending requests from users who wish to join the project</p>
 
-<% else %>
   <h4>Pending join requests:</h4>
   <table class="table">
     <thead>
@@ -21,12 +18,14 @@
             <td><%= request.user.name %></td>
             <td><%= request.content %></td>
             <td>
-              <%= link_to project_join_request_authorize_path(request.id), method: :post do %>
-                <div class="btn btn-success", style="width: 180px">authorize</div>
-              <% end %>
-              <%= link_to project_join_request_refuse_path(request.id), method: :post do %>
-                <div class="btn btn-success", style="width: 180px">refuse</div>
-              <% end %>
+              <div style="display:inline-flex;">
+                <%= link_to project_join_request_authorize_path(request[:id]), method: :post do %>
+                  <div class="btn btn-success", style="width: 180px">authorize</div>
+                <% end %>
+                <%= link_to project_join_request_refuse_path(request[:id]), method: :post do %>
+                  <div class="btn btn-success", style="width: 180px">refuse</div>
+                <% end %>
+              </div>
             </td>
             <td>TODO - MESSAGE BACK MODAL</td>
           </tr>
@@ -35,4 +34,4 @@
     </tbody>
   </table>
 
-<% end %>
+
