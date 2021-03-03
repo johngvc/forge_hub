@@ -1,0 +1,33 @@
+<div class="reset-margin nav-bar">
+  <div class="logo">
+    <a class="reset" href="/"><div class="img"></div></a>
+    <div class="nav-bar-search-input">
+      <i class="fas fa-search"></i>
+      <form action="">
+        <input type="text" placeholder="Find on Forgehub">
+      </form>
+    </div>
+  </div>
+
+  <% if user_signed_in? || controller_name == 'sessions' %>
+    <div class="avatar-section">
+      <% if !current_user.nil? && !current_user.photo.nil? %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar-logged-in" %>
+      <% else %>
+        <div class="avatar-logged-in" style="background-color: grey;"></div>
+      <% end %>
+    </div>
+
+
+  <% else %>
+    <div class="sign-in-section">
+          <div class="nav-bar-sign-in-form">
+            <form class="sign-in-form" action="/users/sign_in">
+              <input class="form-submit-btn" type="submit" value="SIGN IN">
+              <input class="form-text-input" type="text" placeholder="USERNAME">
+              <input class="form-text-input" type="text" placeholder="PASSWORD">
+            </form>
+          </div>
+    </div>
+  <% end %>
+</div>

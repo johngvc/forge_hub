@@ -1,1 +1,59 @@
 // Specific CSS for your home-page
+$accent-color-orange: #ED6347;
+$thirty-grey-color: #F5F6F6;
+$thirty-other-grey-color: #C4C4C4;
+$accent-color-orange: #ED6347;
+
+
+//debug
+.home-page div {
+    border: 1px red solid;
+}
+
+.home-page {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home-page div {
+    height: 200px;
+    width: 100%;
+}
+
+.home-page .banner {
+    height: 83vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+.home-page .banner h1 {
+    font-family: lobster, cursive;
+    font-size: 79px;
+    width: 48vw;
+    margin-left: 45px;
+    line-height: 82px;
+}
+
+.home-page .banner a {
+    color: black;
+    position: absolute;
+    bottom: 17.4vh;
+    left: 3.8vw;
+}
+
+.home-page .banner button {
+    width: 195px;
+    height: 55px;
+    font-weight: 700;
+    background-color: #ED6347;
+    border: none;
+    border-radius: 5px;
+    font-size: 28px;
+}
