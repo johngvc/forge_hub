@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
         redirect_to project_path, notice: "Project deleted."
       else
         redirect_to project_path(@project), notice: "Projects can only be deleted by founders."
-    end
+      end
   end
 
   def new_join_request
@@ -98,9 +98,8 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    raise
     @project = Project.find(params[:id])
-    authorize @project # pundit authorization
+    # authorize @project # pundit authorization
   end
 
   def projects_params
