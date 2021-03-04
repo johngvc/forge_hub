@@ -1,0 +1,234 @@
+$accent-color-orange: #ED6347;
+$thirty-grey-color: #F5F6F6;
+$thirty-other-grey-color: #C4C4C4;
+$accent-color-orange: #ED6347;
+
+body  {
+  margin: 0px;
+}
+
+a:link {
+  color: $accent-color-orange;
+}
+
+a:visited {
+  color: $accent-color-orange;
+}
+
+a:click {
+  color: $accent-color-orange;
+}
+
+
+.reset-margin {
+  margin: 0px;
+}
+
+.footer {
+    margin-top: 25px;
+    flex-shrink: 0;
+}
+
+.lower-section {
+  height: 35px;
+  background-color: $thirty-other-grey-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upper-section {
+  height: 203px;
+  background-color: $thirty-grey-color;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.img-logo {
+  height: 65px;
+  width: 175px;
+  background-image: url("https://res.cloudinary.com/johngvc/image/upload/v1614637870/Forge_Hub_logo_n1tfqe.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.footer-section {
+  width: 33%
+}
+
+#logo-social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-links-sub-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-links-sub-section p {
+  margin: 15px 15px 5px 15px;
+}
+
+.social-links i {
+  font-size: 25px;
+  margin: 5px 7px;
+}
+
+#about-us-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#about-us-section div {
+  height: 30px;
+  width: 70%;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about-us-section div.info {
+  justify-content: flex-start;
+}
+
+#about-us-section .title {
+  margin-bottom: 15px;
+}
+
+#about-us-section .title p {
+  text-align: center;
+  font-weight: 800;
+  font-size: 25px;
+}
+
+#about-us-section .info i {
+  margin-left: 3px;
+  font-size: 20px;
+  color: $accent-color-orange;
+}
+
+#about-us-section .info p {
+  font-size: 15px;
+  margin-left: 15px;
+  font-weight: 800;
+}
+
+#work-with-us-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#work-with-us-section div {
+  height: 30px;
+  width: 75%;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#work-with-us-section div.info {
+  justify-content: flex-start;
+}
+
+#work-with-us-section .title {
+  margin-bottom: 15px;
+  margin-top: 17px;
+}
+
+#work-with-us-section .title p {
+  text-align: center;
+  font-weight: 800;
+  font-size: 25px;
+}
+
+#work-with-us-section .info i {
+  margin-left: 3px;
+  font-size: 20px;
+  color: $accent-color-orange;
+}
+
+#work-with-us-section .info p {
+  font-size: 15px;
+  margin-left: 15px;
+  font-weight: 800;
+}
+
+#work-with-us-section .info ul {
+  font-size: 15px;
+  margin-top: 30px;
+  margin-left: 15px;
+  font-weight: 800;
+  color: $accent-color-orange;
+}
+
+#work-with-us-section .info ul:first-child {
+  margin-top: 40px;
+}
+
+#work-with-us-section .info ul p {
+  margin: 0px;
+}
+
+#feature-request-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#feature-request-section div {
+  height: 30px;
+  width: 90%;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#feature-request-section div.info {
+  justify-content: flex-start;
+}
+
+#feature-request-section .title {
+  margin-bottom: 15px;
+  margin-top: 17px;
+}
+
+#feature-request-section .title p {
+  text-align: center;
+  font-weight: 800;
+  font-size: 25px;
+}
+
+#feature-request-section .info i {
+  margin-left: 3px;
+  font-size: 20px;
+  color: $accent-color-orange;
+}
+
+#feature-request-section .info p {
+  font-size: 15px;
+  margin-left: 15px;
+  font-weight: 800;
+}
+
+#feature-request-section .no-icon p {
+  margin-left: 40px;
+}

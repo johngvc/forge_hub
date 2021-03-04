@@ -1,8 +1,16 @@
 $accent-color-orange: #ED6347;
 $thirty-grey-color: #F5F6F6;
+$thirty-other-grey-color: #C4C4C4;
+$accent-color-orange: #ED6347;
 
+.logo a {
+    margin: 0;
+    padding: 0;
+    height: 80%;
+    width: 15%;
+}
 
-.container {
+.reset-margin {
   margin: 0px;
 }
 
@@ -27,6 +35,10 @@ $thirty-grey-color: #F5F6F6;
   align-items: center;
 }
 
+.avatar-section {
+  width: 50%;
+}
+
 .nav-bar-sign-in-form {
   width: 100%;
   display: flex;
@@ -39,12 +51,6 @@ $thirty-grey-color: #F5F6F6;
   border: solid 1px $accent-color-orange;
   border-radius: 6px;
   text-align: center;
-}
-
-.form-submit-btn {
-  background-color: $accent-color-orange;
-  width: 100px;
-  margin-right: 20px;
 }
 
 .form-submit-btn {
@@ -71,11 +77,11 @@ $thirty-grey-color: #F5F6F6;
   
 }
 
-.img {
-  height: 80%;
-  width: 15%;
-  margin-left: 15px;
-  margin-top: 5px;
+.logo .img {
+  height: 100%;
+  width: 100%;
+  margin-left: 6px;
+  margin-top: 9px;
   background-image: url("https://res.cloudinary.com/johngvc/image/upload/v1614637870/Forge_Hub_logo_n1tfqe.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -88,11 +94,11 @@ $thirty-grey-color: #F5F6F6;
 }
 
 .nav-bar-search-input input {
-  width: 332px;
-  height: 25px;
+  width: 380px;
+  height: 30px;
   border-radius: 8px;
   padding-left: 35px;
-  border: 1px black solid;
+  border: none;
 }
 
 .nav-bar-search-input input:focus {
@@ -101,8 +107,17 @@ $thirty-grey-color: #F5F6F6;
 
 .nav-bar-search-input i {
   color: black;
-  margin: 4px 8px;
+  margin: 4px 6px;
   font-size: 20px;
   position: absolute;
+}
+
+.avatar-logged-in {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    margin-top: 3px;
+    float: right;
 }
 

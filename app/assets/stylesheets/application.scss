@@ -11,3 +11,20 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+
+
+body {
+    font-family: Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+html, body {
+    height: 100%;
+}
+
+.content {
+    flex: 1 0 auto;
+}
