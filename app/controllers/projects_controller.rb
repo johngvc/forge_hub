@@ -35,7 +35,6 @@ class ProjectsController < ApplicationController
     if @project.save
       create_participant(@project)
     else
-      raise
       render :new, notice: "The project could not be created. Something went wrong. Please try again."
     end
   end

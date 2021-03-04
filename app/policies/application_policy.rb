@@ -33,7 +33,18 @@ class ApplicationPolicy
   def destroy?
     false
   end
-  
+
+  def new_join_request?
+    true
+  end
+
+  def join_request_authorize
+    true
+  end
+
+  def join_request_refuse
+    true
+  end
 
   class Scope
     attr_reader :user, :scope
