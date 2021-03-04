@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_03_04_071851) do
+=======
+
+ActiveRecord::Schema.define(version: 2021_03_03_211257) do
+>>>>>>> 66da0a1a982c695ae491303e080483bb73f55134
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_03_04_071851) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "participants_id"
+    t.text "content", null: false
     t.index ["participants_id"], name: "index_join_requests_on_participants_id"
     t.index ["project_id"], name: "index_join_requests_on_project_id"
     t.index ["user_id"], name: "index_join_requests_on_user_id"
@@ -81,7 +87,11 @@ ActiveRecord::Schema.define(version: 2021_03_04_071851) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+<<<<<<< HEAD
     t.boolean "admin"
+=======
+
+>>>>>>> 66da0a1a982c695ae491303e080483bb73f55134
     t.string "provider"
     t.string "uid"
     t.string "first_name"
