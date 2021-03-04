@@ -28,7 +28,6 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(projects_params)
-    project_id = @project[:id]
     @project.user = current_user
     authorize @project # pundit authorization ANTES DE SALVAR
     if @project.save
@@ -99,7 +98,7 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
-    # authorize @project # pundit authorization
+    authorize @project # pundit authorization
   end
 
   def projects_params

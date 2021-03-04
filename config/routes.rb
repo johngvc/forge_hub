@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     post '/new_join_request/:project_id', to: 'projects#new_join_request', as: :new_join_request
     post '/join_request_authorize/:id', to: 'projects#join_request_authorize', as: :join_request_authorize
     post '/join_request_refuse/:id', to: 'projects#join_request_refuse', as: :join_request_refuse
-    get '/joint_requests_pending', to: 'projects#pending_join_requests', as: :pending_join_requests
+    get '/join_requests_pending', to: 'projects#pending_join_requests', as: :pending_join_requests
   end
 
   delete '/projects/:id', to: "projects#destroy", as: :project_destroy
