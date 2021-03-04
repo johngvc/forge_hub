@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :set_project, only: %i[show edit update destroy]
+  # before_action :authenticate_user!, except: %i[index show]
+  # before_action :set_project, only: %i[show edit update destroy]
 
   def index
     # @projects = Project.all
@@ -33,7 +33,6 @@ class ProjectsController < ApplicationController
     if @project.save
       create_participant(@project)
     else
-      raise
       render :new, notice: "The project could not be created. Something went wrong. Please try again."
     end
   end
@@ -83,12 +82,12 @@ class ProjectsController < ApplicationController
   end
 
   def join_request_authorize
-    @join_request = JoinRequest.find(params[:id])
+    @join_request = JoinRequest.find(params[:join_request_id])
+    @project = @join_request.project
     @join_request.request_pending = false
     @join_request.save
-    @project = @join_request.project
     @user = @join_request.user
-    redirect_to project_participant_create(@user, @project)
+    redirect_to project_participant_create_path(@user, @project)
   end
 
   def join_request_refuse
