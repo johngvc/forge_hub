@@ -11,11 +11,11 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    @current_participant = Participant.where(project_id: params[:project_id], user_id: current_user.id)
-    raise
-    @participant = Participant.create(project_id: params[:project_id], user_id: params[:id], participant_id: @current_participant.id, invited_at: DateTime.now)
+    @current_participant = Participant.where(project_id: params[:project_id], user_id: current_user.id).first
+    join_request_user = JoinRequest.where
+    @participant = Participant.create(project_id: params[:project_id], user_id: params[:user_id], participant_id: @current_participant.id, invited_at: DateTime.now)
     if @participant.save
-      redirect_to project_path(@participant.project), notice: "#{@participant.user.name} is now a project participant"
+      redirect_to project_path(params[:project_id]), notice: "#{@participant.user.name} is now a project participant"
     else
       render :new
     end
