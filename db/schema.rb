@@ -87,11 +87,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_211257) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-<<<<<<< HEAD
     t.boolean "admin"
-=======
-
->>>>>>> 66da0a1a982c695ae491303e080483bb73f55134
     t.string "provider"
     t.string "uid"
     t.string "first_name"
