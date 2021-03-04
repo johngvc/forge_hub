@@ -60,13 +60,13 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-      @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
-      if @participant.is_founder?
-        @project.destroy
-        redirect_to projects_path, notice: "Project deleted."
-      else
-        redirect_to project_path(@project), notice: "Projects can only be deleted by founders."
-      end
+    @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
+    if @participant.is_founder?
+      @project.destroy
+      redirect_to projects_path, notice: "Project deleted."
+    else
+      redirect_to project_path(@project), notice: "Projects can only be deleted by founders."
+    end
   end
 
   def join_request_do
@@ -88,9 +88,16 @@ class ProjectsController < ApplicationController
     @join_request.save
     @user = @join_request.user
     redirect_to project_participant_create_path(user_id: @user, project_id: @project)
+    # mais adiante, acrescentar mecanismo de notificação do outro usuário
   end
 
   def join_request_refuse
+    @join_request = JoinRequest.find(params[:join_request_id])
+    @project = @join_request.project
+    @join_request.request_pending = false
+    @join_request.save
+    redirect_to project_path(id: @project), notice: "Join request by #{@join_request.user} was refused."
+    # mais adiante, acrescentar mecanismo de notificação do outro usuário sobre a recusa
   end
 
   private
@@ -103,4 +110,5 @@ class ProjectsController < ApplicationController
   def projects_params
     params.require(:project).permit(:name, :description, :linkedin_url, :github_url, :trello_url)
   end
+
 end
