@@ -8,4 +8,3 @@ class User < ApplicationRecord
   has_many :projects, through: :participants, dependent: :delete_all
   has_one_attached :photo
 end
-
