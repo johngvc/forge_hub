@@ -1,9 +1,21 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  
   def auth
-    request.env['omniauth.auth']
+    omniauth = request.env['omniauth.auth']
   end
+  
   def linkedin
-    p auth
-    redirect_to root_path, notice:"You are logged in with LinkedIn!"
+    user = User.where(uid: auth.uid).first_or_create! do |user| 
+      user.uid = auth.uid
+      user.provider = "linkedin"
+      user.first_name = auth.info['first_name']
+      user.last_name = auth.info['last_name']
+      user.name = "#{auth.info['first_name']} #{auth.info['last_name']}"
+      user.email = auth.info['email']
+      user.picture_url =auth.info['picture_url']
+      user.password = Devise.friendly_token.first(8)
+    end
+
+    sign_in_and_redirect user, notice:"You are logged in with LinkedIn!"
   end
 end
