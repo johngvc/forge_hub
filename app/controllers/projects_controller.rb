@@ -10,7 +10,6 @@ class ProjectsController < ApplicationController
 
   def show
     @number = 0
-    @project = Project.find(params[:id])
     @project_participants = Participant.where(project_id: @project[:id])
     join_request_pending(@project)
   end
@@ -63,12 +62,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
-    if @participant.is_founder?
-      @project.destroy
-      redirect_to project_path, notice: "Project deleted."
-    else
-      redirect_to project_path(@project), notice: "Projects can only be deleted by founders."
+      @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
+      if @participant.is_founder?
+        @project.destroy
+        redirect_to project_path, notice: "Project deleted."
+      else
+        redirect_to project_path(@project), notice: "Projects can only be deleted by founders."
     end
   end
 
@@ -99,6 +98,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
+    raise
     @project = Project.find(params[:id])
     authorize @project # pundit authorization
   end
