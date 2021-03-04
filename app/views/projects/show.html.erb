@@ -24,8 +24,8 @@
           <td><%= "non-founder" %></td>
         <% end %>
         <td><%= "#{participant.user.email}" %></td>
-        <% if @participant.is_founder? %>
-          <td>todo edit permissions for this user</td>
+        <% if @participant.first.is_founder? %>
+          <td><%=  link_to "edit member status", edit_project_participant_path(id: participant.id, project_id: @project.id)  %></td>
         <% else %>
           <td></td>
         <% end %>
