@@ -19,10 +19,10 @@
             <td><%= request.content %></td>
             <td>
               <div style="display:inline-flex;">
-                <%= link_to project_join_request_authorize_path(request[:id]), method: :post do %>
+                <%= link_to project_join_request_authorize_path(request.project.id, request.id), method: :post do %>
                   <div class="btn btn-success", style="width: 180px">authorize</div>
                 <% end %>
-                <%= link_to project_join_request_refuse_path(request[:id]), method: :post do %>
+                <%= link_to project_join_request_refuse_path(request.project.id, request.id), method: :post do %>
                   <div class="btn btn-success", style="width: 180px">refuse</div>
                 <% end %>
               </div>

@@ -9,17 +9,17 @@
     </div>
   </div>
 
-  <% if user_signed_in? || controller_name == 'sessions' %>
+  <% #if user_signed_in? || controller_name == 'sessions' %>
     <div class="avatar-section">
-      <% if !current_user.nil? && !current_user.photo.nil? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar-logged-in" %>
-      <% else %>
-        <div class="avatar-logged-in" style="background-color: grey;"></div>
-      <% end %>
+      <% #if !current_user.nil? && !current_user.photo.nil? %>
+        <%= #cl_image_tag current_user.photo.key, class: "avatar-logged-in" %>
+      <% #else %>
+
+      <% #end %>
     </div>
 
 
-  <% else %>
+  <% #else %>
     <div class="sign-in-section">
           <div class="nav-bar-sign-in-form">
             <form class="sign-in-form" action="/users/sign_in">
@@ -29,5 +29,5 @@
             </form>
           </div>
     </div>
-  <% end %>
+  <% #end %>
 </div>
