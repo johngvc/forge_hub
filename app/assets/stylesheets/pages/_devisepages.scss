@@ -3,9 +3,10 @@ $thirty-grey-color: #F5F6F6;
 $thirty-other-grey-color: #C4C4C4;
 $accent-color-orange: #ED6347;
 $link-grey-color: #979797;
+@import '../config/mixins';
+
 
 .master-container {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,5 +55,10 @@ $link-grey-color: #979797;
 .form h2 {
     margin: 10px 0px 25px 0px;
     font-weight: 700;
+}
+
+.cancel-acc{
+    margin: 20px 0px 0px 0px;
+    font-size: 15px;
 }
 
