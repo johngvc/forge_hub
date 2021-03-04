@@ -11,8 +11,10 @@
 
   <% if user_signed_in? || controller_name == 'sessions' %>
     <div class="avatar-section">
-      <% if !current_user.nil? && !current_user.photo.nil? %>
+      <% if current_user && current_user.photo.attached? %>
         <%= cl_image_tag current_user.photo.key, class: "avatar-logged-in" %>
+      <% elsif current_user && current_user.picture_url.present? %>
+        <%= image_tag current_user.picture_url, class: "avatar-logged-in" %>
       <% else %>
         <div class="avatar-logged-in" style="background-color: grey;"></div>
       <% end %>
