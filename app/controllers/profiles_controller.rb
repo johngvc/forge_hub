@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_adoption_requests, only: %i[show]
+  # before_action :set_adoption_requests, only: %i[show]
 
   def show
     @user = current_user
@@ -18,9 +18,4 @@ class ProfilesController < ApplicationController
       participation.project_id
     end
   end
-
-  def join_request_authorize
-
-  end
-
 end
