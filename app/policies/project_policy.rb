@@ -19,11 +19,11 @@ class ProjectPolicy < ApplicationPolicy
     def edit?
       # user ==> current_user
       # record ==> @project
-      owner_ou_admin?
+      true
     end
 
     def update
-      owner_ou_admin?
+      true
     end
 
     def show?
@@ -31,13 +31,25 @@ class ProjectPolicy < ApplicationPolicy
     end
 
     def destroy?
-      owner_ou_admin?
+      true
+    end
+
+    def new_join_request?
+      true
+    end
+
+    def join_request_authorize?
+      true
+    end
+
+    def join_request_refuse?
+      true
     end
 
     private
 
     def owner_ou_admin?
-      record.user == user || user.admin
+      true
     end
-  
+
 end

@@ -1,14 +1,19 @@
 class ParticipantsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index]
-  before_action :set_participant, only: %i[index new create]
+  # before_action :authenticate_user!, except: %i[index]
+  # before_action :set_participant, only: %i[index new create]
 
   def index
     @participants = Participant.where(project_id: @project.id)
   end
 
+  def new
+    @participant = Participant.create(project_id: params[:project_id], user_id: params[:user_id], participant_id: @current_participant.id, invited_at: DateTime.now)
+  end
+
   def create
-    @current_participant = Participant.where(project_id: params[:project], user_id: current_user.id)
-    @participant = Participant.create(project_id: params[:project], user_id: params[:user], participant_id: @current_participant.id, invited_at: DateTime.now)
+    @current_participant = Participant.where(project_id: params[:project_id], user_id: current_user.id)
+    raise
+    @participant = Participant.create(project_id: params[:project_id], user_id: params[:id], participant_id: @current_participant.id, invited_at: DateTime.now)
     if @participant.save
       redirect_to project_path(@participant.project), notice: "#{@participant.user.name} is now a project participant"
     else
@@ -23,6 +28,6 @@ class ParticipantsController < ApplicationController
   end
 
   def participants_params
-    params.require(:participants).permit(:project_id, :is_founder, :invited_at, :accepted_at, :clearence_level)
+    params.require(:participants).permit(:project_id, :user_id)
   end
 end
