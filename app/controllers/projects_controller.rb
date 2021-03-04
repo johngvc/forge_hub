@@ -74,7 +74,6 @@ class ProjectsController < ApplicationController
     @message = params[:request_message]
     @project = Project.find(params[:project_id])
     @join_request = JoinRequest.new(project_id: @project.id, user_id: @user.id, created_at: DateTime.now, content: @message)
-    raise
     if @join_request.save
       redirect_to project_path(id: @project.id), notice: "Sent request to join #{@project.name}. Expect a reply from the founder(s) shortly."
     else
