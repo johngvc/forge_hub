@@ -6,13 +6,9 @@ class ParticipantsController < ApplicationController
     @participants = Participant.where(project_id: @project.id)
   end
 
-  def new
-    @participants = Participant.new
-  end
-
   def create
-    current_participant = Participant.where(project_id: @project[:id], user_id: current_user.id)
-    @participant = Participant.new(participants_params, participant_id: current_participant[:id])
+    @current_participant = Participant.where(project_id: params[:project], user_id: current_user.id)
+    @participant = Participant.create(project_id: params[:project], user_id: params[:user], participant_id: @current_participant.id, invited_at: DateTime.now)
     if @participant.save
       redirect_to project_path(@participant.project), notice: "#{@participant.user.name} is now a project participant"
     else

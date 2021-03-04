@@ -9,7 +9,17 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @participants = Participant.where(project_id: @project[:id])
+    @number = 0
+    @project = Project.find(params[:id])
+    @project_participants = Participant.where(project_id: @project[:id])
+    join_request_pending(@project)
+  end
+
+  def join_request_pending(project)
+    @participant = Participant.where(user_id: current_user.id, project_id: project.id)
+    @join_requests = @participant.map do |participation|
+      participation.is_founder? ? JoinRequest.where(project_id: participation.project.id, request_pending: true) : nil
+    end
   end
 
   def new
@@ -64,13 +74,26 @@ class ProjectsController < ApplicationController
 
   def new_join_request
     @user = current_user
+    @message = params[:request_message]
     @project = Project.find(params[:project_id])
-    @join_request = JoinRequest.create(project_id: @project.id, user_id: @user.id, created_at: DateTime.now)
+    @join_request = JoinRequest.create(project_id: @project.id, user_id: @user.id, created_at: DateTime.now, content: @message)
     if @join_request.save
       redirect_to project_path(@project.id), notice: "Sent request to join #{@project.name}. Expect a reply from the founder(s) shortly."
     else
       render :new, notice: "Error. Your request to join #{@project.name} could not be sent. Please try again."
     end
+  end
+
+  def join_request_authorize
+    @join_request = JoinRequest.find(params[:id])
+    @join_request.request_pending = false
+    @join_request.save
+    @project = @join_request.project
+    @user = @join_request.user
+    redirect_to project_participant_create(@user, @project)
+  end
+
+  def join_request_refuse
   end
 
   private
