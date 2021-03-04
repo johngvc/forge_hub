@@ -1,16 +1,16 @@
 class ProjectsController < ApplicationController
   # before_action :authenticate_user!, except: %i[index show]
-  # before_action :set_project, only: %i[show edit update destroy]
+  before_action :set_project, only: %i[show edit update destroy]
 
   def index
-    # @projects = Project.all
-    @projects = policy_scope(Project)
+    @projects = Project.all
+    # @projects = policy_scope(Project)
     @user = current_user
   end
 
   def show
     @number = 0
-    @project_participants = Participant.where(project_id: @project[:id])
+    @project_participants = Participant.where(project_id: @project.id)
     join_request_pending(@project)
   end
 
@@ -23,13 +23,13 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    authorize @project # pundit authorization
+    # authorize @project # pundit authorization
   end
 
   def create
     @project = Project.new(projects_params)
     @project.user = current_user
-    authorize @project # pundit authorization ANTES DE SALVAR
+    # authorize @project # pundit authorization ANTES DE SALVAR
     if @project.save
       create_participant(@project)
     else
@@ -63,21 +63,22 @@ class ProjectsController < ApplicationController
       @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
       if @participant.is_founder?
         @project.destroy
-        redirect_to project_path, notice: "Project deleted."
+        redirect_to projects_path, notice: "Project deleted."
       else
         redirect_to project_path(@project), notice: "Projects can only be deleted by founders."
       end
   end
 
-  def new_join_request
+  def join_request_do
     @user = current_user
     @message = params[:request_message]
     @project = Project.find(params[:project_id])
-    @join_request = JoinRequest.create(project_id: @project.id, user_id: @user.id, created_at: DateTime.now, content: @message)
+    @join_request = JoinRequest.new(project_id: @project.id, user_id: @user.id, created_at: DateTime.now, content: @message)
+    raise
     if @join_request.save
-      redirect_to project_path(@project.id), notice: "Sent request to join #{@project.name}. Expect a reply from the founder(s) shortly."
+      redirect_to project_path(id: @project.id), notice: "Sent request to join #{@project.name}. Expect a reply from the founder(s) shortly."
     else
-      render :new, notice: "Error. Your request to join #{@project.name} could not be sent. Please try again."
+      redirect_to project_path(id: @project.id), notice: "Error. Your request to join #{@project.name} could not be sent. Please try again."
     end
   end
 
@@ -87,7 +88,7 @@ class ProjectsController < ApplicationController
     @join_request.request_pending = false
     @join_request.save
     @user = @join_request.user
-    redirect_to project_participant_create_path(@user, @project)
+    redirect_to project_participant_create_path(user_id: @user, project_id: @project)
   end
 
   def join_request_refuse
@@ -97,7 +98,7 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
-    authorize @project # pundit authorization
+    # authorize @project # pundit authorization
   end
 
   def projects_params

@@ -13,7 +13,7 @@
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: 180px;">ask to join this project!</button>
 
-<%= link_to project_destroy_path(@project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
+<%= link_to project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
   <div class="btn btn-success", style="width: 180px">delete this project!</div>
 <% end %>
 
@@ -28,7 +28,7 @@
         </button>
       </div>
 
-      <%= form_tag project_new_join_request_path(@project), method: :post do %>
+      <%= form_tag project_join_request_do_path(@project), method: :post do %>
         <div class="modal-body">
           <div class="input-group">
             <textarea class="form-control" name="request_message"></textarea>
@@ -48,7 +48,7 @@
 <% if @join_requests.first.empty?%>
   <p>There are currently no pending requests from users who wish to join the project</p>
 <% else %>
-  <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests, number: @number } %>
+  <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests.first, number: @number } %>
 <% end %>
 
 
