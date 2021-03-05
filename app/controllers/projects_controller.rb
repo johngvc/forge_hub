@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_project, only: %i[show edit update destroy]
+  before_action :set_project, only: %i[show update destroy]
 
   def index
   @projects = Project.all
   @project_participants = @projects.map do |project|
     Participant.where(project_id: project.id)
+  end
   #@projects = policy_scope(Project
   end
 
@@ -24,13 +25,13 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    authorize @project # pundit authorization
+    #authorize @project # pundit authorization
   end
 
   def create
     @project = Project.new(projects_params)
     @project.user = current_user
-    authorize @project # pundit authorization ANTES DE SALVAR
+    #authorize @project # pundit authorization ANTES DE SALVAR
     if @project.save
       create_participant(@project)
     else
@@ -50,11 +51,12 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(projects_params)
-    @project.update = (projects_params)
+    @project = Project.find(params[:id])
+    @project.update(projects_params)
     if @project.save
       redirect_to project_path(@project)
     else
@@ -107,10 +109,10 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
-    authorize @project # pundit authorization
+    #authorize @project # pundit authorization
   end
 
   def projects_params
-    params.require(:project).permit(:name, :description, :linkedin_url, :github_url, :trello_url)
+    params.require(:project).permit(:id, :name, :description, :linkedin_url, :github_url, :trello_url)
   end
 end
