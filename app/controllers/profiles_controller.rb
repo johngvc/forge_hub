@@ -3,8 +3,8 @@ class ProfilesController < ApplicationController
 
   def show
     @user = current_user
-    authorize @user
-    
+    # authorize @user
+
     # omniauth = request.env["omniauth.auth"]
     # first_name = omniauth[:info][:first_name]
     # last_name = omniauth[:info][:last_name]
