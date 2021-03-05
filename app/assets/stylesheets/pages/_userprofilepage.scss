@@ -1,0 +1,14 @@
+.profile-page {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-page .banner {
+}
+
+.profile-page div {
+    height: 200px;
+    width: 100%;
+}
