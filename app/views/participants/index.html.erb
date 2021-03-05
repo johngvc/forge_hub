@@ -24,24 +24,20 @@
             <%= cl_image_tag current_user.photo.key, class: "avatar" %>
           <% end %>
         </td>
+        <td><%= link_to "#{participant.user.name}", profile_path(id: participant.user.id) %></td>
+        <td><%= participant.user.email %></td>
 
+        <% if participant.is_founder? %>
+          <td><%= "founder"%></td>
+        <% elsif participant.accepted_at.nil? %>
+          <td><%= "temporary invitee/ pending membership confirmation" %></td>
+        <% else %>
+          <td><%= "non-founder" %></td>
+        <% end %>
 
-          <td><%= participant.user.name %></td>
-          <td><%= participant.user.name %></td>
-          <td><%= participant.user.email %></td>
-
-          <% if participant.is_founder? %>
-            <td><%= "founder"%></td>
-          <% elsif participant.accepted_at.nil? %>
-            <td><%= "temporary invitee/ pending membership confirmation" %></td>
-          <% else %>
-            <td><%= "non-founder" %></td>
-          <% end %>
-
-          <% if @current_participant.is_founder? %>
-            <td><%=  link_to "edit member status", edit_project_participant_path(id: participant.id, project_id: @project.id)  %></td>
-          <% end %>
-
+        <% if @current_participant.is_founder? %>
+          <td><%=  link_to "edit member status", edit_project_participant_path(id: participant.id, project_id: @project.id)  %></td>
+        <% end %>
         </tr>
       <% end %>
     </tbody>

@@ -36,15 +36,15 @@
         <% @project_participants.each do |participant| %>
           <% if participant.is_founder? %>
             <% if !participant.user.photo.attached? %>
-              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= "-       #{participant.user.name} - founder"%></li>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
             <% else %>
-              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= "-       #{participant.user.name} - founder"%></li>
+              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
             <% end %>
           <% elsif participant.accepted_at != nil%>
             <% if !participant.user.photo.attached? %>
-              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= "-       #{participant.user.name} - member"%></li>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
             <% else %>
-              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= "-       #{participant.user.name} - member"%></li>
+              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
             <% end %>
           <% end %>
         <% end %>
