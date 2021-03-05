@@ -20,6 +20,9 @@
         <div class="nav-item">
           <%= link_to "My projects", profile_path(current_user.id), class: "nav-link" %>
         </div>
+        <div class="nav-item">
+          <%= link_to "Contact us", "#", class: "nav-link" %>
+        </div>
         <div class="nav-item dropdown">
           <% if current_user && current_user.photo.attached? %>
             <%= cl_image_tag current_user.photo.key, class: "avatar-forgehub dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
