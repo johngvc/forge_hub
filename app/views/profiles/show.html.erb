@@ -1,9 +1,11 @@
 <div class="profile-page">
     <div class="profile-section">
-        <% if !current_user.photo.attached? %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-big" %>
-        <% else %>
+        <% if current_user && current_user.photo.attached? %>
             <%= cl_image_tag current_user.photo.key, class: "avatar-big" %>
+        <% elsif current_user && current_user.picture_url.present? %>
+            <%= image_tag current_user.picture_url, class: "avatar-big" %>
+        <% else %>
+            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-big" %>
         <% end %>
 
         <a href="<%= edit_user_registration_path(current_user.id) %>"> 
