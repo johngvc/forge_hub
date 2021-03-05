@@ -40,9 +40,11 @@ class ProjectsController < ApplicationController
   def create_participant(project)
     @participant = Participant.new(user_id: current_user.id, participant_id: nil, project_id: project[:id], is_founder: true, invited_at: DateTime.now, accepted_at: DateTime.now)
     if @participant.save
+      @participant.invite_participant_id = @participant.id
+      @participant.save
       redirect_to project_path(project.id), notice: "The new project was created and #{current_user.name} was saved as project participant."
     else
-      redirect to_to new_project_path, notice: "The project was saved but #{current_user.name} failed to be saved as a project participant, please delete the project and try again."
+      render :new, notice: "The project was saved but #{current_user.name} failed to be saved as a project participant, please delete the project and try again."
     end
   end
 
