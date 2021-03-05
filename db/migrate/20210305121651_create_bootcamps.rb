@@ -4,7 +4,7 @@ class CreateBootcamps < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :country
       t.string :city
-      t.string :wbesite
+      t.string :website
 
       t.timestamps
     end
