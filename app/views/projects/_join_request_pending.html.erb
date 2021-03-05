@@ -1,65 +1,36 @@
-<h4>Pending join requests:</h4>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Request by:</th>
-      <th scope="col">Request</th>
-      <th scope="col">authorize / refuse</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% join_requests.each do |request| %>
-        <tr>
-          <td><%= @number += 1 %></td>
-          <td><%= request.user.name %></td>
-          <td><%= request.content %></td>
-          <td>
-            <div style="display:inline-flex;">
-              <%= link_to project_join_request_authorize_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
 
-                <div class="btn btn-success", style="width: 180px">authorize</div>
-              <% end %>
-              <%= link_to project_join_request_refuse_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
-                <div class="btn btn-success", style="width: 180px">refuse</div>
-              <% end %>
-            </div>
-          </td>
-          <td>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#messageBackModal" style="width: 180px;"><%= "send a message to #{request.user.name}" %></button>
-          </td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h4>Pending join requests:</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Request by:</th>
+        <th scope="col">Request</th>
+        <th scope="col">authorize / refuse</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% join_requests.each do |request| %>
+          <tr>
+            <td><%= @number += 1 %></td>
+            <td><%= request.user.name %></td>
+            <td><%= request.content %></td>
+            <td>
+              <div style="display:inline-flex;">
+                <%= link_to project_join_request_authorize_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
 
-
-  <!-- Modal -->
-  <div class="modal fade" id="messageBackModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">write a message to the user before addmiting the request</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <%= form_tag project_join_request_do_path(@project), method: :post do %>
-          <div class="modal-body">
-            <div class="input-group">
-              <textarea class="form-control" name="request_message"></textarea>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="submit" class="btn btn-success" value="send message">
-          </div>
-        <% end %>
-
-      </div>
-    </div>
-  </div>
-  <!-- Modal -->
+                  <div class="btn btn-success", style="width: 180px">authorize</div>
+                <% end %>
+                <%= link_to project_join_request_refuse_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
+                  <div class="btn btn-success", style="width: 180px">refuse</div>
+                <% end %>
+              </div>
+            </td>
+            <td>TODO - MESSAGE BACK MODAL</td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_04_225136) do
+ActiveRecord::Schema.define(version: 2021_03_04_071851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(version: 2021_03_04_225136) do
   create_table "participants", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
-    t.bigint "invite_participant_id"
+    t.bigint "participant_id"
     t.boolean "is_founder", default: false
     t.datetime "invited_at"
     t.datetime "accepted_at"
-    t.index ["invite_participant_id"], name: "index_participants_on_invite_participant_id"
+    t.index ["participant_id"], name: "index_participants_on_participant_id"
     t.index ["project_id"], name: "index_participants_on_project_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2021_03_04_225136) do
   add_foreign_key "join_requests", "participants", column: "participants_id"
   add_foreign_key "join_requests", "projects"
   add_foreign_key "join_requests", "users"
-  add_foreign_key "participants", "participants", column: "invite_participant_id"
+  add_foreign_key "participants", "participants"
   add_foreign_key "participants", "projects"
   add_foreign_key "participants", "users"
   add_foreign_key "projects", "users"
