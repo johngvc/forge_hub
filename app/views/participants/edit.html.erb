@@ -1,0 +1,19 @@
+<h1><%=  "#{@project.name} - - #{@participant.user.name}" %></h1>
+<p></p><p></p>
+<div class=master-container>
+  <% if @participant.user == current_user %>
+    <p><%= "Would you like to leave #{@project.name}?" %></p>
+    <p>TODO aqui vai um botão para sair do projeto</p>
+  <% elsif @participant.accepted_at != nil %>
+    <% if @participant.is_founder == false %>
+      <h3><%= "#{@participant.user.name} is a regular member of #{@project.name}" %></h3>
+      <p><% "Would you like to upgrade #{@participant.user.name} to co-founder status?" %></p>
+      <p> TODO - aqui vão botões para atulização do status do participante e exclusão do participante do grupo</p>
+    <% else %>
+      <p>Participant is a founder and his status cannot be changed.</p>
+    <% end %>
+  <% else %>
+    <p><% "Would you like to admit #{@participant.user.name} as a regular project member?" %></p>
+  <% end %>
+
+</div>

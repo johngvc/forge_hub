@@ -21,6 +21,10 @@
 
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#projectAskModal" style="width: 180px;">ask to join this project!</button>
 
+    <%= link_to edit_project_path(id: @project.id) do %>
+      <div class="btn btn-success", style="width: 180px">edit this project!</div>
+    <% end %>
+
     <%= link_to project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
       <div class="btn btn-success", style="width: 180px">delete this project!</div>
     <% end %>
