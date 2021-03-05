@@ -12,9 +12,19 @@
   <% if user_signed_in? || controller_name == 'sessions' %>
     <div class="avatar-section">
       <% if !current_user.nil? && !current_user.photo.nil? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar-logged-in" %>
+        <li class="nav-item dropdown">          
+          <%= cl_image_tag current_user.photo.key, class: "avatar avatar-logged-in dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+        <%# cl_image_tag current_user.photo.key, class: "avatar-logged-in" %>
       <% else %>
-        <div class="avatar-logged-in" style="background-color: grey;"></div>
+        
+
+        
       <% end %>
     </div>
 
