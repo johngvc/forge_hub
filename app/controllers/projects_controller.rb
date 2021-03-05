@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   @projects = policy_scope(Project)
   @project_participants = @projects.map do |project|
     Participant.where(project_id: project.id)
+  raise
   end
   end
 
