@@ -23,9 +23,8 @@ class ParticipantsController < ApplicationController
   end
 
   def edit
-    @invite_participant = Participant.find(@participant.invite_participant_id)
+    # @participant = Participant.find(@participant.invite_participant_id)
   end
-
 
   private
 
