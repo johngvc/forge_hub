@@ -1,23 +1,62 @@
 <div class="profile-page">
-    <div class="banner">
-        
-        
-    </div>
+    <div class="profile-section">
+        <% if !current_user.photo.attached? %>
+            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-big" %>
+        <% else %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar-big" %>
+        <% end %>
 
-    <div class="first-section">
+        <a href="<%= edit_user_registration_path(current_user.id) %>"> 
+            Edit my profile <i class="fas fa-edit"></i>
+        </a>
 
-    </div>
+        <div class="user-info-acc">
+            <ul>
+                <li><h2><%= current_user.name %></h2></li>
+                    <li><p>Email: <%= current_user.email %></p></li>
+                    <li><p>Specialty: Lorem ipsum, dolor sit</p></li>
+                    <li><p>Description: Lorem ipsum, dolor sit</p></li>
+            </ul>
+        </div>
 
-    <div class="paralax">
+        <div class="user-info">
+            <p>
+                <i class="fas fa-briefcase"></i>
+                Founded 4 projects
+            </p>
+            <p>
+                <i class="fas fa-search"></i>
+                Looking for 3 co-founders
+            </p>
+        </div>
 
     </div>
 
     <div class="second-section">
+        <div class="projects-section">
+            <h2>Active Projects</h2>
+            <div class="card-container">
+                <div class="card-test"></div>
+                <div class="card-test"></div>
+                <div class="card-test"></div>
+                <div class="card-test"></div>
+                <div class="card-test"></div>
+                <div class="card-test"></div>
+            </div>
+        </div>
 
-    </div>
-
-    <div class="third-section">
-
+        <div class="messages-section">
+            <h2>Messages</h2>
+            <div class="card-container">
+                <div class="card-test-message"></div>
+                <div class="card-test-message"></div>
+                <div class="card-test-message"></div>
+                <div class="card-test-message"></div>
+                <div class="card-test-message"></div>
+                <div class="card-test-message"></div>
+                <div class="card-test-message"></div>
+            </div>
+        </div>
     </div>
 
 
