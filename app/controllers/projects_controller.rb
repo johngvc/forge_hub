@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   def create_participant(project)
-    @participant = Participant.new(user_id: current_user.id, participant_id: nil, project_id: project[:id], is_founder: true, invited_at: DateTime.now, accepted_at: DateTime.now)
+    @participant = Participant.new(user_id: current_user.id, project_id: project[:id], is_founder: true, invited_at: DateTime.now, accepted_at: DateTime.now)
     if @participant.save
       @participant.invite_participant_id = @participant.id
       @participant.save
