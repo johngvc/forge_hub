@@ -64,7 +64,7 @@
           </button>
         </div>
 
-        <%= form_tag project_join_request_do_path(project_id: @project.id, id: @participant.id), method: :post do %>
+        <%= form_tag project_join_request_do_path(project_id: @project.id, id: @participant.first.id), method: :post do %>
           <div class="modal-body">
             <div class="input-group">
               <textarea class="form-control" name="request_message"></textarea>
