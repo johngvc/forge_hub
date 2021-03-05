@@ -3,3 +3,4 @@ const initModal = () => {
     $('#myInput').trigger('focus')
   });
 }
+ export { initModal };
