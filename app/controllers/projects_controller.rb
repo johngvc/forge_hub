@@ -3,9 +3,10 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
 
   def index
-    # @projects = Project.all
-    @projects = policy_scope(Project)
-    @user = current_user
+  @projects = Project.all
+  @project_participants = @projects.map do |project|
+    Participant.where(project_id: project.id)
+  #@projects = policy_scope(Project
   end
 
   def show
