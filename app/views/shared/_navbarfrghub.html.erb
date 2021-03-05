@@ -21,7 +21,7 @@
           <%= link_to "My projects", profile_path(current_user.id), class: "nav-link" %>
         </div>
         <div class="nav-item">
-          <%= link_to "Contact us", "#", class: "nav-link" %>
+          <%= link_to "Contact us", contact_path, class: "nav-link" %>
         </div>
         <div class="nav-item dropdown">
           <% if current_user && current_user.photo.attached? %>
