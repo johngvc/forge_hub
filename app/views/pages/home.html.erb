@@ -3,11 +3,14 @@
 <div class="home-page">
     <div class="banner" style="background-image: url('https://res.cloudinary.com/johngvc/image/upload/v1614795809/Mesa_flipped_hfcknm.jpg') ;">
         <h1>Make your startup a reality today.</h1>
-        <a href="#">
+        <% if current_user.nil? %>
+          <a href="/users/sign_up">
             <button>
                 Start it now!
             </button>
-        </a>
+          </a>
+        <% end %>
+        
     </div>
 
     <div class="first-section">

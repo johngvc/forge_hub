@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <% if user_signed_in? || controller_name == 'sessions' %>
+  <% if user_signed_in? %>
     <div class="avatar-section">
       <div class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
@@ -27,9 +27,12 @@
         </div>
     </div>
         
-  <% else %>
+  <% elsif controller_name != "sessions" %>
     <div class="sign-in-section">
           <a href="/users/sign_in"><button class="Log-in-btn">LOG IN</button></a>
     </div>
+
+  <% else %>
+    <div class="sign-in-section"></div>
   <% end %>
 </div>
