@@ -1,24 +1,26 @@
-<h1>INDEX DE PROJECTS</h1>
-
+<h1><%=  "Edit the status of #{@participant.name} in #{@project.name}" %></h1>
+<p></p><p></p>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Name:</th>
       <th scope="col">email:</th>
       <th scope="col">status:</th>
-      <th scope="col"></th>
+      <th scope="col">invited by:</th>
+      <th scope="col">accepted invitation on:</th>
     </tr>
   </thead>
   <tbody>
     <% @project_participants.each do |participant| %>
       <tr>
-        <td><%= "#{participant.user.name}" %></td>
+        <td><%= @participant.user.name %></td>
+        <td><%= @participant.user.email %></td>
         <% if participant.is_founder? %>
           <td><%= "founder"%></td>
         <% else %>
           <td><%= "non-founder" %></td>
         <% end %>
-        <td><%= "#{participant.user.email}" %></td>
+        <td><%=  %></td>
         <% if @participant.first.is_founder? %>
           <td><%=  link_to "edit member status", edit_project_participant_path(id: participant.id, project_id: @project.id)  %></td>
         <% else %>
