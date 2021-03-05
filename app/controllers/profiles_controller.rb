@@ -2,9 +2,10 @@ class ProfilesController < ApplicationController
   # before_action :set_adoption_requests, only: %i[show]
 
   def show
-    # authorize @profile
-    @user = current_user
+
+    @user = User.find(params[:id])
     authorize @user
+
 
     # omniauth = request.env["omniauth.auth"]
     # first_name = omniauth[:info][:first_name]

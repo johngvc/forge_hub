@@ -1,23 +1,19 @@
-<div class="container-fluid my-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8">
-      <div class="card p-3">
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <h2 class="heading text-center">Create a new project</h2>
-          </div>
-        </div>
-        <%= simple_form_for(@project) do |f| %>
-          <%=f.input :name %>
-          <%= f.input :description %>
-          <%= f.input :linkedin_url %>
-          <%= f.input :github_url %>
-          <%= f.input :trello_url %>
-          <div style="display: flex; justify-content: space-between;">
-            <%=f.submit "Find my pet an owner!", class: "btn btn-success mx-2", style: "width: auto;"%>
-          </div>
-        <% end %>
+
+<div class=master-container>
+  <div class="form"> 
+    <h2 class="heading text-center">Create a new project</h2>
+    <%= simple_form_for(@project) do |f| %>
+      <%=f.input :name, required: true, placeholder: "Your project name" %>
+      <%= f.label :description, 'Description'%>
+      <%= f.text_area :description, required: true, style: "width: 100%;" %>
+      <%= f.input :linkedin_url %>
+      <%= f.input :github_url %>
+      <%= f.input :trello_url %>
+      <%= f.input :photo, as: :file, required: true %>
+      <div class="form-actions">
+        <%= f.submit "Create my new project!", style: "margin-bottom: 15px; border: none;" %>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
+

@@ -7,7 +7,6 @@ $accent-color-orange: #ED6347;
 
 //debug
 .home-page div {
-
 }
 
 .home-page {
@@ -23,7 +22,7 @@ $accent-color-orange: #ED6347;
 }
 
 .home-page .banner {
-    height: 83vh;
+    height: 93vh;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     display: flex;
@@ -41,14 +40,31 @@ $accent-color-orange: #ED6347;
     line-height: 82px;
 }
 
-.home-page .banner a {
+.home-page .banner .start-btn {
     color: black;
     position: absolute;
     bottom: 17.4vh;
     left: 3.8vw;
 }
 
-.home-page .banner button {
+.home-page .banner .start-btn button {
+    width: 195px;
+    height: 55px;
+    font-weight: 700;
+    background-color: #ED6347;
+    border: none;
+    border-radius: 5px;
+    font-size: 28px;
+}
+
+.home-page .banner .start-btn {
+    color: black;
+    position: absolute;
+    bottom: 17.4vh;
+    left: 3.8vw;
+}
+
+.home-page .banner .start-btn button {
     width: 195px;
     height: 55px;
     font-weight: 700;
