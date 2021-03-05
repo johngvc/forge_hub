@@ -35,9 +35,17 @@
       <ul>
         <% @project_participants.each do |participant| %>
           <% if participant.is_founder? %>
-            <li><%= "#{participant.user.name} - founder"%></li>
+            <% if !participant.user.photo.attached? %>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= "-       #{participant.user.name} - founder"%></li>
+            <% else %>
+              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= "-       #{participant.user.name} - founder"%></li>
+            <% end %>
           <% elsif participant.accepted_at != nil%>
-            <td><%= "#{participant.user.name} - founder"%></td>
+            <% if !participant.user.photo.attached? %>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= "-       #{participant.user.name} - member"%></li>
+            <% else %>
+              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= "-       #{participant.user.name} - member"%></li>
+            <% end %>
           <% end %>
         <% end %>
       </ul>
