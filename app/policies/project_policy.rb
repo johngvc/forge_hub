@@ -51,5 +51,4 @@ class ProjectPolicy < ApplicationPolicy
     def owner_ou_admin?
       true
     end
-
 end
