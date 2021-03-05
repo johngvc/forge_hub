@@ -4,8 +4,11 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    @project_participants = @projects.map do |project|
+      Participant.where(project_id: project.id)
+    end
     # @projects = policy_scope(Project)
-    @user = current_user
+    # @user = current_user
   end
 
   def show
