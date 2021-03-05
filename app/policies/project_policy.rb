@@ -23,32 +23,21 @@ class ProjectPolicy < ApplicationPolicy
     end
 
     def update
-      true
+      owner_ou_admin?
     end
 
     def show?
-      true
+      create?
     end
 
     def destroy?
-      true
+      owner_ou_admin?
     end
 
-    def new_join_request?
-      true
-    end
-
-    def join_request_authorize?
-      true
-    end
-
-    def join_request_refuse?
-      true
-    end
 
     private
 
     def owner_ou_admin?
-      true
+      record.user == user
     end
 end
