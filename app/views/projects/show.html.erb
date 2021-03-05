@@ -1,77 +1,90 @@
-<h1><%=  @project.name %></h1>
-<p></p><p></p>
-<p><strong><%= @project.description %></strong></p>
-<p></p><p></p>
-<h5>Project members:</h5>
-<p></p>
-<p></p>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name:</th>
-      <th scope="col">email:</th>
-      <th scope="col">status:</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @project_participants.each do |participant| %>
-      <tr>
-        <td><%= "#{participant.user.name}" %></td>
-        <% if participant.is_founder? %>
-          <td><%= "founder"%></td>
-        <% else %>
-          <td><%= "non-founder" %></td>
-        <% end %>
-        <td><%= "#{participant.user.email}" %></td>
-        <% if @participant.first.is_founder? %>
-          <td><%=  link_to "edit member status", edit_project_participant_path(id: participant.id, project_id: @project.id)  %></td>
-        <% else %>
-          <td></td>
-        <% end %>
-      </tr>
+<div class="container">
+  <h1><%=  @project.name %></h1>
+  <p></p><p></p>
+  <p><strong><%= @project.description %></strong></p>
+  <p></p><p></p>
+
+
+  <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: column;">
+    <% if @project.linkedin_url != nil %>
+      <%= link_to "check out #{@project.name}`s LinkedIn page", "#{@project.linkedin_url}" %>
     <% end %>
-  </tbody>
-</table>
+    <% if @project.github_url != nil %>
+      <%= link_to "check out #{@project.name}`s GitHub profile", "#{@project.github_url}" %>
+    <% end %>
+    <% if @project.trello_url != nil %>
+      <%= link_to "Access #{@project.name}`s workflow in Trello", "#{@project.trello_url}" %>
+    <% end %>
+  </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: 180px;">ask to join this project!</button>
+  <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: center;">
 
-<%= link_to project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
-  <div class="btn btn-success", style="width: 180px">delete this project!</div>
-<% end %>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#projectAskModal" style="width: 180px;">ask to join this project!</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">send the founders a message asking to join this project</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+    <%= link_to project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
+      <div class="btn btn-success", style="width: 180px">delete this project!</div>
+    <% end %>
+  </div>
 
-      <%= form_tag project_join_request_do_path(@project), method: :post do %>
-        <div class="modal-body">
-          <div class="input-group">
-            <textarea class="form-control" name="request_message"></textarea>
+  <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: column;">
+    <h2>Project members:</h2>
+    <% if @project_participants.empty? %>
+      <p><%= "There are no registered members of #{@project.name}"%></p>
+    <% else %>
+      <%= link_to "click here for a detailed list of project members", project_participants_path(project_id: @project.id) %>
+      <ul>
+        <% @project_participants.each do |participant| %>
+          <% if participant.is_founder? %>
+            <% if !participant.user.photo.attached? %>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
+            <% else %>
+              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
+            <% end %>
+          <% elsif participant.accepted_at != nil%>
+            <% if !participant.user.photo.attached? %>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
+            <% else %>
+              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="projectAskModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">send the founders a message asking to join this project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <%= form_tag project_join_request_do_path(project_id: @project.id, id: @participant.id), method: :post do %>
+          <div class="modal-body">
+            <div class="input-group">
+              <textarea class="form-control" name="request_message"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <input type="submit" class="btn btn-success" value="send message">
-        </div>
-      <% end %>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-success" value="send message">
+          </div>
+        <% end %>
 
+      </div>
     </div>
   </div>
+  <!-- Modal -->
+
+  <% if @join_requests.first.empty?%>
+    <p>There are currently no pending requests from users who wish to join the project</p>
+  <% else %>
+    <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests.first, number: @number } %>
+  <% end %>
+
 </div>
-<!-- Modal -->
-
-
-<% if @join_requests.first.empty?%>
-  <p>There are currently no pending requests from users who wish to join the project</p>
-<% else %>
-  <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests.first, number: @number } %>
-<% end %>
-
 
