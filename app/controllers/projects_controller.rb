@@ -1,13 +1,14 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_project, only: %i[show update destroy]
+  before_action :set_project, only: %i[show edit update destroy]
+  before_action :pundit_policy_authorized?, only: %i[join_request_do join_request_authorize]
 
   def index
-  @projects = Project.all
+  # @projects = Project.all
+  @projects = policy_scope(Project)
   @project_participants = @projects.map do |project|
     Participant.where(project_id: project.id)
   end
-  #@projects = policy_scope(Project
   end
 
   def show
@@ -25,13 +26,13 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    #authorize @project # pundit authorization
+    authorize @project # pundit authorization
   end
 
   def create
     @project = Project.new(projects_params)
     @project.user = current_user
-    #authorize @project # pundit authorization ANTES DE SALVAR
+    authorize @project # pundit authorization ANTES DE SALVAR
     if @project.save
       create_participant(@project)
     else
@@ -104,12 +105,15 @@ class ProjectsController < ApplicationController
     redirect_to project_path(id: @project), notice: "Join request by #{@join_request.user} was refused."
     # mais adiante, acrescentar mecanismo de notificação do outro usuário sobre a recusa
   end
+  def pundit_policy_authorized?
+    true
+  end
 
   private
 
   def set_project
     @project = Project.find(params[:id])
-    #authorize @project # pundit authorization
+    authorize @project # pundit authorization
   end
 
   def projects_params

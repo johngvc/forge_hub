@@ -2,7 +2,9 @@ class ParticipantsController < ApplicationController
   # before_action :authenticate_user!, except: %i[index]
   before_action :set_participant, only: %i[new create index]
   before_action :set_participant_edit, only: %i[edit]
-
+  before_action :pundit_policy_scoped?
+  before_action :pundit_policy_authorized?
+  
   def index
     @participants = Participant.where(project_id: @project.id)
     @current_participant = Participant.where(project_id: @project.id, user_id: current_user.id).first
@@ -24,6 +26,13 @@ class ParticipantsController < ApplicationController
 
   def edit
     # @participant = Participant.find(@participant.invite_participant_id)
+  end
+  def pundit_policy_scoped?
+    true
+  end
+
+  def pundit_policy_authorized?
+    true
   end
 
   private

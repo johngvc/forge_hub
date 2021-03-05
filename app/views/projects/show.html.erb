@@ -1,10 +1,6 @@
 <div class="container">
   <h1><%=  @project.name %></h1>
-  <p></p><p></p>
   <p><strong><%= @project.description %></strong></p>
-  <p></p><p></p>
-
-
   <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: column;">
     <% if @project.linkedin_url != nil %>
       <%= link_to "check out #{@project.name}`s LinkedIn page", "#{@project.linkedin_url}" %>
@@ -20,16 +16,19 @@
   <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: center;">
 
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#projectAskModal" style="width: 180px;">ask to join this project!</button>
-
+    <% @project_participants.each do |participant|   %>
+    <% if current_user.id == participant.user_id && participant.is_founder %>
     <%= link_to edit_project_path(id: @project.id) do %>
-      <div class="btn btn-success", style="width: 180px">edit this project!</div>
+    <div class="btn btn-success", style="width: 180px">edit this project!</div>
     <% end %>
-
+    
     <%= link_to project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
-      <div class="btn btn-success", style="width: 180px">delete this project!</div>
+    <div class="btn btn-success", style="width: 180px">delete this project!</div>
     <% end %>
   </div>
-
+  <% end  %>
+  <% end  %>
+  
   <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: column;">
     <h2>Project members:</h2>
     <% if @project_participants.empty? %>
@@ -68,7 +67,7 @@
           </button>
         </div>
 
-        <%= form_tag project_join_request_do_path(project_id: @project.id, id: @participant.first.id), method: :post do %>
+        <%= form_tag project_join_request_do_path(project_id: @project, id: @project_participants.first.id), method: :post do %>
           <div class="modal-body">
             <div class="input-group">
               <textarea class="form-control" name="request_message"></textarea>
@@ -84,11 +83,10 @@
   </div>
   <!-- Modal -->
 
-  <% if @join_requests.first.empty?%>
+  <% if @join_requests.empty?%>
     <p>There are currently no pending requests from users who wish to join the project</p>
   <% else %>
     <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests.first, number: @number } %>
   <% end %>
-
 </div>
 
