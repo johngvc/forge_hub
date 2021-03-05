@@ -1,7 +1,7 @@
 class ParticipantsController < ApplicationController
   # before_action :authenticate_user!, except: %i[index]
-  before_action :set_participant, only: %i[new create edit]
-  before_action :set_participant_index, only: %i[index]
+  before_action :set_participant, only: %i[new create index]
+  before_action :set_participant_edit, only: %i[edit]
 
   def index
     @participants = Participant.where(project_id: @project.id)
@@ -31,11 +31,11 @@ class ParticipantsController < ApplicationController
 
   def set_participant
     @project = Project.find(params[:project_id])
-    @participant = Participant.find(params[:id])
   end
 
-  def set_participant_index
+  def set_participant_edit
     @project = Project.find(params[:project_id])
+    @participant = Participant.find(params[:id])
   end
 
   def participants_params
