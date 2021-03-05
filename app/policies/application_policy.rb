@@ -1,5 +1,5 @@
 class ApplicationPolicy
-  # attr_reader :user, :record
+  attr_reader :user, :record
 
   def initialize(user, record)
     @user = user
@@ -7,44 +7,33 @@ class ApplicationPolicy
   end
 
   def index?
-    true
+    false
   end
 
   def show?
-    true
+    false
   end
 
   def create?
-    true
+    false
   end
 
   def new?
-    true?
+    create?
   end
 
   def update?
-    true
+    false
   end
 
   def edit?
-    true
+    update?
   end
 
   def destroy?
-    true
+    false
   end
 
-  def new_join_request?
-    true
-  end
-
-  def join_request_authorize?
-    true
-  end
-
-  def join_request_refuse?
-    true
-  end
 
   class Scope
     attr_reader :user, :scope
