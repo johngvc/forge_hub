@@ -7,13 +7,13 @@
 
   <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: column;">
     <% if @project.linkedin_url != nil %>
-      <%= link_to "check out #{@project.name}`s LinkedIn page", @project.linkedin_url %>
+      <%= link_to "check out #{@project.name}`s LinkedIn page", "#{@project.linkedin_url}" %>
     <% end %>
     <% if @project.github_url != nil %>
-      <%= link_to "check out #{@project.name}`s GitHub profile", @project.github_url %>
+      <%= link_to "check out #{@project.name}`s GitHub profile", "#{@project.github_url}" %>
     <% end %>
     <% if @project.trello_url != nil %>
-      <%= link_to "Access #{@project.name}`s workflow in Trello", @project.trello_url %>
+      <%= link_to "Access #{@project.name}`s workflow in Trello", "#{@project.trello_url}" %>
     <% end %>
   </div>
 
