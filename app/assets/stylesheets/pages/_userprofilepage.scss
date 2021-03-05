@@ -6,7 +6,7 @@ $accent-color-orange: #ED6347;
 
 
 .profile-page div {
-    @include debugdiv;
+
 }
 
 .profile-page {
@@ -16,7 +16,6 @@ $accent-color-orange: #ED6347;
 }
 
 .profile-page div {
-    
     width: 100%;
 }
 
@@ -29,7 +28,7 @@ $accent-color-orange: #ED6347;
     width: 30vw;
     margin: 25px;
     background: #F8F8F8;
-    box-shadow: 0px 10px 11px -9px rgba(0, 0, 0, 0.25);
+    box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
 }
 
@@ -78,7 +77,7 @@ $accent-color-orange: #ED6347;
     font-size: 17px;
     font-weight: 600;
     margin: 2px 0px 0px 16px;
-    text-align: left;
+    text-align: center;
     padding: 0px 18px 0px 0px;
 }
 
@@ -94,7 +93,7 @@ $accent-color-orange: #ED6347;
     margin-top: 30px;
     border-radius: 50%;
     border: 2px white solid;
-    box-shadow: 0px 10px 11px -9px rgba(0, 0, 0, 0.25);
+    box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
 }
 
 .profile-page .second-section {
@@ -111,7 +110,7 @@ $accent-color-orange: #ED6347;
     width: 100%;
     min-height: 50vh;
     background: #F8F8F8;
-    box-shadow: 0px 10px 11px -9px rgba(0, 0, 0, 0.25);
+    box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
 }
 
@@ -134,16 +133,18 @@ $accent-color-orange: #ED6347;
 
 // deletar
 .profile-page .second-section .card-container .card-test {
-    height: 90px;
-    width: 120px;
-    margin: 20px;
-    background-color: grey;
-}
-
-.profile-page .second-section .card-container .card-test-message {
     height: 187px;
     width: 245px;
     margin: 14px;
+    background-color: grey;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.profile-page .second-section .card-container .card-test-message {
+    height: 158px;
+    width: 100%;
+    margin-bottom: 15px;
     background-color: grey;
     flex-grow: 1;
     flex-shrink: 0;
