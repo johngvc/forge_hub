@@ -1,22 +1,14 @@
-<div class="container-fluid my-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8">
-      <div class="card p-3">
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <h2
-              class="heading text-center center"
-              style="color: rgb(40, 40, 40)"
-            >
-              edit project:
-            </h2>
-          </div>
-        </div>
-        <%= simple_form_for(@project) do |f| %> <%= f.input :name %> <%=
-        f.input :description %> <%= f.input :linkedin_url %> <%= f.input :github_url %> <%=
-        f.input :trello_url %> <%= f.submit "Edite meu projeto", class: "btn
-        btn-success" %> <% end %>
-      </div>
+<div class=master-container>
+  <div class="form"> 
+    <h2 class="heading text-center">Edit my projects</h2>
+    <%= simple_form_for(@project) do |f| %> <%= f.input :name %> <%= f.label :description, 'Description'%>
+    <%= f.text_area :description, required: true, style: "width: 100%;" %>
+    <%= f.input :linkedin_url %> <%= f.input :github_url %> <%=
+    f.input :trello_url %> <%= f.input :photo, as: :file %>
+    
+    <div class="form-actions">
+      <%= f.submit "Edite meu projeto", style: "margin-bottom: 15px; border: none;" %>
     </div>
+    <% end %>
   </div>
 </div>
