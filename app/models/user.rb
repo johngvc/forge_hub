@@ -8,5 +8,9 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[linkedin]
   has_many :projects, through: :participants, dependent: :delete_all
   has_one_attached :photo
+
+  validates :email, presence: true, length: { maximum: 30 }
+  validates :name, presence: true, length: { maximum: 25 } 
+
 end
 
