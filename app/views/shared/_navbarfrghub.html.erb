@@ -11,8 +11,11 @@
 
   <% if user_signed_in? %>
     <div class="avatar-section">
-      <div class="nav-item active">
+        <div class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
+        </div>
+        <div class="nav-item">
+          <%= link_to "Available projects", projects_path, class: "nav-link" %>
         </div>
         <div class="nav-item">
           <%= link_to "New project", new_project_path, class: "nav-link" %>
