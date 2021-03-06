@@ -8,9 +8,18 @@
             <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-big" %>
         <% end %>
 
-        <a href="<%= edit_user_registration_path(@user.id) %>"> 
+        
+        <% if @user == current_user %>
+            <a href="<%= edit_user_registration_path(@user.id) %>"> 
+                Edit my profile <i class="fas fa-edit"></i>
+            </a>
+        <% else %>
+            <a href="<%= edit_user_registration_path(@user.id) %>" style="visibility: hidden;"> 
             Edit my profile <i class="fas fa-edit"></i>
-        </a>
+            </a>
+        <% end %>
+        
+        
 
         <div class="user-info-acc">
             <ul>
