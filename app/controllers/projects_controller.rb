@@ -6,8 +6,27 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @projects = policy_scope(Project)
-    @project_participants = @projects.map do |project|
-    Participant.where(project_id: project.id)
+
+    @participating_projects = @projects.map do |project|
+      Participant.where(project_id: project, user_id: current_user.id)
+    end
+
+    @participating_projects_ids = @participating_projects.first.map do |project|
+      project.project_id
+    end
+
+    @available_projects = @projects.map do |project|
+      project unless @participating_projects_ids.include?(project.id)
+    end
+
+    @suspended_projects_participating = @projects.map do |project|
+      project if @participating_projects_ids.include?(project.id) && project.is_suspended?
+    end
+
+    @ongoing_projects_participating = @projects.map do |project|
+      if @participating_projects_ids.include?(project.id)
+        project unless @suspended_projects_participating.include?(project)
+      end
     end
   end
 
@@ -107,6 +126,7 @@ class ProjectsController < ApplicationController
     redirect_to project_path(id: @project), notice: "Join request by #{@join_request.user} was refused."
     # mais adiante, acrescentar mecanismo de notificação do outro usuário sobre a recusa
   end
+
   def pundit_policy_authorized?
     true
   end
@@ -121,4 +141,5 @@ class ProjectsController < ApplicationController
   def projects_params
     params.require(:project).permit(:id, :name, :description, :linkedin_url, :github_url, :trello_url, :photo)
   end
+
 end
