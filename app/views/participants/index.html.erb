@@ -11,6 +11,7 @@
 
         <% if @current_participant.is_founder? %>
           <th scope="col">Edit member status</th>
+          <th scope="col">Delete member from project </th>
         <% end %>
 
       </tr>
@@ -18,25 +19,32 @@
     <tbody>
       <% @participants.each do |participant| %>
         <td>
+
           <% if !participant.user.photo.attached? %>
             <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
+
           <% else %>
             <%= cl_image_tag current_user.photo.key, class: "avatar" %>
           <% end %>
         </td>
+
         <td><%= link_to "#{participant.user.name}", profile_path(id: participant.user.id) %></td>
         <td><%= participant.user.email %></td>
 
         <% if participant.is_founder? %>
           <td><%= "founder"%></td>
+
         <% elsif participant.accepted_at.nil? %>
           <td><%= "temporary invitee/ pending membership confirmation" %></td>
+
         <% else %>
           <td><%= "non-founder" %></td>
         <% end %>
 
         <% if @current_participant.is_founder? %>
+          <%= simple_form_for(participant) do |f| %>
           <td><%=  link_to "edit member status", edit_project_participant_path(id: participant.id, project_id: @project.id)  %></td>
+          <td><%=  link_to "exclude from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %></td>
         <% end %>
         </tr>
       <% end %>
