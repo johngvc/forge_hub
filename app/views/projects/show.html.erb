@@ -72,26 +72,32 @@
 
   <!-- Modal -->
   <div class="modal fade" id="projectAskModal" tabindex="-1" role="dialog" aria-hidden="true">
+
     <div class="modal-dialog" role="document">
+
       <div class="modal-content">
+
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">send the founders a message asking to join this project</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
         <%= form_tag project_join_request_do_path(project_id: @project, id: @project_participants.first.id), method: :post do %>
+
           <div class="modal-body">
+
             <div class="input-group">
               <textarea class="form-control" name="request_message"></textarea>
             </div>
           </div>
+
           <div class="modal-footer">
             <input type="submit" class="btn btn-success" value="send message">
           </div>
         <% end %>
-
       </div>
     </div>
   </div>
