@@ -12,12 +12,14 @@
         <% if @current_participant.is_founder? %>
           <th scope="col">Edit member status</th>
           <th scope="col">Delete member from project </th>
+          <th scope="col"></th>
         <% end %>
 
       </tr>
     </thead>
     <tbody>
       <% @participants.each do |participant| %>
+
         <td>
 
           <% if !participant.user.photo.attached? %>
@@ -42,12 +44,17 @@
         <% end %>
 
         <% if @current_participant.is_founder? %>
+
           <%= simple_form_for(participant) do |f| %>
-          <td><%=  link_to "edit member status", edit_project_participant_path(id: participant.id, project_id: @project.id)  %></td>
+            <td><%= f.input :status, :collection => %w[invitee member cofounder] %>
+            <td><%= f.submit "confirm change", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %>
+          <% end %>
+
           <td><%=  link_to "exclude from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %></td>
         <% end %>
-        </tr>
       <% end %>
     </tbody>
   </table>
+
+
 </div>
