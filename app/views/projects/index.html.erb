@@ -1,8 +1,11 @@
 
-
 <div class="projects-section-search">
   <h1>Available projects</h1>
+
   <% @projects.each do |project| %>
-    <%= render 'shared/projectBigCard', project: project %>
+
+    <% if !project.is_suspended? %>
+      <%= render 'shared/projectBigCard', project: project %>
+    <% end %>
   <% end %>
 </div>

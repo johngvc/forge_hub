@@ -4,11 +4,11 @@ class ProjectsController < ApplicationController
   before_action :pundit_policy_authorized?, only: %i[join_request_do join_request_authorize]
 
   def index
-  # @projects = Project.all
+    @projects = Project.all
     @projects = policy_scope(Project)
     @project_participants = @projects.map do |project|
     Participant.where(project_id: project.id)
-  end
+    end
   end
 
   def show
