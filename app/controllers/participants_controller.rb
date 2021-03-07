@@ -28,6 +28,10 @@ class ParticipantsController < ApplicationController
     # @participant = Participant.find(@participant.invite_participant_id)
   end
 
+  def update_status
+
+  end
+
   def destroy
     @project = Project.find(params[:project_id])
     @participant = Participant.find(params[:participant_id])
