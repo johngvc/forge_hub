@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :profiles, only: %i[show]
 
   resources :projects, except: %i[delete] do
-    resources :participants, only: %i[index edit update destroy]
+    resources :participants, only: %i[index edit update]
     get '/participant/create', to: 'participants#create', as: :participant_create
+    delete '/participant/destroy/:participant_id', to: 'participants#destroy', as: :participant_destroy
   end
 
   resources :projects, only: [:show] do

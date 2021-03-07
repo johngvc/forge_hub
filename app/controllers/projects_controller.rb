@@ -8,19 +8,20 @@ class ProjectsController < ApplicationController
   @projects = policy_scope(Project)
   @project_participants = @projects.map do |project|
     Participant.where(project_id: project.id)
-  raise
   end
   end
 
   def show
     @number = 0
     @project_participants = Participant.where(project_id: @project.id)
-    join_request_pending(@project)
+    @participant = Participant.where(user_id: current_user.id, project_id: @project.id)
+    @is_not_participant = @participant.first.nil?
+    @is_not_participant ? @is_participant = false : @is_participant = true
+    join_request_pending(@project, @participant)
   end
 
-  def join_request_pending(project)
-    @participant = Participant.where(user_id: current_user.id, project_id: project.id)
-    @join_requests = @participant.map do |participation|
+  def join_request_pending(project, participant)
+    @join_requests = participant.map do |participation|
       participation.is_founder? ? JoinRequest.where(project_id: participation.project.id, request_pending: true) : nil
     end
   end
