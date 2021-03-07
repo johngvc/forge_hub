@@ -5,8 +5,8 @@ class ProjectsController < ApplicationController
 
   def index
   # @projects = Project.all
-  @projects = policy_scope(Project)
-  @project_participants = @projects.map do |project|
+    @projects = policy_scope(Project)
+    @project_participants = @projects.map do |project|
     Participant.where(project_id: project.id)
   end
   end
