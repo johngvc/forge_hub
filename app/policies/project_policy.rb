@@ -22,8 +22,8 @@ class ProjectPolicy < ApplicationPolicy
       true
     end
 
-    def update
-      true
+    def update?
+      owner_ou_admin?
     end
 
     def show?
