@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_project, only: %i[show edit update destroy]
-  before_action :pundit_policy_authorized?, only: %i[join_request_do join_request_authorize]
+  before_action :pundit_policy_authorized?, only: %i[join_request_do join_request_authorize update edit]
 
   def index
     @projects = Project.all
@@ -71,11 +71,9 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
     @project.update(projects_params)
     if @project.save
       redirect_to project_path(@project)
