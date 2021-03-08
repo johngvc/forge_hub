@@ -24,22 +24,21 @@ class ParticipantsController < ApplicationController
     end
   end
 
-  def edit
-    # @participant = Participant.find(@participant.invite_participant_id)
-  end
-
   def update_status
-
+    @participant = Participant.find(params[:participant_id])
+    @participant.update(participants_params)
+    if @participant.save
+      redirect_to project_participants_path(params[:project_id]), notice: "#{@participant.user.name}'s status is now #{@participant.status}."
+    else
+      render :new, notice: "Somethig went wrong, please try again."
+    end
   end
 
   def destroy
     @project = Project.find(params[:project_id])
     @participant = Participant.find(params[:participant_id])
-    if @participant.destroy?
-      redirect_to project_path(@project), notice: "You left #{@project.name}."
-    else
-      render :new, notice: "Something went wrong, please try again."
-    end
+    @participant.destroy
+    redirect_to project_participants_path(@project.id), notice: "You left #{@project.name}."
   end
 
   def pundit_policy_scoped?
@@ -62,6 +61,6 @@ class ParticipantsController < ApplicationController
   end
 
   def participants_params
-    params.require(:participants).permit(:project_id, :user_id)
+    params.require(:participants).permit(:project_id, :user_id, :status)
   end
 end
