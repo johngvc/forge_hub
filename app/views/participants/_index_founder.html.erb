@@ -31,7 +31,7 @@
 
         <% unless participant.status == "founder" %>
           <%= simple_form_for participant, url: participants_update_status_path(participant_id: participant.id), method: :patch do |f| %>
-            <td><%= f.input :status, :collection => %w[invitee member cofounder], label: false %></td>
+            <td><%= f.input :status, :collection => %w[invitee member cofounder founder], label: false %></td>
             <td><%= f.submit "confirm change", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %></td>
           <% end %>
 
