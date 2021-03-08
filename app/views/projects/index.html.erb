@@ -7,7 +7,7 @@
 
   <% else %>
 
-    <% @available_projects.first.each do |project| %>
+    <% @available_projects.each do |project| %>
 
       <% unless project.is_suspended? %>
         <%= render 'shared/projectBigCard', project: project %>
@@ -21,7 +21,7 @@
 
   <div class="container">
 
-    <% if @participating_projects.nil? %>
+    <% if @participating_projects.first.first.nil? %>
       <p><%= "#{current_user.name} currently is not a member of a project." %></p>
 
     <% else %>

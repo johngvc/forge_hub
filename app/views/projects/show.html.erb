@@ -106,7 +106,7 @@
   <% if @join_requests.empty?%>
     <p>There are currently no pending requests from users who wish to join the project</p>
   <% else %>
-    <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests.first, number: @number } %>
+    <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests, number: @number } %>
   <% end %>
 </div>
 
