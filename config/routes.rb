@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get '/contact', to: 'pages#contact'
   resources :profiles, only: %i[show]
 
+  get "/linkedinprofile", to: 'profiles#showlinkedin'
+  get '/contact', to: 'pages#contact'
+  resources :profiles, only: %i[show]
+
   resources :projects, except: %i[delete] do
     resources :participants, only: %i[index edit update destroy]
     get '/participant/create', to: 'participants#create', as: :participant_create

@@ -84,6 +84,7 @@ GEM
       rest-client
     coderay (1.1.3)
     concurrent-ruby (1.1.8)
+    crack (0.1.8)
     crass (1.0.6)
     devise (4.7.3)
       bcrypt (~> 3.0)
@@ -119,6 +120,10 @@ GEM
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jwt (2.2.2)
+    linkedin (0.1.7)
+      crack (~> 0.1.4)
+      oauth (~> 0.3.5)
+      roxml (~> 3.1.3)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -146,6 +151,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.11.1-x86_64-linux)
       racc (~> 1.4)
+    oauth (0.3.6)
+      ruby-hmac (>= 0.3.1)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -221,6 +228,10 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    roxml (3.1.6)
+      activesupport (>= 2.3.0)
+      nokogiri (>= 1.3.3)
+    ruby-hmac (0.4.0)
     ruby2_keywords (0.0.4)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
@@ -300,6 +311,7 @@ DEPENDENCIES
   font-awesome-sass
   geocoder
   jbuilder (~> 2.7)
+  linkedin
   listen (~> 3.2)
   omniauth (~> 1.1)
   omniauth-linkedin-oauth2
