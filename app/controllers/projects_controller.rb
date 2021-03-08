@@ -4,14 +4,11 @@ class ProjectsController < ApplicationController
   before_action :pundit_policy_authorized?, only: %i[join_request_do join_request_authorize]
 
   def index
-    @projects = Project.all
     @projects = policy_scope(Project)
     @participating_projects = []
     @available_projects = []
     @suspended_projects_participating = []
     @ongoing_projects_participating = []
-
-
     @projects.each do |project|
       is_part_of_project = !Participant.where(project_id: project, user_id: current_user.id).first.nil?
 
@@ -71,11 +68,9 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
     @project.update(projects_params)
     if @project.save
       redirect_to project_path(@project)
