@@ -17,12 +17,12 @@ class ProjectsController < ApplicationController
       end
     end
 
-    @available_projects = @projects.map do |project|
-      project unless @participating_projects_ids.include?(project.id)
+    @available_projects = @projects.select do |project|
+      !@participating_projects_ids.include?(project.id)
     end
 
-    @suspended_projects_participating = @projects.map do |project|
-      project if @participating_projects_ids.include?(project.id) && project.is_suspended?
+    @suspended_projects_participating = @projects.select do |project|
+      @participating_projects_ids.include?(project.id) && project.is_suspended?
     end
 
     @ongoing_projects_participating = @projects.select do |project|
