@@ -2,12 +2,12 @@
 <div class="projects-section-search">
   <h1>Available projects</h1>
 
-  <% if @available_projects.first == nil %>
+  <% if @available_projects == nil %>
     <p>There are currently no projects that you do not participate in.</p>
 
   <% else %>
 
-    <% @available_projects.first.each do |project| %>
+    <% @available_projects.each do |project| %>
 
       <% unless project.is_suspended? %>
         <%= render 'shared/projectBigCard', project: project %>
@@ -18,16 +18,10 @@
 
 <div class="projects-section-search">
   <h1>Your projects</h1>
-
-  <div class="container">
-
+  
     <% if @participating_projects.nil? %>
       <p><%= "#{current_user.name} currently is not a member of a project." %></p>
-
     <% else %>
-
-      <p></p>
-      <h4>ongoing projects:</h4>
 
       <% if @ongoing_projects_participating.nil? %>
         <p><%= "#{current_user.name} currently is not a member of an ongoing project." %></p>
@@ -39,14 +33,12 @@
         <% end %>
       <% end %>
 
-      <% unless @suspended_projects_participating.first.nil? %>
+      <% unless @suspended_projects_participating.nil? %>
 
-        <h4>suspended projects:</h4>
 
-        <% @suspended_projects.participating.each do |project| %>
+        <% @suspended_projects_participating.each do |project| %>
           <%= render 'shared/projectBigCard', project: project %>
         <% end %>
       <% end %>
     <% end %>
-  </div>
 </div>

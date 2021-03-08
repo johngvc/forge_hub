@@ -6,26 +6,24 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @projects = policy_scope(Project)
+    @participating_projects = []
+    @available_projects = []
+    @suspended_projects_participating = []
+    @ongoing_projects_participating = []
 
-    @participating_projects = @projects.map do |project|
-      Participant.where(project_id: project, user_id: current_user.id)
-    end
 
-    @participating_projects_ids = @participating_projects.first.map do |project|
-      project.project_id
-    end
+    @projects.each do |project|
+      is_part_of_project = !Participant.where(project_id: project, user_id: current_user.id).first.nil?
 
-    @available_projects = @projects.map do |project|
-      project unless @participating_projects_ids.include?(project.id)
-    end
-
-    @suspended_projects_participating = @projects.map do |project|
-      project if @participating_projects_ids.include?(project.id) && project.is_suspended?
-    end
-
-    @ongoing_projects_participating = @projects.map do |project|
-      if @participating_projects_ids.include?(project.id)
-        project unless @suspended_projects_participating.include?(project)
+      if is_part_of_project
+        @participating_projects << project
+        if !project.is_suspended?
+          @ongoing_projects_participating << project
+        elsif project.is_suspended?
+          @suspended_projects_participating << project
+        end
+      elsif !is_part_of_project
+        @available_projects << project
       end
     end
   end
@@ -141,5 +139,4 @@ class ProjectsController < ApplicationController
   def projects_params
     params.require(:project).permit(:id, :name, :description, :linkedin_url, :github_url, :trello_url, :photo)
   end
-
 end

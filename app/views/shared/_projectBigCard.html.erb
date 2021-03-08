@@ -1,33 +1,39 @@
   <div class="my-container project-card" >
     <div class="card-element project-image">
 
-        <% if project.photo.attached? %>
-            <%= cl_image_tag project.photo.key, class: "img" %>
-        <% else %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "img" %>
-        <% end %>
-
-        <% if User.find(project.user_id) && User.find(project.user_id).photo.attached? %>
-            <%= cl_image_tag User.find(project.user_id).photo.key, class: "avatar-and-name" %>
-        <% elsif User.find(project.user_id) && User.find(project.user_id).picture_url.present? %>
-            <%= image_tag User.find(project.user_id).picture_url, class: "avatar-and-name" %>
-        <% else %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-and-name" %>
-        <% end %>
-        <a href="<%= profile_path(User.find(project.user_id)) %>"><p class="founder">Founded by <%= User.find(project.user_id).name %><p/></a>
+        <a href="<%= project_path(project.id) %>" class="img-link"> 
+          <% if project.photo.attached? %>
+              <%= cl_image_tag project.photo.key, class: "img" %>
+          <% else %>
+              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "img" %>
+          <% end %>
+        </a>
+        <div class="container-gradient">
+          <a href="<%= profile_path(User.find(project.user_id)) %>">
+            <% if User.find(project.user_id) && User.find(project.user_id).photo.attached? %>
+                <%= cl_image_tag User.find(project.user_id).photo.key, class: "avatar-and-name" %>
+            <% elsif User.find(project.user_id) && User.find(project.user_id).picture_url.present? %>
+                <%= image_tag User.find(project.user_id).picture_url, class: "avatar-and-name" %>
+            <% else %>
+                <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-and-name" %>
+            <% end %>
+          </a>
+          <a href="<%= profile_path(User.find(project.user_id)) %>"><p class="founder">Founded by <%= User.find(project.user_id).name %><p/></a>
+        </div>
     </div>
 
     <div class="card-element project-title">
-      <div><p><%= project.name %></p></div>
-      <div><i class="fas fa-heart"></i></div>
+      <p>
+        <a href="<%= project_path(project.id) %>">
+          <%= project.name %>
+        </a>
+      </p>
     </div>
 
     <div class="card-element project-description">
-      <div>
-        <p>
-          <%= project.description %>
-        </p>
-      </div>
+      <p>
+        <%= project.description %>
+      </p>
     </div>
 
     <div class="card-element project-infos">
@@ -36,30 +42,16 @@
         <p>3 spots available</p>
       </div>
       <div class="info">
-        <i class="fas fa-flag"></i>
-        <p>On design/pre-production</p>
-      </div>
-      <div class="info">
-        <i class="far fa-clock"></i>
-        <p>35 days left</p>
+        <i class="fas fa-flag"></i>     
+        <% if project.is_suspended %>
+          <p style="color: red;">Project suspended</p>
+        <% else %>
+          <p>On Design/Pre production</p>
+        <% end %>
       </div>
     </div>
-
-    <div class="card-element project-team-loc-apply-btn">
-      <div class="description">
-        <div>
-          <p>ForgeHub team</p>
-        </div>
-
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i>
-          <p>São Paulo, BR</p>
-        </div>
-      </div>
-
-      <div class="button">
-        <a href="<%= project_path(project.id) %>">SEE MORE</a>
-      </div>
+    <div class="container-card">
+        <a class="apply-now-link" href="<%= project_path(project.id) %>">Read more</a>
     </div>
 
   </div>

@@ -4,8 +4,7 @@
     <h2 class="heading text-center">Create a new project</h2>
     <%= simple_form_for(@project) do |f| %>
       <%=f.input :name, required: true, placeholder: "Your project name" %>
-      <%= f.label :description, 'Description'%>
-      <%= f.text_area :description, required: true, style: "width: 100%;" %>
+      <%= f.input :description, required: true %>
       <%= f.input :linkedin_url %>
       <%= f.input :github_url %>
       <%= f.input :trello_url %>

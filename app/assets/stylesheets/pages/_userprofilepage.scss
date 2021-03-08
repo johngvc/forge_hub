@@ -1,169 +1,149 @@
-$accent-color-orange: #ED6347;
-$thirty-grey-color: #F5F6F6;
+$accent-color-orange: #ed6347;
+$thirty-grey-color: #f5f6f6;
 $thirty-profile-grey-color: #979797;
-$thirty-other-grey-color: #C4C4C4;
-$accent-color-orange: #ED6347;
-
+$thirty-other-grey-color: #c4c4c4;
+$accent-color-orange: #ed6347;
 
 .profile-page div {
-
 }
 
 .profile-page {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
-.profile-page div {
-    width: 100%;
+.profile-page .profile-section,
+.profile-page .second-section {
+  width: 100%;
 }
 
 .profile-page .profile-section {
-    display: flex;
-    min-height: 80vh;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    width: 30vw;
-    margin: 25px;
-    background: #F8F8F8;
-    box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+  display: flex;
+  min-height: 80vh;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 30vw;
+  margin: 25px;
+  background: #f8f8f8;
+  box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 }
 
 .profile-page .profile-section i {
-    display: block;
+  display: block;
 }
 
 .profile-page .profile-section a {
-    color: $thirty-profile-grey-color;
-    margin-top: 13px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  color: $thirty-profile-grey-color;
+  margin-top: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-page .profile-section i {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 .profile-page .user-info p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 17px;
-    font-weight: 600;
-    margin: 15px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 15px 0px 0px 0px;
 }
 
 .profile-page .user-info i {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .profile-page .user-info-acc ul {
-    padding: 0px;
-    list-style: none;
+  padding: 0px;
+  list-style: none;
 }
 
 .profile-page .user-info-acc h2 {
-    font-size: 50px;
-    font-weight: 800;
-    margin: 6px 0px 14px 0px;
-    text-align: center;
+  font-size: 50px;
+  font-weight: 800;
+  margin: 6px 0px 14px 0px;
+  text-align: center;
 }
 
 .profile-page .user-info-acc p {
-    font-size: 17px;
-    font-weight: 600;
-    margin: 2px 0px 0px 16px;
-    text-align: center;
-    padding: 0px 18px 0px 0px;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 2px 0px 0px 16px;
+  text-align: center;
+  padding: 0px 18px 0px 0px;
 }
 
 .profile-page .profile-section .user-info {
-    height: 150px;
-    width: 100%;
-    margin-top: 15px;
+  height: 150px;
+  width: 100%;
+  margin-top: 15px;
 }
 
 .profile-page .profile-section .avatar-big {
-    height: 180px;
-    width: 180px;
-    margin-top: 30px;
-    border-radius: 50%;
-    border: 2px white solid;
-    box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
+  height: 180px;
+  width: 180px;
+  margin-top: 30px;
+  border-radius: 50%;
+  border: 2px white solid;
+  box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
 }
 
 .profile-page .second-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    max-width: 67vw;
-    min-height: 80vh;
-    margin: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 67vw;
+  min-height: 80vh;
+  margin: 25px;
 }
 
-.profile-page .second-section .projects-section, .messages-section {
-    width: 100%;
-    min-height: 50vh;
-    background: #F8F8F8;
-    box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+.profile-page .second-section .projects-section,
+.messages-section {
+  width: 100%;
+  min-height: 50vh;
+  background: #f8f8f8;
+  box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 }
 
 .profile-page .second-section h2 {
-    margin: 11px 0px 0px 19px;
-    font-size: 34px;
-    font-weight: 800;
+  margin: 11px 0px 0px 19px;
+  font-size: 34px;
+  font-weight: 800;
 }
 
 .profile-page .second-section .projects-section .card-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    width: 100%;
-    min-height: 38vh;
-    margin-top: 16px;
-    padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 38vh;
+  margin-top: 16px;
+  padding: 15px;
 }
-
-// deletar
-.profile-page .second-section .card-container .card-test {
-    height: 187px;
-    width: 245px;
-    margin: 14px;
-    background-color: grey;
-    flex-grow: 1;
-    flex-shrink: 0;
-}
-
-.profile-page .second-section .card-container .card-test-message {
-    height: 158px;
-    width: 100%;
-    margin-bottom: 15px;
-    background-color: grey;
-    flex-grow: 1;
-    flex-shrink: 0;
-}
-// deletar
 
 .profile-page .second-section .messages-section {
-    width: 100%;
-    margin-top: 2vh;
-    min-height: 28vh;
+  width: 100%;
+  margin-top: 2vh;
+  min-height: 28vh;
 }
 
 .profile-page .second-section .messages-section .card-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
-    min-height: 38vh;
-    margin-top: 16px;
-    padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 38vh;
+  margin-top: 16px;
+  padding: 15px;
 }
