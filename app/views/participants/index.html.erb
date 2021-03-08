@@ -1,45 +1,15 @@
 <div class="container">
   <h1><%= link_to "#{@project.name}", project_path(id: @project.id) %></h1>
   <p></p><p></p>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Name:</th>
-        <th scope="col">email:</th>
-        <th scope="col">status:</th>
 
-        <% if @current_participant.is_founder? %>
-          <th scope="col">Edit member status</th>
-        <% end %>
+  <% if @current_participant.is_founder? %>
+    <%= render partial: 'index_founder', locals: { project: @project, participant: @participant, current_participant: @current_participant } %>
 
-      </tr>
-    </thead>
-    <tbody>
-      <% @participants.each do |participant| %>
-        <td>
-          <% if !participant.user.photo.attached? %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
-          <% else %>
-            <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-          <% end %>
-        </td>
-        <td><%= link_to "#{participant.user.name}", profile_path(id: participant.user.id) %></td>
-        <td><%= participant.user.email %></td>
+  <% elsif @current_participant.status == 'cofounder' %>
+    <%= render partial: 'index_cofounder', locals: { project: @project, participant: @participant, current_participant: @current_participant } %>
 
-        <% if participant.is_founder? %>
-          <td><%= "founder"%></td>
-        <% elsif participant.accepted_at.nil? %>
-          <td><%= "temporary invitee/ pending membership confirmation" %></td>
-        <% else %>
-          <td><%= "non-founder" %></td>
-        <% end %>
+  <% else %>
+    <%= render partial: 'index_general', locals: { project: @project, participant: @participant, current_participant: @current_participant } %>
+  <% end %>
 
-        <% if @current_participant.is_founder? %>
-          <td><%=  link_to "edit member status", edit_project_participant_path(id: participant.id, project_id: @project.id)  %></td>
-        <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </div>

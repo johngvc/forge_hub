@@ -1,13 +1,24 @@
 <div class=master-container>
-  <div class="form"> 
+
+  <div class="form">
+
     <h2 class="heading text-center">Edit my projects</h2>
-    <%= simple_form_for(@project) do |f| %> <%= f.input :name %> <%= f.label :description, 'Description'%>
-    <%= f.text_area :description, required: true, style: "width: 100%;" %>
-    <%= f.input :linkedin_url %> <%= f.input :github_url %> <%=
-    f.input :trello_url %> <%= f.input :photo, as: :file %>
-    
+
+    <%= simple_form_for(@project) do |f| %>
+      <%= f.input :name %> <%= f.label :description, 'Description'%>
+      <%= f.text_area :description, required: true, style: "width: 100%;" %>
+      <%= f.input :linkedin_url %> <%= f.input :github_url %>
+      <%= f.input :trello_url %> <%= f.input :photo, as: :file %>
+
+      <div style="border-style: solid; border-color: red; padding: 10px; display: flex; flex-direction: column; flex-shrink: 1; overflow: hidden;">
+        <h4 class="heading text-center" style="color: red;"><strong>DANGER AREA</strong></h4>
+        <%= f.input :is_suspended, as: :radio_buttons, collection: [['No', false], ['Yes', true]], :label => "Suspend project?", data: { confirm: "Are you sure you want to suspend this project?" } %>
+      </div>
+
+
+
     <div class="form-actions">
-      <%= f.submit "Edite meu projeto", style: "margin-bottom: 15px; border: none;" %>
+      <%= f.submit "Submit changes", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %>
     </div>
     <% end %>
   </div>
