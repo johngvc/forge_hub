@@ -11,8 +11,10 @@ class ProjectsController < ApplicationController
       Participant.where(project_id: project, user_id: current_user.id)
     end
 
-    @participating_projects_ids = @participating_projects.first.map do |project|
-      project.project_id
+    unless @projects.empty?
+      @participating_projects_ids = @participating_projects.first.map do |project|
+        project.project_id
+      end
     end
 
     @available_projects = @projects.map do |project|

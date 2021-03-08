@@ -10,27 +10,27 @@
     </tr>
   </thead>
   <tbody>
-    <% join_requests.each do |request| %>
-        <tr>
-          <td><%= @number += 1 %></td>
-          <td><%= request.user.name %></td>
-          <td><%= request.content %></td>
-          <td>
-            <div style="display:inline-flex;">
-              <%= link_to project_join_request_authorize_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
+      <% join_requests.each do |request| %>
+          <tr>
+            <td><%= @number += 1 %></td>
+            <td><%= request.user.name %></td>
+            <td><%= request.content %></td>
+            <td>
+              <div style="display:inline-flex;">
+                <%= link_to project_join_request_authorize_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
 
-                <div class="btn btn-success", style="width: 180px">authorize</div>
-              <% end %>
-              <%= link_to project_join_request_refuse_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
-                <div class="btn btn-success", style="width: 180px">refuse</div>
-              <% end %>
-            </div>
-          </td>
-          <td>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#messageBackModal" style="width: 180px;"><%= "send a message to #{request.user.name}" %></button>
-          </td>
-        </tr>
-    <% end %>
+                  <div class="btn btn-success", style="width: 180px">authorize</div>
+                <% end %>
+                <%= link_to project_join_request_refuse_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
+                  <div class="btn btn-success", style="width: 180px">refuse</div>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#messageBackModal" style="width: 180px;"><%= "send a message to #{request.user.name}" %></button>
+            </td>
+          </tr>
+      <% end %>
   </tbody>
 </table>
 
