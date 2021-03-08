@@ -5,7 +5,7 @@ class Project < ApplicationRecord
   has_one_attached :photo
 
 
-  validates :name, presence: true, length: { maximum: 15 }
+  validates :name, presence: true, length: { maximum: 22 }
   validates :description, presence: true, length: { maximum: 135 }
 
 end

@@ -12,13 +12,14 @@ body div {
 }
 
 .project-card {
-  height: 38vh;
-  width: 21vw;
+  height: 30vh;
+  width: 16.6vw;
   margin: 14px;
   display: flex;
   border-radius: 20px;
   justify-content: flex-start;
   align-items: center;
+  overflow: hidden;
   flex-direction: column;
   box-shadow: 8px 10px 11px -9px rgba(0, 0, 0, 0.25%);
 }
@@ -29,7 +30,7 @@ body div {
 
 .project-image {
   width: 100%;
-  height: 45%;
+  height: 52%;
   position: relative;
   border-radius: 20px 20px 0px 0px;
   background-color: #F4F4F4;
@@ -48,7 +49,7 @@ body div {
 }
 
 .project-image .container-gradient {
-  background: linear-gradient(to bottom, transparent 0%, black 100%);
+  background: linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5));
   position: absolute;
   width: 100%;
   height: 22%;
@@ -71,7 +72,8 @@ body div {
     font-weight: 700;
     text-decoration: underline;
     font-size: 10px;
-    color: #979797;
+    // color: #979797;
+    color: white;
     position: absolute;
     bottom: -4px;
     left: 44px;
@@ -113,13 +115,14 @@ body div {
   color: #979797;
   width: 90%;
   margin: 4px 0px 0px 10px;
+  word-break:break-all;
 }
 
 .project-infos * {
   margin: 0px;
   padding: 0px;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .project-infos {
@@ -138,17 +141,17 @@ body div {
 }
 
 .project-infos div i {
-  font-size: 15px;
-  margin-left: 20px;
+  font-size: 10px;
+  margin-left: 12px;
 }
 
 .project-infos div p {
-  margin-left: 13px;
+  margin-left: 6px;
 }
 
 .apply-now-link {
   position: absolute;
-  bottom: -28px;
+  bottom: 0px;
   right: 17px;
   font-size: 11px
 }

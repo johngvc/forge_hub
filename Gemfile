@@ -27,6 +27,8 @@ gem 'pundit'
 gem 'cloudinary', '~> 1.16.0'
 gem 'geocoder'
 
+gem 'faker'
+
 gem 'bullet', group: 'development'
 
 # Reduces boot times through caching; required in config/boot.rb

@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'faker'
+
+puts "Iniciando a sequencia de seed"
+
+puts "Instanciando usuários"
+
+puts "Instanciando projetos"
+
+puts "Finalizada sequencia de seed"
