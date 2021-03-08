@@ -1,0 +1,2 @@
+class ChatThreadsController < ApplicationController
+end
