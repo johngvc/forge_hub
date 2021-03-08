@@ -2,13 +2,13 @@
   <h1><%=  @project.name %></h1>
   <p><strong><%= @project.description %></strong></p>
   <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: column;">
-    <% if @project.linkedin_url != nil %>
+    <% if !@project.linkedin_url.empty? %>
       <%= link_to "check out #{@project.name}`s LinkedIn page", "#{@project.linkedin_url}" %>
     <% end %>
-    <% if @project.github_url != nil %>
+    <% if !@project.github_url.empty? %>
       <%= link_to "check out #{@project.name}`s GitHub profile", "#{@project.github_url}" %>
     <% end %>
-    <% if @project.trello_url != nil %>
+    <% if !@project.trello_url.empty? %>
       <%= link_to "Access #{@project.name}`s workflow in Trello", "#{@project.trello_url}" %>
     <% end %>
   </div>
@@ -103,7 +103,7 @@
   </div>
   <!-- Modal -->
 
-  <% unless @join_requests.first.nil?%>
+  <% unless @join_requests.first.first.nil?%><% raise %>
     <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests, number: @number } %>
   <% end %>
 </div>
