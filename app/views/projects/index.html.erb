@@ -1,26 +1,8 @@
-<h1>PROJECTS</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name:</th>
-      <th scope="col">project description:</th>
-      <th scope="col">project members:</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= "#{project.name}" %></td><%= link_to "#{project.name}", project_path(id: project.id) %>
-        <td><%= "#{project.description}" %></td>
-        <td>
-          <% @project_participants.first.each do |participant| %>
-            <% if participant.project_id == project.id %>
-              <% "#{participant.user.name} " %>
-            <% end %>
-          <% end %>
-        </td>
-    <% end %>
-  </tbody>
-</table>
+
+<div class="projects-section-search">
+  <h1>Available projects</h1>
+  <% @projects.each do |project| %>
+    <%= render 'shared/projectBigCard', project: project %>
+  <% end %>
+</div>

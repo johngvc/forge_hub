@@ -11,14 +11,17 @@
 
   <% if user_signed_in? %>
     <div class="avatar-section">
-      <div class="nav-item active">
+        <div class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </div>
         <div class="nav-item">
-          <%= link_to "New project", "#", class: "nav-link" %>
+          <%= link_to "Available projects", projects_path, class: "nav-link" %>
         </div>
         <div class="nav-item">
-          <%= link_to "My projects", profile_path(current_user.id), class: "nav-link" %>
+          <%= link_to "New project", new_project_path, class: "nav-link" %>
+        </div>
+        <div class="nav-item">
+          <%= link_to "My profile", profile_path(current_user.id), class: "nav-link" %>
         </div>
         <div class="nav-item">
           <%= link_to "Contact us", contact_path, class: "nav-link" %>
