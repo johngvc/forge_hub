@@ -139,5 +139,4 @@ class ProjectsController < ApplicationController
   def projects_params
     params.require(:project).permit(:id, :name, :description, :linkedin_url, :github_url, :trello_url, :photo)
   end
-
 end

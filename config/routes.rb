@@ -14,8 +14,9 @@ Rails.application.routes.draw do
     resources :participants, only: %i[index]
     get '/participant/create', to: 'participants#create', as: :participant_create
     delete '/participant/destroy/:participant_id', to: 'participants#destroy', as: :participant_destroy
-    patch '/participant/update_status/:participant_id', to: 'participant#update_status', as: :participant_update_status
   end
+
+  patch '/participants/update_status/:participant_id', to: 'participants#update_status', as: :participants_update_status
 
   resources :projects, only: [:show] do
     post '/join_request_do', to: 'projects#join_request_do', as: :join_request_do
