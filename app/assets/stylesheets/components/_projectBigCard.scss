@@ -13,7 +13,9 @@ body div {
 
 .project-card {
   height: 30vh;
+  min-height: 273px;
   width: 16.6vw;
+  min-width: 240px;
   margin: 14px;
   display: flex;
   border-radius: 20px;
