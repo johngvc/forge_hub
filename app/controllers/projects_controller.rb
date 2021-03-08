@@ -6,27 +6,25 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @projects = policy_scope(Project)
+    @participating_projects = []
+    @available_projects = []
+    @suspended_projects_participating = []
+    @ongoing_projects_participating = []
 
-    @participating_projects = @projects.map do |project|
-      Participant.where(project_id: project, user_id: current_user.id)
-    end
 
-    unless @projects.empty?
-      @participating_projects_ids = @participating_projects.first.map do |project|
-        project.project_id
+    @projects.each do |project|
+      is_part_of_project = !Participant.where(project_id: project, user_id: current_user.id).first.nil?
+
+      if is_part_of_project
+        @participating_projects << project
+        if !project.is_suspended?
+          @ongoing_projects_participating << project
+        elsif project.is_suspended?
+          @suspended_projects_participating << project
+        end
+      elsif !is_part_of_project
+        @available_projects << project
       end
-    end
-
-    @available_projects = @projects.select do |project|
-      !@participating_projects_ids.include?(project.id)
-    end
-
-    @suspended_projects_participating = @projects.select do |project|
-      @participating_projects_ids.include?(project.id) && project.is_suspended?
-    end
-
-    @ongoing_projects_participating = @projects.select do |project|
-      @participating_projects_ids.include?(project.id) && !@suspended_projects_participating.include?(project)
     end
   end
 

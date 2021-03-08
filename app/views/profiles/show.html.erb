@@ -47,25 +47,26 @@
         <div class="projects-section">
             <h2>Active Projects</h2>
             <div class="card-container">
-                <div class="card-test"></div>
-                <div class="card-test"></div>
-                <div class="card-test"></div>
-                <div class="card-test"></div>
-                <div class="card-test"></div>
-                <div class="card-test"></div>
+            
+                <% @ongoing_projects_participating.each do |project| %>
+                    <%= render 'shared/projectBigCard', project: project if !project.nil?%>
+                <% end %>
+                <% @suspended_projects_participating.each do |project| %>
+                    <%= render 'shared/projectBigCard', project: project if !project.nil? %>
+                <% end %>
             </div>
         </div>
 
         <div class="messages-section">
             <h2>Messages</h2>
             <div class="card-container">
-                <div class="card-test-message"></div>
-                <div class="card-test-message"></div>
-                <div class="card-test-message"></div>
-                <div class="card-test-message"></div>
-                <div class="card-test-message"></div>
-                <div class="card-test-message"></div>
-                <div class="card-test-message"></div>
+                <%= render 'shared/messageCard' %>
+                <%= render 'shared/messageCard' %>
+                <%= render 'shared/messageCard' %>
+                <%= render 'shared/messageCard' %>
+                <%= render 'shared/messageCard' %>
+                <%= render 'shared/messageCard' %>
+                <%= render 'shared/messageCard' %>
             </div>
         </div>
     </div>

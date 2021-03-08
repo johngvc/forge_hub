@@ -1,0 +1,66 @@
+=> [[32m#<Project:0x000055d780765400[0m
+  id: [1;34m1[0m,
+  user_id: [1;34m1[0m,
+  name: [31m[1;31m"[0m[31mAmet tempore eos. M.[1;31m"[0m[31m[0m,
+  description:
+   [31m[1;31m"[0m[31mEa eveniet impedit. Consequuntur enim quam. Sint non aut. Illum eum sapiente. Fugit quia soluta. Provident temporibus a.[1;31m"[0m[31m[0m,
+  linkedin_url: [31m[1;31m"[0m[31mantony@linkedin.info[1;31m"[0m[31m[0m,
+  github_url: [31m[1;31m"[0m[31msallie_gutkowski@github.co[1;31m"[0m[31m[0m,
+  trello_url: [31m[1;31m"[0m[31mburl@trello.name[1;31m"[0m[31m[0m,
+  created_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m07[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m07[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Project:0x000055d780b53f80[0m
+  id: [1;34m2[0m,
+  user_id: [1;34m2[0m,
+  name: [31m[1;31m"[0m[31mDolor assumenda per.[1;31m"[0m[31m[0m,
+  description:
+   [31m[1;31m"[0m[31mIpsa asperiores sunt. Assumenda unde alias. Tenetur ea eum. Ea ut voluptas. Velit perferendis necessitatibus. Et animi .[1;31m"[0m[31m[0m,
+  linkedin_url: [31m[1;31m"[0m[31mcurtis@linkedin.info[1;31m"[0m[31m[0m,
+  github_url: [31m[1;31m"[0m[31mkenton@github.biz[1;31m"[0m[31m[0m,
+  trello_url: [31m[1;31m"[0m[31mbilly@trello.io[1;31m"[0m[31m[0m,
+  created_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m10[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m10[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Project:0x000055d780b53be8[0m
+  id: [1;34m3[0m,
+  user_id: [1;34m2[0m,
+  name: [31m[1;31m"[0m[31mNihil quod voluptat.[1;31m"[0m[31m[0m,
+  description:
+   [31m[1;31m"[0m[31mDoloribus recusandae in. Est aspernatur neque. Itaque autem sint. Voluptatum amet natus. Harum eaque perspiciatis. Inve.[1;31m"[0m[31m[0m,
+  linkedin_url: [31m[1;31m"[0m[31mdemetria_wilderman@linkedin.org[1;31m"[0m[31m[0m,
+  github_url: [31m[1;31m"[0m[31mkimberlie.lebsack@github.net[1;31m"[0m[31m[0m,
+  trello_url: [31m[1;31m"[0m[31mdean_daugherty@trello.net[1;31m"[0m[31m[0m,
+  created_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m12[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m12[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Project:0x000055d780b53878[0m
+  id: [1;34m4[0m,
+  user_id: [1;34m2[0m,
+  name: [31m[1;31m"[0m[31mAsperiores voluptat.[1;31m"[0m[31m[0m,
+  description:
+   [31m[1;31m"[0m[31mEt ipsam nihil. Explicabo quis quibusdam. Aut delectus repudiandae. Voluptatem asperiores fugit. Dolorem consectetur ea.[1;31m"[0m[31m[0m,
+  linkedin_url: [31m[1;31m"[0m[31msilas_barrows@linkedin.name[1;31m"[0m[31m[0m,
+  github_url: [31m[1;31m"[0m[31mkaylene_smith@github.co[1;31m"[0m[31m[0m,
+  trello_url: [31m[1;31m"[0m[31mtodd_cronin@trello.biz[1;31m"[0m[31m[0m,
+  created_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m14[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m14[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Project:0x000055d780b53530[0m
+  id: [1;34m5[0m,
+  user_id: [1;34m1[0m,
+  name: [31m[1;31m"[0m[31mMagnam exercitation.[1;31m"[0m[31m[0m,
+  description:
+   [31m[1;31m"[0m[31mDolorem voluptates animi. Est dolore ipsum. Quibusdam quae sunt. A enim assumenda. Cumque excepturi enim. Fuga debitis .[1;31m"[0m[31m[0m,
+  linkedin_url: [31m[1;31m"[0m[31menrique.reichert@linkedin.name[1;31m"[0m[31m[0m,
+  github_url: [31m[1;31m"[0m[31mtamar@github.net[1;31m"[0m[31m[0m,
+  trello_url: [31m[1;31m"[0m[31maugustus@trello.info[1;31m"[0m[31m[0m,
+  created_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m15[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m15[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Project:0x000055d780b53440[0m
+  id: [1;34m6[0m,
+  user_id: [1;34m1[0m,
+  name: [31m[1;31m"[0m[31mQuas in esse. Quas .[1;31m"[0m[31m[0m,
+  description:
+   [31m[1;31m"[0m[31mAspernatur eum dignissimos. Sequi minima illum. Suscipit consequuntur consequatur. Quas blanditiis quis. Nemo sit place.[1;31m"[0m[31m[0m,
+  linkedin_url: [31m[1;31m"[0m[31mavril.ebert@linkedin.biz[1;31m"[0m[31m[0m,
+  github_url: [31m[1;31m"[0m[31mtiffani@github.info[1;31m"[0m[31m[0m,
+  trello_url: [31m[1;31m"[0m[31mteddy@trello.io[1;31m"[0m[31m[0m,
+  created_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m17[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mMon[0m, [1;34m08[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m07[0m:[1;34m08[0m:[1;34m17[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m]
