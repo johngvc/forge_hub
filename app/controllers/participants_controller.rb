@@ -28,7 +28,7 @@ class ParticipantsController < ApplicationController
     @participant = Participant.find(params[:participant_id])
     @participant.update(participants_params)
     if @participant.save
-      redirect_to project_participants_path(params[:project_id]), notice: "#{@participant.user.name}'s status is now #{@participant.status}."
+      redirect_to project_participants_path(@participant.project), notice: "#{@participant.user.name}'s status is now #{@participant.status}."
     else
       render :new, notice: "Somethig went wrong, please try again."
     end
@@ -61,6 +61,6 @@ class ParticipantsController < ApplicationController
   end
 
   def participants_params
-    params.require(:participants).permit(:project_id, :user_id, :status)
+    params.require(:participant).permit(:status)
   end
 end
