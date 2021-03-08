@@ -1,0 +1,2 @@
+class ChatThread < ApplicationRecord
+end
