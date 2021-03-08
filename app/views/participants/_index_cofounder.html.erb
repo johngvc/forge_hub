@@ -33,14 +33,14 @@
 
           <% unless participant.status == 'cofounder' || participant.status == 'founder' %>
             <%= simple_form_for project_participant_update_status_path(participant_id: participant.id, project_id: @project.id) do |f| %>
-              <td><%= f.input :status, :collection => %w[invitee member cofounder], label: false %>
-              <td><%= f.submit "confirm change", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %>
+              <td><%= f.input :status, :collection => %w[invitee member cofounder], label: false %></td>
+              <td><%= f.submit "confirm change", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %></td>
             <% end %>
 
             <td><%=  link_to "exclude from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %></td>
 
           <% else %>
-            <td rowspan="2"><p>not applicable to founders or cofounders</p></td>
+            <td><p>not applicable to founders or cofounders</p></td>
             <td><p>not applicable to founders or cfounders</p></td>
           <% end %>
         </tr>>
