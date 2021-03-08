@@ -10,19 +10,21 @@
     </thead>
     <tbody>
       <% @participants.each do |participant| %>
+        <tr>
 
-        <td>
-          <% if !participant.user.photo.attached? %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
+          <td>
+            <% if !participant.user.photo.attached? %>
+              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
 
-          <% else %>
-            <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-          <% end %>
-        </td>
+            <% else %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+            <% end %>
+          </td>
 
-        <td><%= link_to "#{participant.user.name}", profile_path(id: participant.user.id) %></td>
-        <td><%= participant.user.email %></td>
-        <td><%= participant.status %></td>
+          <td><%= link_to "#{participant.user.name}", profile_path(id: participant.user.id) %></td>
+          <td><%= participant.user.email %></td>
+          <td><%= participant.status %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

@@ -1,25 +1,22 @@
 <h3>founder view mode</h3>
+
   <table class="table">
+
     <thead>
       <tr>
         <th scope="col"></th>
         <th scope="col">Name:</th>
         <th scope="col">email:</th>
         <th scope="col">status:</th>
-
-        <% if @current_participant.is_founder? %>
-          <th scope="col">Edit member status</th>
-          <th scope="col"> </th>
-          <th scope="col">Delete member from project</th>
-        <% end %>
-
+        <th scope="col" rowspan="2">Edit member status</th>
+        <th scope="col">Delete member from project</th>
       </tr>
     </thead>
+
     <tbody>
       <% @participants.each do |participant| %>
-
+      <tr>
         <td>
-
           <% if !participant.user.photo.attached? %>
             <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
 
@@ -30,25 +27,21 @@
 
         <td><%= link_to "#{participant.user.name}", profile_path(id: participant.user.id) %></td>
         <td><%= participant.user.email %></td>
-
         <td><%= participant.status %></td>
 
-        <% if @current_participant.is_founder? %>
-
-          <% unless participant.user_id == @current_participant.id %>
-            <%= simple_form_for project_participant_update_status_path(participant_id: participant.id, project_id: @project.id) do |f| %>
-              <td><%= f.input :status, :collection => %w[invitee member cofounder] %>
-              <td><%= f.submit "confirm change", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %>
-            <% end %>
-
-            <td><%=  link_to "exclude from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %></td>
-
-          <% else %>
-            <td><p>not applicable to founders</p></td>
-            <td></td>
-            <td><p>not applicable to founders</p></td>
+        <% unless participant.status == "founder" %>
+          <%= simple_form_for participant, url: participants_update_status_path(participant_id: participant.id), method: :patch do |f| %>
+            <td><%= f.input :status, :collection => %w[invitee member cofounder], label: false %></td>
+            <td><%= f.submit "confirm change", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %></td>
           <% end %>
+
+          <td><%=  link_to "exclude from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %></td>
+
+        <% else %>
+          <td><p>not applicable to founders</p></td>
+          <td><p>not applicable to founders</p></td>
         <% end %>
+      </tr>
       <% end %>
     </tbody>
   </table>

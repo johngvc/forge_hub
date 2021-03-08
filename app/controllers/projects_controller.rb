@@ -25,10 +25,8 @@ class ProjectsController < ApplicationController
       project if @participating_projects_ids.include?(project.id) && project.is_suspended?
     end
 
-    @ongoing_projects_participating = @projects.map do |project|
-      if @participating_projects_ids.include?(project.id)
-        project unless @suspended_projects_participating.include?(project)
-      end
+    @ongoing_projects_participating = @projects.select do |project|
+      @participating_projects_ids.include?(project.id) && !@suspended_projects_participating.include?(project)
     end
   end
 
@@ -143,5 +141,4 @@ class ProjectsController < ApplicationController
   def projects_params
     params.require(:project).permit(:id, :name, :description, :linkedin_url, :github_url, :trello_url, :photo)
   end
-
 end
