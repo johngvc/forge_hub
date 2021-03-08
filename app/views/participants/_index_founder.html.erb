@@ -29,9 +29,9 @@
         <td><%= participant.user.email %></td>
         <td><%= participant.status %></td>
 
-        <% unless participant.status = "founder" %>
+        <% unless participant.status == "founder" %>
           <%= simple_form_for project_participant_update_status_path(participant_id: participant.id, project_id: @project.id) do |f| %>
-            <td><%= f.input :status, :collection => %w[invitee member cofounder] %>
+            <td><%= f.input :status, :collection => %w[invitee member cofounder], label: false %>
             <td><%= f.submit "confirm change", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %>
           <% end %>
 
