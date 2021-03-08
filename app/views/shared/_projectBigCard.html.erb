@@ -6,20 +6,20 @@
         <% else %>
             <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "img" %>
         <% end %>
-
-        <% if User.find(project.user_id) && User.find(project.user_id).photo.attached? %>
-            <%= cl_image_tag User.find(project.user_id).photo.key, class: "avatar-and-name" %>
-        <% elsif User.find(project.user_id) && User.find(project.user_id).picture_url.present? %>
-            <%= image_tag User.find(project.user_id).picture_url, class: "avatar-and-name" %>
-        <% else %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-and-name" %>
-        <% end %>
-        <a href="<%= profile_path(User.find(project.user_id)) %>"><p class="founder">Founded by <%= User.find(project.user_id).name %><p/></a>
+        <div class="container-gradient">
+          <% if User.find(project.user_id) && User.find(project.user_id).photo.attached? %>
+              <%= cl_image_tag User.find(project.user_id).photo.key, class: "avatar-and-name" %>
+          <% elsif User.find(project.user_id) && User.find(project.user_id).picture_url.present? %>
+              <%= image_tag User.find(project.user_id).picture_url, class: "avatar-and-name" %>
+          <% else %>
+              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-and-name" %>
+          <% end %>
+          <a href="<%= profile_path(User.find(project.user_id)) %>"><p class="founder">Founded by <%= User.find(project.user_id).name %><p/></a>
+        </div>
     </div>
 
     <div class="card-element project-title">
       <div><p><%= project.name %></p></div>
-      <div><i class="fas fa-heart"></i></div>
     </div>
 
     <div class="card-element project-description">
@@ -39,27 +39,9 @@
         <i class="fas fa-flag"></i>
         <p>On design/pre-production</p>
       </div>
-      <div class="info">
-        <i class="far fa-clock"></i>
-        <p>35 days left</p>
-      </div>
     </div>
-
-    <div class="card-element project-team-loc-apply-btn">
-      <div class="description">
-        <div>
-          <p>ForgeHub team</p>
-        </div>
-
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i>
-          <p>São Paulo, BR</p>
-        </div>
-      </div>
-      
-      <div class="button">
-        <a href="<%= project_path(project.id) %>">APPLY NOW</a>
-      </div>
+    <div class="container-card">
+        <a class="apply-now-link" href="<%= project_path(project.id) %>">APPLY NOW</a>
     </div>
 
   </div>
