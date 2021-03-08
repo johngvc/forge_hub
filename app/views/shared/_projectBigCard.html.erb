@@ -1,26 +1,32 @@
   <div class="my-container project-card" >
     <div class="card-element project-image">
 
-        <% if project.photo.attached? %>
-            <%= cl_image_tag project.photo.key, class: "img" %>
-        <% else %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "img" %>
-        <% end %>
-        <div class="container-gradient">
-          <% if User.find(project.user_id) && User.find(project.user_id).photo.attached? %>
-              <%= cl_image_tag User.find(project.user_id).photo.key, class: "avatar-and-name" %>
-          <% elsif User.find(project.user_id) && User.find(project.user_id).picture_url.present? %>
-              <%= image_tag User.find(project.user_id).picture_url, class: "avatar-and-name" %>
+        <a href="<%= project_path(project.id) %>" class="img-link"> 
+          <% if project.photo.attached? %>
+              <%= cl_image_tag project.photo.key, class: "img" %>
           <% else %>
-              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-and-name" %>
+              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "img" %>
           <% end %>
+        </a>
+        <div class="container-gradient">
+          <a href="<%= profile_path(User.find(project.user_id)) %>">
+            <% if User.find(project.user_id) && User.find(project.user_id).photo.attached? %>
+                <%= cl_image_tag User.find(project.user_id).photo.key, class: "avatar-and-name" %>
+            <% elsif User.find(project.user_id) && User.find(project.user_id).picture_url.present? %>
+                <%= image_tag User.find(project.user_id).picture_url, class: "avatar-and-name" %>
+            <% else %>
+                <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-and-name" %>
+            <% end %>
+          </a>
           <a href="<%= profile_path(User.find(project.user_id)) %>"><p class="founder">Founded by <%= User.find(project.user_id).name %><p/></a>
         </div>
     </div>
 
     <div class="card-element project-title">
       <p>
-        <%= project.name %>
+        <a href="<%= project_path(project.id) %>">
+          <%= project.name %>
+        </a>
       </p>
     </div>
 
