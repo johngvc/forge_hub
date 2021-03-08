@@ -21,7 +21,7 @@
 
   <div class="container">
 
-    <% if @participating_projects.first.first.nil? %>
+    <% if @participating_projects.first.nil? %>
       <p><%= "#{current_user.name} currently is not a member of a project." %></p>
 
     <% else %>
