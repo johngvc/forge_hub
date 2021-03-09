@@ -40,7 +40,7 @@ puts "Instanciando usuários"
 iterator = 0
 3.times do
     newUser = User.new({
-                        name: Faker::Lorem.paragraph_by_chars(number: 20),
+                        name: Faker::Food.fruits,
                         email: "#{alphabet[iterator]}@#{alphabet[iterator]}",
                         password: 123123
                         })
@@ -57,7 +57,7 @@ puts "Instanciando projetos"
 iterator = 0
 6.times do
     newProject = Project.new({
-                        name: Faker::Lorem.paragraph_by_chars(number: 20),
+                        name: Faker::Food.dish,
                         user_id: rand(1..3),
                         description: Faker::Lorem.paragraph_by_chars(number: 120),
                         linkedin_url: Faker::Internet.email(domain: 'linkedin'),
@@ -65,7 +65,6 @@ iterator = 0
                         trello_url: Faker::Internet.email(domain: 'trello')
                         })
     newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
-    puts "#"*50
     if newProject.save
         puts "Projeto id: #{Project.last.id} criado com o nome: #{Project.last.name}"
     else
@@ -73,7 +72,7 @@ iterator = 0
     end
     
     puts "-"*5
-    puts "Instanciando o dono do projeto :#{Project.last.id}"
+    puts "Instanciando o dono do projeto :#{Project.last.name}"
     nowTime = DateTime.now
     newParticipant = Participant.new({
                                     user_id: Project.last.user_id,
