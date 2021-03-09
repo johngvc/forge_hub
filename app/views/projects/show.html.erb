@@ -14,10 +14,10 @@
 
   <% elsif @is_participant && @participant.status == 'founder' %>
 
-    <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: center;">
+    <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: flex-end;">
 
       <%= link_to edit_project_path(id: @project.id) do %>
-        <div class="btn btn-success", style="width: 180px">edit this project!</div>
+        <div class="btn btn-success", style="width: 180px">edit project</div>
       <% end %>
 
       <%= link_to project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
@@ -37,32 +37,38 @@
       <% end %>
     </div>
 
-  <% if @is_not_participant && @has_join_request == false %>
+
     <div class="project-call-container">
       <div class="container-new">
         <div class="project-apply">
           <h2><%= User.find(@project.user_id).name %> wants to make <%= @project.name %> a reality</h2>
-          <button class="ask-to-join-btn" data-toggle="modal" data-target="#projectAskModal">
-            Ask to join this project!
-          </button>
-  <% end %>
+
+          <% if @is_not_participant && @has_join_request == false %>
+            <button class="ask-to-join-btn" data-toggle="modal" data-target="#projectAskModal">Ask to join this project!</button>
+
+          <% else %>
+            <p> <%= "Already a member of #{@project.name}!" %></p>
+          <% end %>
 
           <div class="social-links">
-          <% if @project.linkedin_url.empty? %>
-            <a href="<%= @project.linkedin_url %>">
-              <i class="fa fa-linkedin"></i>
-            </a>
-          <% end %>
-          <% if @project.github_url.empty? %>
-            <a href="<%= @project.github_url %>">
-                <i class="fa fa-github"></i>
-            </a>
-          <% end %>
-          <% if @project.trello_url.empty? %>
-            <a href="<%= @project.trello_url %>">
-                <i class="fa fa-trello"></i>
-            </a>
-          <% end %>
+
+            <% if @project.linkedin_url.empty? %>
+              <a href="<%= @project.linkedin_url %>">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            <% end %>
+
+            <% if @project.github_url.empty? %>
+              <a href="<%= @project.github_url %>">
+                  <i class="fa fa-github"></i>
+              </a>
+            <% end %>
+
+            <% if @project.trello_url.empty? %>
+              <a href="<%= @project.trello_url %>">
+                  <i class="fa fa-trello"></i>
+              </a>
+            <% end %>
           </div>
         </div>
       </div>
