@@ -57,12 +57,16 @@ puts "Instanciando projetos"
 iterator = 0
 6.times do
     newProject = Project.new({
-                        name: Faker::Food.dish,
+                        name: Faker::Lorem.paragraph_by_chars(number: 20),
                         user_id: rand(1..3),
                         description: Faker::Lorem.paragraph_by_chars(number: 120),
                         linkedin_url: Faker::Internet.email(domain: 'linkedin'),
                         github_url: Faker::Internet.email(domain: 'github'),
                         trello_url: Faker::Internet.email(domain: 'trello')
+                        
+ 
+                        
+                        
                         })
     newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
     if newProject.save
@@ -77,10 +81,10 @@ iterator = 0
     newParticipant = Participant.new({
                                     user_id: Project.last.user_id,
                                     project_id: Project.last.id,
-                                    invite_participant_id: Project.last.id,
                                     is_founder: true,
                                     invited_at: nowTime,
-                                    accepted_at: nowTime
+                                    accepted_at: nowTime,
+                                    status: "founder"
                                     })
     newParticipant.save
     
