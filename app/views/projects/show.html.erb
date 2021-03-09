@@ -1,20 +1,56 @@
-<div class="container">
-  <h1><%=  @project.name %></h1>
-  <p><strong><%= @project.description %></strong></p>
-  <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: column;">
-    <% if @project.linkedin_url != nil %>
-      <%= link_to "check out #{@project.name}`s LinkedIn page", "#{@project.linkedin_url}" %>
-    <% end %>
-    <% if @project.github_url != nil %>
-      <%= link_to "check out #{@project.name}`s GitHub profile", "#{@project.github_url}" %>
-    <% end %>
-    <% if @project.trello_url != nil %>
-      <%= link_to "Access #{@project.name}`s workflow in Trello", "#{@project.trello_url}" %>
-    <% end %>
-  </div>
+<div class="container-new">
+  <section>
+    <div class="container-new project-intro">
+      <div class="project-title-desc">
+        <h1><%=  @project.name %></h1>
+        <p><%= @project.description %></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-call-img">
+    <div class=project-img-container>
+      <% if @project.photo.attached? %>
+        <%= cl_image_tag @project.photo.key, class: "project-img" %>
+      <% else %>
+        <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "project-img" %>
+      <% end %>
+    </div>
+    <div class="project-call-container">
+      <div class="container-new">
+        <div class="project-apply">
+          <h2><%= User.find(@project.user_id).name %> wants to make <%= @project.name %> a reality</h2>
+          <button class="ask-to-join-btn" data-toggle="modal" data-target="#projectAskModal">
+            Ask to join this project!
+          </button>
+
+          <div class="social-links">
+          <% if @project.linkedin_url != nil %>
+            <a href="<%= @project.linkedin_url %>"> 
+              <i class="fa fa-linkedin"></i>
+            </a>
+          <% end %>
+          <% if @project.github_url != nil %>
+            <a href="<%= @project.github_url %>"> 
+                <i class="fa fa-github"></i>
+            </a>
+          <% end %>
+          <% if @project.trello_url != nil %>
+            <a href="<%= @project.trello_url %>"> 
+                <i class="fa fa-trello"></i>
+            </a>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+  
+  </section>
 
   <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: center;">
-
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#projectAskModal" style="width: 180px;">ask to join this project!</button>
     <% @project_participants.each do |participant|   %>
     <% if current_user.id == participant.user_id && participant.is_founder %>
@@ -28,7 +64,6 @@
   </div>
   <% end  %>
   <% end  %>
-  
   <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: column;">
     <h2>Project members:</h2>
     <% if @project_participants.empty? %>

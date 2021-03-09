@@ -1,0 +1,75 @@
+$accent-color-orange: #ed6347;
+
+.container-new {
+  margin: 0 auto;
+  padding: 0;
+  clear: both;
+  width: 90%;
+}
+
+.project-title-desc {
+  text-align: center;
+  min-height: 16vh;
+  overflow: hidden;
+  margin: 20px;
+}
+
+.project-title-desc h1 {
+  font-size: 46px;
+  font-weight: 800;
+}
+
+.project-title-desc p {
+  font-size: 19px;
+  font-weight: 600;
+  color: #979797;
+  padding: 0 130px;
+}
+
+.project-call-img {
+  width: 100%;
+  height: 426px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-img-container {
+  height: 100%;
+  width: 120%;
+}
+
+.project-apply {
+  font-size: 18px;
+  margin-top: 140px;
+  text-align: center;
+}
+
+.project-img {
+  height: 100%;
+  width: 100%;
+}
+
+.ask-to-join-btn {
+}
+
+.social-links {
+  text-align: center;
+  margin-top: 5px;
+  display: block;
+}
+
+.social-links i {
+  color: black;
+}
+
+.project-apply button {
+  border: none;
+  background-color: transparent;
+  color: $accent-color-orange;
+}
+
+.project-call-container {
+  width: 94%;
+  height: 100%;
+}
