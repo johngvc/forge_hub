@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'pages#contact'
 
   resources :profiles, only: %i[show] do
-    resources :chat_messages, only: [:create]
+    post '/chat_messages/create/', to: 'profiles#create_message', as: :chat_messages_create
   end
 
   get "/linkedinprofile", to: 'profiles#showlinkedin'

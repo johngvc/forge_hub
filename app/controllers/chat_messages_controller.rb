@@ -1,7 +1,11 @@
 class ChatMessagesController < ApplicationController
-  def create
+
+  def create_message
     @user_sender = current_user
+    @user_receiver = User.find(email: params[:user_receiver])
     @message = Message.new(message_params)
+    @message.user_sender = @user_sender.id
+    @message.sent_at = DateTime.now
     if @message.save
       redirect_to profile_path(id: current_user.id), notice: "Your message was sent."
     else
@@ -9,21 +13,9 @@ class ChatMessagesController < ApplicationController
     end
   end
 
-
   private
 
   def message_params
-    params.require(:chat_message).permit(:id, :user_receiver, :content)
+    params.require(:chat_message).permit(:user_receiver, :content, :previous_message_id)
   end
-
 end
-  create_table "chat_messages", force: :cascade do |t|
-    t.integer "user_sender_id", null: false
-    t.integer "user_receiver_id", null: false
-    t.bigint "project_id"
-    t.text "content_responding_to"
-    t.text "content", null: false
-    t.datetime "sent_at", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_chat_messages_on_project_id"
