@@ -8,18 +8,18 @@
             <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-big" %>
         <% end %>
 
-        
+
         <% if @user == current_user %>
-            <a href="<%= edit_user_registration_path(@user.id) %>"> 
+            <a href="<%= edit_user_registration_path(@user.id) %>">
                 Edit my profile <i class="fas fa-edit"></i>
             </a>
         <% else %>
-            <a href="<%= edit_user_registration_path(@user.id) %>" style="visibility: hidden;"> 
+            <a href="<%= edit_user_registration_path(@user.id) %>" style="visibility: hidden;">
             Edit my profile <i class="fas fa-edit"></i>
             </a>
         <% end %>
-        
-        
+
+
 
         <div class="user-info-acc">
             <ul>
@@ -47,7 +47,7 @@
         <div class="projects-section">
             <h2>Active Projects</h2>
             <div class="card-container">
-            
+
                 <% @ongoing_projects_participating.each do |project| %>
                     <%= render 'shared/projectBigCard', project: project if !project.nil?%>
                 <% end %>
