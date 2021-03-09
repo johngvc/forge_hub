@@ -93,22 +93,40 @@
       <ul>
         <% @project_participants.each do |participant| %>
 
-          <% if participant.is_founder? %>
+          <% if participant.status == 'founder' %>
 
             <% if !participant.user.photo.attached? %>
               <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
 
             <% else %>
-              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
+              <li><%= cl_image_tag participant.user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
             <% end %>
 
-          <% elsif participant.accepted_at != nil%>
+          <% elsif participant.status == 'cofounder' %>
 
             <% if !participant.user.photo.attached? %>
-              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- cofounder"%></li>
 
             <% else %>
-              <li><%= cl_image_tag current_user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- founder"%></li>
+              <li><%= cl_image_tag participant.user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- cofounder"%></li>
+            <% end %>
+
+          <% elsif participant.status == 'member' %>
+
+            <% if !participant.user.photo.attached? %>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- member"%></li>
+
+            <% else %>
+              <li><%= cl_image_tag participant.user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- member"%></li>
+            <% end %>
+
+          <% elsif participant.status == 'invitee' %>
+
+            <% if !participant.user.photo.attached? %>
+              <li><%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- temporary invitee, membership confirmation pending"%></li>
+
+            <% else %>
+              <li><%= cl_image_tag participant.user.photo.key, class: "avatar" %><%= link_to "             #{participant.user.name}", profile_path(id: participant.user.id) %><%= "- temporary invitee, membership confirmation pending"%></li>
             <% end %>
           <% end %>
         <% end %>
