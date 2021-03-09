@@ -40,7 +40,7 @@ puts "Instanciando usuários"
 iterator = 0
 3.times do
     newUser = User.new({
-                        name: Faker::Food.fruits,
+                        name: Faker::Food.unique.fruits.truncate(20),
                         email: "#{alphabet[iterator]}@#{alphabet[iterator]}",
                         password: 123123
                         })
@@ -57,16 +57,13 @@ puts "Instanciando projetos"
 iterator = 0
 6.times do
     newProject = Project.new({
-                        name: Faker::Lorem.paragraph_by_chars(number: 20),
+                        name: Faker::Games::SuperMario.unique.character.truncate(10),
                         user_id: rand(1..3),
                         description: Faker::Lorem.paragraph_by_chars(number: 120),
                         linkedin_url: Faker::Internet.email(domain: 'linkedin'),
                         github_url: Faker::Internet.email(domain: 'github'),
-                        trello_url: Faker::Internet.email(domain: 'trello')
-                        
- 
-                        
-                        
+                        trello_url: Faker::Internet.email(domain: 'trello'),
+                        is_suspended: false
                         })
     newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
     if newProject.save

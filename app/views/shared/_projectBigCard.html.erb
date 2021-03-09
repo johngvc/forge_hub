@@ -42,12 +42,16 @@
         <p>3 spots available</p>
       </div>
       <div class="info">
-        <i class="fas fa-flag"></i>
-        <p>On design/pre-production</p>
+        <i class="fas fa-flag"></i>     
+        <% if project.is_suspended %>
+          <p style="color: red;">Project suspended</p>
+        <% else %>
+          <p>On Design/Pre production</p>
+        <% end %>
       </div>
     </div>
     <div class="container-card">
-        <a class="apply-now-link" href="<%= project_path(project.id) %>">APPLY NOW</a>
+        <a class="apply-now-link" href="<%= project_path(project.id) %>">Read more</a>
     </div>
 
   </div>
