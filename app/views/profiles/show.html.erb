@@ -59,6 +59,11 @@
 
         <div class="messages-section">
             <h2>Messages</h2>
+
+              <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: center;">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#projectAskModal" style="width: 180px;">Send a new message</button>
+              </div>
+
             <div class="card-container">
                 <%= render 'shared/messageCard' %>
                 <%= render 'shared/messageCard' %>
@@ -70,6 +75,39 @@
             </div>
         </div>
     </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="projectAskModal" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">send the founders a message asking to join this project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <%= form_tag chat_threads_path(user_sender_id: current_user.id, created_at: DateTime.now ), method: :post do %>
+          <div class="modal-body">
+            <%= form.email_field  %>
+            <div class="input-group">
+              <textarea class="form-control" name="request_message"></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-success" value="send message">
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
 
 
 </div>
