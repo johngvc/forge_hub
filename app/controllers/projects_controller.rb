@@ -4,22 +4,45 @@ class ProjectsController < ApplicationController
   before_action :pundit_policy_authorized?, only: %i[join_request_do join_request_authorize]
 
   def index
-  # @projects = Project.all
-  @projects = policy_scope(Project)
-  @project_participants = @projects.map do |project|
-    Participant.where(project_id: project.id)
-  end
+    @projects = Project.all
+    @projects = policy_scope(Project)
+
+    @participating_projects = @projects.map do |project|
+      Participant.where(project_id: project, user_id: current_user.id)
+    end
+
+    unless @projects.empty?
+      @participating_projects_ids = @participating_projects.first.map do |project|
+        project.project_id
+      end
+    end
+
+    @available_projects = @projects.map do |project|
+      project unless @participating_projects_ids.include?(project.id)
+    end
+
+    @suspended_projects_participating = @projects.map do |project|
+      project if @participating_projects_ids.include?(project.id) && project.is_suspended?
+    end
+
+    @ongoing_projects_participating = @projects.map do |project|
+      if @participating_projects_ids.include?(project.id)
+        project unless @suspended_projects_participating.include?(project)
+      end
+    end
   end
 
   def show
     @number = 0
     @project_participants = Participant.where(project_id: @project.id)
-    join_request_pending(@project)
+    @participant = Participant.where(user_id: current_user.id, project_id: @project.id)
+    @is_not_participant = @participant.first.nil?
+    @is_not_participant ? @is_participant = false : @is_participant = true
+    join_request_pending(@project, @participant)
   end
 
-  def join_request_pending(project)
-    @participant = Participant.where(user_id: current_user.id, project_id: project.id)
-    @join_requests = @participant.map do |participation|
+  def join_request_pending(project, participant)
+    @join_requests = participant.map do |participation|
       participation.is_founder? ? JoinRequest.where(project_id: participation.project.id, request_pending: true) : nil
     end
   end
@@ -41,7 +64,7 @@ class ProjectsController < ApplicationController
   end
 
   def create_participant(project)
-    @participant = Participant.new(user_id: current_user.id, project_id: project[:id], is_founder: true, invited_at: DateTime.now, accepted_at: DateTime.now)
+    @participant = Participant.new(user_id: current_user.id, project_id: project[:id], is_founder: true, invited_at: DateTime.now, accepted_at: DateTime.now, status: 'founder')
     if @participant.save
       @participant.invite_participant_id = @participant.id
       @participant.save
@@ -105,6 +128,7 @@ class ProjectsController < ApplicationController
     redirect_to project_path(id: @project), notice: "Join request by #{@join_request.user} was refused."
     # mais adiante, acrescentar mecanismo de notificação do outro usuário sobre a recusa
   end
+
   def pundit_policy_authorized?
     true
   end
@@ -119,4 +143,5 @@ class ProjectsController < ApplicationController
   def projects_params
     params.require(:project).permit(:id, :name, :description, :linkedin_url, :github_url, :trello_url, :photo)
   end
+
 end
