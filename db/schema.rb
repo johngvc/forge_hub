@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_160947) do
+ActiveRecord::Schema.define(version: 2021_03_09_164839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 2021_03_09_160947) do
     t.integer "user_sender_id", null: false
     t.integer "user_receiver_id", null: false
     t.bigint "project_id"
-    t.text "content_responding_to"
     t.text "content", null: false
     t.datetime "sent_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "previous_message_id"
     t.index ["project_id"], name: "index_chat_messages_on_project_id"
   end
 

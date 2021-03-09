@@ -3,12 +3,16 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root to: 'pages#home'
+
   get '/contact', to: 'pages#contact'
-  resources :profiles, only: %i[show]
+
+  resources :profiles, only: %i[show] do
+    resources :chat_messages, only: [:create]
+  end
 
   get "/linkedinprofile", to: 'profiles#showlinkedin'
+
   get '/contact', to: 'pages#contact'
-  resources :profiles, only: %i[show]
 
   resources :projects, except: %i[delete] do
     resources :participants, only: %i[index]
@@ -26,7 +30,4 @@ Rails.application.routes.draw do
 
   delete '/projects/:id', to: "projects#destroy", as: :project_destroy
 
-  resources :chat_threads, only: %i[new create destroy] do
-    resources :chat_messages, only: %i[new create destroy]
-  end
 end
