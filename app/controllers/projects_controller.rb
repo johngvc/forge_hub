@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
     @suspended_projects_participating = []
     @ongoing_projects_participating = []
 
-
     @projects.each do |project|
       is_part_of_project = !Participant.where(project_id: project, user_id: current_user.id).first.nil?
 
@@ -34,6 +33,7 @@ class ProjectsController < ApplicationController
     @participant = Participant.where(user_id: current_user.id, project_id: @project.id)
     @is_not_participant = @participant.first.nil?
     @is_not_participant ? @is_participant = false : @is_participant = true
+    @has_join_request = JoinRequest.where(project_id: @project.id, user_id: current_user.id, request_pending: true)
     join_request_pending(@project, @participant)
   end
 

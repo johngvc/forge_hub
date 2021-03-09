@@ -94,7 +94,7 @@
 
         <%= form_tag chat_threads_path(user_sender_id: current_user.id, created_at: DateTime.now ), method: :post do %>
           <div class="modal-body">
-            <%= form.email_field  %>
+            <%= form.email_field :  %>
             <div class="input-group">
               <textarea class="form-control" name="request_message"></textarea>
             </div>
