@@ -1,21 +1,41 @@
+require 'pry'
 class ChatMessagesController < ApplicationController
 
-  def create_message
-    @user_sender = current_user
-    @user_receiver = User.find(email: params[:user_receiver])
-    @message = Message.new(message_params)
-    @message.user_sender = @user_sender.id
-    @message.sent_at = DateTime.now
-    if @message.save
-      redirect_to profile_path(id: current_user.id), notice: "Your message was sent."
-    else
-      render :new, notice: "Something went wrong. Your message could not be sent."
-    end
+before_action :verify_authorized
+
+  def index; end
+
+  def new
+      @message = ChatMessage.new
+      @users = User.all
+  end
+
+  def create
+      @message = ChatMessage.new(message_params)
+      @user_sender = current_user
+      @user_receiver = User.find_by(name: receiver_params[:user_receiver])
+      @message.user_sender_id = current_user.id
+      @message.user_receiver_id = @user_receiver.id
+      @message.sent_at = DateTime.now
+      binding.pry
+      if @message.save
+        redirect_to profile_path(id: current_user.id), notice: "Your message was sent."
+      else
+        render :new, notice: "Something went wrong. Your message could not be sent."
+      end
   end
 
   private
 
+  def verify_authorized
+    true
+  end
+
   def message_params
-    params.require(:chat_message).permit(:user_receiver, :content, :previous_message_id)
+    params.require(:chat_message).permit(:content)
+  end
+
+  def receiver_params
+    params.require(:other).permit(:user_receiver)
   end
 end

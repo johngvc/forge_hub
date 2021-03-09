@@ -46,15 +46,15 @@ ActiveRecord::Schema.define(version: 2021_03_09_164839) do
   end
 
   create_table "chat_messages", force: :cascade do |t|
-    t.integer "user_sender_id", null: false
-    t.integer "user_receiver_id", null: false
-    t.bigint "project_id"
+    t.bigint "user_sender_id", null: false
+    t.bigint "user_receiver_id", null: false
     t.text "content", null: false
     t.datetime "sent_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "previous_message_id"
-    t.index ["project_id"], name: "index_chat_messages_on_project_id"
+    t.index ["user_receiver_id"], name: "index_chat_messages_on_user_receiver_id"
+    t.index ["user_sender_id"], name: "index_chat_messages_on_user_sender_id"
   end
 
   create_table "foreign_key_to_bootcamps_in_users", force: :cascade do |t|
@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(version: 2021_03_09_164839) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "chat_messages", "projects"
   add_foreign_key "join_requests", "participants", column: "participants_id"
   add_foreign_key "join_requests", "projects"
   add_foreign_key "join_requests", "users"

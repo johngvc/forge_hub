@@ -64,6 +64,8 @@
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sendNewMessageModal" style="width: 180px;">send a new message</button>
             </div>
 
+            <%= link_to 'Nova Mensagem',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
+
 
 
 
@@ -82,29 +84,11 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="sendNewMessageModal" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <div class="modal-dialog" role="document">
-
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">send the founders a message asking to join this project</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <%# render 'chat_messages/new' %>
         </div>
-        <div class="modal-body">
-          <%= simple_form_for @message, url: profile_chat_messages_create_path(participant_id: participant.id), method: :post do |f| %>
-            <%= f.input :user_receiver, label: "receiver e-mail"  %>
-            <%= f.input :content, as: :text %>
-        </div>
-          <div class="modal-footer">
-            <%= f.submit, "send message" %>
-            <% end %>
-          </div>
       </div>
     </div>
-  </div>
   <!-- Modal -->
