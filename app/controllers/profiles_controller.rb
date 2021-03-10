@@ -33,12 +33,31 @@ class ProfilesController < ApplicationController
       end
     end
     index_messages
+    message_counter(@messages_sorted)
   end
 
   def index_messages
     @messages = ChatMessage.where(user_receiver_id: current_user.id) + ChatMessage.where(user_sender_id: current_user.id)
     messages_2 = @messages.sort_by &:sent_at
     @messages_sorted = messages_2.reverse
-    @new_messsage_counter = 0
+  end
+
+  def message_counter(messages)
+    @new_message_count = 0
+    messages.each do |message|
+      if message.sent_at.after? current_user.last_sign_in_at
+        @new_message_count += 1
+        message.is_new_message = true
+        message.save
+      else
+        message.is_new_message = false
+        message.save
+      end
+    end
+    unless @new_message_count.zero?
+      @new_message_alert = true
+    else
+      @new_message_alert = false
+    end
   end
 end

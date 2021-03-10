@@ -1,14 +1,3 @@
-<% @messages_sorted.each do |message| %>
-  <% if message.sent_at > current_user.last_sign_in_at %>
-    <% @new_message_counter += 1 %>
-    <% message.is_new_message = true %>
-    <% message.save %>
-  <% else %>
-    <% message.is_new_message = false %>
-    <% message.save %>
-  <% end %>
-<% end %>
-
 <div class="profile-page">
     <div class="profile-section">
         <% if @user && @user.photo.attached? %>
@@ -73,19 +62,21 @@
 
     </div>
 </div>
-<% if @new_message_counter >= 1 %>
+
+<!-- new messages alert -->
+<% if @new_message_alert %>
   <div class="alert alert-warning" role="alert">
-    <%= "You received #{@new_message_counter} new messages since your last login."  %>
+    <%= "You received #{@new_message_count} new messages since your last login."  %>
   </div>
 <% end %>
+<!-- new messages alert -->
 
-
-  <!-- Modal -->
-    <div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <%# render 'chat_messages/new' %>
-        </div>
-      </div>
+<!-- Modal -->
+<div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%# render 'chat_messages/new' %>
     </div>
-  <!-- Modal -->
+  </div>
+</div>
+<!-- Modal -->
