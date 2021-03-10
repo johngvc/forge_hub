@@ -24,20 +24,18 @@
         <div class="user-info-acc">
             <ul>
                 <li><h2><%= @user.name %></h2></li>
-                    <li><p>Email: <%= @user.email %></p></li>
-                    <li><p>Specialty: Lorem ipsum, dolor sit</p></li>
-                    <li><p>Description: Lorem ipsum, dolor sit</p></li>
+                <li><p>Email: <%= @user.email %></p></li>
             </ul>
         </div>
 
         <div class="user-info">
             <p>
                 <i class="fas fa-briefcase"></i>
-                Founded 4 projects
-            </p>
-            <p>
-                <i class="fas fa-search"></i>
-                Looking for 3 co-founders
+                <% if Project.where({user_id: @user}).count > 1 %>
+                    Founded <%= Project.where({user_id: @user}).count %> projects
+                <% else %>
+                    Founded <%= Project.where({user_id: @user}).count %> project
+                <% end %>
             </p>
         </div>
 
