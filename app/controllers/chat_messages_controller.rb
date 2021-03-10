@@ -3,7 +3,10 @@ class ChatMessagesController < ApplicationController
 
 before_action :verify_authorized
 
-  def index; end
+  def index
+    @messages = ChatMessage.joins(user_sender_id: current_user.id, user_receiver_id: current_user.id)
+    @messages.sort
+  end
 
   def new
       @message = ChatMessage.new
@@ -17,7 +20,6 @@ before_action :verify_authorized
       @message.user_sender_id = current_user.id
       @message.user_receiver_id = @user_receiver.id
       @message.sent_at = DateTime.now
-      binding.pry
       if @message.save
         redirect_to profile_path(id: current_user.id), notice: "Your message was sent."
       else
