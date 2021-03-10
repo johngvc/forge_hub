@@ -7,6 +7,18 @@ $accent-color-orange: #ed6347;
   width: 90%;
 }
 
+.card-project-profile {
+  min-height: 41vh;
+  padding: 15px 0;
+  border-top: 1px grey solid;
+  margin: 50px 0px 15px 0px;
+  text-align: center;
+}
+
+.card-project-profile h2 {
+  margin-top: 0px;
+}
+
 .project-title-desc {
   text-align: center;
   min-height: 16vh;

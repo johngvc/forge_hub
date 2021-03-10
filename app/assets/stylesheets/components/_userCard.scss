@@ -1,0 +1,176 @@
+$accent-color-orange: #ed6347;
+$thirty-grey-color: #f5f6f6;
+$card-grey-color: #f8f8f8;
+$thirty-other-grey-color: #c4c4c4;
+$subtitle-grey-color: #979797;
+
+.bacontainer {
+  margin: 8px auto;
+  width: 100%;
+}
+
+.user-description {
+  max-height: 25px;
+  text-align: center;
+  font-size: 10px;
+}
+
+
+.acard-container2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.bauser-card {
+  height: 280px;
+  position: relative;
+  width: 19%;
+  margin: 15px 25px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 8px 10px 30px -9px rgba(0, 0, 0, 0.25);
+  background-color: $card-grey-color;
+}
+
+.bauser-card .baavatar-and-description {
+  overflow: hidden;
+  margin: 0px auto;
+}
+
+.baavatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.baavatar-and-name p {
+  width: 250px;
+  text-align: center;
+  margin-left: 40px;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 10px;
+  color: #979797;
+}
+
+.project-owner-icon {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  color: yellow;
+  font-size: 14px;
+}
+
+.normal-icon {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  color: black;
+  font-size: 14px;
+}
+
+.bauser-card .baavatar-and-description .badescription-container {
+  width: 220px;
+  text-align: center;
+  line-height: 13px;
+  margin: 0px auto;
+  max-height: 51px;
+}
+
+.baavatar-container {
+  margin-top: 19px;
+}
+
+.bauser-card .baavatar-and-description .badescription-container a {
+  color: black;
+  text-decoration: none;
+}
+
+.bauser-card .baavatar-and-description .badescription-container p {
+  margin: 0px;
+}
+
+.bauser-card .baavatar-and-description .badescription-container .badesc-title {
+  margin-top: 9px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.bauser-card .baavatar-and-description .badescription-container .badesc-subtitle {
+  color: $subtitle-grey-color;
+  font-size: 10px;
+  bottom: 2px;
+}
+
+.bauser-card
+  .baavatar-and-description
+  .badescription-container
+  .badesc-open-projects {
+  color: $accent-color-orange;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.bauser-card
+  .baavatar-and-description
+  .badescription-container
+  .badesc-user-status {
+  margin-top: 15px;
+}
+
+.bauser-card
+  .baavatar-and-description
+  .badescription-container
+  .badesc-user-status
+  .baadesc-user-status-element {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.bauser-card
+  .baavatar-and-description
+  .badescription-container
+  .badesc-user-status
+  .badesc-user-status-element
+  pa {
+  color: $subtitle-grey-color;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.bauser-card
+  .baavatar-and-description
+  .description-container
+  .desc-user-status
+  .desc-user-status-element
+  ia {
+  margin-right: 5px;
+}
+
+.bacard-container2 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.bauser-card .bacard-btn .babutton1 {
+  width: 122px;
+  position: absolute;
+  bottom: 10px;
+  font-size: 13px;
+  left: 5px;
+}
+
+.bauser-card .bacard-btn .babutton2 {
+  bottom: 10px;
+  width: 85px;
+  font-size: 13px;
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+}

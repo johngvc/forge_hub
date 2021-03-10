@@ -39,7 +39,16 @@
     <div class="card-element project-infos">
       <div class="info">
         <i class="fas fa-user-friends"></i>
-        <p>3 spots available</p>
+
+        
+        <% if project.participants.count == 1 %>
+          <p><%= project.participants.count %> member</p>
+        <% else %>
+          <p><%= project.participants.count %> members</p>
+        <% end %>
+        
+
+        
       </div>
       <div class="info">
         <i class="fas fa-flag"></i>     
