@@ -39,5 +39,6 @@ class ProfilesController < ApplicationController
     @messages = ChatMessage.where(user_receiver_id: current_user.id) + ChatMessage.where(user_sender_id: current_user.id)
     messages_2 = @messages.sort_by &:sent_at
     @messages_sorted = messages_2.reverse
+    @new_messsage_counter = 0
   end
 end

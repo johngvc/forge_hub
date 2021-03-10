@@ -1,3 +1,14 @@
+<% @messages_sorted.each do |message| %>
+  <% if message.sent_at > current_user.last_sign_in_at %>
+    <% @new_message_counter += 1 %>
+    <% message.is_new_message = true %>
+    <% message.save %>
+  <% else %>
+    <% message.is_new_message = false %>
+    <% message.save %>
+  <% end %>
+<% end %>
+
 <div class="profile-page">
     <div class="profile-section">
         <% if @user && @user.photo.attached? %>
@@ -54,17 +65,19 @@
                 <% end %>
             </div>
         </div>
-
         <div class="messages-section">
-          <div class="scroll-lock">
             <h2>Messages</h2>
             <%= link_to 'New message',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
             <%= render 'chat_messages/index', messages: @messages_sorted %>
-          </div>
         </div>
 
     </div>
 </div>
+<% if @new_message_counter >= 1 %>
+  <div class="alert alert-warning" role="alert">
+    <%= "You received #{@new_message_counter} new messages since your last login."  %>
+  </div>
+<% end %>
 
 
   <!-- Modal -->

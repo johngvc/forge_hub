@@ -14,6 +14,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.email = auth.info['email']
       user.picture_url = auth.info['picture_url']
       user.password = Devise.friendly_token.first(8)
+      user.current_sign_in_at = DateTime.now
     end
 
     sign_in_and_redirect user, notice:"You are logged in with LinkedIn!"
