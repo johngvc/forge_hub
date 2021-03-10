@@ -1,0 +1,23 @@
+<%= simple_form_for @message, remote: true do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">send </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <%#= f.input :user_receiver_id, label: "receiver e-mail", collection: @users.map(&:name)%>
+            <%= simple_fields_for :other do |o| %>
+              <%= o.input :user_receiver, label: 'I want to change my password', collection: @users.map(&:name) %>
+            <% end %>
+            <%= f.input :content, as: :text %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "send message" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>

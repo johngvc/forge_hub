@@ -58,6 +58,15 @@
         <div class="messages-section">
             <h2>Messages</h2>
 
+            <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: center;">
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sendNewMessageModal" style="width: 180px;">send a new message</button>
+            </div>
+
+            <%= link_to 'Nova Mensagem',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
+
+
+
+
             <div class="card-container">
                 <%= render 'shared/messageCard' %>
                 <%= render 'shared/messageCard' %>
@@ -70,3 +79,14 @@
         </div>
     </div>
 </div>
+
+
+  <!-- Modal -->
+    <div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <%# render 'chat_messages/new' %>
+        </div>
+      </div>
+    </div>
+  <!-- Modal -->

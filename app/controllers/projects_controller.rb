@@ -34,12 +34,11 @@ class ProjectsController < ApplicationController
     @is_not_participant ? @is_participant = false : @is_participant = true
     participant_join_requests = JoinRequest.where(project_id: @project.id, user_id: current_user.id, request_pending: true)
     participant_join_requests.first.nil? ? @has_join_request = false : @has_join_request = true
-    join_request_pending(@project, @participant)
+    join_request_pending(@project, @participant, @is_participant)
   end
 
-  def join_request_pending(project, participant)
-
-    if participant.status == 'founder' || participant.status == 'cofounder'
+  def join_request_pending(project, participant, is_participant)
+    if is_participant && participant.status == 'founder' || is_participant && participant.status == 'cofounder'
       @join_requests = JoinRequest.where(project_id: project.id, request_pending: true)
     else
       @join_requests = nil

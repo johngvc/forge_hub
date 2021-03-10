@@ -2,8 +2,7 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :participants, dependent: :delete_all
   has_many :join_requests, dependent: :delete_all
-  has_many :messages, through: :chat_threads, dependent: :delete_all
-  has_many :chat_threads, dependent: :delete_all
+  has_many :chat_messages
   has_one_attached :photo
 
 
