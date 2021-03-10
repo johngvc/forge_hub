@@ -41,11 +41,12 @@ body {
   font: 500 14px/40px Roboto;
   letter-spacing: 0.65px;
   color: white;
-  padding-left: 40px;
+  padding-left: 80px;
   border-radius: 20px;
   overflow: hidden;
   margin-top: 5px;
   margin-bottom: 5px;
+  justify-content: flex-start;
 }
 
 .support-links:hover {
