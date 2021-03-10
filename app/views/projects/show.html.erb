@@ -21,7 +21,7 @@
     <div class="project-call-container">
       <div class="container-new">
         <div class="project-apply">
-   
+
           <% if User.find(@project.user_id) == current_user %>
             <h2>Welcome back, <%= User.find(@project.user_id).name %>!</h2>
           <% else %>
@@ -36,26 +36,23 @@
                 <%= link_to edit_project_path(id: @project.id) do %>
                   <div class="ask-to-join-btn">edit this project!</div>
                 <% end %>
-                <%= link_to project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } do %>
-                  <div class="ask-to-join-btn">delete this project!</div>
-                <% end %>
             <% end %>
-          
-          
+
+
 
           <div class="social-links">
             <% if !@project.linkedin_url.empty? %>
-              <a href="<%= @project.linkedin_url %>" target="_blank"> 
+              <a href="<%= @project.linkedin_url %>" target="_blank">
                 <i class="fa fa-linkedin"></i>
               </a>
             <% end %>
             <% if !@project.github_url.empty? %>
-              <a href="<%= @project.github_url %>" target="_blank"> 
+              <a href="<%= @project.github_url %>" target="_blank">
                   <i class="fa fa-github"></i>
               </a>
             <% end %>
             <% if !@project.trello_url.empty? %>
-              <a href="<%= @project.trello_url %>" target="_blank"> 
+              <a href="<%= @project.trello_url %>" target="_blank">
 
                   <i class="fa fa-trello"></i>
               </a>
@@ -102,7 +99,7 @@
     </div>
   </div>
 
-  
+
 
 
   <!-- Modal -->
