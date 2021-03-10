@@ -9,8 +9,11 @@
       </div>
 
       <div class="adescription-container">
-        <p class="adesc-title"><%= "from: #{User.find_by(id: message.user_sender_id).name}"%>
-        <p class="adesc-title"><%= "to: #{User.find_by(id: message.user_receiver_id).name}" %></p>
+        <% if message.is_new_message %>
+          <p style="text-align: right; color: red;"><strong>NEW MESSAGE</strong></p>
+        <% end %>
+        <p class="adesc-title"><%= "from: #{User.find_by(id: message.user_sender_id).name} (#{User.find_by(id: message.user_sender_id).email})" %></p>
+        <p class="adesc-title"><%= "to: #{User.find_by(id: message.user_receiver_id).name} (#{User.find_by(id: message.user_receiver_id).email})" %></p>
         <p class="adesc-subtitle"><%= User.find_by(id: message.user_sender_id).email %></p>
 
         <div class="adesc-user-status">
