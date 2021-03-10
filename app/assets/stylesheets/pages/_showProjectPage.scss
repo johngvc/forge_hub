@@ -11,7 +11,7 @@ $accent-color-orange: #ed6347;
   min-height: 41vh;
   padding: 15px 0;
   border-top: 1px grey solid;
-  margin: 50px 0px 15px 0px;
+  margin: 13px 0px 15px 0px;
   text-align: center;
 }
 
@@ -27,7 +27,7 @@ $accent-color-orange: #ed6347;
 }
 
 .project-title-desc h1 {
-  font-size: 46px;
+  font-size: 67px;
   font-weight: 800;
 }
 
@@ -84,4 +84,26 @@ $accent-color-orange: #ed6347;
 .project-call-container {
   width: 94%;
   height: 100%;
+}
+
+.our-story-section {
+  margin-top: 45px;
+  padding: 23px 0px;
+  border-top: 1px grey solid;
+}
+
+.our-story-section h2 {
+  margin: 10px 0px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.our-story-section h3 {
+  margin: 10px 0px;
+  font-size: 36px;
+  text-align: center;
+}
+
+.our-story-section p {
+  font-size: 17px;
 }
