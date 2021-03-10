@@ -37,7 +37,7 @@ class ProfilesController < ApplicationController
 
   def index_messages
     @messages = ChatMessage.where(user_receiver_id: current_user.id) + ChatMessage.where(user_sender_id: current_user.id)
-    @messages_sorted = @messages.sort_by { |message| message.sent_at }
+    messages_2 = @messages.sort_by &:sent_at
+    @messages_sorted = messages_2.reverse
   end
-
 end

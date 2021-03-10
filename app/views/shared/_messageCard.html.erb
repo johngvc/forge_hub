@@ -1,13 +1,18 @@
   <div class="acontainer auser-card" >
     <div class="acard-element aavatar-and-description">
       <div class="aavatar-container">
-        <div class="aavatar"></div>
+        <% if !User.find_by(id: message.user_sender_id).photo.attached? %>
+          <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
+        <% else %>
+          <%= cl_image_tag User.find_by(id: message.user_sender_id).photo.key, class: "avatar" %>
+        <% end %>
       </div>
 
       <div class="adescription-container">
-        <p class="adesc-title"><%= User.find_by(id: message.user_sender_id).name %></p>
-        <p class="adesc-subtitle">Todo: cargo do usuário</p>
-        <p class="adesc-open-projects">TODO:4 projects with open positions</p>
+        <p class="adesc-title"><%= "from: #{User.find_by(id: message.user_sender_id).name}"%>
+        <p class="adesc-title"><%= "to: #{User.find_by(id: message.user_receiver_id).name}" %></p>
+        <p class="adesc-subtitle"><%= User.find_by(id: message.user_sender_id).email %></p>
+
         <div class="adesc-user-status">
 
         </div>
@@ -15,12 +20,14 @@
 
     </div>
     <div class="message-content">
-        <p><%= message.content %></p>
+      <p><%= message.content %></p>
     </div>
 
     <div class="acard-element acard-btn">
       <div class="abutton1">
-        <a href="#">Send a message</a>
+        <% if message.user_sender_id != current_user.id %>
+          <%= link_to 'reply',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal' } %>
+        <% end %>
       </div>
 
       <div class="abutton2">
