@@ -25,4 +25,8 @@ Rails.application.routes.draw do
   end
 
   delete '/projects/:id', to: "projects#destroy", as: :project_destroy
+
+  resources :chat_threads, only: %i[new create destroy] do
+    resources :chat_messages, only: %i[new create destroy]
+  end
 end

@@ -16,21 +16,23 @@
         <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "project-img" %>
       <% end %>
     </div>
+
+
     <div class="project-call-container">
       <div class="container-new">
         <div class="project-apply">
-          
+   
           <% if User.find(@project.user_id) == current_user %>
             <h2>Welcome back, <%= User.find(@project.user_id).name %>!</h2>
           <% else %>
             <h2><%= User.find(@project.user_id).name %> wants to make <%= @project.name %> a reality</h2>
           <% end %>
-            <% if @is_not_participant %>
+            <% if @is_not_participant && @has_join_request == false %>
 
             <button class="ask-to-join-btn" data-toggle="modal" data-target="#projectAskModal">
               Ask to join this project!
             </button>
-            <% elsif @is_participant && @participant.first.status == 'founder' %>
+            <% elsif @is_participant && @participant.status == 'founder' %>
                 <%= link_to edit_project_path(id: @project.id) do %>
                   <div class="ask-to-join-btn">edit this project!</div>
                 <% end %>
@@ -54,6 +56,7 @@
             <% end %>
             <% if !@project.trello_url.empty? %>
               <a href="<%= @project.trello_url %>" target="_blank"> 
+
                   <i class="fa fa-trello"></i>
               </a>
             <% end %>
@@ -135,7 +138,7 @@
   </div>
   <!-- Modal -->
 
-  <% unless @join_requests.first.nil?%>
+  <% unless @join_requests.first.nil? || @join_requests.nil? %>
     <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests, number: @number } %>
   <% end %>
 </div>
