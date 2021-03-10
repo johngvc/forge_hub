@@ -33,19 +33,19 @@ body {
 
 .support-links {
   position: relative;
-  box-sizing: border-box;
+  box-sizing: padding-box;
   height: 40px;
-  width: 240px;
-  background-color: #0b78b7;
+  width: 200px;
+  background-color:whitesmoke;
   vertical-align: center;
   font: 500 14px/40px Roboto;
   letter-spacing: 0.65px;
   color: white;
-  padding-left: 58px;
-  border-radius: 2px;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12);
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.24);
+  padding-left: 40px;
+  border-radius: 20px;
   overflow: hidden;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .support-links:hover {

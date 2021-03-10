@@ -17,12 +17,12 @@ $accent-color-orange: #ED6347;
 }
 
 .home-page div {
-    height: 200px;
+    height: 100px;
     width: 100%;
 }
 
 .home-page .banner {
-    height: 93vh;
+    height: 70vh;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     display: flex;
@@ -38,6 +38,8 @@ $accent-color-orange: #ED6347;
     width: 48vw;
     margin-left: 45px;
     line-height: 82px;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .home-page .banner .start-btn {
