@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
     @available_projects = []
     @suspended_projects_participating = []
     @ongoing_projects_participating = []
+
     @projects.each do |project|
       is_part_of_project = !Participant.where(project_id: project, user_id: current_user.id).first.nil?
 
@@ -28,15 +29,20 @@ class ProjectsController < ApplicationController
   def show
     @number = 0
     @project_participants = Participant.where(project_id: @project.id)
-    @participant = Participant.where(user_id: current_user.id, project_id: @project.id)
-    @is_not_participant = @participant.first.nil?
+    @participant = Participant.where(user_id: current_user.id, project_id: @project.id).first
+    @is_not_participant = @participant.nil?
     @is_not_participant ? @is_participant = false : @is_participant = true
+    participant_join_requests = JoinRequest.where(project_id: @project.id, user_id: current_user.id, request_pending: true)
+    participant_join_requests.first.nil? ? @has_join_request = false : @has_join_request = true
     join_request_pending(@project, @participant)
   end
 
   def join_request_pending(project, participant)
-    @join_requests = participant.map do |participation|
-      participation.is_founder? ? JoinRequest.where(project_id: participation.project.id, request_pending: true) : nil
+
+    if participant.status == 'founder' || participant.status == 'cofounder'
+      @join_requests = JoinRequest.where(project_id: project.id, request_pending: true)
+    else
+      @join_requests = nil
     end
   end
 
