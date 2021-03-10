@@ -12,7 +12,13 @@
     <%= render partial: 'index_general', locals: { project: @project, participant: @participant, current_participant: @current_participant } %>
   <% end %>
 
-  <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-    <div class="btn btn-success", style="width: 180px">leave the project</div>
+  <% if @current_participant.status == 'founder' && @more_than_one_founder %>
+    <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+      <div class="btn btn-success", style="width: 180px">leave the project</div>
+    <% end %>
+  <% elsif @current_participant.status == 'cofounder' || @current_participant.status == 'member' || @current_participant.status == 'invitee' %>
+    <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+      <div class="btn btn-success", style="width: 180px">leave the project</div>
+    <% end %>
   <% end %>
 </div>
