@@ -5,26 +5,30 @@
       </div>
 
       <div class="adescription-container">
-        <p class="adesc-title">Doggy dog</p>
-        <p class="adesc-subtitle">Web entrepreneur | São Paulo, BR</p>
-        <p class="adesc-open-projects">4 projects with open positions</p>
+        <p class="adesc-title"><%= User.find_by(id: message.user_sender_id).name %></p>
+        <p class="adesc-subtitle">Todo: cargo do usuário</p>
+        <p class="adesc-open-projects">TODO:4 projects with open positions</p>
         <div class="adesc-user-status">
-          
+
         </div>
       </div>
-      
+
     </div>
     <div class="message-content">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate excepturi aliquam sequi corrupti, amet consequuntur illo itaque aliquid obcaecati. Est facilis expedita nesciunt quod hic, impedit similique voluptas maxime. Qui?</p>
+        <p><%= message.content %></p>
     </div>
 
     <div class="acard-element acard-btn">
       <div class="abutton1">
         <a href="#">Send a message</a>
       </div>
-      
+
       <div class="abutton2">
-        <a href="#">View profile</a>
+        <% if message.user_sender_id != current_user.id %>
+          <% link_to "View profile", profile_path(id: message.user_sender_id)%>
+        <% else %>
+          <% link_to "View profile", profile_path(id: message.user_receiver_id)%>
+        <% end %>
       </div>
     </div>
   </div>

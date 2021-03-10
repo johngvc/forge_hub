@@ -136,7 +136,7 @@
   <!-- Modal -->
 
   <% unless @join_requests.nil? || @join_requests.nil? %>
-    <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests, number: @number } %>
+    <%= render action: 'join_request_pending', locals: { project: @project, join_requests: @join_requests, number: @number } %>
   <% end %>
 </div>
 

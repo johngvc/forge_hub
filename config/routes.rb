@@ -6,9 +6,11 @@ Rails.application.routes.draw do
 
   get '/contact', to: 'pages#contact'
 
-  resources :profiles, only: %i[show]
+  resources :profiles, only: %i[show] do
+    get '/chat_messages/_index', to: 'chat_messages#index', as: :chat_messages_index
+  end
 
-  resources :chat_messages, only: [:index, :new, :create]
+  resources :chat_messages, only: [:new, :create]
 
   get "/linkedinprofile", to: 'profiles#showlinkedin'
 

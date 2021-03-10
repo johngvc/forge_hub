@@ -1,14 +1,7 @@
-require 'pry'
 class ChatMessagesController < ApplicationController
-
 before_action :verify_authorized
 
-  def index
-    @messages = ChatMessage.joins(user_sender_id: current_user.id, user_receiver_id: current_user.id)
-    @messages.sort
-  end
-
-  def new
+   def new
       @message = ChatMessage.new
       @users = User.all
   end
@@ -16,7 +9,7 @@ before_action :verify_authorized
   def create
       @message = ChatMessage.new(message_params)
       @user_sender = current_user
-      @user_receiver = User.find_by(name: receiver_params[:user_receiver])
+      @user_receiver = User.find_by(email: receiver_params[:user_receiver])
       @message.user_sender_id = current_user.id
       @message.user_receiver_id = @user_receiver.id
       @message.sent_at = DateTime.now
