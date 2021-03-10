@@ -1,15 +1,15 @@
 <div class="reset-margin nav-bar">
   <div class="logo">
     <a class="reset" href="/"><div class="img"></div></a>
-    <div class="nav-bar-search-input">
+  </div>
+
+  <% if user_signed_in? %>
+    <%# <div class="nav-bar-search-input col-4">
       <i class="fas fa-search"></i>
       <form action="">
         <input type="text" placeholder="Find on Forgehub">
       </form>
-    </div>
-  </div>
-
-  <% if user_signed_in? %>
+    </div> %>
     <div class="avatar-section">
         <div class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>

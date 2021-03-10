@@ -41,6 +41,7 @@ $accent-color-orange: #ED6347;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-right: 10px;
 }
 
 .Log-in-btn {
@@ -77,34 +78,34 @@ $accent-color-orange: #ED6347;
 }
 
 
-.nav-bar-search-input {
-  position: relative;
-  margin-left: 20px;
-}
+// .nav-bar-search-input {
+//   position: relative;
+//   margin-left: 20px;
+// }
 
-.nav-bar-search-input input {
-  width: 380px;
-  height: 30px;
-  border-radius: 8px;
-  padding-left: 35px;
-  border: none;
-}
+// .nav-bar-search-input input {
+//   width: 380px;
+//   height: 30px;
+//   border-radius: 8px;
+//   padding-left: 35px;
+//   border: none;
+// }
 
-.nav-bar-search-input input:focus {
-  border: $accent-color-orange 1px solid;
-}
+// .nav-bar-search-input input:focus {
+//   border: $accent-color-orange 1px solid;
+// }
 
-.nav-bar-search-input i {
-  color: black;
-  margin: 4px 6px;
-  font-size: 20px;
-  position: absolute;
-}
+// .nav-bar-search-input i {
+//   color: black;
+//   margin: 4px 6px;
+//   font-size: 20px;
+//   position: absolute;
+// }
 
-.dropdown {
-  margin-right: 15px;
-  cursor: pointer;
-}
+// .dropdown {
+//   margin-right: 15px;
+//   cursor: pointer;
+// }
 
 .avatar-forgehub {
   height: 40px;

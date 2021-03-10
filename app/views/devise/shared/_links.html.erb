@@ -1,5 +1,5 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <%= link_to "Log in", new_session_path(resource_name),class: "mt-2 mb-2 w-80 text text-white" %>
 <% end %>
 
 <%- if devise_mapping.omniauthable? %>
