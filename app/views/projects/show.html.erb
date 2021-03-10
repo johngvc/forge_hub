@@ -66,8 +66,6 @@
     </div>
   </section>
 
-  <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: center;">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#projectAskModal" style="width: 180px;">ask to join this project!</button>
     <% @project_participants.each do |participant|   %>
     <% if current_user.id == participant.user_id && participant.is_founder %>
     <%= link_to edit_project_path(id: @project.id) do %>
