@@ -7,6 +7,11 @@ $accent-color-orange: #ed6347;
   width: 90%;
 }
 
+.our-story-title {
+  margin-top: 20px;
+  text-align: center;
+}
+
 .card-project-profile {
   min-height: 41vh;
   padding: 15px 0;
@@ -28,6 +33,12 @@ $accent-color-orange: #ed6347;
 
 .project-title-desc h1 {
   font-size: 67px;
+  font-weight: 800;
+}
+
+.trix-content h1 {
+  font-size: 40px !important;
+  
   font-weight: 800;
 }
 
@@ -87,7 +98,7 @@ $accent-color-orange: #ed6347;
 }
 
 .our-story-section {
-  margin-top: 45px;
+  margin-top: 0px;
   padding: 23px 0px;
   border-top: 1px grey solid;
 }

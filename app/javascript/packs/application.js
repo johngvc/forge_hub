@@ -6,13 +6,15 @@ import { initModal } from '../components/modal'
 import { msgModal } from '../components/modal_messages'
 import "bootstrap";
 import 'jquery';
-
+import { event } from 'jquery';
 
 
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("trix")
+require("@rails/actiontext")
 
 
 
@@ -41,3 +43,11 @@ document.addEventListener('turbolinks:load', () => {
   initModal();
   msgModal();
 });
+
+
+
+
+
+
+require("trix")
+require("@rails/actiontext")

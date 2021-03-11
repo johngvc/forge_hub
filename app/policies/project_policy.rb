@@ -12,6 +12,10 @@ class ProjectPolicy < ApplicationPolicy
       true
     end
 
+    def join_request_pending?
+      true
+    end
+
     def create?
       true
     end

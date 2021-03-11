@@ -36,6 +36,9 @@
                 <%= link_to edit_project_path(id: @project.id) do %>
                   <div class="ask-to-join-btn">edit this project!</div>
                 <% end %>
+                <% unless @join_requests.first.nil? %>
+                  <%= link_to "Pending join requests!", project_join_request_pending_path(@project.id) %>
+                <% end %>
             <% end %>
 
 
@@ -65,16 +68,9 @@
   </div>
 
   <div class="container-new">
+    <h1 class="our-story-title">Our story:</h1>
     <div class="our-story-section">
-      <h3>Our mission:</h3>
-      <h2> Lorem ipsum dolor sit, amet consectetur adipisicing</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ex numquam vitae consequatur! Omnis qui perferendis quod asperiores, quidem animi porro, commodi, dolorum sunt rem dolore nisi praesentium culpa rerum!
-      Odio sapiente eveniet laborum cumque blanditiis laboriosam dolore error ut harum placeat illum qui maiores porro repudiandae corporis, quos dolorem cupiditate obcaecati, amet nesciunt rem quae sed vitae nostrum. Beatae?
-      Architecto minima delectus ea ipsam! Veritatis fugiat hic ipsa asperiores, est porro suscipit architecto ipsam ipsum et modi quod possimus accusantium similique beatae iusto non neque cumque placeat! Quisquam, qui!</p>
-      <h2> Lorem ipsum dolor sit, amet consectetur adipisicing</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ex numquam vitae consequatur! Omnis qui perferendis quod asperiores, quidem animi porro, commodi, dolorum sunt rem dolore nisi praesentium culpa rerum!
-      Odio sapiente eveniet laborum cumque blanditiis laboriosam dolore error ut harum placeat illum qui maiores porro repudiandae corporis, quos dolorem cupiditate obcaecati, amet nesciunt rem quae sed vitae nostrum. Beatae?
-      Architecto minima delectus ea ipsam! Veritatis fugiat hic ipsa asperiores, est porro suscipit architecto ipsam ipsum et modi quod possimus accusantium similique beatae iusto non neque cumque placeat! Quisquam, qui!</p>
+      <%= @project.content %>
     </div>
   </div>
 
@@ -86,7 +82,7 @@
           <p><%= "There are no registered members of #{@project.name}"%></p>
 
         <% else %>
-          <%= link_to "Detailed list", project_participants_path(project_id: @project.id) %>
+          <%= link_to "Detailed list", project_participants_path(project_id: @project.id) if !Participant.where(user_id: current_user.id, project_id: @project).first.nil? %>
 
           <div class="acard-container2">
             <% @project_participants.each do |participant| %>
@@ -134,9 +130,4 @@
     </div>
   </div>
   <!-- Modal -->
-
-  <% unless @join_requests.nil? || @join_requests.first.nil? %>
-    <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests, number: @number } %>
-  <% end %>
-</div>
 

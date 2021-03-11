@@ -11,8 +11,8 @@
   </thead>
   <tbody>
 
-      <% unless join_requests.first.nil? %>
-        <% join_requests.each do |request| %>
+      <% unless @join_requests.first.nil? %>
+        <% @join_requests.each do |request| %>
             <tr>
               <td><%= @number += 1 %></td>
               <td><%= request.user.name %></td>

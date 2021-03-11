@@ -6,9 +6,10 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
-        <%= f.input :email, required: true, autofocus: true %>
-        <%= f.input :name, required: true, autofocus: true %>
-        <%= f.input :photo, as: :file, required: true %>
+        <%= f.input :name, required: true, autofocus: true, label: "What's your name?" %>
+        <%= f.input :email, required: true, label: "Provide a valid email address please:" %>
+        <%= f.input :description, label: "Give us a short description about yourself and your motivation." %>
+        <%= f.input :photo, as: :file, label: "Do you want to attach a profile picture? (Highly recomended)" %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -28,7 +29,7 @@
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Update" %>
+        <%= f.button :submit, "Update my profile" %>
       </div>
     <% end %>
 

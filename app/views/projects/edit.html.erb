@@ -1,31 +1,37 @@
-<div class=master-container>
-
-  <div class="form">
-
-    <h2 class="heading text-center">Edit my projects</h2>
-
+<div class=container>
+  <div class="form-project"> 
+    <h2 class="heading text-center">Edit my project</h2>
     <%= simple_form_for(@project) do |f| %>
-      <%= f.input :name %> <%= f.label :description, 'Description'%>
-      <%= f.text_area :description, required: true, style: "width: 100%;" %>
-      <%= f.input :linkedin_url %> <%= f.input :github_url %>
-      <%= f.input :trello_url %> <%= f.input :photo, as: :file %>
-
-      <div style="border-style: solid; border-color: red; padding: 10px; display: flex; flex-direction: column; flex-shrink: 1; overflow: hidden;">
-        <h4 class="heading text-center" style="color: red;"><strong>DANGER AREA</strong></h4>
-
-        <%= f.input :is_suspended, as: :radio_buttons, collection: [['No', false], ['Yes', true]], :label => "Suspend project?", data: { confirm: "Are you sure you want to suspend this project?" } %>
-
-        <div style="display: flex; justify-content: center;">
-          <%= link_to "delete project", project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" }, class: "btn btn-dark", style: "position: relative; max-width: 150px; max-height: 30px; border: none;" %>
+      <div class="input-area">
+        <div class="container project-infos-2">
+          <div class="container">
+            <div class="main-infos">
+              <%=f.input :name, required: true, label: "Project a name" %>
+              <%= f.input :description, required: true, label: "Brief explanation (max 120 characters)" %>
+              <%= f.input :photo, as: :file, label: "Photo attachment" %>
+              <%= f.input :is_suspended, as: :radio_buttons, collection: [['No', false], ['Yes', true]], :label => "Suspend project?", data: { confirm: "Are you sure you want to suspend this project?" } %>
+            </div>
+          </div>
+          <div class="container">
+            <div class="social-links-2">
+              <%= f.input :linkedin_url, label: "LinkedIn page" %>
+              <%= f.input :github_url, label: "GitHub page" %>
+              <%= f.input :trello_url, label: "Trello page" %>
+            </div>
+            <div class="form-actions project-submit-btn">
+              <%= f.submit "Submit changes" %>
+              <div class="delete-link-container">
+                <%= link_to "Delete project", project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } %>
+              </div>
+            </div>
+          </div>
         </div>
-
+        <div class="container project-rich-text">
+          <div class="rich-text-area">
+            <%= f.input :content, required: true, as: :rich_text_area, label: "Project goal and story" %>
+          </div>
+        </div>
       </div>
-
-
-
-    <div class="form-actions">
-      <%= f.submit "Submit changes", style: "margin-bottom: 15px; margin-top: 30px; border: none;" %>
-    </div>
     <% end %>
   </div>
 </div>
