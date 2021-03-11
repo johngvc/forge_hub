@@ -4,34 +4,42 @@ $card-grey-color: #f8f8f8;
 $thirty-other-grey-color: #c4c4c4;
 $subtitle-grey-color: #979797;
 
-.acontainer {
+.macontainer div {
+}
+
+.macontainer {
   margin: 0 auto;
   width: 100%;
 }
 
-.auser-card {
+.mauser-card {
   height: 154px;
   position: relative;
-  width: 91%;
+  width: 90%;
+  min-width: 644px;
   margin: 11px 0;
   display: flex;
   border-radius: 20px;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   box-shadow: 8px 10px 30px -9px rgba(0, 0, 0, 0.25);
   background-color: $card-grey-color;
 }
 
-.acard-element {
+.macard-element {
   height: 100%;
 }
 
-.auser-card .aavatar-and-description {
+.mauser-card .maavatar-and-description {
   display: flex;
   overflow: hidden;
+  width: 26%;
+  padding-right: 22px;
+  margin-right: 22px;
+  border-right: 1px grey solid;
 }
 
-.aavatar {
+.maavatar {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -40,7 +48,7 @@ $subtitle-grey-color: #979797;
   margin: 10px 0px 0px 15px;
 }
 
-.aavatar-and-name p {
+.maavatar-and-name p {
   width: 250px;
   margin-left: 40px;
   font-weight: 700;
@@ -49,28 +57,36 @@ $subtitle-grey-color: #979797;
   color: #979797;
 }
 
-.auser-card .aavatar-and-description .adescription-container {
-  width: 300px;
-  margin-left: 15px;
+.mauser-card .maavatar-and-description .madescription-container {
+  width: 100%;
+  text-align: center;
+  margin-left: 6px;
+  margin-top: 34px;
 }
 
-.auser-card .aavatar-and-description .adescription-container p {
+.new-message {
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  color: red;
+}
+
+.mauser-card .maavatar-and-description .madescription-container p {
   margin: 0px;
 }
 
-.auser-card .aavatar-and-description .adescription-container .adesc-title {
-  margin-top: 16px;
-  font-size: 16px;
+.mauser-card .maavatar-and-description .madescription-container .madesc-title {
+  font-size: 10px;
   font-weight: 500;
 }
 
-.auser-card .aavatar-and-description .adescription-container .adesc-subtitle {
+.mauser-card .maavatar-and-description .madescription-container .madesc-subtitle {
   color: $subtitle-grey-color;
   font-size: 10px;
   bottom: 2px;
 }
 
-.auser-card
+.mauser-card
   .aavatar-and-description
   .adescription-container
   .adesc-open-projects {
@@ -80,14 +96,14 @@ $subtitle-grey-color: #979797;
   margin-top: 5px;
 }
 
-.auser-card
+.mauser-card
   .aavatar-and-description
   .adescription-container
   .adesc-user-status {
   margin-top: 15px;
 }
 
-.auser-card
+.mauser-card
   .aavatar-and-description
   .adescription-container
   .adesc-user-status
@@ -98,7 +114,7 @@ $subtitle-grey-color: #979797;
   margin-bottom: 4px;
 }
 
-.auser-card
+.mauser-card
   .aavatar-and-description
   .adescription-container
   .adesc-user-status
@@ -109,47 +125,35 @@ $subtitle-grey-color: #979797;
   font-weight: 700;
 }
 
-.auser-card
-  .aavatar-and-description
-  .description-container
-  .desc-user-status
-  .desc-user-status-element
+.mauser-card
+  .maavatar-and-description
+  .mdescription-container
+  .mdesc-user-status
+  .mdesc-user-status-element
   ia {
   margin-right: 5px;
 }
 
-.auser-card .acard-btn {
-  position: relative;
-}
 
-.auser-card .acard-btn .abutton1 {
+
+.mauser-card .macard-btn .mabutton1 {
   width: 122px;
   position: absolute;
-  top: 10px;
-  right: 154px;
+  bottom: 10px;
+  right: -56px;
 }
 
-.auser-card .acard-btn .abutton2 {
-  top: 10px;
-  width: 85px;
-  position: absolute;
-  right: 37px;
-}
-
-.message-content {
-  position: absolute;
-  width: 813px;
-  bottom: 7px;
-  left: 57px;
+.mmessage-content {
+  width: 64%;
   overflow: auto;
 }
 
-.message-content p {
+.mmessage-content p {
   overflow: hidden;
   font-size: 14px;
 }
 
-.messages-section {
+.mmessages-section {
   max-height: 500px;
   overflow: auto;
 }

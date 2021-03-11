@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 import { initModal } from '../components/modal'
 import { msgModal } from '../components/modal_messages'
+import { changeRoleModal } from '../components/modal_change_role'
 import "bootstrap";
 import 'jquery';
 import { event } from 'jquery';
@@ -42,6 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initModal();
   msgModal();
+  //changeRoleModal();
 });
 
 
