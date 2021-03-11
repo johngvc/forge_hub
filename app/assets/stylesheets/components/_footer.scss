@@ -30,7 +30,7 @@ a:click {
 }
 
 .lower-section {
-  height: 35px;
+  height: 40px;
   background-color: $thirty-other-grey-color;
   display: flex;
   justify-content: center;
@@ -38,7 +38,7 @@ a:click {
 }
 
 .upper-section {
-  height: 203px;
+  height: 205px;
   background-color: $thirty-grey-color;
   display: flex;
   justify-content: space-between;
@@ -49,6 +49,7 @@ a:click {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 10px;
 }
 
 .img-logo {
@@ -60,7 +61,7 @@ a:click {
 }
 
 .footer-section {
-  width: 33%
+  width: 35%
 }
 
 #logo-social-links {
@@ -90,12 +91,13 @@ a:click {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 }
 
 #about-us-section div {
   height: 30px;
-  width: 70%;
-  margin: 5px;
+  width: 75%;
+  margin: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
