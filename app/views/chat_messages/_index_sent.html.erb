@@ -1,5 +1,5 @@
 <div class="card-container">
-  <% @messages.each do |message| %>
+  <% @messages_sent_sorted.each do |message| %>
     <%= render 'shared/messageCard', message: message  %>
   <% end %>
 </div>
