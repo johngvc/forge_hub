@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :profiles, only: %i[show]
 
-  resources :chat_messages, only: [:index, :new, :create]
+  resources :chat_messages, only: [:new, :create]
 
   get "/linkedinprofile", to: 'profiles#showlinkedin'
 
@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     post '/join_request_authorize/:join_request_id', to: 'projects#join_request_authorize', as: :join_request_authorize
     post '/join_request_refuse/:join_request_id', to: 'projects#join_request_refuse', as: :join_request_refuse
   end
+
+  get '/reply_to_join_request', to: 'projects#reply_to_join_request', as: :reply_to_join_request
 
   delete '/projects/:id', to: "projects#destroy", as: :project_destroy
 

@@ -42,51 +42,47 @@
     </div>
 
     <div class="second-section">
-        <div class="projects-section">
-            <h2>Active Projects</h2>
-            <div class="card-container">
-
-                <% @ongoing_projects_participating.each do |project| %>
-                    <%= render 'shared/projectBigCard', project: project if !project.nil?%>
-                <% end %>
-                <% @suspended_projects_participating.each do |project| %>
-                    <%= render 'shared/projectBigCard', project: project if !project.nil? %>
-                <% end %>
-            </div>
-        </div>
-
-        <div class="messages-section">
-            <h2>Messages</h2>
-
-            <div style="margin-top: 30px; margin-bottom: 30px; display: flex; flex-direction: row; justify-content: center;">
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sendNewMessageModal" style="width: 180px;">send a new message</button>
-            </div>
-
-            <%= link_to 'Nova Mensagem',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
-
-
-
-
-            <div class="card-container">
-                <%= render 'shared/messageCard' %>
-                <%= render 'shared/messageCard' %>
-                <%= render 'shared/messageCard' %>
-                <%= render 'shared/messageCard' %>
-                <%= render 'shared/messageCard' %>
-                <%= render 'shared/messageCard' %>
-                <%= render 'shared/messageCard' %>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-  <!-- Modal -->
-    <div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <%# render 'chat_messages/new' %>
+      <div class="projects-section">
+        <h2>Active Projects</h2>
+        <div class="card-container">
+          <% @ongoing_projects_participating.each do |project| %>
+              <%= render 'shared/projectBigCard', project: project if !project.nil?%>
+          <% end %>
+          <% @suspended_projects_participating.each do |project| %>
+              <%= render 'shared/projectBigCard', project: project if !project.nil? %>
+          <% end %>
         </div>
       </div>
+
+
+  <% if @user == current_user %>
+
+      <div class="messages-section">
+          <h2>Messages</h2>
+          <%= link_to 'New message',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
+          <%= render 'chat_messages/index', messages: @messages_sorted %>
+      </div>
     </div>
-  <!-- Modal -->
+  <% end %>
+</div>
+
+<% if @user == current_user %>
+  <!-- new messages alert -->
+  <% if @new_message_alert %>
+    <div class="alert alert-warning" role="alert">
+      <%= "You received #{@new_message_count} new messages since your last login."  %>
+    </div>
+  <% end %>
+  <!-- new messages alert -->
+<% end %>
+
+
+<!-- Modal -->
+<div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <% render 'chat_messages/new' %>
+    </div>
+  </div>
+</div>
+<!-- Modal -->

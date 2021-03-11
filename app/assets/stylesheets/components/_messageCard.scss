@@ -140,10 +140,16 @@ $subtitle-grey-color: #979797;
   position: absolute;
   width: 813px;
   bottom: 7px;
-  right: 11px;
+  left: 57px;
+  overflow: auto;
 }
 
 .message-content p {
   overflow: hidden;
   font-size: 14px;
+}
+
+.messages-section {
+  max-height: 500px;
+  overflow: auto;
 }

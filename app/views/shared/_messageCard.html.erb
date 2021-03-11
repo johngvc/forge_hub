@@ -1,30 +1,44 @@
   <div class="acontainer auser-card" >
     <div class="acard-element aavatar-and-description">
       <div class="aavatar-container">
-        <div class="aavatar"></div>
+        <% if !User.find_by(id: message.user_sender_id).photo.attached? %>
+          <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
+        <% else %>
+          <%= cl_image_tag User.find_by(id: message.user_sender_id).photo.key, class: "avatar" %>
+        <% end %>
       </div>
 
       <div class="adescription-container">
-        <p class="adesc-title">Doggy dog</p>
-        <p class="adesc-subtitle">Web entrepreneur | São Paulo, BR</p>
-        <p class="adesc-open-projects">4 projects with open positions</p>
+        <% if message.is_new_message %>
+          <p style="text-align: right; color: red;"><strong>NEW MESSAGE</strong></p>
+        <% end %>
+        <p class="adesc-title"><%= "from: #{User.find_by(id: message.user_sender_id).name} (#{User.find_by(id: message.user_sender_id).email})" %></p>
+        <p class="adesc-title"><%= "to: #{User.find_by(id: message.user_receiver_id).name} (#{User.find_by(id: message.user_receiver_id).email})" %></p>
+        <p class="adesc-subtitle"><%= User.find_by(id: message.user_sender_id).email %></p>
+
         <div class="adesc-user-status">
-          
+
         </div>
       </div>
-      
+
     </div>
     <div class="message-content">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate excepturi aliquam sequi corrupti, amet consequuntur illo itaque aliquid obcaecati. Est facilis expedita nesciunt quod hic, impedit similique voluptas maxime. Qui?</p>
+      <p><%= message.content %></p>
     </div>
 
     <div class="acard-element acard-btn">
       <div class="abutton1">
-        <a href="#">Send a message</a>
+        <% if message.user_sender_id != current_user.id %>
+          <%= link_to 'reply',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal' } %>
+        <% end %>
       </div>
-      
+
       <div class="abutton2">
-        <a href="#">View profile</a>
+        <% if message.user_sender_id != current_user.id %>
+          <% link_to "View profile", profile_path(id: message.user_sender_id)%>
+        <% else %>
+          <% link_to "View profile", profile_path(id: message.user_receiver_id)%>
+        <% end %>
       </div>
     </div>
   </div>
