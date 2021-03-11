@@ -27,22 +27,19 @@
       </div>
     </div>
 
-    <% if participant.user_id == current_user.id %>
-      <div class="leave-project">
-        <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-          <i class="fas fa-times-circle"></i>
-        <% end %>
-      </div>
-    <% else %>
+    
+        
+
       <div class="dropdown-a">
         <a id="<%= "usr-card-#{index}" %>" class="dropbtn-a"><i class="fas fa-user-edit"></i></a>
         <div class="myDropdown-a dropdown-content-a">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
+          <a href="#">Remove participant</a>
+          <a href="#">Change role</a>
+        <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+            Leave project
+        <% end %>
       </div>
-    <% end %>
+    </div>
     
 
     <% if participant.is_founder? || participant.status == "founder" %>
