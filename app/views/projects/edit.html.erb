@@ -6,29 +6,29 @@
         <div class="container project-infos-2">
           <div class="container">
             <div class="main-infos">
-              <%=f.input :name, required: true, label: "Give your project a name" %>
-              <%= f.input :description, required: true, label: "What is it about? Brief explanation! (max 120 characters)" %>
-              <%= f.input :photo, as: :file, label: "If you want, attach a photo for your project banner" %>
+              <%=f.input :name, required: true, label: "Project a name" %>
+              <%= f.input :description, required: true, label: "Brief explanation (max 120 characters)" %>
+              <%= f.input :photo, as: :file, label: "Photo attachment" %>
               <%= f.input :is_suspended, as: :radio_buttons, collection: [['No', false], ['Yes', true]], :label => "Suspend project?", data: { confirm: "Are you sure you want to suspend this project?" } %>
             </div>
           </div>
           <div class="container">
             <div class="social-links-2">
-              <%= f.input :linkedin_url, label: "Does it have a LinkedIn page?" %>
-              <%= f.input :github_url, label: "Does it have a GitHub page?" %>
-              <%= f.input :trello_url, label: "Does it have a Trello page?" %>
+              <%= f.input :linkedin_url, label: "LinkedIn page" %>
+              <%= f.input :github_url, label: "GitHub page" %>
+              <%= f.input :trello_url, label: "Trello page" %>
             </div>
             <div class="form-actions project-submit-btn">
               <%= f.submit "Submit changes" %>
               <div class="delete-link-container">
-                <%= link_to "delete project", project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } %>
+                <%= link_to "Delete project", project_destroy_path(id: @project.id), method: :delete, data: { confirm: "Are you sure you want to permanently delete this project?" } %>
               </div>
             </div>
           </div>
         </div>
         <div class="container project-rich-text">
           <div class="rich-text-area">
-            <%= f.input :content, required: true, as: :rich_text_area, label: "Throughly describe your project Goal and story, be creative!" %>
+            <%= f.input :content, required: true, as: :rich_text_area, label: "Project goal and story" %>
           </div>
         </div>
       </div>
