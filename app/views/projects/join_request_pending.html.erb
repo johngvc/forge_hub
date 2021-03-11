@@ -29,7 +29,7 @@
                 </div>
               </td>
               <td>
-                <%= link_to "reply", reply_to_join_request_path, { :remote => true,  'data-toggle' => "modal", 'data-target' => '#messageBackModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
+                <%= link_to "reply", reply_to_join_request_path(request: request, project_id: request.project.id), { :remote => true,  'data-toggle' => "modal", 'data-target' => '#messageBackModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
               </td>
             </tr>
         <% end %>
@@ -42,7 +42,7 @@
   <div class="modal fade" id="messageBackModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <% render 'reply_modal' %>
+
       </div>
     </div>
   </div>

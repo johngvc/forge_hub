@@ -29,7 +29,7 @@
     <div class="acard-element acard-btn">
       <div class="abutton1">
         <% if message.user_sender_id != current_user.id %>
-          <%= link_to 'reply',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal' } %>
+          <%= link_to 'reply', reply_from_message_card_path(message: message.id), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#replyFromMessageCardModal' } %>
         <% end %>
       </div>
 
