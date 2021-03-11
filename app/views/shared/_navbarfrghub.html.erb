@@ -4,18 +4,12 @@
   </div>
 
   <% if user_signed_in? %>
-    <%# <div class="nav-bar-search-input col-4">
-      <i class="fas fa-search"></i>
-      <form action="">
-        <input type="text" placeholder="Find on Forgehub">
-      </form>
-    </div> %>
     <div class="avatar-section">
         <div class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </div>
         <div class="nav-item">
-          <%= link_to "Available projects", projects_path, class: "nav-link" %>
+          <%= link_to "Projects", projects_path, class: "nav-link" %>
         </div>
         <div class="nav-item">
           <%= link_to "New project", new_project_path, class: "nav-link" %>
@@ -41,7 +35,6 @@
           </div>
         </div>
     </div>
-        
   <% elsif controller_name != "sessions" %>
     <div class="sign-in-section">
           <a href="/users/sign_in"><button class="Log-in-btn">LOG IN</button></a>
