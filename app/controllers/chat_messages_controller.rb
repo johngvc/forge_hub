@@ -61,6 +61,24 @@ before_action :verify_authorized
     end
   end
 
+  def reply_from_message_card_big
+    respond_to do |format|
+      @message = ChatMessage.new
+      @participant = Participant.find(params[:participant])
+      format.html
+      format.js
+    end
+  end
+
+  def send_reply_from_message_card_big
+    @participant = Participant.find(params[:participant])
+    @message = ChatMessage.new(user_sender_id: current_user.id, user_receiver_id: @participant.user.id, sent_at: DateTime.now, content: message_params[:content])
+    if @message.save
+      redirect_to project_path(@participant.project.id), notice: "Your reply has been sent."
+    else
+      render :new, notice: 'Something went wrong. Please try again.'
+    end
+  end
 
   private
 

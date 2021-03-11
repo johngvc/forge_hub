@@ -22,20 +22,20 @@
             <p class="badesc-open-projects"><%= participant.status %></p>
         <% end %>
         <div class="badesc-user-status">
-          
+
         </div>
       </div>
     </div>
 
-    
-        
+
+
 
       <div class="dropdown-a">
         <a id="<%= "usr-card-#{index}" %>" class="dropbtn-a"><i class="fas fa-user-edit"></i></a>
         <div class="myDropdown-a dropdown-content-a">
 
           <% if (participant.is_founder? || participant.status == "founder" || participant.status == "cofounder") %>
-            
+
             <% if @more_than_one_founder && participant.id == current_user.id %>
               <a data-toggle="modal" data-target="#changeStatusModal<%= index %>" >Change role</a>
               <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
@@ -51,10 +51,10 @@
                   Leave project
               <% end %>
             <% end %>
-          
+
           <% elsif participant.status == "invitee" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
             <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
-            <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>   
+            <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
 
           <% elsif participant.status == "member" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
               <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
@@ -68,7 +68,7 @@
 
         </div>
       </div>
-    
+
 
     <% if participant.is_founder? || participant.status == "founder" %>
       <div class="project-owner-icon">
@@ -87,7 +87,7 @@
         <i class="fas fa-user-friends"></i>
       </div>
     <% end %>
-    
+
 
     <div class="bacontainer">
       <div class="user-description">
@@ -100,15 +100,15 @@
     <% if participant.user_id != current_user.id %>
       <div class="bacard-element bacard-btn">
         <div class="babutton1">
-          <a href="#">Send a message</a>
+          <%= link_to 'send a message', reply_from_message_card_big_path(participant: participant), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#replyFromMessageCardBigModal' } %>
         </div>
-        
+
         <div class="babutton2">
           <a href="<%= profile_path(participant.user) %>">View profile</a>
         </div>
       </div>
     <% end %>
-    
+
   </div>
 
 
@@ -145,4 +145,12 @@
   </div>
   <!-- modal -->
 
- 
+<!-- Modal -->
+  <div id="replyFromMessageCardBigModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
