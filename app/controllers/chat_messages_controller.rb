@@ -50,9 +50,10 @@ before_action :verify_authorized
 
   def send_reply_from_message_card
     original_message = ChatMessage.find(params[:original_message])
-    user_receiver_id = @original_message.user_sender_id
-    user_sender_id = @original_message.user_receiver_id
-    @message = ChatMessage.new(user_sender_id: user_sender_id, user_receiver_id: user_receiver_id, sent_at: DateTime.now, content: message_params[:content], previous_message_id: original_message.id)
+    user_receiver_id = original_message.user_sender_id
+    user_sender_id = original_message.user_receiver_id
+    # var = original_message.id.to_i
+    @message = ChatMessage.new(user_sender_id: user_sender_id, user_receiver_id: user_receiver_id, sent_at: DateTime.now, content: message_params[:content])
     if @message.save
       redirect_to profile_path(current_user.id), notice: "Your reply has been sent."
     else
