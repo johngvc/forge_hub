@@ -42,7 +42,8 @@ iterator = 0
     newUser = User.new({
                         name: Faker::Food.unique.fruits.truncate(20),
                         email: "#{alphabet[iterator]}@#{alphabet[iterator]}",
-                        password: 123123
+                        password: 123123,
+                        description: Faker::ChuckNorris.fact.truncate(80)
                         })
     newUser.photo.attach(io: user_imgs[iterator], filename: "#{alphabet[iterator]}.png", content_type: 'image/jpg')
     if newUser.save
