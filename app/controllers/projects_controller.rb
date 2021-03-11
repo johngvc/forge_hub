@@ -98,7 +98,7 @@ class ProjectsController < ApplicationController
     @user = current_user
     @message = params[:request_message]
     @project = Project.find(params[:project_id])
-    @join_request = JoinRequest.new(project_id: @project.id, user_id: @user.id, created_at: DateTime.now, content: @message, status: 'invitee')
+    @join_request = JoinRequest.new(project_id: @project.id, user_id: @user.id, created_at: DateTime.now, content: @message)
     if @join_request.save
       pass_request_to_chat(@message, @user, @project)
       redirect_to project_path(id: @project.id), notice: "Sent request to join #{@project.name}. Expect a reply from the founder(s) shortly."
