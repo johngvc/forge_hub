@@ -1,0 +1,8 @@
+<div class="card-container">
+  <% @messages_received_sorted.each do |message| %>
+    <%= render 'shared/messageCard', message: message  %>
+  <% end %>
+</div>
+
+
+
