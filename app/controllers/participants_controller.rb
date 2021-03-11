@@ -13,7 +13,7 @@ class ParticipantsController < ApplicationController
   end
 
   def new
-    @participant = Participant.create(project_id: params[:project_id], user_id: params[:user_id], participant_id: @current_participant.id, invited_at: DateTime.now)
+    @participant = Participant.create(project_id: params[:project_id], user_id: params[:user_id], participant_id: @current_participant.id, invited_at: DateTime.now, status: 'invitee')
   end
 
   def create
