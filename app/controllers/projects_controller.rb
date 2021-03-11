@@ -100,9 +100,19 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @join_request = JoinRequest.new(project_id: @project.id, user_id: @user.id, created_at: DateTime.now, content: @message)
     if @join_request.save
+      pass_request_to_chat(@message, @user, @project)
       redirect_to project_path(id: @project.id), notice: "Sent request to join #{@project.name}. Expect a reply from the founder(s) shortly."
     else
       redirect_to project_path(id: @project.id), notice: "Error. Your request to join #{@project.name} could not be sent. Please try again."
+    end
+  end
+
+  def pass_request_to_chat(message, sender, project)
+    request_message = "#{sender.name} wants to join #{project.name}! Please review #{sender.name}'s request in the #{project.name} profile page. Message: #{message}"
+    project_founders = Participant.where(project_id: project.id, status: 'founder')
+    project_founders.each do |founder|
+      message = ChatMessage.new(user_sender_id: sender.id, user_receiver_id: founder.user.id, sent_at: DateTime.now, content: request_message)
+      message.save
     end
   end
 
@@ -112,8 +122,16 @@ class ProjectsController < ApplicationController
     @join_request.request_pending = false
     @join_request.save
     @user = @join_request.user
-    redirect_to project_participant_create_path(user_id: @user, project_id: @project)
-    # mais adiante, acrescentar mecanismo de notificação do outro usuário
+    pass_authorize_to_chat(@project, @join_request)
+    redirect_to project_participant_create_path(user_id: @user, project_id: @project), notice: "#{@join_request.user.name}`s application to #{@project.name} was accepted. The user was automatically notified of the fact."
+  end
+
+  def pass_authorize_to_chat(project, join_request)
+    authorize_message = "Congratulations! Your application to #{project.name} was accepted! The founders of #{project.name} have authorized your request to join their project. Please reach ou to them to coordinate the next steps."
+    user_receiver = join_request.user.id
+    user_sender = Participant.where(project_id: project.id, status: 'founder').first
+    message = ChatMessage.new(user_sender_id: user_sender.user.id, user_receiver_id: user_receiver, sent_at: DateTime.now, content: authorize_message)
+    message.save
   end
 
   def join_request_refuse
@@ -121,8 +139,25 @@ class ProjectsController < ApplicationController
     @project = @join_request.project
     @join_request.request_pending = false
     @join_request.save
-    redirect_to project_path(id: @project), notice: "Join request by #{@join_request.user} was refused."
-    # mais adiante, acrescentar mecanismo de notificação do outro usuário sobre a recusa
+    redirect_to project_path(id: @project), notice: "#{@join_request.user.name}`s application to #{@project.name} was refused. The user was automatically notified of the fact."
+    pass_refuse_to_chat(@project, @join_request)
+  end
+
+  def pass_refuse_to_chat(project, join_request)
+    refuse_message = "Unfortunatelly, your application to #{project.name} was not accepted. Refusals are normal and expected in this field. Try applying to another project."
+    user_receiver = join_request.user.id
+    user_sender = Participant.where(project_id: project.id, status: 'founder').first
+    message = ChatMessage.new(user_sender_id: user_sender.user.id, user_receiver_id: user_receiver, sent_at: DateTime.now, content: refuse_message)
+    message.save
+  end
+
+  def reply_to_join_request
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    message = ChatMessage.new(user_sender_id: current_user.id, user_receiver_id: params[:user_receiver_id], sent_at: DateTime.now, content: params[:content])
+    message.save
   end
 
   def pundit_policy_authorized?
