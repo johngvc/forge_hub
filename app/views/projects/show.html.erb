@@ -36,6 +36,9 @@
                 <%= link_to edit_project_path(id: @project.id) do %>
                   <div class="ask-to-join-btn">edit this project!</div>
                 <% end %>
+                <% unless @join_requests.nil? || @join_requests.nil? %>
+                  <%= link_to "Pending join requests!", project_join_request_pending_path(@project.id) %>
+                <% end %>
             <% end %>
 
 
@@ -126,9 +129,5 @@
     </div>
   </div>
   <!-- Modal -->
-
-  <% unless @join_requests.nil? || @join_requests.nil? %>
-    <%= render partial: 'join_request_pending', locals: { project: @project, join_requests: @join_requests, number: @number } %>
-  <% end %>
 </div>
 

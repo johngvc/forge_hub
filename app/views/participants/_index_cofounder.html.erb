@@ -22,7 +22,7 @@
               <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
 
             <% else %>
-              <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+              <%= cl_image_tag participant.user.photo.key, class: "avatar" %>
             <% end %>
           </td>
 
