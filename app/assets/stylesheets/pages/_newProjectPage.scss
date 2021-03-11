@@ -44,14 +44,18 @@
     min-width: 370px;
 }
 
-.project-submit-btn {
-    display: flex;
-}
 
 .project-submit-btn input {
-    margin: 0 auto 60px auto;
     border: none;
     background-color: #ed6347;
     border-radius: 5px;
-    width: 451px;
+    width: 100%;
+}
+
+.project-submit-btn {
+    text-align: center;
+}
+
+.project-submit-btn .delete-link-container {
+    margin-top: 6px;
 }
