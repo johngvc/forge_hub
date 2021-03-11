@@ -33,18 +33,21 @@ class ProfilesController < ApplicationController
       end
     end
     index_messages
-    message_counter(@messages_sorted)
+    message_counter(@messages_received_sorted)
   end
 
   def index_messages
-    @messages = ChatMessage.where(user_receiver_id: current_user.id) + ChatMessage.where(user_sender_id: current_user.id)
-    messages_2 = @messages.sort_by &:sent_at
-    @messages_sorted = messages_2.reverse
+    @messages_received = ChatMessage.where(user_receiver_id: current_user.id)
+    @messages_sent = ChatMessage.where(user_sender_id: current_user.id)
+    messages_received_sort = @messages_received.sort_by &:sent_at
+    messages_sent_sort = @messages_sent.sort_by &:sent_at
+    @messages_received_sorted = messages_received_sort.reverse
+    @messages_sent_sorted = messages_sent_sort.reverse
   end
 
-  def message_counter(messages)
+  def message_counter(messages_received_sorted)
     @new_message_count = 0
-    messages.each do |message|
+    messages_received_sorted.each do |message|
       if message.sent_at.after? current_user.last_sign_in_at
         @new_message_count += 1
         message.is_new_message = true

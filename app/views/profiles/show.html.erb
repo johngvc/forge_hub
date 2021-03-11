@@ -58,9 +58,13 @@
   <% if @user == current_user %>
 
       <div class="messages-section">
-          <h2>Messages</h2>
+          <h2>Message inbox</h2>
           <%= link_to 'New message',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
-          <%= render 'chat_messages/index', messages: @messages_sorted %>
+          <%= render 'chat_messages/index_received', messages: @messages_received_sorted %>
+      </div>
+      <div class="messages-section">
+        <h2>Sent messages</h2>
+        <%= render 'chat_messages/index_sent', messages: @messages_sent_sorted %>
       </div>
     </div>
 
