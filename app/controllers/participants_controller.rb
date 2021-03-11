@@ -8,10 +8,12 @@ class ParticipantsController < ApplicationController
   def index
     @participants = Participant.where(project_id: @project.id)
     @current_participant = Participant.where(project_id: @project.id, user_id: current_user.id).first
+    num_founders = @participants.select { |participant| participant.status = 'founder' }
+    num_founders.count > 2 ? @more_than_one_founder = true : @more_than_one_founder = false
   end
 
   def new
-    @participant = Participant.create(project_id: params[:project_id], user_id: params[:user_id], participant_id: @current_participant.id, invited_at: DateTime.now)
+    @participant = Participant.create(project_id: params[:project_id], user_id: params[:user_id], participant_id: @current_participant.id, invited_at: DateTime.now, status: 'invitee')
   end
 
   def create

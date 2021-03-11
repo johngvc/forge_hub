@@ -7,9 +7,8 @@
           </button>
         </div>
         <div class="modal-body">
-            <%#= f.input :user_receiver_id, label: "receiver e-mail", collection: @users.map(&:name)%>
             <%= simple_fields_for :other do |o| %>
-              <%= o.input :user_receiver, label: 'I want to change my password', collection: @users.map(&:name) %>
+              <%= o.input :user_receiver, label: 'receiver e-mail', collection: @users.map(&:email) %>
             <% end %>
             <%= f.input :content, as: :text %>
         </div>

@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_063917) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "previous_message_id"
+    t.boolean "is_new_message", default: true
     t.index ["user_receiver_id"], name: "index_chat_messages_on_user_receiver_id"
     t.index ["user_sender_id"], name: "index_chat_messages_on_user_sender_id"
   end
@@ -116,6 +117,11 @@ ActiveRecord::Schema.define(version: 2021_03_11_063917) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "provider"

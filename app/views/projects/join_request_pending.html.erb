@@ -29,7 +29,7 @@
                 </div>
               </td>
               <td>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#messageBackModal" style="width: 180px;"><%= "send a message to #{request.user.name}" %></button>
+                <%= link_to "reply", reply_to_join_request_path, { :remote => true,  'data-toggle' => "modal", 'data-target' => '#messageBackModal', :class => "btn btn-lg btn-primary favorite-btn mr-4" } %>
               </td>
             </tr>
         <% end %>
@@ -42,24 +42,7 @@
   <div class="modal fade" id="messageBackModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">write a message to the user before addmiting the request</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <%= form_tag project_join_request_do_path(@project), method: :post do %>
-          <div class="modal-body">
-            <div class="input-group">
-              <textarea class="form-control" name="reply_message"></textarea>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="submit" class="btn btn-success" value="send message">
-          </div>
-        <% end %>
-
+        <% render 'reply_modal' %>
       </div>
     </div>
   </div>
