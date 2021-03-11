@@ -164,11 +164,27 @@ class ProjectsController < ApplicationController
 
   def reply_to_join_request
     respond_to do |format|
+      @message = ChatMessage.new
+      @request = User.find(params[:request])
+      @project = Project.find(params[:project_id])
       format.html
       format.js
     end
-    message = ChatMessage.new(user_sender_id: current_user.id, user_receiver_id: params[:user_receiver_id], sent_at: DateTime.now, content: params[:content])
-    message.save
+    # sender = User.find(params[:user_receiver_id])
+    # message = ChatMessage.new(user_sender_id: current_user.id, user_receiver_id: sender.id, sent_at: DateTime.now, content: params[:content])
+    # message.save
+  end
+
+  def send_reply_to_join_request
+    # receiver = User.find(params[:user_receiver_id])
+    @request = User.find(params[:request])
+    @project = Project.find(params[:project_id])
+    @message = ChatMessage.new(user_sender_id: current_user.id, user_receiver_id: @request.id, sent_at: DateTime.now, content: params[:chat_message][:content])
+    if @message.save
+      redirect_to project_join_request_pending_path(@project.id), notice: "Your reply has been sent."
+    else
+      render :new, notice: 'Something went wrong. Please try again.'
+    end
   end
 
   def pundit_policy_authorized?

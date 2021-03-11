@@ -22,7 +22,7 @@
             <p class="badesc-open-projects"><%= participant.status %></p>
         <% end %>
         <div class="badesc-user-status">
-          
+
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
         <i class="fas fa-user-friends"></i>
       </div>
     <% end %>
-    
+
 
     <div class="bacontainer">
       <div class="user-description">
@@ -50,11 +50,21 @@
 
     <div class="bacard-element bacard-btn">
       <div class="babutton1">
-        <a href="#">Send a message</a>
+        <%= link_to 'send a message',  chat_message_from_card_path(participant: participant), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#chatFromCardModal' } %>
       </div>
-      
+
       <div class="babutton2">
         <a href="<%= profile_path(participant.user) %>">View profile</a>
       </div>
     </div>
   </div>
+
+<!-- Modal -->
+  <div id="chatFromCardModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
