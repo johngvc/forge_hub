@@ -5,28 +5,22 @@ $accent-color-orange: #ED6347;
 }
 
 /* Dropdown Button */
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-  }
+  .dropbtn-a {
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
   
   /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
+  .dropdown-a {
+    position: absolute;
+    top: 10px;
+    left: 16px;
     display: inline-block;
   }
   
   /* Dropdown Content (Hidden by Default) */
-  .myDropdown {
+  .myDropdown-a {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -35,12 +29,12 @@ $accent-color-orange: #ED6347;
     z-index: 1;
   }
 
-  .dropdown:hover .myDropdown {
+  .dropdown-a:hover .myDropdown-a {
     display: block;
   }
 
   /* Links inside the dropdown */
-  .myDropdown a {
+  .myDropdown-a a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -48,4 +42,12 @@ $accent-color-orange: #ED6347;
   }
   
   /* Change color of dropdown links on hover */
-  .myDropdown a:hover {background-color: #ddd}
+  .myDropdown-a a:hover {background-color: #ddd}
+
+  
+  .leave-project {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    color: rgb(207, 0, 0);
+  }
