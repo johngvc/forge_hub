@@ -1,18 +1,14 @@
 <div class="container">
-  <h1><%= link_to "#{@project.name}", project_path(id: @project.id) %></h1>
-  <p></p><p></p>
+  <div class="container">
+    <h1 class="index-participants-title"><%= link_to "#{@project.name} Members:", project_path(id: @project.id) %></h1>
+  </div>
 
-  <% if @current_participant.status == 'founder' %>
-    <%= render partial: 'index_founder', locals: { project: @project, participant: @participant, current_participant: @current_participant } %>
 
-  <% elsif @current_participant.status == 'cofounder' %>
-    <%= render partial: 'index_cofounder', locals: { project: @project, participant: @participant, current_participant: @current_participant } %>
-
-  <% else %>
-    <%= render partial: 'index_general', locals: { project: @project, participant: @participant, current_participant: @current_participant } %>
-  <% end %>
-
-  <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-    <div class="btn btn-success", style="width: 180px">leave the project</div>
-  <% end %>
+  <div class="container">
+    <div class="participants-container">
+      <% @participants.each do |participant| %>
+         <%= render 'shared/userCardDetailed', participant: participant %>
+      <% end %>
+    </div>
+  </div>
 </div>

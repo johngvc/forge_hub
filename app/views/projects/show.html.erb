@@ -81,7 +81,7 @@
           <p><%= "There are no registered members of #{@project.name}"%></p>
 
         <% else %>
-          <%= link_to "Detailed list", project_participants_path(project_id: @project.id) %>
+          <%= link_to "Detailed list", project_participants_path(project_id: @project.id) if !Participant.where(user_id: current_user.id, project_id: @project).first.nil? %>
 
           <div class="acard-container2">
             <% @project_participants.each do |participant| %>
