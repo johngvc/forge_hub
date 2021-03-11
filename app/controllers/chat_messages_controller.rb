@@ -2,8 +2,8 @@ class ChatMessagesController < ApplicationController
 before_action :verify_authorized
 
    def new
-      @message = ChatMessage.new
-      @users = User.all
+    @message = ChatMessage.new
+    @users = User.all
   end
 
   def create

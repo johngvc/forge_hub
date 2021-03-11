@@ -63,6 +63,7 @@
           <%= render 'chat_messages/index', messages: @messages_sorted %>
       </div>
     </div>
+
   <% end %>
 </div>
 
@@ -78,11 +79,11 @@
 
 
 <!-- Modal -->
-<div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <% render 'chat_messages/new' %>
+  <div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%# render 'chat_messages/new' %>
+      </div>
     </div>
   </div>
-</div>
 <!-- Modal -->
