@@ -12,6 +12,9 @@
 @import "components/index";
 @import "pages/index";
 
+// Trix Action text (for rich text)
+@import "./actiontext.scss";
+
 body {
   font-family: Roboto, sans-serif;
   display: flex;

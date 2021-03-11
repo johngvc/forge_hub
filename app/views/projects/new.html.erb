@@ -1,16 +1,33 @@
 
-<div class=master-container>
-  <div class="form"> 
+<div class=container>
+  <div class="form-project"> 
     <h2 class="heading text-center">Create a new project</h2>
     <%= simple_form_for(@project) do |f| %>
-      <%=f.input :name, required: true, placeholder: "Your project name" %>
-      <%= f.input :description, required: true %>
-      <%= f.input :linkedin_url %>
-      <%= f.input :github_url %>
-      <%= f.input :trello_url %>
-      <%= f.input :photo, as: :file, required: true %>
-      <div class="form-actions">
-        <%= f.submit "Create my new project!", style: "margin-bottom: 15px; border: none;" %>
+      <div class="input-area">
+        <div class="container project-infos-2">
+          <div class="container">
+            <div class="main-infos">
+              <%=f.input :name, required: true, label: "Give your project a name" %>
+              <%= f.input :description, required: true, label: "What is it about? Brief explanation! (max 120 characters)" %>
+              <%= f.input :photo, as: :file, label: "If you want, attach a photo for your project banner" %>
+            </div>
+          </div>
+          <div class="container">
+            <div class="social-links-2">
+              <%= f.input :linkedin_url, label: "Does it have a LinkedIn page?" %>
+              <%= f.input :github_url, label: "Does it have a GitHub page?" %>
+              <%= f.input :trello_url, label: "Does it have a Trello page?" %>
+            </div>
+            <div class="form-actions project-submit-btn">
+              <%= f.submit "Create my new project!" %>
+            </div>
+          </div>
+        </div>
+        <div class="container project-rich-text">
+          <div class="rich-text-area">
+            <%= f.input :content, required: true, as: :rich_text_area, label: "Throughly describe your project Goal and story, be creative!" %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

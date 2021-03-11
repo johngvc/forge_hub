@@ -1,0 +1,56 @@
+
+.form-project div {
+
+}
+
+.input-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.input-area label {
+    font-size: 14px;
+}
+
+.main-infos {
+    margin-bottom: 25px;
+}
+
+.project-rich-text {
+    border-left: grey;
+    height: 100%;
+}
+
+.rich-text-area {
+    height: 100%;
+}
+
+.rich-text-area div:first-child {
+    height: 100%;
+}
+
+.rich-text-area trix-editor {
+    height: 483px;
+}
+
+.project-infos-2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    min-width: 370px;
+}
+
+.project-submit-btn {
+    display: flex;
+}
+
+.project-submit-btn input {
+    margin: 0 auto 60px auto;
+    border: none;
+    background-color: #ed6347;
+    border-radius: 5px;
+    width: 451px;
+}
