@@ -37,6 +37,10 @@ Rails.application.routes.draw do
 
   post 'send_reply_to_join_request', to: 'projects#send_reply_to_join_request', as: :send_reply_to_join_request
 
+  get 'reply_from_message_card', to: 'chat_messages#reply_from_message_card', as: :reply_from_message_card
+
+  post 'send_reply_from_message_card', to: 'chat_messages#send_reply_from_message_card', as: :send_reply_from_message_card
+
   delete '/projects/:id', to: "projects#destroy", as: :project_destroy
 
 end
