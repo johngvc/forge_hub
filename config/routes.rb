@@ -47,4 +47,6 @@ Rails.application.routes.draw do
 
   delete '/projects/:id', to: "projects#destroy", as: :project_destroy
 
+  resources :bootcamps, only: [:new, :create]
+
 end
