@@ -33,6 +33,15 @@
           <i class="fas fa-times-circle"></i>
         <% end %>
       </div>
+    <% else %>
+      <div class="dropdown">
+        <a id="<%= "usr-card-#{index}" %>" class="dropbtn"><i class="fas fa-user-edit"></i></a>
+        <div class="myDropdown dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
     <% end %>
     
 
@@ -53,7 +62,7 @@
 
     <div class="bacontainer">
       <div class="user-description">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse animi tenetur corpori</p>
+        <p><%= participant.user.description %></p>
       </div>
     </div>
 

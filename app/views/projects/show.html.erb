@@ -36,7 +36,7 @@
                 <%= link_to edit_project_path(id: @project.id) do %>
                   <div class="ask-to-join-btn">edit this project!</div>
                 <% end %>
-                <% unless @join_requests.nil? || @join_requests.nil? %>
+                <% unless @join_requests.first.nil? %>
                   <%= link_to "Pending join requests!", project_join_request_pending_path(@project.id) %>
                 <% end %>
             <% end %>
@@ -68,6 +68,7 @@
   </div>
 
   <div class="container-new">
+    <h1 class="our-story-title">Our story:</h1>
     <div class="our-story-section">
       <%= @project.content %>
     </div>

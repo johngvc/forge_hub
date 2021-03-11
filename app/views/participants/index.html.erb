@@ -6,8 +6,8 @@
 
   <div class="container">
     <div class="participants-container">
-      <% @participants.each do |participant| %>
-         <%= render 'shared/userCardDetailed', participant: participant %>
+      <% @participants.each_with_index do |participant, index| %>
+         <%= render 'shared/userCardDetailed', participant: participant, index: index %>
       <% end %>
     </div>
   </div>

@@ -4,8 +4,10 @@
 // that code so it'll be compiled.
 import { initModal } from '../components/modal'
 import { msgModal } from '../components/modal_messages'
+import { myFunction } from '../components/dropdown'
 import "bootstrap";
 import 'jquery';
+import { event } from 'jquery';
 
 
 require("@rails/ujs").start()
@@ -42,6 +44,11 @@ document.addEventListener('turbolinks:load', () => {
   initModal();
   msgModal();
 });
+
+
+
+
+
 
 require("trix")
 require("@rails/actiontext")
