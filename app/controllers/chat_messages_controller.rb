@@ -1,7 +1,7 @@
 class ChatMessagesController < ApplicationController
 before_action :verify_authorized
 
-   def new
+  def new
     @message = ChatMessage.new
     @users = User.all
   end
@@ -93,5 +93,4 @@ before_action :verify_authorized
   def receiver_params
     params.require(:other).permit(:user_receiver)
   end
-
 end

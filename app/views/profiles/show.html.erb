@@ -1,3 +1,9 @@
+<% if current_user.bootcamps_id.nil? %>
+  <div style="margin-top: 30px; text-align: center; display: flex; flex-direction: column; justify-content: center; height: 15px; line-height: 5px;">
+    <p>Are you a coding bootcamp alumnus?</p>
+    <strong><%= link_to "add your bootcamp to your profile!", edit_user_registration_path, class: "form-actions" %></strong>
+  </div>
+<% end %>
 <div class="profile-page">
     <div class="profile-section">
         <% if @user && @user.photo.attached? %>
@@ -40,7 +46,6 @@
         </div>
 
     </div>
-
     <div class="second-section">
       <div class="projects-section">
         <h2>Active Projects</h2>
