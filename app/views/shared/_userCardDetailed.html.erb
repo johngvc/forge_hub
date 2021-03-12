@@ -51,27 +51,19 @@
                   Leave project
               <% end %>
             <% end %>
-
+          
           <% elsif participant.status == "invitee" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
             <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
-            <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
-
-
-          <% elsif participant.status == "invitee" && participant.id == current_user.id %>
-            <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-                Leave project
-            <% end %>
+            <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>   
 
           <% elsif participant.status == "member" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
               <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
               <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
 
-
-          <% elsif participant.status == "member" && participant.id == current_user.id %>
+          <% else %>
             <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-                Leave project
+                  Leave project
             <% end %>
-
           <% end %>
 
         </div>
