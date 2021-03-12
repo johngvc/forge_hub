@@ -80,6 +80,25 @@ before_action :verify_authorized
     end
   end
 
+  def reply_from_user_card_index
+    respond_to do |format|
+      @message = ChatMessage.new
+      @user = User.find(params[:user])
+      format.html
+      format.js
+    end
+  end
+
+  def send_reply_from_user_card_index
+    @user = User.find(params[:user])
+    @message = ChatMessage.new(user_sender_id: current_user.id, user_receiver_id: @user.id, sent_at: DateTime.now, content: message_params[:content])
+    if @message.save
+      redirect_to profiles_path, notice: "Your message has been sent."
+    else
+      render :new, notice: 'Something went wrong. Please try again.'
+    end
+  end
+
   private
 
   def verify_authorized

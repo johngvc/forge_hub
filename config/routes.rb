@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/contact', to: 'pages#contact'
 
-  resources :profiles, only: %i[show]
+  resources :profiles, only: %i[show index]
 
   resources :chat_messages, only: [:new, :create]
 
@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   get 'reply_from_message_card_big', to: 'chat_messages#reply_from_message_card_big', as: :reply_from_message_card_big
 
   post 'send_reply_from_message_card_big', to: 'chat_messages#send_reply_from_message_card_big', as: :send_reply_from_message_card_big
+
+  get 'reply_from_user_card_index', to: 'chat_messages#reply_from_user_card_index', as: :reply_from_user_card_index
+
+  post 'send_reply_from_user_card_index', to: 'chat_messages#send_reply_from_user_card_index', as: :send_reply_from_user_card_index
 
   delete '/projects/:id', to: "projects#destroy", as: :project_destroy
 

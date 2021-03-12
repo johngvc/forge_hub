@@ -1,6 +1,11 @@
 class ProfilesController < ApplicationController
 # require 'chat_messages_controller'
   # before_action :set_adoption_requests, only: %i[show]
+  before_action :pundit_policy_scoped?
+
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
@@ -63,4 +68,11 @@ class ProfilesController < ApplicationController
       @new_message_alert = false
     end
   end
+
+  private
+
+  def pundit_policy_scoped?
+    true
+  end
+
 end

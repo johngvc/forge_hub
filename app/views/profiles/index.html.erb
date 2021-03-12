@@ -1,0 +1,19 @@
+<div class="projects-section-search">
+  <h1>Our users:</h1>
+
+  <div class="container-new">
+    <div class="card-project-profile">
+
+      <% if @users.nil? %>
+        <p><%= "There are no registered users yet."%></p>
+
+      <% else %>
+        <div class="acard-container2">
+          <% @users.each do |user| %>
+            <%= render 'shared/userCardIndex', user: user %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
