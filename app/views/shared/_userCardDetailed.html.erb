@@ -33,13 +33,38 @@
       <div class="dropdown-a">
         <a id="<%= "usr-card-#{index}" %>" class="dropbtn-a"><i class="fas fa-user-edit"></i></a>
         <div class="myDropdown-a dropdown-content-a">
-          <a href="#">Remove participant</a>
-          <a href="#">Change role</a>
-        <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-            Leave project
-        <% end %>
+
+          <% if (participant.is_founder? || participant.status == "founder" || participant.status == "cofounder") %>
+            
+            <% if @more_than_one_founder %>
+              <a data-toggle="modal" data-target="#changeStatusModal<%= index %>" >Change role</a>
+              <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+                Leave project
+              <% end %>
+            <% end %>
+
+          <% elsif participant.status == "invitee" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
+              <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
+            <a href="#">Remove from project</a>
+
+          <% elsif participant.status == "invitee" && @current_participant.id == current_user.id %>
+            <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+                Leave project
+            <% end %>
+
+          <% elsif participant.status == "member" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
+              <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
+            <a href="#">Remove from project</a>
+
+          <% elsif participant.status == "member" && @current_participant.id == current_user.id %>
+            <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+                Leave project
+            <% end %>
+
+          <% end %>
+
+        </div>
       </div>
-    </div>
     
 
     <% if participant.is_founder? || participant.status == "founder" %>
@@ -49,6 +74,10 @@
     <% elsif participant.status == "invitee" %>
       <div class="normal-icon">
         <i class="fas fa-envelope"></i>
+      </div>
+    <% elsif participant.status == "cofounder" %>
+      <div class="cofounder-icon">
+        <i class="fas fa-star"></i>
       </div>
     <% else %>
       <div class="normal-icon">
@@ -78,3 +107,39 @@
     <% end %>
     
   </div>
+
+
+<!-- modal -->
+  <div class="modal fade" id="changeStatusModal<%= index %>" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Select the new role of <%= participant.user.name %></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <%= simple_form_for participant, url: participants_update_status_path(participant_id: participant.id), method: :patch do |f| %>
+
+          <div class="modal-body">
+
+            <div class="input-group">
+              <%= f.input :status, :collection => %w[invitee member cofounder], label: false %>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <%= f.submit "confirm change" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- modal -->
+
+ 

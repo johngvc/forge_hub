@@ -8,8 +8,13 @@ class ParticipantsController < ApplicationController
   def index
     @participants = Participant.where(project_id: @project.id)
     @current_participant = Participant.where(project_id: @project.id, user_id: current_user.id).first
-    num_founders = @participants.select { |participant| participant.status = 'founder' }
-    num_founders.count > 2 ? @more_than_one_founder = true : @more_than_one_founder = false
+    num_founders = 0
+    @participants.each do |participant| 
+      if participant.status == 'founder'
+        num_founders += 1  
+      end
+    end
+    num_founders > 2 ? @more_than_one_founder = true : @more_than_one_founder = false
   end
 
   def new
