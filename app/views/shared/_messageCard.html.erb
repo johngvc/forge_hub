@@ -1,43 +1,32 @@
-  <div class="acontainer auser-card" >
-    <div class="acard-element aavatar-and-description">
-      <div class="aavatar-container">
-        <% if !User.find_by(id: message.user_sender_id).photo.attached? %>
-          <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar" %>
-        <% else %>
-          <%= cl_image_tag User.find_by(id: message.user_sender_id).photo.key, class: "avatar" %>
+  <div class="macontainer mauser-card" >
+    <div class="macard-element maavatar-and-description">
+      <div class="maavatar-container">
+        <% if User.find(message.user_sender_id).photo.attached? %>
+                <%= cl_image_tag User.find(message.user_sender_id).photo.key, class: "maavatar" %>
+            <% elsif User.find(message.user_sender_id).picture_url.present? %>
+                <%= image_tag User.find(project.user_id).picture_url, class: "maavatar" %>
+            <% else %>
+                <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "maavatar" %>
         <% end %>
       </div>
 
-      <div class="adescription-container">
+      <div class="madescription-container">
         <% if message.is_new_message %>
-          <p style="text-align: right; color: red;"><strong>NEW MESSAGE</strong></p>
+          <p class="new-message">New message</p>
         <% end %>
-        <p class="adesc-title"><%= "from: #{User.find_by(id: message.user_sender_id).name} (#{User.find_by(id: message.user_sender_id).email})" %></p>
-        <p class="adesc-title"><%= "to: #{User.find_by(id: message.user_receiver_id).name} (#{User.find_by(id: message.user_receiver_id).email})" %></p>
-        <p class="adesc-subtitle"><%= User.find_by(id: message.user_sender_id).email %></p>
-
-        <div class="adesc-user-status">
-
-        </div>
+        <p class="madesc-title"><%= "from: #{User.find_by(id: message.user_sender_id).name == current_user.name ? "You" : User.find_by(id: message.user_receiver_id).name} (#{User.find_by(id: message.user_sender_id).email})" %></p>
+        <p class="madesc-title"><%= "to: #{User.find_by(id: message.user_receiver_id).name == current_user.name ? "You" : User.find_by(id: message.user_receiver_id).name} (#{User.find_by(id: message.user_receiver_id).email})" %></p>
       </div>
 
     </div>
-    <div class="message-content">
+    <div class="mmessage-content">
       <p><%= message.content %></p>
     </div>
 
-    <div class="acard-element acard-btn">
-      <div class="abutton1">
+    <div class="macard-element macard-btn">
+      <div class="mabutton1">
         <% if message.user_sender_id != current_user.id %>
           <%= link_to 'reply',  new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal' } %>
-        <% end %>
-      </div>
-
-      <div class="abutton2">
-        <% if message.user_sender_id != current_user.id %>
-          <% link_to "View profile", profile_path(id: message.user_sender_id)%>
-        <% else %>
-          <% link_to "View profile", profile_path(id: message.user_receiver_id)%>
         <% end %>
       </div>
     </div>
