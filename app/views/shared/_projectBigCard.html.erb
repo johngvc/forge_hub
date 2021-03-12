@@ -55,7 +55,7 @@
         <% if project.is_suspended %>
           <p style="color: red;">Project suspended</p>
         <% else %>
-          <p>On Design/Pre production</p>
+          <p><%= project.status %></p>
         <% end %>
       </div>
     </div>

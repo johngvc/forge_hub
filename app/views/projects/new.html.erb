@@ -10,6 +10,7 @@
               <%=f.input :name, required: true, label: "Give your project a name" %>
               <%= f.input :description, required: true, label: "What is it about? Brief explanation! (max 120 characters)" %>
               <%= f.input :photo, as: :file, label: "If you want, attach a photo for your project banner" %>
+              <%= f.input :status, :collection => %w[idea design pre-production development growth], label: "At what phase your project is currently at?" %>
             </div>
           </div>
           <div class="container">
@@ -25,7 +26,7 @@
         </div>
         <div class="container project-rich-text">
           <div class="rich-text-area">
-            <%= f.input :content, required: true, as: :rich_text_area, label: "Throughly describe your project Goal and story, be creative!" %>
+            <%= f.input :content, required: true, as: :rich_text_area, label: "Thoroughly describe your project Goal and story, be creative!" %>
           </div>
         </div>
       </div>

@@ -8,5 +8,4 @@ class Project < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 22 }
   validates :description, presence: true, length: { maximum: 135 }
-
 end

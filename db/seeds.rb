@@ -57,6 +57,7 @@ puts "#"*50
 puts "Instanciando projetos"
 iterator = 0
 6.times do
+    randomStatus = ['idea', 'design', 'pre-production', 'development', 'growth'].sample
     newProject = Project.new({
                         name: Faker::Games::SuperMario.unique.character.truncate(10),
                         user_id: rand(1..3),
@@ -64,7 +65,8 @@ iterator = 0
                         linkedin_url: Faker::Internet.email(domain: 'linkedin'),
                         github_url: Faker::Internet.email(domain: 'github'),
                         trello_url: Faker::Internet.email(domain: 'trello'),
-                        is_suspended: false
+                        is_suspended: false,
+                        status:  randomStatus
                         })
     newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
     if newProject.save
