@@ -20,7 +20,9 @@ $accent-color-orange: #ed6347;
 
 .profile-page .profile-section {
   display: flex;
-  min-height: 80vh;
+  position: sticky;
+  top: 25px;
+  min-height: 87vh;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
@@ -109,6 +111,7 @@ $accent-color-orange: #ed6347;
 .messages-section {
   width: 100%;
   min-height: 50vh;
+  min-width: 35vw;
   background: #f8f8f8;
   box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
   border-radius: 20px;

@@ -15,7 +15,8 @@ $subtitle-grey-color: #979797;
 .mauser-card {
   height: 154px;
   position: relative;
-  width: 91%;
+  width: 90%;
+  min-width: 644px;
   margin: 11px 0;
   display: flex;
   border-radius: 20px;
