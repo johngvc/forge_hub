@@ -1,21 +1,17 @@
-<%= simple_form_for @message, remote: true do |f| %>
+<%= simple_form_for @message, url: send_reply_from_message_card_big_path(participant: participant, message: message), remote: true, method: :post do |f| %>
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">send </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
-            <span aria-hidden="true">&times;</span>
+           <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <%= simple_fields_for :other do |o| %>
-              <%= o.input :user_receiver, label: 'receiver e-mail', collection: @bootcamps.map(&:name) %>
-            <% end %>
-            <%= f.input :content, as: :text %>
+            <%= f.input :content, as: :text, label: false %>
         </div>
         <div class="modal-footer">
           <%= f.submit "send message" %>
         </div>
-
       </div>
     </div>
   </div>

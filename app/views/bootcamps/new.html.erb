@@ -1,0 +1,15 @@
+<div class="master-container">
+  <div class="form">
+    <h2 class="heading text-center">Add your coding bootcamp to ForgeHub!</h2>
+    <%= simple_form_for(@bootcamp) do |f| %>
+      <%=f.input :name, required: true, label: "Which coding bootcamp did you study in?" %>
+      <%= f.input :country, as: :country, required: true, label: "In which country?" %>
+      <%= f.input :city, required: true, label: "In which city?" %>
+      <%= f.input :website, label: "What is their website?" %>
+      <div class="form-actions">
+        <%= f.button :submit, label: "add bootcamp" %>
+      </div>
+    <% end %>
+    <p></p>
+  </div>
+</div>

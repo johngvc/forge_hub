@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
     @available_projects = []
     @suspended_projects_participating = []
     @ongoing_projects_participating = []
+    @all_projects = Project.all
 
     @projects.each do |project|
       is_part_of_project = !Participant.where(project_id: project, user_id: current_user.id).first.nil?

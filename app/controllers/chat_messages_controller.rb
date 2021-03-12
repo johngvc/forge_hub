@@ -1,7 +1,7 @@
 class ChatMessagesController < ApplicationController
 before_action :verify_authorized
 
-   def new
+  def new
     @message = ChatMessage.new
     @users = User.all
   end
@@ -50,9 +50,10 @@ before_action :verify_authorized
 
   def send_reply_from_message_card
     original_message = ChatMessage.find(params[:original_message])
-    user_receiver_id = @original_message.user_sender_id
-    user_sender_id = @original_message.user_receiver_id
-    @message = ChatMessage.new(user_sender_id: user_sender_id, user_receiver_id: user_receiver_id, sent_at: DateTime.now, content: message_params[:content], previous_message_id: original_message.id)
+    user_receiver_id = original_message.user_sender_id
+    user_sender_id = original_message.user_receiver_id
+    # var = original_message.id.to_i
+    @message = ChatMessage.new(user_sender_id: user_sender_id, user_receiver_id: user_receiver_id, sent_at: DateTime.now, content: message_params[:content])
     if @message.save
       redirect_to profile_path(current_user.id), notice: "Your reply has been sent."
     else
@@ -60,6 +61,24 @@ before_action :verify_authorized
     end
   end
 
+  def reply_from_message_card_big
+    respond_to do |format|
+      @message = ChatMessage.new
+      @participant = Participant.find(params[:participant])
+      format.html
+      format.js
+    end
+  end
+
+  def send_reply_from_message_card_big
+    @participant = Participant.find(params[:participant])
+    @message = ChatMessage.new(user_sender_id: current_user.id, user_receiver_id: @participant.user.id, sent_at: DateTime.now, content: message_params[:content])
+    if @message.save
+      redirect_to project_path(@participant.project.id), notice: "Your reply has been sent."
+    else
+      render :new, notice: 'Something went wrong. Please try again.'
+    end
+  end
 
   private
 
@@ -74,5 +93,4 @@ before_action :verify_authorized
   def receiver_params
     params.require(:other).permit(:user_receiver)
   end
-
 end

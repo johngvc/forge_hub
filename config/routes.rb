@@ -41,6 +41,12 @@ Rails.application.routes.draw do
 
   post 'send_reply_from_message_card', to: 'chat_messages#send_reply_from_message_card', as: :send_reply_from_message_card
 
+  get 'reply_from_message_card_big', to: 'chat_messages#reply_from_message_card_big', as: :reply_from_message_card_big
+
+  post 'send_reply_from_message_card_big', to: 'chat_messages#send_reply_from_message_card_big', as: :send_reply_from_message_card_big
+
   delete '/projects/:id', to: "projects#destroy", as: :project_destroy
+
+  resources :bootcamps, only: [:new, :create]
 
 end
