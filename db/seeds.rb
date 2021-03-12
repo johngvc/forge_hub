@@ -59,8 +59,8 @@ iterator = 0
 6.times do
     randomStatus = ['idea', 'design', 'pre-production', 'development', 'growth'].sample
     newProject = Project.new({
-                        name: Faker::Games::SuperMario.unique.character.truncate(10),
-                        user_id: rand(1..3),
+                        name: Faker::Games::SuperMario.unique.character,
+                        user: User.all.sample,
                         description: Faker::Lorem.paragraph_by_chars(number: 120),
                         linkedin_url: Faker::Internet.email(domain: 'linkedin'),
                         github_url: Faker::Internet.email(domain: 'github'),
