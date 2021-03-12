@@ -36,18 +36,27 @@
 
           <% if (participant.is_founder? || participant.status == "founder" || participant.status == "cofounder") %>
             
-            <% if @more_than_one_founder %>
+            <% if @more_than_one_founder && participant.id == current_user.id %>
               <a data-toggle="modal" data-target="#changeStatusModal<%= index %>" >Change role</a>
               <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
                 Leave project
               <% end %>
+
+            <% elsif participant.status == "cofounder" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
+              <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
+              <a href="#">Remove from project</a>
+
+            <% elsif participant.status == "cofounder" && participant.id == current_user.id %>
+              <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+                  Leave project
+              <% end %>
             <% end %>
 
           <% elsif participant.status == "invitee" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
-              <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
+            <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
             <a href="#">Remove from project</a>
 
-          <% elsif participant.status == "invitee" && @current_participant.id == current_user.id %>
+          <% elsif participant.status == "invitee" && participant.id == current_user.id %>
             <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
                 Leave project
             <% end %>
@@ -56,7 +65,7 @@
               <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
             <a href="#">Remove from project</a>
 
-          <% elsif participant.status == "member" && @current_participant.id == current_user.id %>
+          <% elsif participant.status == "member" && participant.id == current_user.id %>
             <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
                 Leave project
             <% end %>
