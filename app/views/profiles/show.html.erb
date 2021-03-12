@@ -31,8 +31,12 @@
             <ul>
                 <li><h2><%= @user.name %></h2></li>
                 <li><p>Email: <%= @user.email %></p></li>
+                <% if !@user.description.nil? %>
+                  <li><p>My Description: <%= @user.description %></p></li>
+                <% end %>
             </ul>
         </div>
+
 
         <div class="user-info">
             <p>
@@ -65,7 +69,7 @@
       <div class="messages-section">
           <h2>Message inbox</h2>
             <%= link_to new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "new-message-icon" } do %>
-              <i class="far fa-plus-square"></i><p>  Create a new message</p>
+              <i class="fas fa-edit"></i><p>  Create a new message</p>
             <% end %>
           <%= render 'chat_messages/index_received', messages: @messages_received_sorted %>
       </div>

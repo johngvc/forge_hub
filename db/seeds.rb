@@ -66,7 +66,7 @@ iterator = 0
                         github_url: Faker::Internet.email(domain: 'github'),
                         trello_url: Faker::Internet.email(domain: 'trello'),
                         is_suspended: false,
-                        status:  randomStatus
+                        status_project:  randomStatus
                         })
     newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
     if newProject.save

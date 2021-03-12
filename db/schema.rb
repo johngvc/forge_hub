@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_055458) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_suspended", default: false
-    t.string "status"
+    t.string "status_project"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
