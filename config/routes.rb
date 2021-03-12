@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root to: 'pages#home'

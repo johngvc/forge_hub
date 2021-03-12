@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
             <%= simple_fields_for :other do |o| %>
-              <%= o.input :user_receiver, label: 'receiver e-mail', collection: @users.map(&:name) %>
+              <%= o.input :user_receiver, label: 'receiver e-mail', collection: @users.map(&:email) %>
             <% end %>
             <%= f.input :content, as: :text %>
         </div>
