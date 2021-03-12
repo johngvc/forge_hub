@@ -1,6 +1,6 @@
 <%= simple_form_for @message, remote: true do |f| %>
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">send </h5>
+          <h5 class="modal-title" id="exampleModalLabel">Send your message </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
             <span aria-hidden="true">&times;</span>
@@ -13,7 +13,7 @@
             <%= f.input :content, as: :text %>
         </div>
         <div class="modal-footer">
-          <%= f.submit "send message" %>
+          <%= f.submit "send message", class: "btn-generic" %>
         </div>
 
       </div>
