@@ -45,7 +45,7 @@ class ParticipantsController < ApplicationController
     @project = Project.find(params[:project_id])
     @participant = Participant.find(params[:participant_id])
     @participant.destroy
-    redirect_to project_participants_path(@project.id), notice: "You left #{@project.name}."
+    redirect_to project_participants_path(@project.id), notice: "#{@participant.user.name} left #{@project.name}."
   end
 
   def pundit_policy_scoped?

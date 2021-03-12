@@ -4,7 +4,7 @@
         <% if User.find(message.user_sender_id).photo.attached? %>
                 <%= cl_image_tag User.find(message.user_sender_id).photo.key, class: "maavatar" %>
             <% elsif User.find(message.user_sender_id).picture_url.present? %>
-                <%= image_tag User.find(project.user_id).picture_url, class: "maavatar" %>
+                <%= image_tag User.find(message.user_sender_id).picture_url, class: "maavatar" %>
             <% else %>
                 <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "maavatar" %>
         <% end %>
@@ -14,7 +14,7 @@
         <% if message.is_new_message %>
           <p class="new-message">New message</p>
         <% end %>
-        <p class="madesc-title"><%= "from: #{User.find_by(id: message.user_sender_id).name == current_user.name ? "You" : User.find_by(id: message.user_receiver_id).name} (#{User.find_by(id: message.user_sender_id).email})" %></p>
+        <p class="madesc-title"><%= "from: #{User.find_by(id: message.user_sender_id).name == current_user.name ? "You" : User.find_by(id: message.user_sender_id).name} (#{User.find_by(id: message.user_sender_id).email})" %></p>
         <p class="madesc-title"><%= "to: #{User.find_by(id: message.user_receiver_id).name == current_user.name ? "You" : User.find_by(id: message.user_receiver_id).name} (#{User.find_by(id: message.user_receiver_id).email})" %></p>
       </div>
 
