@@ -1,7 +1,13 @@
 
 .form-project {
     margin: 25px 0;
+    background-color: white;
+    border-radius: 25px;
+    padding: 15px 0px;
+    box-shadow: 8px 10px 11px -9px rgba(0, 0, 0, 0.25%);
 }
+
+
 
 .input-area {
     display: flex;
@@ -9,6 +15,8 @@
     justify-content: space-between;
     align-items: flex-start;
 }
+
+
 
 .input-area label {
     font-size: 14px;
