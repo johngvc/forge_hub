@@ -55,7 +55,6 @@ $accent-color-orange: #ed6347;
   align-items: center;
   font-size: 17px;
   font-weight: 600;
-  margin: 15px 0px 0px 0px;
 }
 
 .profile-page .user-info i {
@@ -85,7 +84,6 @@ $accent-color-orange: #ed6347;
 .profile-page .profile-section .user-info {
   height: 150px;
   width: 100%;
-  margin-top: 15px;
 }
 
 .profile-page .profile-section .avatar-big {
@@ -157,12 +155,8 @@ $accent-color-orange: #ed6347;
   justify-content: center;
 }
 
-.new-message-icon:hover {
-  text-decoration: none;
-}
-
 .new-message-icon i, .new-message-icon p {
-  color: greenyellow;
+  color: $accent-color-orange;
   font-size: 20px;
   margin-left: 8px;
 }

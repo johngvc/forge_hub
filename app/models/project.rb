@@ -8,4 +8,6 @@ class Project < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 22 }
   validates :description, presence: true, length: { maximum: 135 }
+  validates :status_project, inclusion: { in: ['idea', 'design', 'pre-production', 'development', 'growth'],
+    message: "%{value} is not a valid project status" }
 end

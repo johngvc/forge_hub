@@ -27,6 +27,7 @@
           <% else %>
             <h2><%= User.find(@project.user_id).name %> wants to make <%= @project.name %> a reality</h2>
           <% end %>
+          <p>Current phase: <%= @project.status_project %></p>
             <% if @is_not_participant && @has_join_request == false %>
 
             <button class="ask-to-join-btn" data-toggle="modal" data-target="#projectAskModal">

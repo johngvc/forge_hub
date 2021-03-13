@@ -13,7 +13,7 @@ $subtitle-grey-color: #979797;
 }
 
 .mauser-card {
-  height: 154px;
+  min-height: 154px;
   position: relative;
   width: 90%;
   min-width: 644px;
@@ -61,12 +61,12 @@ $subtitle-grey-color: #979797;
   width: 100%;
   text-align: center;
   margin-left: 6px;
-  margin-top: 34px;
+  margin-top: 19px;
 }
 
 .new-message {
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   left: 25px;
   color: red;
 }
@@ -146,6 +146,7 @@ $subtitle-grey-color: #979797;
 .mmessage-content {
   width: 64%;
   overflow: auto;
+  margin: 13px 0;
 }
 
 .mmessage-content p {
