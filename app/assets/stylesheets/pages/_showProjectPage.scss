@@ -7,9 +7,31 @@ $accent-color-orange: #ed6347;
   width: 90%;
 }
 
-.our-story-title {
+.project-info-section {
   margin-top: 20px;
-  text-align: center;
+  padding-top: 20px;
+  border-top: 1px black solid;
+}
+
+.btn-tab {
+  float: left;
+  margin-left: 10px;
+  border: 1px grey solid;
+  border-radius: 5px 5px 0 0;
+  background-color: white;
+}
+
+.btn-tab:hover {
+  background-color: grey;
+}
+
+.btn-tab .active {
+  float: left;
+  margin-left: 10px;
+  border-top: 1px black solid;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  border-bottom: none;
 }
 
 .card-project-profile {
@@ -38,7 +60,7 @@ $accent-color-orange: #ed6347;
 
 .trix-content h1 {
   font-size: 40px !important;
-  
+
   font-weight: 800;
 }
 
@@ -104,7 +126,6 @@ $accent-color-orange: #ed6347;
 .our-story-section {
   margin-top: 0px;
   padding: 23px 0px;
-  border-top: 1px grey solid;
 }
 
 .our-story-section h2 {
