@@ -7,31 +7,70 @@ $accent-color-orange: #ed6347;
   width: 90%;
 }
 
-.project-info-section {
+.project-info-nav {
+  display: block;
   margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px black solid;
+  margin-bottom: 20px;
+  border-top: 1px grey solid;
+  border-bottom: 1px grey solid;
+}
+
+.project-info-tabs {
+  margin-top: 20px;
 }
 
 .btn-tab {
-  float: left;
+  height: 95%;
   margin-left: 10px;
-  border: 1px grey solid;
-  border-radius: 5px 5px 0 0;
-  background-color: white;
+  position: relative;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: rgb(22, 22, 22);
 }
 
 .btn-tab:hover {
-  background-color: grey;
+  height: 95%;
+  margin-left: 10px;
+  border: none;
+  background-color: transparent;
+  color: $accent-color-orange;
 }
 
-.btn-tab .active {
-  float: left;
-  margin-left: 10px;
-  border-top: 1px black solid;
-  border-left: 1px black solid;
-  border-right: 1px black solid;
-  border-bottom: none;
+.tab-content {
+  display: none;
+}
+
+.project-info-nav navbar {
+  height: 100%;
+}
+
+.project-info-nav {
+  height: 62px;
+}
+
+.btn-tab.active {
+  color: $accent-color-orange;
+}
+
+.btn-tab.active div {
+  bottom: 0;
+  height: 5px;
+  width: 100%;
+  border-bottom: 3px black solid;
+  position: absolute;
+  animation-name: example;
+  animation-duration: 0.1s;
+}
+
+/* The animation code */
+@keyframes example {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .card-project-profile {
@@ -123,23 +162,23 @@ $accent-color-orange: #ed6347;
   height: 100%;
 }
 
-.our-story-section {
+.tab-contents {
   margin-top: 0px;
-  padding: 23px 0px;
+  padding: 10px 0px;
 }
 
-.our-story-section h2 {
+.tab-contents h2 {
   margin: 10px 0px;
   font-size: 30px;
   font-weight: 800;
 }
 
-.our-story-section h3 {
+.tab-contents h3 {
   margin: 10px 0px;
   font-size: 36px;
   text-align: center;
 }
 
-.our-story-section p {
+.tab-contents p {
   font-size: 17px;
 }

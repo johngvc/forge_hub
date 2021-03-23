@@ -58,17 +58,46 @@
     </div>
   </section>
 </div>
-<div class="container-new project-info-section">
-  <navbar class="project-info-nav">
-    <button class="btn-tab active">Our story</button>
-    <button class="btn-tab">Project Milestones</button>
-    <button class="btn-tab">Comments</button>
-    <button class="btn-tab">FAQ</button>
-  </navbar>
-  <div class="our-story-section">
-    <%= @project.content %>
+<section class="container-new project-info-tabs">
+  <div class="project-info-nav">
+    <navbar>
+      <button class="btn-tab active" id="tab1">
+        <div></div>
+        Our story
+      </button>
+      <button class="btn-tab" id="tab2">
+        <div></div>
+        Project Milestones
+      </button>
+      <button class="btn-tab" id="tab3">
+        <div></div>
+        Comments
+      </button>
+      <button class="btn-tab" id="tab4">
+        <div></div>
+        FAQ
+      </button>
+    </navbar>
   </div>
-</div>
+  <div class="tab-contents">
+    <div class="container-new tab-content" id="content-tab1" style="display: block;">
+      <h2>tab1</h2>
+      <%= @project.content %>
+    </div>
+    <div class="container-new tab-content" id="content-tab2">
+      <h2>tab2</h2>
+      <%= @project.content %>
+    </div>
+    <div class="container-new tab-content" id="content-tab3">
+      <h2>tab3</h2>
+      <%= @project.content %>
+    </div>
+    <div class="container-new tab-content" id="content-tab4">
+      <h2>tab4</h2>
+      <%= @project.content %>
+    </div>
+  </div>
+</section>
 <div class="container-new">
   <div class="card-project-profile">
     <h2>Project members:</h2>
