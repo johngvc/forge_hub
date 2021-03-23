@@ -9,6 +9,7 @@ $accent-color-orange: #ed6347;
 
 .project-info-nav {
   display: block;
+  width: 100% !important;
   margin-top: 20px;
   margin-bottom: 20px;
   border-top: 1px grey solid;
@@ -21,7 +22,7 @@ $accent-color-orange: #ed6347;
 
 .btn-tab {
   height: 95%;
-  margin-left: 10px;
+  margin-right: 36px;
   position: relative;
   padding: 0;
   border: none;
@@ -31,7 +32,7 @@ $accent-color-orange: #ed6347;
 
 .btn-tab:hover {
   height: 95%;
-  margin-left: 10px;
+  margin-right: 36px;
   border: none;
   background-color: transparent;
   color: $accent-color-orange;
