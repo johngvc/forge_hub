@@ -1,134 +1,105 @@
-<div class="container-new">
+<header>
+  <div>
+    <h1><%=  @project.name %></h1>
+    <p><%= @project.description %></p>
+  </div>
+</header>
+<main>
   <section>
-    <div class="container-new project-intro">
-      <div class="project-title-desc">
-        <h1><%=  @project.name %></h1>
-        <p><%= @project.description %></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="project-call-img">
-    <div class=project-img-container>
+    <div>
       <% if @project.photo.attached? %>
-        <%= cl_image_tag @project.photo.key, class: "project-img" %>
+        <%= cl_image_tag @project.photo.key%>
       <% else %>
-        <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "project-img" %>
+        <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg"%>
       <% end %>
     </div>
-
-
-    <div class="project-call-container">
-      <div class="container-new">
-        <div class="project-apply">
-
-          <% if User.find(@project.user_id) == current_user %>
-            <h2>Welcome back, <%= User.find(@project.user_id).name %>!</h2>
-          <% else %>
-            <h2><%= User.find(@project.user_id).name %> wants to make <%= @project.name %> a reality</h2>
-          <% end %>
-          <p>Current phase: <%= @project.status_project %></p>
-            <% if @is_not_participant && @has_join_request == false %>
-
-            <button class="ask-to-join-btn" data-toggle="modal" data-target="#projectAskModal">
-              Ask to join this project!
-            </button>
-            <% elsif @is_participant && @participant.status == 'founder' %>
-                <%= link_to edit_project_path(id: @project.id) do %>
-                  <div class="ask-to-join-btn">edit this project!</div>
-                <% end %>
-                <% unless @join_requests.first.nil? %>
-                  <%= link_to "Pending join requests!", project_join_request_pending_path(@project.id) %>
-                <% end %>
-            <% end %>
-
-
-
-          <div class="social-links">
-            <% if !@project.linkedin_url.empty? %>
-              <a href="<%= @project.linkedin_url %>" target="_blank">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            <% end %>
-            <% if !@project.github_url.empty? %>
-              <a href="<%= @project.github_url %>" target="_blank">
-                  <i class="fa fa-github"></i>
-              </a>
-            <% end %>
-            <% if !@project.trello_url.empty? %>
-              <a href="<%= @project.trello_url %>" target="_blank">
-
-                  <i class="fa fa-trello"></i>
-              </a>
-            <% end %>
-          </div>
-        </div>
-      </div>
+    <div>
+      <% if User.find(@project.user_id) == current_user %>
+        <h2>Welcome back, <%= User.find(@project.user_id).name %>!</h2>
+      <% else %>
+        <h2><%= User.find(@project.user_id).name %> wants to make <%= @project.name %> a reality</h2>
+      <% end %>
+      <p>Current phase: <%= @project.status_project %></p>
+      <% if @is_not_participant && @has_join_request == false %>
+        <buttondata-toggle="modal" data-target="#projectAskModal">
+          Ask to join this project!
+        </buttondata-toggle=>
+      <% elsif @is_participant && @participant.status == 'founder' %>
+        <%= link_to edit_project_path(id: @project.id) do %>
+          <div>edit this project!</div>
+        <% end %>
+        <% unless @join_requests.first.nil? %>
+          <%= link_to "Pending join requests!", project_join_request_pending_path(@project.id) %>
+        <% end %>
+      <% end %>
+      <ul>
+        <% if !@project.linkedin_url.empty? %>
+          <li>
+            <a href="<%= @project.linkedin_url %>" target="_blank">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        <% end %>
+        <% if !@project.github_url.empty? %>
+          <li>
+            <a href="<%= @project.github_url %>" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </li>
+        <% end %>
+        <% if !@project.trello_url.empty? %>
+          <li>
+            <a href="<%= @project.trello_url %>" target="_blank">
+              <i class="fa fa-trello"></i>
+            </a>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </section>
-  </div>
-
-  <div class="container-new">
-    <h1 class="our-story-title">Our story:</h1>
-    <div class="our-story-section">
+  <section>
+    <h2>Our story:</h2>
+    <div>
       <%= @project.content %>
     </div>
-  </div>
-
-  <div class="container-new">
-      <div class="card-project-profile">
-        <h2>Project members:</h2>
-
-        <% if @project_participants.empty? %>
-          <p><%= "There are no registered members of #{@project.name}"%></p>
-
-        <% else %>
-          <%= link_to "Detailed list", project_participants_path(project_id: @project.id) if !Participant.where(user_id: current_user.id, project_id: @project).first.nil? %>
-
-          <div class="acard-container2">
-            <% @project_participants.each do |participant| %>
-                  <%= render 'shared/userCard', participant: participant %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-
-    </div>
-  </div>
-
-
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="projectAskModal" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <div class="modal-dialog" role="document">
-
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">send the founders a message asking to join this project</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-            <span aria-hidden="true">&times;</span>
-          </button>
+  </section>
+  <section>
+    <div>
+      <h2>Project members:</h2>
+      <% if @project_participants.empty? %>
+        <p><%= "There are no registered members of #{@project.name}"%></p>
+      <% else %>
+        <%= link_to "Detailed list", project_participants_path(project_id: @project.id) if !Participant.where(user_id: current_user.id, project_id: @project).first.nil? %>
+        <div>
+          <% @project_participants.each do |participant| %>
+            <%= render 'shared/userCard', participant: participant %>
+          <% end %>
         </div>
-
-        <%= form_tag project_join_request_do_path(project_id: @project, id: @project_participants.first.id), method: :post do %>
-
-          <div class="modal-body">
-
-            <div class="input-group">
-              <textarea class="form-control" name="request_message"></textarea>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <input type="submit" class="btn-generic" value="send message">
-          </div>
-        <% end %>
+      <% end %>
+    </div>
+  </section>
+</main>
+<!-- Modal -->
+<div class="modal fade" id="projectAskModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">send the founders a message asking to join this project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <%= form_tag project_join_request_do_path(project_id: @project, id: @project_participants.first.id), method: :post do %>
+        <div class="modal-body">
+          <div class="input-group">
+            <textarea class="form-control" name="request_message"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn-generic" value="send message">
+        </div>
+      <% end %>
     </div>
   </div>
-  <!-- Modal -->
-
+</div>
+<!-- Modal -->
