@@ -23,7 +23,7 @@
           <% end %>
           <p>Current phase: <%= @project.status_project %></p>
           <% if @is_not_participant && @has_join_request == false %>
-            <buttondata-toggle="modal" data-target="#projectAskModal">
+            <buttondata-toggle="modal" data-target="#projectAskModal" style="color: var(--clr-primary)">
               Ask to join this project!
             </buttondata-toggle=>
           <% elsif @is_participant && @participant.status == 'founder' %>
@@ -63,7 +63,7 @@
     <section id="prj-story">
       <div>
         <h2 class="center-text">Our story:</h2>
-        <div class="center-text">
+        <div>
           <%= @project.content %>
         </div>
       </div>
