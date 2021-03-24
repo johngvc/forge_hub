@@ -1,4 +1,16 @@
-$accent-color-orange: #ed6347;
+:root {
+  --clr-primary: #ed6347;
+}
+
+.sh-prj-pg img {
+  max-width: 100%;
+}
+
+#prj-photo-call-to-action img,
+#prj-story img {
+  display: block;
+  margin: auto;
+}
 
 .container-new {
   margin: 0 auto;
@@ -7,6 +19,76 @@ $accent-color-orange: #ed6347;
   width: 90%;
 }
 
-section {
-  border: 1px red solid;
+.container--narrow {
+  max-width: 50rem;
+}
+
+#text-call-to-action {
+  padding: 1em 0;
+}
+
+#text-call-to-action li {
+  list-style-type: none;
+  margin-left: 0.5rem;
+}
+
+#text-call-to-action i {
+  color: black;
+}
+
+#text-call-to-action ul {
+  justify-content: center;
+  display: flex;
+  padding: 0;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.split-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.split-flex-normal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 40em) {
+  .split-flex {
+    flex-direction: row;
+  }
+
+  .split-flex > * {
+    flex-basis: 100%;
+  }
+
+  .split-flex-normal {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  // Css selector to select the all the child elements after the first
+  // it's a way of adding gaps between divs on a flex box
+
+  .split-flex > * + * {
+    margin-left: 2em;
+  }
+
+  .split-flex-normal > * + * {
+    margin-left: 2em;
+  }
+}
+
+#sh-prj-pg-header,
+.sh-prj-pg section {
+  padding: 0.5rem 0;
+}
+
+#sh-prj-pg-header {
+  padding-top: 1.5rem;
 }
