@@ -7,9 +7,71 @@ $accent-color-orange: #ed6347;
   width: 90%;
 }
 
-.our-story-title {
+.project-info-nav {
+  display: block;
+  width: 100% !important;
   margin-top: 20px;
-  text-align: center;
+  margin-bottom: 20px;
+  border-top: 1px grey solid;
+  border-bottom: 1px grey solid;
+}
+
+.project-info-tabs {
+  margin-top: 20px;
+}
+
+.btn-tab {
+  height: 95%;
+  margin-right: 36px;
+  position: relative;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: rgb(22, 22, 22);
+}
+
+.btn-tab:hover {
+  height: 95%;
+  margin-right: 36px;
+  border: none;
+  background-color: transparent;
+  color: $accent-color-orange;
+}
+
+.tab-content {
+  display: none;
+}
+
+.project-info-nav navbar {
+  height: 100%;
+}
+
+.project-info-nav {
+  height: 62px;
+}
+
+.btn-tab.active {
+  color: $accent-color-orange;
+}
+
+.btn-tab.active div {
+  bottom: 0;
+  height: 5px;
+  width: 100%;
+  border-bottom: 3px black solid;
+  position: absolute;
+  animation-name: example;
+  animation-duration: 0.1s;
+}
+
+/* The animation code */
+@keyframes example {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .card-project-profile {
@@ -38,7 +100,7 @@ $accent-color-orange: #ed6347;
 
 .trix-content h1 {
   font-size: 40px !important;
-  
+
   font-weight: 800;
 }
 
@@ -101,24 +163,23 @@ $accent-color-orange: #ed6347;
   height: 100%;
 }
 
-.our-story-section {
+.tab-contents {
   margin-top: 0px;
-  padding: 23px 0px;
-  border-top: 1px grey solid;
+  padding: 10px 0px;
 }
 
-.our-story-section h2 {
+.tab-contents h2 {
   margin: 10px 0px;
   font-size: 30px;
   font-weight: 800;
 }
 
-.our-story-section h3 {
+.tab-contents h3 {
   margin: 10px 0px;
   font-size: 36px;
   text-align: center;
 }
 
-.our-story-section p {
+.tab-contents p {
   font-size: 17px;
 }
