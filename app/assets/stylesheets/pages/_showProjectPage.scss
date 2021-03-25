@@ -34,7 +34,13 @@
 
 #text-call-to-action {
   padding: 1em 0;
-  width: 48%;
+  width: 100%;
+}
+
+@media (min-width: 40em) {
+  #text-call-to-action {
+    width: 48%;
+  }
 }
 
 #text-call-to-action li {
@@ -159,14 +165,9 @@
 .project-info-nav {
   display: block;
   width: 100% !important;
-  margin-top: 20px;
   margin-bottom: 20px;
   border-top: 1px grey solid;
   border-bottom: 1px grey solid;
-}
-
-.project-info-tabs {
-  margin-top: 20px;
 }
 
 .btn-tab {
