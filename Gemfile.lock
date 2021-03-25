@@ -325,6 +325,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   linkedin
   listen (~> 3.2)
+  nokogiri
   omniauth (~> 1.1)
   omniauth-linkedin-oauth2
   pg (>= 0.18, < 2.0)
