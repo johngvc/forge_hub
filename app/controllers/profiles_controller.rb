@@ -69,6 +69,14 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def scrape_linkedin
+    @scrape = ScrapeLinkedin.find(user_id: current_user.id)
+    html = open("#{@scrape.url}").read
+    doc = Nokogiri::HTML(html, nil, "utf-8")
+    results = []
+
+  end
+
   private
 
   def pundit_policy_scoped?

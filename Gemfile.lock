@@ -176,6 +176,7 @@ GEM
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    open-uri (0.1.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
     pry (0.13.1)
@@ -328,6 +329,7 @@ DEPENDENCIES
   nokogiri
   omniauth (~> 1.1)
   omniauth-linkedin-oauth2
+  open-uri
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails
