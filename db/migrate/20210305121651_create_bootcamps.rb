@@ -5,7 +5,7 @@ class CreateBootcamps < ActiveRecord::Migration[6.0]
       t.string :country
       t.string :city
       t.string :website
-
+      t. references :user, null: false, foreign_key: true
       t.timestamps
     end
   end
