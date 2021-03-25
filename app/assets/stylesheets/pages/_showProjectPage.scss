@@ -89,10 +89,6 @@
     flex-direction: row;
   }
 
-  .split-flex > * {
-    flex-basis: 100%;
-  }
-
   .split-flex-normal {
     flex-direction: row;
     justify-content: center;
@@ -140,13 +136,22 @@
   padding-top: 1.5rem;
 }
 
+#sh-prj-pg-header h1 {
+  font-weight: 800;
+}
+
+#sh-prj-pg-header h1,
+#sh-prj-pg-header p {
+  margin: 0;
+}
+
 @media (min-width: 40em) {
   #sh-prj-pg-header,
   .sh-prj-pg section {
-    padding: 2rem 0;
+    padding: 0.5rem 0;
   }
 
   #sh-prj-pg-header {
-    padding-top: 3.5rem;
+    padding-top: 1rem;
   }
 }
