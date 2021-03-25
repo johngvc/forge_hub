@@ -34,11 +34,28 @@
 
 #text-call-to-action {
   padding: 1em 0;
+  width: 48%;
 }
 
 #text-call-to-action li {
   list-style-type: none;
   margin-left: 0.5rem;
+}
+
+.image-container {
+  width: 100%;
+}
+
+.image-wrapper {
+  position: relative;
+  padding-bottom: 56.2%;
+}
+
+.image-wrapper img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 #text-call-to-action i {
@@ -101,6 +118,18 @@
 #prj-photo-call-to-action img,
 #prj-story img {
   padding: 1rem 0;
+}
+
+#prj-story.image-container {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#prj-story.image-wrapper {
+  position: relative;
+  padding-bottom: 56.2%;
 }
 
 #prj-story ul {

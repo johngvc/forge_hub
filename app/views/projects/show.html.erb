@@ -8,12 +8,14 @@
   <div class="container-new">
     <section id="prj-photo-call-to-action">
       <div class="split-flex">
-        <div>
-          <% if @project.photo.attached? %>
-            <%= cl_image_tag @project.photo.key%>
-          <% else %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg"%>
-          <% end %>
+        <div class="image-container">
+          <div class="image-wrapper">
+            <% if @project.photo.attached? %>
+              <%= cl_image_tag @project.photo.key%>
+            <% else %>
+              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg"%>
+            <% end %>
+          </div>
         </div>
         <div class="center-text" id="text-call-to-action">
           <% if User.find(@project.user_id) == current_user %>
