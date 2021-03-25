@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     post '/join_request_authorize/:join_request_id', to: 'projects#join_request_authorize', as: :join_request_authorize
     post '/join_request_refuse/:join_request_id', to: 'projects#join_request_refuse', as: :join_request_refuse
     get '/join_request_pending', to: 'projects#join_request_pending', as: :join_request_pending
+    get '/linkedin_scrape', to: 'profiles#scrape_linkedin', as: :linkedin_scrape
   end
 
   get '/reply_to_join_request', to: 'projects#reply_to_join_request', as: :reply_to_join_request
