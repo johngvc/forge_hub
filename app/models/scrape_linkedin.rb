@@ -1,0 +1,2 @@
+class ScrapeLinkedin < ApplicationRecord
+end
