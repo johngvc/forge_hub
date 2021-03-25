@@ -62,6 +62,46 @@
         </div>
       </div>
     </section>
+    <section class="container-new project-info-tabs">
+      <div class="project-info-nav">
+        <navbar>
+          <button class="btn-tab active" id="tab1">
+            <div></div>
+            Our story
+          </button>
+          <button class="btn-tab" id="tab2">
+            <div></div>
+            Project Milestones
+          </button>
+          <button class="btn-tab" id="tab3">
+            <div></div>
+            Comments
+          </button>
+          <button class="btn-tab" id="tab4">
+            <div></div>
+            FAQ
+          </button>
+        </navbar>
+      </div>
+      <div class="tab-contents">
+        <div class="container-new tab-content" id="content-tab1" style="display: block;">
+          <h2>tab1</h2>
+          <%= @project.content %>
+        </div>
+        <div class="container-new tab-content" id="content-tab2">
+          <h2>tab2</h2>
+          <p>This is the tab2 content</p>
+        </div>
+        <div class="container-new tab-content" id="content-tab3">
+          <h2>tab3</h2>
+          <p>This is the tab3 content</p>
+        </div>
+        <div class="container-new tab-content" id="content-tab4">
+          <h2>tab4</h2>
+          <p>This is the tab4 content</p>
+        </div>
+      </div>
+    </section>
     <section id="prj-story">
       <div>
         <h2 class="center-text">Our story:</h2>
