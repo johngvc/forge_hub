@@ -1,23 +1,200 @@
-$accent-color-orange: #ed6347;
+:root {
+  --clr-primary: #ed6347;
+}
+
+.sh-prj-pg img {
+  max-width: 100%;
+}
+
+.sh-prj-pg a {
+  color: var(--clr-primary);
+}
+
+.sh-prj-pg button {
+  color: var(--clr-primary);
+}
+
+#prj-photo-call-to-action img {
+  display: block;
+  margin: auto;
+}
+
+#prj-photo-call-to-action button {
+  background-color: transparent;
+  border: none;
+}
+
+.prj-story figure {
+  margin: 1em 0;
+}
+
+.prj-story h1 {
+  font-size: 2.5rem !important;
+}
+
+@media (min-width: 40em) {
+  .prj-story figure {
+    margin: 2em 0;
+  }
+
+  .prj-story h1 {
+    font-size: 3rem !important;
+  }
+}
 
 .container-new {
   margin: 0 auto;
   padding: 0;
   clear: both;
   width: 90%;
+  overflow: hidden;
+}
+
+.container--narrow {
+  max-width: 50rem;
+}
+
+#text-call-to-action {
+  padding: 1em 0;
+  width: 100%;
+}
+
+@media (min-width: 40em) {
+  #text-call-to-action {
+    width: 48%;
+  }
+}
+
+#text-call-to-action li {
+  list-style-type: none;
+  margin-left: 0.5rem;
+}
+
+.image-container {
+  width: 100%;
+}
+
+.image-wrapper {
+  position: relative;
+  padding-bottom: 56.2%;
+}
+
+.image-wrapper img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .btn-tab,
+  .scroll-div {
+    display: inline-block;
+  }
+}
+
+#text-call-to-action i {
+  color: black;
+}
+
+#text-call-to-action ul {
+  justify-content: center;
+  display: flex;
+  padding: 0;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.split-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.split-flex-normal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 40em) {
+  .split-flex {
+    flex-direction: row;
+  }
+
+  .split-flex-normal {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  // Css selector to select the all the child elements after the first
+  // it's a way of adding gaps between divs on a flex box
+
+  .split-flex > * + * {
+    margin-left: 2em;
+  }
+
+  .split-flex-normal > * + * {
+    margin-left: 2em;
+  }
+}
+
+#sh-prj-pg-header,
+.sh-prj-pg section {
+  padding: 0.5rem 0;
+}
+
+#prj-photo-call-to-action img {
+  padding: 1rem 0;
+}
+
+.prj-story:first-of-type h2 {
+  margin-bottom: 3rem;
+}
+
+.prj-story ul {
+  text-align: left;
+}
+
+#sh-prj-pg-header {
+  padding-top: 1.5rem;
+}
+
+#sh-prj-pg-header h1 {
+  font-weight: 800;
+}
+
+#sh-prj-pg-header h1,
+#sh-prj-pg-header p {
+  margin: 0;
+}
+
+@media (min-width: 40em) {
+  #sh-prj-pg-header,
+  .sh-prj-pg section {
+    padding: 0.5rem 0;
+  }
+
+  #sh-prj-pg-header {
+    padding-top: 1rem;
+  }
 }
 
 .project-info-nav {
   display: block;
   width: 100% !important;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border-top: 1px grey solid;
   border-bottom: 1px grey solid;
-}
-
-.project-info-tabs {
-  margin-top: 20px;
 }
 
 .btn-tab {
@@ -47,7 +224,7 @@ $accent-color-orange: #ed6347;
 }
 
 .project-info-nav {
-  height: 62px;
+  height: 4rem;
 }
 
 .btn-tab.active {
@@ -72,114 +249,4 @@ $accent-color-orange: #ed6347;
   to {
     width: 100%;
   }
-}
-
-.card-project-profile {
-  min-height: 41vh;
-  padding: 15px 0;
-  border-top: 1px grey solid;
-  margin: 13px 0px 15px 0px;
-  text-align: center;
-}
-
-.card-project-profile h2 {
-  margin-top: 0px;
-}
-
-.project-title-desc {
-  text-align: center;
-  min-height: 16vh;
-  overflow: hidden;
-  margin: 20px;
-}
-
-.project-title-desc h1 {
-  font-size: 67px;
-  font-weight: 800;
-}
-
-.trix-content h1 {
-  font-size: 40px !important;
-
-  font-weight: 800;
-}
-
-.trix-content img {
-  height: 25vh !important;
-}
-
-.project-title-desc p {
-  font-size: 19px;
-  font-weight: 600;
-  color: #979797;
-  padding: 0 130px;
-}
-
-.project-call-img {
-  width: 100%;
-  height: 426px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.project-img-container {
-  height: 100%;
-  width: 120%;
-}
-
-.project-apply {
-  font-size: 18px;
-  margin-top: 140px;
-  text-align: center;
-}
-
-.project-img {
-  height: 100%;
-  width: 100%;
-}
-
-.ask-to-join-btn {
-}
-
-.social-links {
-  text-align: center;
-  margin-top: 5px;
-  display: block;
-}
-
-.social-links i {
-  color: rgb(27, 27, 27);
-}
-
-.project-apply button {
-  border: none;
-  background-color: transparent;
-  color: $accent-color-orange;
-}
-
-.project-call-container {
-  width: 94%;
-  height: 100%;
-}
-
-.tab-contents {
-  margin-top: 0px;
-  padding: 10px 0px;
-}
-
-.tab-contents h2 {
-  margin: 10px 0px;
-  font-size: 30px;
-  font-weight: 800;
-}
-
-.tab-contents h3 {
-  margin: 10px 0px;
-  font-size: 36px;
-  text-align: center;
-}
-
-.tab-contents p {
-  font-size: 17px;
 }

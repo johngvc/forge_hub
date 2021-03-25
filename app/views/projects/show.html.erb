@@ -1,23 +1,23 @@
-<div class="container-new">
-  <section>
-    <div class="container-new project-intro">
-      <div class="project-title-desc">
-        <h1><%=  @project.name %></h1>
-        <p><%= @project.description %></p>
-      </div>
-    </div>
-  </section>
-  <section class="project-call-img">
-    <div class=project-img-container>
-      <% if @project.photo.attached? %>
-        <%= cl_image_tag @project.photo.key, class: "project-img" %>
-      <% else %>
-        <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg", class: "project-img" %>
-      <% end %>
-    </div>
-    <div class="project-call-container">
-      <div class="container-new">
-        <div class="project-apply">
+<header class="sh-prj-pg" id="sh-prj-pg-header">
+  <div class="container-new center-text">
+    <h1><%=  @project.name %></h1>
+    <p><%= @project.description %></p>
+  </div>
+</header>
+<main class="sh-prj-pg">
+  <div class="container-new">
+    <section id="prj-photo-call-to-action">
+      <div class="split-flex">
+        <div class="image-container">
+          <div class="image-wrapper">
+            <% if @project.photo.attached? %>
+              <%= cl_image_tag @project.photo.key%>
+            <% else %>
+              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg"%>
+            <% end %>
+          </div>
+        </div>
+        <div class="center-text" id="text-call-to-action">
           <% if User.find(@project.user_id) == current_user %>
             <h2>Welcome back, <%= User.find(@project.user_id).name %>!</h2>
           <% else %>
@@ -25,94 +25,102 @@
           <% end %>
           <p>Current phase: <%= @project.status_project %></p>
           <% if @is_not_participant && @has_join_request == false %>
-            <button class="ask-to-join-btn" data-toggle="modal" data-target="#projectAskModal">
+            <button data-toggle="modal" data-target="#projectAskModal" style="color: var(--clr-primary)">
               Ask to join this project!
             </button>
           <% elsif @is_participant && @participant.status == 'founder' %>
             <%= link_to edit_project_path(id: @project.id) do %>
-              <div class="ask-to-join-btn">edit this project!</div>
+              <div>edit this project!</div>
             <% end %>
             <% unless @join_requests.first.nil? %>
               <%= link_to "Pending join requests!", project_join_request_pending_path(@project.id) %>
             <% end %>
           <% end %>
-          <div class="social-links">
+          <ul>
             <% if !@project.linkedin_url.empty? %>
-              <a href="<%= @project.linkedin_url %>" target="_blank">
-                <i class="fa fa-linkedin"></i>
-              </a>
+              <li>
+                <a href="<%= @project.linkedin_url %>" target="_blank">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
             <% end %>
             <% if !@project.github_url.empty? %>
-              <a href="<%= @project.github_url %>" target="_blank">
-                <i class="fa fa-github"></i>
-              </a>
+              <li>
+                <a href="<%= @project.github_url %>" target="_blank">
+                  <i class="fa fa-github"></i>
+                </a>
+              </li>
             <% end %>
             <% if !@project.trello_url.empty? %>
-              <a href="<%= @project.trello_url %>" target="_blank">
-                <i class="fa fa-trello"></i>
-              </a>
+              <li>
+                <a href="<%= @project.trello_url %>" target="_blank">
+                  <i class="fa fa-trello"></i>
+                </a>
+              </li>
             <% end %>
-          </div>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
-</div>
-<section class="container-new project-info-tabs">
-  <div class="project-info-nav">
-    <navbar>
-      <button class="btn-tab active" id="tab1">
-        <div></div>
-        Our story
-      </button>
-      <button class="btn-tab" id="tab2">
-        <div></div>
-        Project Milestones
-      </button>
-      <button class="btn-tab" id="tab3">
-        <div></div>
-        Comments
-      </button>
-      <button class="btn-tab" id="tab4">
-        <div></div>
-        FAQ
-      </button>
-    </navbar>
-  </div>
-  <div class="tab-contents">
-    <div class="container-new tab-content" id="content-tab1" style="display: block;">
-      <h2>tab1</h2>
-      <%= @project.content %>
-    </div>
-    <div class="container-new tab-content" id="content-tab2">
-      <h2>tab2</h2>
-      <p>This is the tab2 content</p>
-    </div>
-    <div class="container-new tab-content" id="content-tab3">
-      <h2>tab3</h2>
-      <p>This is the tab3 content</p>
-    </div>
-    <div class="container-new tab-content" id="content-tab4">
-      <h2>tab4</h2>
-      <p>This is the tab4 content</p>
-    </div>
-  </div>
-</section>
-<div class="container-new">
-  <div class="card-project-profile">
-    <h2>Project members:</h2>
-    <% if @project_participants.empty? %>
-      <p><%= "There are no registered members of #{@project.name}"%></p>
-    <% else %>
-      <%= link_to "Detailed list", project_participants_path(project_id: @project.id) if !Participant.where(user_id: current_user.id, project_id: @project).first.nil? %>
-      <div class="acard-container2">
-        <% @project_participants.each do |participant| %>
-          <%= render 'shared/userCard', participant: participant %>
+    </section>
+    <section class="project-info-tabs">
+      <div class="project-info-nav scrolling-wrapper">
+        <navbar>
+          <button class="btn-tab active" id="tab1">
+            <div></div>
+            Our story
+          </button>
+          <button class="btn-tab" id="tab2">
+            <div></div>
+            Project Milestones
+          </button>
+          <button class="btn-tab" id="tab3">
+            <div></div>
+            Comments
+          </button>
+          <button class="btn-tab" id="tab4">
+            <div></div>
+            FAQ
+          </button>
+        </navbar>
+      </div>
+    </section>
+    <section id="project-info-contents">
+      <div class="tab-contents">
+        <div class="tab-content prj-story" id="content-tab1" style="display: block;">
+          <h2 class="center-text">Our story:</h2>
+          <%= @project.content %>
+        </div>
+        <div class="tab-content" id="content-tab2">
+          <h2 class="center-text">tab2:</h2>
+          <p>This is the tab2 content</p>
+        </div>
+        <div class="tab-content" id="content-tab3">
+          <h2 class="center-text">tab3:</h2>
+          <p>This is the tab3 content</p>
+        </div>
+        <div class="tab-content" id="content-tab4">
+          <h2 class="center-text">tab4:</h2>
+          <p>This is the tab4 content</p>
+        </div>
+      </div>
+    </section>
+    <section id="prj-members">
+      <div class="center-text">
+        <h2>Project members:</h2>
+        <% if @project_participants.empty? %>
+          <p><%= "There are no registered members of #{@project.name}"%></p>
+        <% else %>
+          <%= link_to "Detailed list", project_participants_path(project_id: @project.id) if !Participant.where(user_id: current_user.id, project_id: @project).first.nil? %>
+          <div class="split-flex-normal scrolling-wrapper">
+            <% @project_participants.each do |participant| %>
+              <div class="scroll-div"><%= render 'shared/userCard', participant: participant %></div>
+            <% end %>
+          </div>
         <% end %>
       </div>
-    <% end %>
+    </section>
   </div>
-</div>
+</main>
 <!-- Modal -->
 <div class="modal fade" id="projectAskModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
