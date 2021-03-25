@@ -155,3 +155,70 @@
     padding-top: 1rem;
   }
 }
+
+.project-info-nav {
+  display: block;
+  width: 100% !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px grey solid;
+  border-bottom: 1px grey solid;
+}
+
+.project-info-tabs {
+  margin-top: 20px;
+}
+
+.btn-tab {
+  height: 95%;
+  margin-right: 36px;
+  position: relative;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: rgb(22, 22, 22);
+}
+
+.btn-tab:hover {
+  height: 95%;
+  margin-right: 36px;
+  border: none;
+  background-color: transparent;
+  color: $accent-color-orange;
+}
+
+.tab-content {
+  display: none;
+}
+
+.project-info-nav navbar {
+  height: 100%;
+}
+
+.project-info-nav {
+  height: 62px;
+}
+
+.btn-tab.active {
+  color: $accent-color-orange;
+}
+
+.btn-tab.active div {
+  bottom: 0;
+  height: 5px;
+  width: 100%;
+  border-bottom: 3px black solid;
+  position: absolute;
+  animation-name: example;
+  animation-duration: 0.1s;
+}
+
+/* The animation code */
+@keyframes example {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
