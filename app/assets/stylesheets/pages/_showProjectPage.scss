@@ -19,6 +19,11 @@
   margin: auto;
 }
 
+#prj-photo-call-to-action button {
+  background-color: transparent;
+  border: none;
+}
+
 .prj-story figure {
   margin: 1em 0;
 }
@@ -89,7 +94,8 @@
     display: none;
   }
 
-  .btn-tab {
+  .btn-tab,
+  .scroll-div {
     display: inline-block;
   }
 }

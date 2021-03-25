@@ -25,9 +25,9 @@
           <% end %>
           <p>Current phase: <%= @project.status_project %></p>
           <% if @is_not_participant && @has_join_request == false %>
-            <buttondata-toggle="modal" data-target="#projectAskModal" style="color: var(--clr-primary)">
+            <button data-toggle="modal" data-target="#projectAskModal" style="color: var(--clr-primary)">
               Ask to join this project!
-            </buttondata-toggle=>
+            </button>
           <% elsif @is_participant && @participant.status == 'founder' %>
             <%= link_to edit_project_path(id: @project.id) do %>
               <div>edit this project!</div>
@@ -111,9 +111,9 @@
           <p><%= "There are no registered members of #{@project.name}"%></p>
         <% else %>
           <%= link_to "Detailed list", project_participants_path(project_id: @project.id) if !Participant.where(user_id: current_user.id, project_id: @project).first.nil? %>
-          <div class="split-flex-normal">
+          <div class="split-flex-normal scrolling-wrapper">
             <% @project_participants.each do |participant| %>
-              <%= render 'shared/userCard', participant: participant %>
+              <div class="scroll-div"><%= render 'shared/userCard', participant: participant %></div>
             <% end %>
           </div>
         <% end %>
