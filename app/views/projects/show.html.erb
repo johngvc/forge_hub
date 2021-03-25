@@ -62,7 +62,7 @@
         </div>
       </div>
     </section>
-    <section class="container-new project-info-tabs">
+    <section class="project-info-tabs">
       <div class="project-info-nav">
         <navbar>
           <button class="btn-tab active" id="tab1">
@@ -83,30 +83,24 @@
           </button>
         </navbar>
       </div>
+    </section>
+    <section id="project-info-contents">
       <div class="tab-contents">
-        <div class="container-new tab-content" id="content-tab1" style="display: block;">
-          <h2>tab1</h2>
+        <div class="tab-content" id="content-tab1" style="display: block;">
+          <h2 class="center-text">Our story:</h2>
           <%= @project.content %>
         </div>
-        <div class="container-new tab-content" id="content-tab2">
-          <h2>tab2</h2>
+        <div class="tab-content" id="content-tab2">
+          <h2 class="center-text">tab2:</h2>
           <p>This is the tab2 content</p>
         </div>
-        <div class="container-new tab-content" id="content-tab3">
-          <h2>tab3</h2>
+        <div class="tab-content" id="content-tab3">
+          <h2 class="center-text">tab3:</h2>
           <p>This is the tab3 content</p>
         </div>
-        <div class="container-new tab-content" id="content-tab4">
-          <h2>tab4</h2>
+        <div class="tab-content" id="content-tab4">
+          <h2 class="center-text">tab4:</h2>
           <p>This is the tab4 content</p>
-        </div>
-      </div>
-    </section>
-    <section id="prj-story">
-      <div>
-        <h2 class="center-text">Our story:</h2>
-        <div>
-          <%= @project.content %>
         </div>
       </div>
     </section>
