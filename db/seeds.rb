@@ -9,6 +9,8 @@
 require 'faker'
 require 'open-uri'
 
+# Para adicionar mais usuários e projetos
+# basta adicionar uma imagem nova nas arrays "user_imgs" e "project_imgs"
 
 
 alphabet = ("a".."z").to_a
@@ -16,7 +18,7 @@ user_imgs = [
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1614880281/pjw3ww13wcf8t1yf1j4285a0fs48.jpg'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1614806606/ds1vkvrnfi9imq3qzgvw5m3iddn1.jpg'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1614881462/gd2mevto31otse2d7nnsuf0xgzsf.jpg'),
-    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1614881462/gd2mevto31otse2d7nnsuf0xgzsf.jpg'),
+    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1616630728/7tiwm0aquwl2vkuger1rx1i8g3sa.jpg'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1616685608/hc4ke1pwz380mztkbd81w74o1shs.jpg'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615573749/i3kv9yzw9cr1npfib0n59q98g1na.jpg')
             ] 
@@ -32,16 +34,23 @@ project_imgs = [
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615574225/4zg6ruucqdpjh91d4cifdjamj4zw.jpg'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615572915/c59e7jox3x8pljiq4ybzcjln8eph.png'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615573260/nn9vclc7etxz7bwr75ykp0umg2xe.png'),
+    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615571588/3kl66226ztx9xc94u9cf2l7sv6tk.jpg'),
+    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615570767/cpbabsxvgwj1s3dngnrhpciwu5vs.jpg'),
+    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615571255/znew5s4eykfsmc673lfrh1qv5nil.png'),
+    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615570274/lw9sl3hqe39l37vgukq933veknf7.jpg'),
+    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615570093/g3bslpmex2v1dy1fuv1x34n4hth4.png'),
+    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615570187/i1um53mvpnfh55fx0m85nx938abv.jpg'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615572411/8e3kelrq24o230it8vdi3fqq0rdn.jpg')
             ] 
-
-
 
 puts "Iniciando a sequencia de seed"
 puts "#"*50
 puts "Resetando Database"
 Participant.delete_all
 Project.delete_all
+Bootcamp.delete_all
+ChatMessage.delete_all
+JoinRequest.delete_all
 User.delete_all
 
 puts "#"*50
@@ -73,18 +82,11 @@ project_imgs.length.times do
                         linkedin_url: Faker::Internet.email(domain: 'linkedin'),
                         github_url: Faker::Internet.email(domain: 'github'),
                         trello_url: Faker::Internet.email(domain: 'trello'),
-                        is_suspended: [true, false].sample,
+                        is_suspended: false,
                         status_project:  ['idea', 'design', 'pre-production', 'development', 'growth'].sample
                         })
     newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
-    if newProject.save
-        puts "Projeto id: #{Project.last.id} criado com o nome: #{Project.last.name}"
-    else
-        puts "Falha no salvamento do projeto"
-    end
-    
-    puts "-"*5
-    puts "Instanciando o participantes do projeto :#{Project.last.name}"
+    puts "Falha no salvamento do projeto" unless newProject.save
     nowTime = DateTime.now
     # Instanciando o founder do projeto
     newParticipant = Participant.new({
@@ -115,10 +117,12 @@ project_imgs.length.times do
                                       status: ["cofounder", "member", "invitee"].sample
                                       })
       newParticipant.save
-      user_iterator += 1
+      user_iterator += 1 # Variável para evitar repetir usuários participantes de um projeto
     end
 
-    puts "#"*50
+    # Mostrar detalhes do projeto criado no console
+    puts " "
+    puts "#"*23 + '  Project Created  ' + "#"*23
     puts "Projeto: #{Project.last.name}"
     puts "Founder: #{User.find(Project.last.user_id).name}"
     puts "-"*10 + "Membros" + "-"*10
@@ -127,6 +131,5 @@ project_imgs.length.times do
     end
     
     iterator = iterator + 1
-    puts "#"*50
 end
 puts "Finalizada sequencia de seed"
