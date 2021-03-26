@@ -20,7 +20,7 @@ user_imgs = [
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1614881462/gd2mevto31otse2d7nnsuf0xgzsf.jpg'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1616630728/7tiwm0aquwl2vkuger1rx1i8g3sa.jpg'),
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1616685608/hc4ke1pwz380mztkbd81w74o1shs.jpg'),
-    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615573749/i3kv9yzw9cr1npfib0n59q98g1na.jpg')
+    URI.open('https://res.cloudinary.com/johngvc/image/upload/v1615471388/p9tumyra1btjbcdrysontteptieo.jpg')
             ] 
 project_imgs = [
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1613760066/sample.jpg'),
