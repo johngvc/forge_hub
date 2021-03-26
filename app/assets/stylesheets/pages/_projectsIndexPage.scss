@@ -1,23 +1,22 @@
-
 .projects-section-search {
-    padding-top: 70px;
-    display: flex;
-    min-height: 80vh;
-    max-width: 95vw;
-    justify-content: flex-start;
-    flex-direction: row;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    margin: 25px;
-    background: #F8F8F8;
-    box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    position: relative;
+  padding-top: 70px;
+  display: flex;
+  min-height: 80vh;
+  max-width: 95vw;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 25px;
+  background: var(--clr-gray-200);
+  box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  position: relative;
 }
 
 .projects-section-search h1 {
-    position: absolute;
-    top: 23px;
-    left: 38px;
-    font-weight: 800;
+  position: absolute;
+  top: 23px;
+  left: 38px;
+  font-weight: 800;
 }
