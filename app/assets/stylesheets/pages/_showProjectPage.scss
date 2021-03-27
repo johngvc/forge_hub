@@ -208,7 +208,7 @@
   margin-right: 36px;
   border: none;
   background-color: transparent;
-  color: $accent-color-orange;
+  color: var(--clr-primary);
 }
 
 .tab-content {
@@ -224,7 +224,7 @@
 }
 
 .btn-tab.active {
-  color: $accent-color-orange;
+  color: var(--clr-primary);
 }
 
 .btn-tab.active div {

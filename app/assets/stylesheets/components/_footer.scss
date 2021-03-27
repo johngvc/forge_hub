@@ -1,14 +1,25 @@
-.sub-footer {
+#sub-footer {
   height: 40px;
   background-color: var(--clr-gray-300);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
 }
 
-.main-footer {
+#footer-logo-img img {
+  width: 5rem;
+}
+
+#main-footer {
   height: 205px;
   background-color: var(--clr-gray-100);
   display: flex;
   justify-content: space-between;
+}
+
+#main-footer > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#main-footer > div div {
+  flex-basis: 100%;
 }
