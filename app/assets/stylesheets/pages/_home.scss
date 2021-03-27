@@ -1,77 +1,69 @@
-// Specific CSS for your home-page
-$accent-color-orange: #ED6347;
-$thirty-grey-color: #F5F6F6;
-$thirty-other-grey-color: #C4C4C4;
-$accent-color-orange: #ED6347;
-
-
-//debug c
 .home-page div {
 }
 
 .home-page {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
 .home-page div {
-    height: 100px;
-    width: 100%;
+  height: 100px;
+  width: 100%;
 }
 
 .home-page .banner {
-    height: 92vh;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
+  height: 92vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
 }
 
 .home-page .banner h1 {
-    font-family: lobster, cursive;
-    font-size: 79px;
-    width: 48vw;
-    margin-left: 45px;
-    line-height: 82px;
-    margin-top: 20px;
-    margin-bottom: 50px;
+  font-family: lobster, cursive;
+  font-size: 79px;
+  width: 48vw;
+  margin-left: 45px;
+  line-height: 82px;
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 .home-page .banner .start-btn {
-    color: rgb(27, 27, 27);
-    position: absolute;
-    bottom: 21vh;
-    left: 3.8vw;
+  color: rgb(27, 27, 27);
+  position: absolute;
+  bottom: 21vh;
+  left: 3.8vw;
 }
 
 .home-page .banner .start-btn button {
-    width: 195px;
-    height: 55px;
-    font-weight: 700;
-    background-color: #ED6347;
-    border: none;
-    border-radius: 5px;
-    font-size: 28px;
+  width: 195px;
+  height: 55px;
+  font-weight: 700;
+  background-color: var(--clr-primary);
+  border: none;
+  border-radius: 5px;
+  font-size: 28px;
 }
 
 .home-page .banner .start-btn {
-    color: rgb(27, 27, 27);
-    position: absolute;
-    bottom: 21vh;
-    left: 3.8vw;
+  color: rgb(27, 27, 27);
+  position: absolute;
+  bottom: 21vh;
+  left: 3.8vw;
 }
 
 .home-page .banner .start-btn button {
-    width: 195px;
-    height: 55px;
-    font-weight: 700;
-    background-color: #ED6347;
-    border: none;
-    border-radius: 5px;
-    font-size: 28px;
+  width: 195px;
+  height: 55px;
+  font-weight: 700;
+  background-color: var(--clr-primary);
+  border: none;
+  border-radius: 5px;
+  font-size: 28px;
 }

@@ -1,14 +1,8 @@
-$accent-color-orange: #ED6347;
-$thirty-grey-color: #F5F6F6;
-$thirty-other-grey-color: #C4C4C4;
-$accent-color-orange: #ED6347;
-
-
 .logo a {
-    margin: 0;
-    padding: 0;
-    height: 80%;
-    width: 15%;
+  margin: 0;
+  padding: 0;
+  height: 80%;
+  width: 15%;
 }
 
 .reset-margin {
@@ -17,9 +11,13 @@ $accent-color-orange: #ED6347;
 
 .nav-bar {
   height: 60px;
-  background-color: $thirty-grey-color;
+  background-color: var(--clr-gray-100);
   display: flex;
   justify-content: center;
+}
+
+.nav-bar a {
+  color: var(--clr-primary);
 }
 
 .logo {
@@ -45,7 +43,7 @@ $accent-color-orange: #ED6347;
 }
 
 .Log-in-btn {
-  background-color: $accent-color-orange;
+  background-color: var(--clr-primary);
   width: 100px;
   margin-right: 20px;
   height: 30px;
@@ -64,7 +62,6 @@ $accent-color-orange: #ED6347;
 .controls p {
   display: inline;
   margin: 10px;
-  
 }
 
 .logo .img {
@@ -76,7 +73,6 @@ $accent-color-orange: #ED6347;
   background-size: contain;
   background-repeat: no-repeat;
 }
-
 
 // .nav-bar-search-input {
 //   position: relative;
@@ -92,7 +88,7 @@ $accent-color-orange: #ED6347;
 // }
 
 // .nav-bar-search-input input:focus {
-//   border: $accent-color-orange 1px solid;
+//   border:var(--clr-primary) 1px solid;
 // }
 
 // .nav-bar-search-input i {

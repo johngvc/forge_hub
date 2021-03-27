@@ -1,60 +1,59 @@
-$accent-color-orange: #ED6347;
-
 .outline-current-user {
-    border: 2px $accent-color-orange solid;
+  border: 2px var(--clr-primary) solid;
 }
 
 /* Dropdown Button */
-  .dropbtn-a {
-      color: rgb(27, 27, 27);
-      border: none;
-      cursor: pointer;
-    }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown-a {
-    position: absolute;
-    top: 10px;
-    left: 16px;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .myDropdown-a {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
+.dropbtn-a {
+  color: rgb(27, 27, 27);
+  border: none;
+  cursor: pointer;
+}
 
-  .dropdown-a:hover .myDropdown-a {
-    display: block;
-  }
+/* The container <div> - needed to position the dropdown content */
+.dropdown-a {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  display: inline-block;
+}
 
-  /* Links inside the dropdown */
-  .myDropdown-a a {
-    color: rgb(27, 27, 27);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .myDropdown-a a:hover {background-color: #ddd}
+/* Dropdown Content (Hidden by Default) */
+.myDropdown-a {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
 
-  
-  .leave-project {
-    position: absolute;
-    top: 10px;
-    left: 16px;
-    color: rgb(207, 0, 0);
-  }
+.dropdown-a:hover .myDropdown-a {
+  display: block;
+}
 
-  .cofounder-icon {
-    color: $accent-color-orange;
-    position: absolute;
-    top: 10px;
-    right: 16px;
-  }
+/* Links inside the dropdown */
+.myDropdown-a a {
+  color: rgb(27, 27, 27);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.myDropdown-a a:hover {
+  background-color: #ddd;
+}
+
+.leave-project {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  color: rgb(207, 0, 0);
+}
+
+.cofounder-icon {
+  color: var(--clr-primary);
+  position: absolute;
+  top: 10px;
+  right: 16px;
+}

@@ -15,7 +15,13 @@
 // Trix Action text (for rich text)
 @import "./actiontext.scss";
 
-$accent-color-orange: #ed6347;
+:root {
+  --clr-primary: #ed6347;
+  --clr-gray-100: #f5f6f6;
+  --clr-gray-200: #f8f8f8;
+  --clr-gray-300: #c4c4c4;
+  --clr-gray-400: #979797;
+}
 
 body {
   font-family: Roboto, sans-serif;
@@ -65,7 +71,7 @@ body {
 }
 
 .btn-generic {
-  color: $accent-color-orange !important;
+  color: var(--clr-primary) !important;
   background-color: transparent !important;
   border: none !important;
 }
