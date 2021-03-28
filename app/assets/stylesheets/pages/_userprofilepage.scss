@@ -3,13 +3,16 @@ $std-padding: 15px 0;
 .profile-page {
   @include flex-display(space-around, flex-start, row);
   .profile-section {
+    .avatar-big {
+      @include squarification(20.5rem);
+    }
     // @include cards;
     background-color: $clr-gray-200;
     position: sticky;
-    top: 25px;
-    min-height: 87vh;
+    top: 0;
+    min-height: 100vh;
     width: 30vw;
-    margin: 25px;
+    // margin: 25px;
 
     & > .container-new {
       @include flex-display();
@@ -31,14 +34,17 @@ $std-padding: 15px 0;
   }
 
   .user-info {
+    height: 150px;
+    width: 100%;
+
     .form-actions {
       justify-content: flex-start;
       margin: 0;
+      color: $clr-primary;
     }
   }
 
   .user-info-acc {
-    // text-align: center;
     h2 {
       font-size: 2rem;
       font-weight: bold;
@@ -46,84 +52,69 @@ $std-padding: 15px 0;
       margin-bottom: 0;
     }
   }
-}
 
-.profile-page .profile-section .user-info {
-  height: 150px;
-  width: 100%;
-}
+  .second-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 67vw;
+    min-height: 80vh;
+    margin: 25px;
 
-// .profile-page .profile-section .avatar-big {
-//   height: auto;
-//   width: 100%;
-//   margin-top: 30px;
-//   border-radius: 50%;
-//   border: 2px white solid;
-// }
+    h2 {
+      margin: 11px 0px 0px 19px;
+      font-size: 34px;
+      font-weight: 800;
+    }
 
-.profile-page .second-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  max-width: 67vw;
-  min-height: 80vh;
-  margin: 25px;
-}
+    .projects-section {
+      .messages-section {
+        width: 100%;
+        min-height: 50vh;
+        min-width: 35vw;
+        background: $clr-gray-200;
+        box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+      }
+      .card-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        min-height: 38vh;
+        margin-top: 16px;
+        padding: 15px;
+      }
+    }
+    .messages-section {
+      width: 100%;
+      margin-top: 2vh;
+      min-height: 28vh;
 
-.profile-page .second-section .projects-section,
-.messages-section {
-  width: 100%;
-  min-height: 50vh;
-  min-width: 35vw;
-  background: $clr-gray-200;
-  box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-}
-
-.profile-page .second-section h2 {
-  margin: 11px 0px 0px 19px;
-  font-size: 34px;
-  font-weight: 800;
-}
-
-.profile-page .second-section .projects-section .card-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  width: 100%;
-  min-height: 38vh;
-  margin-top: 16px;
-  padding: 15px;
-}
-
-.profile-page .second-section .messages-section {
-  width: 100%;
-  margin-top: 2vh;
-  min-height: 28vh;
-}
-
-.profile-page .second-section .messages-section .card-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  min-height: 38vh;
-  margin-top: 16px;
-  padding: 15px;
+      .card-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        min-height: 38vh;
+        margin-top: 16px;
+        padding: 15px;
+      }
+    }
+  }
 }
 
 .new-message-icon {
   display: flex;
   align-items: baseline;
   justify-content: center;
-}
-
-.new-message-icon i,
-.new-message-icon p {
-  color: $clr-primary;
-  font-size: 20px;
-  margin-left: 8px;
+  i,
+  p {
+    color: $clr-primary;
+    font-size: 20px;
+    margin-left: 8px;
+  }
 }

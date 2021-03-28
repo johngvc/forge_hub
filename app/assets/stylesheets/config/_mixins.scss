@@ -26,3 +26,8 @@
   align-items: $align-items;
   flex-direction: $direction;
 }
+
+@mixin squarification($pixels) {
+  width: $pixels;
+  height: $pixels;
+}
