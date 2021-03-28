@@ -14,7 +14,7 @@ class Project < ApplicationRecord
   validates :status_project, inclusion: { in: ['idea', 'design', 'pre-production', 'development', 'growth'],
                                           message: "%{value} is not a valid project status" }
 
-  pg_search_scope :global_search,
+  pg_search_scope :search_by_tag,
                   associated_against: {
                     tags: %i[name]
                   },
