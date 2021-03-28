@@ -114,14 +114,27 @@
   align-items: center;
 }
 
+.split-flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 @media (min-width: 40em) {
   .split-flex {
     flex-direction: row;
   }
 
+  .split-flex-row {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   .split-flex-normal {
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   // Css selector to select the all the child elements after the first
