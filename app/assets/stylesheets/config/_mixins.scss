@@ -32,6 +32,16 @@
   flex-direction: $direction;
 }
 
+@mixin flex-display-wrap(
+  $justify-content: flex-start,
+  $align-items: center,
+  $direction: column,
+  $flex-wrap: wrap
+) {
+  @include flex-display($justify-content, $align-items, $direction);
+  flex-wrap: $flex-wrap;
+}
+
 @mixin squarification($pixels) {
   width: $pixels;
   height: $pixels;

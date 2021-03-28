@@ -1,11 +1,8 @@
 .project-card {
   @include cards;
-  margin: 14px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  @include flex-display;
   overflow: hidden;
-  flex-direction: column;
+  margin-bottom: 25px;
 
   .container-new {
     // padding-top: 15px;

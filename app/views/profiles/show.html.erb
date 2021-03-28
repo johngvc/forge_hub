@@ -48,15 +48,17 @@
   </div>
   <div class="second-section">
     <div class="projects-section">
-      <h2>Active Projects</h2>
-      <%# partials %>
-      <div class="card-container">
-        <% @ongoing_projects_participating.each do |project| %>
-          <%= render 'shared/projectBigCard', project: project if !project.nil?%>
-        <% end %>
-        <% @suspended_projects_participating.each do |project| %>
-          <%= render 'shared/projectBigCard', project: project if !project.nil? %>
-        <% end %>
+      <div class="container-new">
+        <h2>Active Projects</h2>
+        <%# partials %>
+        <div class="card-container">
+          <% @ongoing_projects_participating.each do |project| %>
+            <%= render 'shared/projectBigCard', project: project if !project.nil?%>
+          <% end %>
+          <% @suspended_projects_participating.each do |project| %>
+            <%= render 'shared/projectBigCard', project: project if !project.nil? %>
+          <% end %>
+        </div>
       </div>
     </div>
     <% if @user == current_user %>

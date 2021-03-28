@@ -12,7 +12,6 @@ $std-padding: 15px 0;
     top: 0;
     min-height: 100vh;
     width: 30vw;
-    // margin: 25px;
 
     & > .container-new {
       @include flex-display();
@@ -28,9 +27,6 @@ $std-padding: 15px 0;
         margin-left: 5px;
       }
     }
-  }
-  .second-section {
-    width: 100%;
   }
 
   .user-info {
@@ -58,14 +54,14 @@ $std-padding: 15px 0;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    max-width: 67vw;
+    max-width: 70vw;
     min-height: 80vh;
-    margin: 25px;
+    width: 100%;
 
     h2 {
-      margin: 11px 0px 0px 19px;
-      font-size: 34px;
-      font-weight: 800;
+      font-size: 2.1rem;
+      text-align: center;
+      font-weight: bold;
     }
 
     .projects-section {
@@ -77,15 +73,13 @@ $std-padding: 15px 0;
         box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
       }
+      & > .container-new {
+        padding-top: 25px;
+      }
       .card-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-wrap: wrap;
+        @include flex-display-wrap(space-evenly, flex-start, row);
         width: 100%;
         min-height: 38vh;
-        margin-top: 16px;
-        padding: 15px;
       }
     }
     .messages-section {
