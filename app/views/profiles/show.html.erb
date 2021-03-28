@@ -1,9 +1,3 @@
-<% if current_user.bootcamps_id.nil? %>
-  <div style="margin-top: 30px; text-align: center; display: flex; flex-direction: column; justify-content: center; height: 15px; line-height: 5px;">
-    <p>Are you a coding bootcamp alumnus?</p>
-    <strong><%= link_to "add your bootcamp to your profile!", edit_user_registration_path, class: "form-actions" %></strong>
-  </div>
-<% end %>
 <div class="profile-page">
   <div class="profile-section">
     <div class="container-new">
@@ -14,29 +8,23 @@
       <% else %>
         <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-big" %>
       <% end %>
-      <% if @user == current_user %>
-        <a href="<%= edit_user_registration_path(@user.id) %>">
-          Edit my profile <i class="fas fa-edit"></i>
-        </a>
-      <% else %>
-        <a href="<%= edit_user_registration_path(@user.id) %>" style="visibility: hidden;">
-          Edit my profile <i class="fas fa-edit"></i>
-        </a>
-      <% end %>
+      <p>
+        <% if @user == current_user %>
+          <a href="<%= edit_user_registration_path(@user.id) %>">
+            Edit my profile  <i class="fas fa-edit"></i>
+          </a>
+        <% else %>
+          <a href="<%= edit_user_registration_path(@user.id) %>" style="visibility: hidden;">
+            Edit my profile  <i class="fas fa-edit"></i>
+          </a>
+        <% end %>
+      </p>
       <div class="user-info-acc">
-        <ul>
-          <li>
-            <h2><%= @user.name %></h2>
-          </li>
-          <li>
-            <p><%= @user.email %></p>
-          </li>
-          <% if !@user.description.nil? %>
-            <li>
-              <p>My Description: <%= @user.description %></p>
-            </li>
-          <% end %>
-        </ul>
+        <h2><%= @user.name %></h2>
+        <p><%= @user.email %></p>
+        <% if !@user.description.nil? %>
+          <p>My Description: <%= @user.description %></p>
+        <% end %>
       </div>
       <div class="user-info">
         <p>
@@ -47,6 +35,14 @@
             Founded <%= Project.where({user_id: @user}).count %> project
           <% end %>
         </p>
+        <% if current_user.bootcamps_id.nil? %>
+          <div style="">
+            <p>
+              Are you a coding bootcamp alumnus? 
+              <%= link_to "Add the bootcamp to your profile!", edit_user_registration_path, class: "form-actions" %>
+            </p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

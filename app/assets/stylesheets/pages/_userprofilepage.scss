@@ -1,9 +1,10 @@
-$std-padding: 15px 10px;
+$std-padding: 15px 0;
 
 .profile-page {
   @include flex-display(space-around, flex-start, row);
   .profile-section {
-    @include cards;
+    // @include cards;
+    background-color: $clr-gray-200;
     position: sticky;
     top: 25px;
     min-height: 87vh;
@@ -14,15 +15,15 @@ $std-padding: 15px 10px;
       @include flex-display();
     }
 
-    i {
-      display: block;
-      margin-left: 5px;
-    }
-
     a {
       @include flex-display(center, center, row);
       color: $clr-gray-400;
       margin-top: 13px;
+
+      i {
+        display: block;
+        margin-left: 5px;
+      }
     }
   }
   .second-section {
@@ -30,51 +31,35 @@ $std-padding: 15px 10px;
   }
 
   .user-info {
-    p {
-      // text-align: center;
+    .form-actions {
+      justify-content: flex-start;
+      margin: 0;
     }
   }
 
   .user-info-acc {
-    text-align: center;
+    // text-align: center;
     h2 {
       font-size: 2rem;
       font-weight: bold;
-      padding: $std-padding;
-    }
-
-    p {
-      padding: $std-padding;
+      padding-top: 15px;
+      margin-bottom: 0;
     }
   }
 }
-
-// .profile-page .user-info-acc ul {
-//   padding: 0px;
-//   list-style: none;
-// }
-
-// .profile-page .user-info-acc p {
-//   font-size: 17px;
-//   font-weight: 600;
-//   margin: 2px 0px 0px 16px;
-//   text-align: center;
-//   padding: 0px 18px 0px 0px;
-// }
 
 .profile-page .profile-section .user-info {
   height: 150px;
   width: 100%;
 }
 
-.profile-page .profile-section .avatar-big {
-  height: 180px;
-  width: 180px;
-  margin-top: 30px;
-  border-radius: 50%;
-  border: 2px white solid;
-  box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
-}
+// .profile-page .profile-section .avatar-big {
+//   height: auto;
+//   width: 100%;
+//   margin-top: 30px;
+//   border-radius: 50%;
+//   border: 2px white solid;
+// }
 
 .profile-page .second-section {
   display: flex;
