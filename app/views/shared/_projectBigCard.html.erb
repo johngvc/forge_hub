@@ -1,7 +1,6 @@
-  <div class="my-container project-card" >
-    <div class="card-element project-image">
-
-        <a href="<%= project_path(project.id) %>" class="img-link"> 
+<div class="project-card" >
+  <div class="card-element project-image">
+    <a href="<%= project_path(project.id) %>" class="img-link"> 
           <% if project.photo.attached? %>
               <%= cl_image_tag project.photo.key, class: "img" %>
           <% else %>
@@ -19,48 +18,41 @@
             <% end %>
           </a>
           <a href="<%= profile_path(User.find(project.user_id)) %>"><p class="founder">Founded by <%= User.find(project.user_id).name %><p/></a>
-        </div>
-    </div>
-
-    <div class="card-element project-title">
-      <p>
-        <a href="<%= project_path(project.id) %>">
-          <%= project.name %>
-        </a>
-      </p>
-    </div>
-
-    <div class="card-element project-description">
-      <p>
-        <%= project.description %>
-      </p>
-    </div>
-
-    <div class="card-element project-infos">
-      <div class="info">
-        <i class="fas fa-user-friends"></i>
-
-        
-        <% if project.participants.count == 1 %>
-          <p><%= project.participants.count %> member</p>
-        <% else %>
-          <p><%= project.participants.count %> members</p>
-        <% end %>
-        
-
-        
-      </div>
-      <div class="info">
-        <i class="fas fa-flag"></i>     
-        <% if project.is_suspended %>
-          <p style="color: red;">Project suspended</p>
-        <% else %>
-          <p><%= project.status_project %></p>
-        <% end %>
-      </div>
-    </div>
-    <div class="container-card">
-        <a class="apply-now-link" href="<%= project_path(project.id) %>">Read more</a>
-    </div>
-
+</div>
+</div>
+<div class="container-new">
+  <div class="card-element project-title">
+    <p>
+      <a href="<%= project_path(project.id) %>">
+        <%= project.name %>
+      </a>
+    </p>
   </div>
+  <div class="card-element project-description">
+    <p>
+      <%= project.description %>
+    </p>
+  </div>
+  <div class="card-element project-infos">
+    <div class="info">
+      <i class="fas fa-user-friends"></i>
+      <% if project.participants.count == 1 %>
+        <p><%= project.participants.count %> member</p>
+      <% else %>
+        <p><%= project.participants.count %> members</p>
+      <% end %>
+    </div>
+    <div class="info">
+      <i class="fas fa-flag"></i>
+      <% if project.is_suspended %>
+        <p style="color: red;">Project suspended</p>
+      <% else %>
+        <p><%= project.status_project %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="container-card">
+    <a class="apply-now-link" href="<%= project_path(project.id) %>">Read more</a>
+  </div>
+</div>
+</div>

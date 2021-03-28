@@ -1,6 +1,8 @@
 $footer-height: 38vh;
 
 footer {
+  @include top-box-shadow;
+  z-index: 5;
   ul {
     list-style-type: none;
     padding: 0;

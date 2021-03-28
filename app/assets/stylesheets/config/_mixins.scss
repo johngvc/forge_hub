@@ -11,9 +11,14 @@
 }
 
 @mixin cards {
-  box-shadow: 11px 13px 20px -9px $black-25;
-  border-radius: 20px;
+  // box-shadow: 11px 13px 20px -9px $black-10;
+  box-shadow: 2px 2px 11px 0px $black-5;
+  -webkit-box-shadow: 2px 2px 11px 0px $black-5;
+  -moz-box-shadow: 2px 2px 11px 0px $black-5;
+  border-radius: 8px;
   background: $clr-gray-200;
+  height: 280px;
+  width: 250px;
 }
 
 @mixin flex-display(
@@ -30,4 +35,15 @@
 @mixin squarification($pixels) {
   width: $pixels;
   height: $pixels;
+}
+
+@mixin top-box-shadow {
+  box-shadow: 0px -9px 26px 0px $black-5;
+  -webkit-box-shadow: 0px -9px 26px 0px $black-5;
+  -moz-box-shadow: 0px -9px 26px 0px $black-5;
+}
+
+@mixin avatar {
+  border-radius: 50%;
+  border: 2px white solid;
 }
