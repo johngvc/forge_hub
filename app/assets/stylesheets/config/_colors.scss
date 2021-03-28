@@ -1,14 +1,13 @@
 // Define variables for your color scheme
 
 // For example:
-$red: #FD1015;
-$blue: #167FFB;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
-
+$red: #fd1015;
+$blue: #167ffb;
+$yellow: #ffc65a;
+$orange: #e67e22;
+$green: #1edd88;
+$gray: #0e0000;
+$light-gray: #f4f4f4;
 
 //forge-hub template colors
 $clr-primary: #ed6347;
@@ -16,6 +15,7 @@ $clr-gray-100: #f5f6f6;
 $clr-gray-200: #f8f8f8;
 $clr-gray-300: #c4c4c4;
 $clr-gray-400: #979797;
+$body-bckg: #e7e7e7;
 
 //branding colors
 $youtube: #ff0000;
@@ -24,4 +24,8 @@ $github: #333;
 $linkedin: #0077b5;
 
 //alpha colors
-$black-50: rgba(0,0,0,0.5);
+$black-50: rgba(0, 0, 0, 0.5);
+$black-25: rgba(0, 0, 0, 0.25);
+$black-10: rgba(0, 0, 0, 0.1);
+$black-5: rgba(0, 0, 0, 0.05);
+$clr-primary-80: rgba(237, 99, 71, 0.8);

@@ -1,17 +1,21 @@
 $footer-height: 38vh;
 
-footer ul {
-  list-style-type: none;
-  padding: 0;
+footer {
+  @include top-box-shadow;
+  z-index: 5;
+  ul {
+    list-style-type: none;
+    padding: 0;
 
-  li {
-    display: inline-block;
-    &:hover i {
-      border-bottom: 1px solid $black-50;
-    }
-    i {
-      @include transition-5s;
-      border-bottom: 1px solid transparent;
+    li {
+      display: inline-block;
+      &:hover i {
+        border-bottom: 1px solid $black-50;
+      }
+      i {
+        @include transition-5s;
+        border-bottom: 1px solid transparent;
+      }
     }
   }
 }
@@ -57,7 +61,7 @@ footer ul {
   }
 }
 
-.fa-linkedin {
+.fa.fa-linkedin {
   color: $linkedin;
 }
 

@@ -7,14 +7,24 @@
   border-radius: 50%;
 }
 .avatar-bordered {
+  @include avatar;
   width: 40px;
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
 }
-.avatar-square {
-  width: 40px;
-  border-radius: 0px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
+.avatar-big {
+  @include avatar;
+  margin-top: 30px;
+}
+
+.baavatar {
+  @include squarification(100px);
+  @include avatar;
+  background-size: cover;
+}
+.avatar-and-name {
+  @include squarification(30px);
+  @include avatar;
+  background-size: cover;
+  position: absolute;
+  bottom: 0.3em;
+  left: 0.4em;
 }

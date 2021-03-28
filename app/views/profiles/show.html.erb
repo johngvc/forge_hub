@@ -1,87 +1,82 @@
-<% if current_user.bootcamps_id.nil? %>
-  <div style="margin-top: 30px; text-align: center; display: flex; flex-direction: column; justify-content: center; height: 15px; line-height: 5px;">
-    <p>Are you a coding bootcamp alumnus?</p>
-    <strong><%= link_to "add your bootcamp to your profile!", edit_user_registration_path, class: "form-actions" %></strong>
-  </div>
-<% end %>
 <div class="profile-page">
-    <div class="profile-section">
-        <% if @user && @user.photo.attached? %>
-            <%= cl_image_tag @user.photo.key, class: "avatar-big" %>
-        <% elsif @user && @user.picture_url.present? %>
-            <%= image_tag @user.picture_url, class: "avatar-big" %>
-        <% else %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-big" %>
-        <% end %>
-
-
+  <div class="profile-section">
+    <div class="container-new">
+      <% if @user && @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "avatar-big" %>
+      <% elsif @user && @user.picture_url.present? %>
+        <%= image_tag @user.picture_url, class: "avatar-big" %>
+      <% else %>
+        <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-big" %>
+      <% end %>
+      <p>
         <% if @user == current_user %>
-            <a href="<%= edit_user_registration_path(@user.id) %>">
-                Edit my profile <i class="fas fa-edit"></i>
-            </a>
+          <a href="<%= edit_user_registration_path(@user.id) %>">
+            Edit my profile  <i class="fas fa-edit"></i>
+          </a>
         <% else %>
-            <a href="<%= edit_user_registration_path(@user.id) %>" style="visibility: hidden;">
-            Edit my profile <i class="fas fa-edit"></i>
-            </a>
+          <a href="<%= edit_user_registration_path(@user.id) %>" style="visibility: hidden;">
+            Edit my profile  <i class="fas fa-edit"></i>
+          </a>
         <% end %>
-
-
-
-        <div class="user-info-acc">
-            <ul>
-                <li><h2><%= @user.name %></h2></li>
-                <li><p>Email: <%= @user.email %></p></li>
-                <% if !@user.description.nil? %>
-                  <li><p>My Description: <%= @user.description %></p></li>
-                <% end %>
-            </ul>
-        </div>
-
-
-        <div class="user-info">
+      </p>
+      <div class="user-info-acc">
+        <h2><%= @user.name %></h2>
+        <p><%= @user.email %></p>
+        <% if !@user.description.nil? %>
+          <p><%= @user.description %></p>
+        <% end %>
+      </div>
+      <div class="user-info">
+        <p>
+          <i class="fas fa-briefcase"></i>
+          <% if Project.where({user_id: @user}).count != 1 %>
+            Founded <%= Project.where({user_id: @user}).count %> projects
+          <% else %>
+            Founded <%= Project.where({user_id: @user}).count %> project
+          <% end %>
+        </p>
+        <% if current_user.bootcamps_id.nil? %>
+          <div style="">
             <p>
-                <i class="fas fa-briefcase"></i>
-                <% if Project.where({user_id: @user}).count > 1 %>
-                    Founded <%= Project.where({user_id: @user}).count %> projects
-                <% else %>
-                    Founded <%= Project.where({user_id: @user}).count %> project
-                <% end %>
+              Are you a coding bootcamp alumnus? 
+              <%= link_to "Add the bootcamp to your profile!", edit_user_registration_path, class: "form-actions" %>
             </p>
-        </div>
-
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="second-section">
-      <div class="projects-section">
+  </div>
+  <div class="second-section">
+    <div class="projects-section">
+      <div class="container-new">
         <h2>Active Projects</h2>
+        <%# partials %>
         <div class="card-container">
           <% @ongoing_projects_participating.each do |project| %>
-              <%= render 'shared/projectBigCard', project: project if !project.nil?%>
+            <%= render 'shared/projectBigCard', project: project if !project.nil?%>
           <% end %>
           <% @suspended_projects_participating.each do |project| %>
-              <%= render 'shared/projectBigCard', project: project if !project.nil? %>
+            <%= render 'shared/projectBigCard', project: project if !project.nil? %>
           <% end %>
         </div>
       </div>
-
-
-  <% if @user == current_user %>
-
+    </div>
+    <% if @user == current_user %>
       <div class="messages-section">
-          <h2>Message inbox</h2>
-            <%= link_to new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "new-message-icon" } do %>
-              <i class="fas fa-edit"></i><p>  Create a new message</p>
-            <% end %>
-          <%= render 'chat_messages/index_received', messages: @messages_received_sorted %>
+        <h2>Message inbox</h2>
+        <%= link_to new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "new-message-icon" } do %>
+          <i class="fas fa-edit"></i>
+          <p>  Create a new message</p>
+        <% end %>
+        <%= render 'chat_messages/index_received', messages: @messages_received_sorted %>
       </div>
       <div class="messages-section">
         <h2>Sent messages</h2>
         <%= render 'chat_messages/index_sent', messages: @messages_sent_sorted %>
       </div>
     </div>
-
   <% end %>
 </div>
-
 <% if @user == current_user %>
   <!-- new messages alert -->
   <% if @new_message_alert %>
@@ -91,14 +86,11 @@
   <% end %>
   <!-- new messages alert -->
 <% end %>
-
-
 <!-- Modal -->
-  <div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-
-      </div>
+<div id="sendNewMessageModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
     </div>
   </div>
+</div>
 <!-- Modal -->
