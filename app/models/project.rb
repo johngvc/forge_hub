@@ -16,14 +16,6 @@ class Project < ApplicationRecord
   validates :category, inclusion: { in: ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'],
                                     message: "%{value} is not a valid project status" }
 
-  pg_search_scope :global_search,
-                  against: %i[name description category],
-                  associated_against: {
-                    tags: %i[name]
-                  },
-                  using: {
-                    tsearch: { prefix: true, any_word: true }
-                  }
   pg_search_scope :search_by_tag,
                   associated_against: {
                     tags: %i[name]
@@ -31,19 +23,12 @@ class Project < ApplicationRecord
                   using: {
                     tsearch: { prefix: true, any_word: true }
                   }
-  pg_search_scope :search_by_name,
-                  against: %i[name],
-                  using: {
-                    tsearch: { prefix: true, any_word: true }
-                  }
-  pg_search_scope :search_by_description,
-                  against: %i[description],
-                  using: {
-                    tsearch: { prefix: true, any_word: true }
-                  }
-  pg_search_scope :search_by_category,
-                  against: %i[category],
-                  using: {
-                    tsearch: { prefix: true, any_word: true }
-                  }
+  pg_search_scope :global_search, lambda { |against_arr, query|
+    raise ArgumentError unless %i[name description status_project category].include?(against_arr)
+
+    {
+      against: against_arr,
+      query: query
+    }
+  }
 end

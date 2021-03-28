@@ -47,6 +47,8 @@ puts "Iniciando a sequencia de seed"
 puts "#"*50
 puts "Resetando Database"
 Participant.delete_all
+ProjectTag.delete_all
+Tag.delete_all
 Project.delete_all
 Bootcamp.delete_all
 ChatMessage.delete_all
@@ -83,7 +85,8 @@ project_imgs.length.times do
                         github_url: Faker::Internet.email(domain: 'github'),
                         trello_url: Faker::Internet.email(domain: 'trello'),
                         is_suspended: false,
-                        status_project:  ['idea', 'design', 'pre-production', 'development', 'growth'].sample
+                        status_project:  ['idea', 'design', 'pre-production', 'development', 'growth'].sample,
+                        category: ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'].sample
                         })
     newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
     puts "Falha no salvamento do projeto" unless newProject.save
