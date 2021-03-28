@@ -1,0 +1,24 @@
+<%= form_tag("/search_result", method: "get") do %>
+  <%= label_tag(:name, "Project name") %>
+  <%= text_field_tag(:name) %>
+  <%= label_tag(:category, "Project category") %>
+  <%= select_tag(:category, options_for_select([[""],['Arts'], ['Comics & Illustration'], ['Design & Tech'], ['Film'], ['Food & Craft'], ['Games'], ['Music'], ['Publishing']])) %>
+  <%= label_tag(:status_project, "Project status") %>
+  <%= select_tag(:status_project, options_for_select(['', 'idea', 'design', 'pre-production', 'development', 'growth'])) %>
+  <%= label_tag(:tags, "Project tags") %>
+  <%= text_field_tag(:tags) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<ul>
+  <% @search_result_projects.each do |project| %>
+    <li>
+      <p><%= "Name: #{project.name}" %></p>
+      <p><%= "Category: #{project.category}" %></p>
+      <p><%= "Status: #{project.status_project}" %></p>
+      <p>tags:</p>
+      <% project.tags.each do |tag| %>
+        <p><%= tag.name %></p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

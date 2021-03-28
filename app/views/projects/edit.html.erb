@@ -8,6 +8,7 @@
             <div class="main-infos">
               <%=f.input :name, required: true, label: "Project a name" %>
               <%= f.input :description, required: true, label: "Brief explanation (max 120 characters)" %>
+              <%= f.input :category, required: true, label: "Project category", :collection => ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'] %>
               <%= f.input :photo, as: :file, label: "Photo attachment" %>
               <%= f.input :is_suspended, as: :radio_buttons, collection: [['No', false], ['Yes', true]], :label => "Suspend project?", data: { confirm: "Are you sure you want to suspend this project?" } %>
               <%= f.input :status_project, :collection => ['idea', 'design', 'pre-production', 'development', 'growth'], label: "Project status" %>
@@ -36,4 +37,3 @@
     <% end %>
   </div>
 </div>
-

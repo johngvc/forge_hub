@@ -1,6 +1,5 @@
-
 <div class=container>
-  <div class="form-project"> 
+  <div class="form-project">
     <h2 class="heading text-center">Create a new project</h2>
     <%= simple_form_for(@project) do |f| %>
       <div class="input-area">
@@ -9,6 +8,7 @@
             <div class="main-infos">
               <%=f.input :name, required: true, label: "Give your project a name" %>
               <%= f.input :description, required: true, label: "What is it about? Brief explanation! (max 120 characters)" %>
+              <%= f.input :category, required: true, label: "In what category does your project fit?", :collection => ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'] %>
               <%= f.input :photo, as: :file, label: "If you want, attach a photo for your project banner" %>
               <%= f.input :status_project, :collection => ['idea', 'design', 'pre-production', 'development', 'growth'], label: "At what phase your project is currently at?" %>
             </div>
@@ -33,4 +33,3 @@
     <% end %>
   </div>
 </div>
-

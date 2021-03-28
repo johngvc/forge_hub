@@ -325,7 +325,7 @@ DEPENDENCIES
   omniauth (~> 1.1)
   omniauth-linkedin-oauth2
   pg (>= 0.18, < 2.0)
-  pg_search
+  pg_search (~> 2.3.0)
   pry-byebug
   pry-rails
   puma (~> 4.1)
