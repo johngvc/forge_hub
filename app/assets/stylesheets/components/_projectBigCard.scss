@@ -23,7 +23,7 @@ body div {
 }
 
 .project-card .apply-now-link {
-  color: var(--clr-primary);
+  color: $clr-primary;
   text-decoration: none;
 }
 
@@ -84,7 +84,7 @@ body div {
   font-weight: 700;
   text-decoration: underline;
   font-size: 10px;
-  // color: var(--clr-gray-400);
+  // color: $clr-gray-400;
   color: white;
   position: absolute;
   bottom: -4px;
@@ -105,7 +105,7 @@ body div {
 }
 
 .project-title i {
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
 }
 
 .project-title p {
@@ -124,7 +124,7 @@ body div {
 
 .project-description p {
   font-size: 10px;
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
   width: 90%;
   margin: 4px 0px 0px 10px;
   word-break: break-all;

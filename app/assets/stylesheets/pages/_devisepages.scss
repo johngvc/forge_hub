@@ -7,7 +7,7 @@
 }
 
 .master-container a {
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
 }
 
 .form {
@@ -17,7 +17,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  background: var(--clr-gray-200);
+  background: $clr-gray-200;
   box-shadow: 0px 10px 11px -9px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 }
@@ -27,7 +27,7 @@
 }
 
 .form .form-actions input {
-  background-color: var(--clr-primary);
+  background-color: $clr-primary;
   width: 100%;
   border-radius: 5px;
   font-weight: 700;

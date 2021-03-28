@@ -1,3 +1,11 @@
 @mixin debugdiv {
     border: 1px red solid;
 }
+
+@mixin padding-std {
+    padding: 15px 0;
+}
+
+@mixin transition-5s {
+    transition: .5s;
+}

@@ -25,7 +25,7 @@
           <% end %>
           <p>Current phase: <%= @project.status_project %></p>
           <% if @is_not_participant && @has_join_request == false %>
-            <button data-toggle="modal" data-target="#projectAskModal" style="color: var(--clr-primary)">
+            <button data-toggle="modal" data-target="#projectAskModal" style="color: $clr-primary">
               Ask to join this project!
             </button>
           <% elsif @is_participant && @participant.status == 'founder' %>

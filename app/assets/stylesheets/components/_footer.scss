@@ -1,7 +1,26 @@
+footer ul {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    &:hover i {
+      border-bottom: 1px solid $black-50;
+    }
+    i {
+      @include transition-5s;
+      border-bottom: 1px solid transparent;
+    }
+  }
+}
+
 #sub-footer {
-  height: 40px;
-  background-color: var(--clr-gray-300);
+  @include padding-std;
+  background-color: $clr-gray-300;
   text-align: center;
+  p {
+    margin: 0;
+  }
 }
 
 #footer-logo-img img {
@@ -9,17 +28,30 @@
 }
 
 #main-footer {
-  height: 205px;
-  background-color: var(--clr-gray-100);
+  @include padding-std;
+  background-color: $clr-gray-100;
   display: flex;
   justify-content: space-between;
 }
 
-#main-footer > div {
-  display: flex;
-  flex-direction: column;
+//social links
+
+.fa-linkedin {
+  color: $linkedin;
 }
 
-#main-footer > div div {
-  flex-basis: 100%;
+.fa-github {
+  color: $github;
+}
+
+.fa-trello {
+  color: $trello;
+}
+
+.fa-youtube {
+  color: $youtube;
+}
+
+.social-links {
+  font-size: 2rem;
 }

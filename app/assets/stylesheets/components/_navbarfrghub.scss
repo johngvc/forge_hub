@@ -11,13 +11,13 @@
 
 .nav-bar {
   height: 60px;
-  background-color: var(--clr-gray-100);
+  background-color: $clr-gray-100;
   display: flex;
   justify-content: center;
 }
 
 .nav-bar a {
-  color: var(--clr-primary);
+  color: $clr-primary;
 }
 
 .logo {
@@ -43,7 +43,7 @@
 }
 
 .Log-in-btn {
-  background-color: var(--clr-primary);
+  background-color: $clr-primary;
   width: 100px;
   margin-right: 20px;
   height: 30px;
@@ -88,7 +88,7 @@
 // }
 
 // .nav-bar-search-input input:focus {
-//   border:var(--clr-primary) 1px solid;
+//   border:$clr-primary 1px solid;
 // }
 
 // .nav-bar-search-input i {
