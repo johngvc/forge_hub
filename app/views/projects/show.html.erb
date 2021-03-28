@@ -111,7 +111,7 @@
           <p><%= "There are no registered members of #{@project.name}"%></p>
         <% else %>
           <%= link_to "Detailed list", project_participants_path(project_id: @project.id) if !Participant.where(user_id: current_user.id, project_id: @project).first.nil? %>
-          <div class="split-flex-normal scrolling-wrapper">
+          <div class="split-flex-row scrolling-wrapper">
             <% @project_participants.each do |participant| %>
               <div class="scroll-div"><%= render 'shared/userCard', participant: participant %></div>
             <% end %>
