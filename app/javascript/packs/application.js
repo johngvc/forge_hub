@@ -9,6 +9,7 @@ import "bootstrap";
 import "jquery";
 import { event } from "jquery";
 import { initOpenTab } from "../components/tabs_project_show";
+import { map } from "../components/footer_map"
 
 require("@rails/ujs").start();
 require("turbolinks").start();
@@ -41,6 +42,7 @@ document.addEventListener("turbolinks:load", () => {
   msgModal();
   initOpenTab();
   //changeRoleModal();
+  map();
 });
 
 require("trix");

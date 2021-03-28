@@ -1,3 +1,5 @@
+$footer-height: 38vh;
+
 footer ul {
   list-style-type: none;
   padding: 0;
@@ -14,6 +16,15 @@ footer ul {
   }
 }
 
+.right {
+  float: right;
+  width: 50%;
+}
+.left {
+  float: left;
+  width: 50%;
+}
+
 #sub-footer {
   @include padding-std;
   background-color: $clr-gray-300;
@@ -23,8 +34,11 @@ footer ul {
   }
 }
 
-#footer-logo-img img {
-  width: 5rem;
+#footer-logo-img {
+  width: 10rem;
+  img {
+    width: 100%;
+  }
 }
 
 #main-footer {
@@ -32,15 +46,23 @@ footer ul {
   background-color: $clr-gray-100;
   display: flex;
   justify-content: space-between;
+  max-height: $footer-height;
 }
 
 //social links
+.social-links {
+  font-size: 2rem;
+  li {
+    margin-right: 5px;
+  }
+}
 
 .fa-linkedin {
   color: $linkedin;
 }
 
-.fa-github {
+.fa-github,
+.fa-github-alt {
   color: $github;
 }
 
@@ -52,6 +74,8 @@ footer ul {
   color: $youtube;
 }
 
-.social-links {
-  font-size: 2rem;
+//map
+#map {
+  width: 100%;
+  height: $footer-height;
 }
