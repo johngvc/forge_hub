@@ -10,6 +10,7 @@ import "jquery";
 import { event } from "jquery";
 import { initOpenTab } from "../components/tabs_project_show";
 import { map } from "../components/footer_map"
+import { resizeProfileAvatar } from "../components/avatar"
 
 require("@rails/ujs").start();
 require("turbolinks").start();
@@ -43,6 +44,7 @@ document.addEventListener("turbolinks:load", () => {
   initOpenTab();
   //changeRoleModal();
   map();
+  resizeProfileAvatar();
 });
 
 require("trix");
