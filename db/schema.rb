@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_055458) do
+ActiveRecord::Schema.define(version: 2021_03_28_160552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 2021_03_12_055458) do
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
+  create_table "project_tags", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_project_tags_on_project_id"
+    t.index ["tag_id"], name: "index_project_tags_on_tag_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
@@ -109,6 +118,12 @@ ActiveRecord::Schema.define(version: 2021_03_12_055458) do
     t.boolean "is_suspended", default: false
     t.string "status_project"
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -145,6 +160,8 @@ ActiveRecord::Schema.define(version: 2021_03_12_055458) do
   add_foreign_key "participants", "participants", column: "invite_participant_id"
   add_foreign_key "participants", "projects"
   add_foreign_key "participants", "users"
+  add_foreign_key "project_tags", "projects"
+  add_foreign_key "project_tags", "tags"
   add_foreign_key "projects", "users"
   add_foreign_key "users", "bootcamps", column: "bootcamps_id"
 end
