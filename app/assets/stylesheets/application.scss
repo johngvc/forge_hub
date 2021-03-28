@@ -10,7 +10,7 @@
 @import "font-awesome";
 
 //external fonts
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500");
 
 // Your CSS partials
 @import "components/index";
@@ -19,11 +19,10 @@
 // Trix Action text (for rich text)
 @import "./actiontext.scss";
 
-
 body {
   font-family: Roboto, sans-serif;
-  h2{
-    font-family: inherit!important;
+  h2 {
+    font-family: inherit !important;
   }
   display: flex;
   flex-direction: column;
@@ -45,6 +44,11 @@ body {
   clear: both;
   width: 90%;
   overflow: hidden;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
 }
 
 // linkedin button css
@@ -104,3 +108,14 @@ body {
   background: #737373;
 }
 
+//selection
+::-moz-selection {
+  /* Code for Firefox */
+  background: $clr-primary-80;
+  color: black;
+}
+
+::selection {
+  background: $clr-primary-80;
+  color: black;
+}

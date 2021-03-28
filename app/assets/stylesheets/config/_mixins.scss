@@ -9,3 +9,20 @@
 @mixin transition-5s {
   transition: 0.5s;
 }
+
+@mixin cards {
+  box-shadow: 11px 13px 20px -9px $black-25;
+  border-radius: 20px;
+  background: $clr-gray-200;
+}
+
+@mixin flex-display(
+  $justify-content: flex-start,
+  $align-items: center,
+  $direction: column
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+}
