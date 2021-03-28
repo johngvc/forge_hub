@@ -1,12 +1,16 @@
 // Graphical variables
 @import "config/fonts";
 @import "config/colors";
+@import "config/mixins";
 @import "config/bootstrap_variables";
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+//external fonts
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
 
 // Your CSS partials
 @import "components/index";
@@ -15,16 +19,12 @@
 // Trix Action text (for rich text)
 @import "./actiontext.scss";
 
-:root {
-  --clr-primary: #ed6347;
-  --clr-gray-100: #f5f6f6;
-  --clr-gray-200: #f8f8f8;
-  --clr-gray-300: #c4c4c4;
-  --clr-gray-400: #979797;
-}
 
 body {
   font-family: Roboto, sans-serif;
+  h2{
+    font-family: inherit!important;
+  }
   display: flex;
   flex-direction: column;
   background-color: #e7e7e7;
@@ -39,9 +39,15 @@ body {
   flex: 1 0 auto;
 }
 
-// linkedin button css
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
+.container-new {
+  margin: 0 auto;
+  padding: 0;
+  clear: both;
+  width: 90%;
+  overflow: hidden;
+}
 
+// linkedin button css
 .support-links {
   position: relative;
   box-sizing: padding-box;
@@ -71,7 +77,30 @@ body {
 }
 
 .btn-generic {
-  color: var(--clr-primary) !important;
+  color: $clr-primary !important;
   background-color: transparent !important;
   border: none !important;
 }
+
+//scrollbar
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $clr-primary;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #737373;
+}
+

@@ -22,7 +22,7 @@
   flex-direction: column;
   width: 30vw;
   margin: 25px;
-  background: var(--clr-gray-200);
+  background: $clr-gray-200;
   box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 }
@@ -32,7 +32,7 @@
 }
 
 .profile-page .profile-section a {
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
   margin-top: 13px;
   display: flex;
   justify-content: center;
@@ -104,7 +104,7 @@
   width: 100%;
   min-height: 50vh;
   min-width: 35vw;
-  background: var(--clr-gray-200);
+  background: $clr-gray-200;
   box-shadow: 11px 13px 20px -9px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 }
@@ -151,7 +151,7 @@
 
 .new-message-icon i,
 .new-message-icon p {
-  color: var(--clr-primary);
+  color: $clr-primary;
   font-size: 20px;
   margin-left: 8px;
 }

@@ -1,52 +1,25 @@
 <div class="container mt-2">
   <div class="row">
     <div class="col-6">
-      <div id="map">
-      </div>
     </div>
     <div class="col-6">
       <h1>CoFounders</h1>
-      <p><a href="https://linkedin.com/in/johnvezza" rel="stylesheet" target="_blank"> 
-      <i class="fab fa-linkedin" style="color: #0a66c2;"></i>
-      Joáo Vezza
-       </a></p>
-      <p><a href="https://linkedin.com/in/leonardo-oliveira-659263" rel="stylesheet" target="_blank"> 
-      <i class="fab fa-linkedin" style="color: #0a66c2;"></i>
-      Leonardo Oliveira 
-      </a></p>
-      <p><a href="https://linkedin.com/in/pedro-bento-de-faria" rel="stylesheet" target="_blank"> 
-      <i class="fab fa-linkedin" style="color: #0a66c2;"></i>
-      Pedro Bento 
-      </a></p>
-      <p><a href="https://linkedin.com/in/pedro-henrique-silva-carvalho-162b01a6" rel="stylesheet" target="_blank"> 
-      <i class="fab fa-linkedin" style="color: #0a66c2;"></i>
-      Pedro Carvalho
-      </a></p>
+      <p><a href="https://linkedin.com/in/johnvezza" rel="stylesheet" target="_blank">
+          <i class="fab fa-linkedin" style="color: #0a66c2;"></i>
+          Joáo Vezza
+        </a></p>
+      <p><a href="https://linkedin.com/in/leonardo-oliveira-659263" rel="stylesheet" target="_blank">
+          <i class="fab fa-linkedin" style="color: #0a66c2;"></i>
+          Leonardo Oliveira 
+        </a></p>
+      <p><a href="https://linkedin.com/in/pedro-bento-de-faria" rel="stylesheet" target="_blank">
+          <i class="fab fa-linkedin" style="color: #0a66c2;"></i>
+          Pedro Bento 
+        </a></p>
+      <p><a href="https://linkedin.com/in/pedro-henrique-silva-carvalho-162b01a6" rel="stylesheet" target="_blank">
+          <i class="fab fa-linkedin" style="color: #0a66c2;"></i>
+          Pedro Carvalho
+        </a></p>
     </div>
   </div>
 </div>
- <script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoicGVkcm9jYXIiLCJhIjoiY2tsMHlhNGJjMHZrODJudDRnM3lscWFlcSJ9.gygRquN-O01BVwzFgD98WA';
-  var map = new mapboxgl.Map({
-      container: 'map', // container ID
-      style: 'mapbox://styles/mapbox/streets-v11', // style URL
-      center: [-47.942675, -21.1795747], // starting position [lng, lat]
-      zoom: 5 // starting zoom
-                                });
-  new mapboxgl.Marker({
-      color: "#004BFA",
-      draggable: true
-      }).setLngLat([-46.7102453, -23.6095137]).addTo(map);
-        new mapboxgl.Marker({
-      color: "#004BFA",
-      draggable: true
-      }).setLngLat([-44.1041392,-19.9026615]).addTo(map);
-        new mapboxgl.Marker({
-      color: "#004BFA",
-      draggable: true
-      }).setLngLat([-46.6813623, -23.5918814]).addTo(map);
-        new mapboxgl.Marker({
-      color: "#004BFA",
-      draggable: true
-      }).setLngLat([-51.5119204, -20.8967688]).addTo(map);
-</script>

@@ -17,7 +17,7 @@
   justify-content: flex-start;
   align-items: center;
   box-shadow: 8px 10px 30px -9px rgba(0, 0, 0, 0.25);
-  background-color: var(--clr-gray-200);
+  background-color: $clr-gray-200;
 }
 
 .macard-element {
@@ -48,7 +48,7 @@
   font-weight: 700;
   text-decoration: underline;
   font-size: 10px;
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
 }
 
 .mauser-card .maavatar-and-description .madescription-container {
@@ -78,7 +78,7 @@
   .maavatar-and-description
   .madescription-container
   .madesc-subtitle {
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
   font-size: 10px;
   bottom: 2px;
 }
@@ -87,7 +87,7 @@
   .aavatar-and-description
   .adescription-container
   .adesc-open-projects {
-  color: var(--clr-primary);
+  color: $clr-primary;
   font-size: 10px;
   font-weight: 500;
   margin-top: 5px;
@@ -117,7 +117,7 @@
   .adesc-user-status
   .adesc-user-status-element
   pa {
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
   font-size: 10px;
   font-weight: 700;
 }

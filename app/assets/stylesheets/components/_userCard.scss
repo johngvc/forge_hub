@@ -24,7 +24,7 @@
   text-align: center;
   border-radius: 20px;
   box-shadow: 8px 10px 30px -9px rgba(0, 0, 0, 0.25);
-  background-color: var(--clr-gray-200);
+  background-color: $clr-gray-200;
 }
 
 .bauser-card .baavatar-and-description {
@@ -48,14 +48,14 @@
   font-weight: 700;
   text-decoration: underline;
   font-size: 10px;
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
 }
 
 .project-owner-icon {
   position: absolute;
   top: 10px;
   right: 16px;
-  color: var(--clr-primary);
+  color: $clr-primary;
   font-size: 14px;
 }
 
@@ -98,7 +98,7 @@
   .baavatar-and-description
   .badescription-container
   .badesc-subtitle {
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
   font-size: 10px;
   bottom: 2px;
 }
@@ -107,7 +107,7 @@
   .baavatar-and-description
   .badescription-container
   .badesc-open-projects {
-  color: var(--clr-primary);
+  color: $clr-primary;
   font-size: 10px;
   font-weight: 500;
 }
@@ -136,7 +136,7 @@
   .badesc-user-status
   .badesc-user-status-element
   pa {
-  color: var(--clr-gray-400);
+  color: $clr-gray-400;
   font-size: 10px;
   font-weight: 700;
 }

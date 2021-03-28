@@ -3,11 +3,11 @@
 }
 
 .sh-prj-pg a {
-  color: var(--clr-primary);
+  color: $clr-primary;
 }
 
 .sh-prj-pg button {
-  color: var(--clr-primary);
+  color: $clr-primary;
 }
 
 #prj-photo-call-to-action img {
@@ -36,14 +36,6 @@
   .prj-story h1 {
     font-size: 3rem !important;
   }
-}
-
-.container-new {
-  margin: 0 auto;
-  padding: 0;
-  clear: both;
-  width: 90%;
-  overflow: hidden;
 }
 
 .container--narrow {
@@ -208,7 +200,7 @@
   margin-right: 36px;
   border: none;
   background-color: transparent;
-  color: var(--clr-primary);
+  color: $clr-primary;
 }
 
 .tab-content {
@@ -224,7 +216,7 @@
 }
 
 .btn-tab.active {
-  color: var(--clr-primary);
+  color: $clr-primary;
 }
 
 .btn-tab.active div {
