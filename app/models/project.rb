@@ -13,9 +13,11 @@ class Project < ApplicationRecord
   validates :description, presence: true, length: { maximum: 135 }
   validates :status_project, inclusion: { in: ['idea', 'design', 'pre-production', 'development', 'growth'],
                                           message: "%{value} is not a valid project status" }
+  validates :category, inclusion: { in: ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'],
+                                    message: "%{value} is not a valid project status" }
 
   pg_search_scope :global_search,
-                  against: %i[],
+                  against: %i[name description category],
                   associated_against: {
                     tags: %i[name]
                   },
