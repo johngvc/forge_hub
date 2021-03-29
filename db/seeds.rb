@@ -12,7 +12,8 @@ require 'open-uri'
 # Para adicionar mais usuários e projetos
 # basta adicionar uma imagem nova nas arrays "user_imgs" e "project_imgs"
 
-
+tags_count = 20
+project_tags_count = 6
 alphabet = ("a".."z").to_a
 user_imgs = [
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1614880281/pjw3ww13wcf8t1yf1j4285a0fs48.jpg'),
@@ -74,6 +75,17 @@ user_imgs.length.times do
     iterator = iterator + 1
 end
 puts "#"*50
+puts "Instanciando tags"
+iterator = 1
+tags_count.times do
+  Tag.create({
+              name: Faker::IndustrySegments.unique.sector
+            })
+  puts "#{iterator}. #{Tag.last.name}" 
+  iterator += 1
+end
+
+puts "#"*50
 puts "Instanciando projetos"
 iterator = 0
 project_imgs.length.times do
@@ -101,6 +113,20 @@ project_imgs.length.times do
                                     status: "founder"
                                     })
     newParticipant.save
+
+    # Instanciando Tags do projeto
+
+    # O código sempre irá "tentar" instanciar o número em project_tags_count
+    # Caso ele instancie uma tag já cadastrada para o projeto ela nao será guardada no banco de dados
+    # Devido a vaidaçao presente no modelo.
+    project_tags_count.times do
+      offset = rand(Tag.count) # Randomiza um número do montante total de records
+      rand_tag = Tag.offset(offset).first # Acessa o record com o valor randomizado a partir do primeiro record do database (Evita Records deletados)
+      ProjectTag.create({
+                        project_id: Project.last.id,
+                        tag_id: rand_tag.id
+                        })
+    end
 
     # Instanciando membros do projeto
     user_iterator = 0
@@ -130,7 +156,11 @@ project_imgs.length.times do
     puts "Founder: #{User.find(Project.last.user_id).name}"
     puts "-"*10 + "Membros" + "-"*10
     Project.last.participants.each_with_index do |participant, index|
-    puts "#{index + 1}: #{User.find(participant.user_id).name} | role: #{participant.status}"
+      puts "#{index + 1}: #{User.find(participant.user_id).name} | role: #{participant.status}"
+    end
+    puts "-"*10 + "Tags" + "-"*10
+    Project.last.tags.each_with_index do |tag, index|
+      puts "#{index + 1}: #{tag.name}"
     end
     
     iterator = iterator + 1
