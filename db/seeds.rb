@@ -161,6 +161,7 @@ project_imgs.length.times do
     puts "-"*10 + "Tags" + "-"*10
     Project.last.tags.each_with_index do |tag, index|
       puts "#{index + 1}: #{tag.name}"
+
     end
     
     iterator = iterator + 1

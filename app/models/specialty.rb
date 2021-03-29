@@ -1,0 +1,2 @@
+class Specialty < ApplicationRecord
+end
