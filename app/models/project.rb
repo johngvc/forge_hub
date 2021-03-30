@@ -16,6 +16,7 @@ class Project < ApplicationRecord
   validates :category, inclusion: { in: ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'],
                                     message: "%{value} is not a valid project status" }
 
+  # Configuracao para o search utilizando a gema "pg_search"
   pg_search_scope :search_by_tag,
                   associated_against: {
                     tags: %i[name]

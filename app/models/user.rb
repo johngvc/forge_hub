@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: %i[linkedin]
   has_many :projects, through: :participants, dependent: :delete_all
+  has_many :user_specialties, dependent: :delete_all
+  has_many :specialties, through: :user_specialties
   # has_many :chat_messages, foreign_key: :user_sender_id, dependent: :delete_all
   # has_many :chat_messages, foreign_key: :user_receiver_id
   has_one_attached :photo
