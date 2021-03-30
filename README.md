@@ -10,15 +10,32 @@
 
 ### 🏠 [Homepage](https://forge-hub.herokuapp.com/)
 
-### ✨ [Demo](https://forge-hub.herokuapp.com/)
+## Authors
 
-## Author
+👤 **João Gabriel Vezza Campos - founder**
 
-👤 **João Gabriel Vezza Campos - founder | Maria Eugênia Deungaro Borgato - co-founder | Pedro Bento de Faria - co-founder | Pedro Henrique Silva Carvalho - co-founder | Leonardo Oliveira - co-founder**
+👤 **Maria Eugênia Deungaro Borgato - co-founder**
 
-* Website: Under Way!
-* Github: [@johngvc | magedeungaro | pfaria32 | pedrocarr | lcgoliveira](https://github.com/johngvc | magedeungaro | pfaria32 | pedrocarr | lcgoliveira)
-* LinkedIn: [@https:\/\/www.linkedin.com\/in\/johnvezza\/](https://linkedin.com/in/https:\/\/www.linkedin.com\/in\/johnvezza\/)
+👤 **Pedro Bento de Faria - co-founder**
+
+👤 **Pedro Henrique Silva Carvalho - co-founder**
+
+👤 **Leonardo Oliveira - co-founder**
+
+
+* Team Githubs:
+  *   [johngvc](https://github.com/johngvc)
+  *   [magedeungaro](https://github.com/magedeungaro)
+  *   [pfaria32](https://github.com/pfaria32)
+  *   [pedrocarr](https://github.com/pedrocarr)
+  *   [lcgoliveira](https://github.com/lcgoliveira)
+  *   
+* Team LinkedIns: 
+  * [@https:\/\/www.linkedin.com\/in\/johnvezza\/](https:\/\/www.linkedin.com\/in\/johnvezza\/)
+  * [@https:\/\/www.linkedin.com\/in\/magedeungaro\/](https:\/\/www.linkedin.com\/in\/magedeungaro\/)
+  * [@https:\/\/www.linkedin.com\/in\/pedro-bento-de-faria\/](https:\/\/www.linkedin.com\/in\/pedro-bento-de-faria\/)
+  * [@https:\/\/www.linkedin.com\/in\/pedro-car\/](https:\/\/www.linkedin.com\/in\/pedro-car\/)
+  * [@https:\/\/www.linkedin.com\/in\/leonardo-oliveira-659263\/](https:\/\/www.linkedin.com\/in\/leonardo-oliveira-659263\/)
 
 ## 🤝 Contributing
 
