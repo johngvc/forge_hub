@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_190835) do
+ActiveRecord::Schema.define(version: 2021_03_29_223959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,10 +121,25 @@ ActiveRecord::Schema.define(version: 2021_03_28_190835) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "specialties", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_specialties", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "specialty_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["specialty_id"], name: "index_user_specialties_on_specialty_id"
+    t.index ["user_id"], name: "index_user_specialties_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -164,5 +179,7 @@ ActiveRecord::Schema.define(version: 2021_03_28_190835) do
   add_foreign_key "project_tags", "projects"
   add_foreign_key "project_tags", "tags"
   add_foreign_key "projects", "users"
+  add_foreign_key "user_specialties", "specialties"
+  add_foreign_key "user_specialties", "users"
   add_foreign_key "users", "bootcamps", column: "bootcamps_id"
 end

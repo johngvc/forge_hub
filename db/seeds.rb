@@ -13,7 +13,21 @@ require 'open-uri'
 # basta adicionar uma imagem nova nas arrays "user_imgs" e "project_imgs"
 
 tags_count = 20
-project_tags_count = 6
+project_tags_count = 3
+user_specialties_count = 3
+
+
+
+specialties = [
+  "Code",
+  "Art",
+  "Sound",
+  "Design",
+  "Business",
+  "Finance",
+  "Marketing",
+  "Law"
+  ]
 alphabet = ("a".."z").to_a
 user_imgs = [
     URI.open('https://res.cloudinary.com/johngvc/image/upload/v1614880281/pjw3ww13wcf8t1yf1j4285a0fs48.jpg'),
@@ -50,29 +64,66 @@ puts "Resetando Database"
 Participant.delete_all
 ProjectTag.delete_all
 Tag.delete_all
+UserSpecialty.delete_all
+Specialty.delete_all
 Project.delete_all
 Bootcamp.delete_all
 ChatMessage.delete_all
 JoinRequest.delete_all
 User.delete_all
 
+
+puts "#"*50
+puts "Instanciando Specialties"
+iterator = 1
+specialties.length.times do
+  Specialty.create({
+                    name: specialties[iterator - 1]
+                  })
+  puts "#{iterator}. #{Specialty.last.name}" 
+  iterator += 1
+end
+
 puts "#"*50
 puts "Instanciando usuários"
 iterator = 0
 user_imgs.length.times do
-    newUser = User.new({
-                        name: Faker::Games::SuperMario.unique.character.truncate(20),
-                        email: "#{alphabet[iterator]}@#{alphabet[iterator]}",
-                        password: 123123,
-                        description: Faker::ChuckNorris.fact.truncate(80)
+  newUser = User.new({
+                      name: Faker::Games::SuperMario.unique.character.truncate(20),
+                      email: "#{alphabet[iterator]}@#{alphabet[iterator]}",
+                      password: 123123,
+                      description: Faker::ChuckNorris.fact.truncate(80)
+                      })
+  newUser.photo.attach(io: user_imgs[iterator], filename: "#{alphabet[iterator]}.png", content_type: 'image/jpg')
+  puts "Falha no salvamento do User" unless newUser.save
+
+  # Instanciando Tags do projeto
+
+  # O código sempre irá "tentar" instanciar o número de "user_specialties_count" em specialties randomicas
+  # Caso ele instancie uma specialty já cadastrada para o projeto ela nao será guardada no banco de dados
+  # Devido a vaidaçao presente no modelo.
+  user_specialties_count.times do
+    offset = rand(Specialty.count) # Randomiza um número do montante total de records
+    rand_specialty = Specialty.offset(offset).first # Acessa o record com o valor randomizado a partir do primeiro record do database (Evita Records deletados)
+    UserSpecialty.create({
+                        user_id: User.last.id,
+                        specialty_id: rand_specialty.id
                         })
-    newUser.photo.attach(io: user_imgs[iterator], filename: "#{alphabet[iterator]}.png", content_type: 'image/jpg')
-    if newUser.save
-        puts "User id: #{User.last.id} salvo com o nome: #{User.last.name}"
-    else
-        puts "Falha no salvamento do User"
-    end
-    iterator = iterator + 1
+
+                        UserSpecialty.create({
+                          user_id: 1,
+                          specialty_id: 1
+                          })
+  end
+  puts "#"*23 + '  User created  ' + "#"*23
+  puts "Name: #{User.last.name}"
+  puts "Id: #{User.last.id}"
+  puts "-"*10 + "Specialties" + "-"*10
+  User.last.specialties.each_with_index do |specialty, index|
+    puts "#{index + 1}: #{specialty.name}"
+  end
+
+  iterator = iterator + 1
 end
 puts "#"*50
 puts "Instanciando tags"
@@ -89,80 +140,81 @@ puts "#"*50
 puts "Instanciando projetos"
 iterator = 0
 project_imgs.length.times do
-    newProject = Project.new({
-                        name: Faker::Games::Minecraft.unique.achievement.truncate(20),
-                        user: User.all.sample,
-                        description: Faker::Lorem.paragraph_by_chars(number: 120),
-                        linkedin_url: Faker::Internet.email(domain: 'linkedin'),
-                        github_url: Faker::Internet.email(domain: 'github'),
-                        trello_url: Faker::Internet.email(domain: 'trello'),
-                        is_suspended: false,
-                        status_project:  ['idea', 'design', 'pre-production', 'development', 'growth'].sample,
-                        category: ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'].sample
-                        })
-    newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
-    puts "Falha no salvamento do projeto" unless newProject.save
-    nowTime = DateTime.now
-    # Instanciando o founder do projeto
+  newProject = Project.new({
+                      name: Faker::Games::Minecraft.unique.achievement.truncate(20),
+                      user: User.all.sample,
+                      description: Faker::Lorem.paragraph_by_chars(number: 120),
+                      linkedin_url: Faker::Internet.email(domain: 'linkedin'),
+                      github_url: Faker::Internet.email(domain: 'github'),
+                      trello_url: Faker::Internet.email(domain: 'trello'),
+                      is_suspended: false,
+                      status_project:  ['idea', 'design', 'pre-production', 'development', 'growth'].sample,
+                      category: ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'].sample
+                      })
+  newProject.photo.attach(io: project_imgs[iterator], filename: "#{alphabet[iterator]}#{alphabet[iterator]}.png", content_type: 'image/jpg')
+  puts "Falha no salvamento do projeto" unless newProject.save
+  nowTime = DateTime.now
+  # Instanciando o founder do projeto
+  newParticipant = Participant.new({
+                                  user_id: Project.last.user_id,
+                                  project_id: Project.last.id,
+                                  is_founder: true,
+                                  invited_at: nowTime,
+                                  accepted_at: nowTime,
+                                  status: "founder"
+                                  })
+  newParticipant.save
+
+  # Instanciando Tags do projeto
+
+  # O código sempre irá "tentar" instanciar o número em project_tags_count em tags randomicas
+  # Caso ele instancie uma tag já cadastrada para o projeto ela nao será guardada no banco de dados
+  # Devido a vaidaçao presente no modelo.
+  project_tags_count.times do
+    offset = rand(Tag.count) # Randomiza um número do montante total de records
+    rand_tag = Tag.offset(offset).first # Acessa o record com o valor randomizado a partir do primeiro record do database (Evita Records deletados)
+    ProjectTag.create({
+                      project_id: Project.last.id,
+                      tag_id: rand_tag.id
+                      })
+  end
+
+  # Instanciando membros do projeto
+  user_iterator = 0
+  users_excluding_founder = User.all.select do |user|
+    # Exclui o usuário founder do projeto
+    user unless user.id == Project.last.participants[0].user_id
+  end
+
+  # Randomiza a quantidade de participantes do projeto (sempre excluindo o founder)
+  rand(0..(user_imgs.length - 1)).times do
     newParticipant = Participant.new({
-                                    user_id: Project.last.user_id,
+                                    user_id: users_excluding_founder[user_iterator].id,
                                     project_id: Project.last.id,
-                                    is_founder: true,
+                                    is_founder: false,
                                     invited_at: nowTime,
                                     accepted_at: nowTime,
-                                    status: "founder"
+                                    status: ["cofounder", "member", "invitee"].sample
                                     })
     newParticipant.save
+    user_iterator += 1 # Variável para evitar repetir usuários participantes de um projeto
+  end
 
-    # Instanciando Tags do projeto
+  # Mostrar detalhes do projeto criado no console
+  puts " "
+  puts "#"*23 + '  Project Created  ' + "#"*23
+  puts "Projeto: #{Project.last.name}"
+  puts "Founder: #{User.find(Project.last.user_id).name}"
+  puts "-"*10 + "Membros" + "-"*10
+  Project.last.participants.each_with_index do |participant, index|
+    puts "#{index + 1}: #{User.find(participant.user_id).name} | role: #{participant.status}"
+  end
+  puts "-"*10 + "Tags" + "-"*10
+  Project.last.tags.each_with_index do |tag, index|
+    puts "#{index + 1}: #{tag.name}"
 
-    # O código sempre irá "tentar" instanciar o número em project_tags_count
-    # Caso ele instancie uma tag já cadastrada para o projeto ela nao será guardada no banco de dados
-    # Devido a vaidaçao presente no modelo.
-    project_tags_count.times do
-      offset = rand(Tag.count) # Randomiza um número do montante total de records
-      rand_tag = Tag.offset(offset).first # Acessa o record com o valor randomizado a partir do primeiro record do database (Evita Records deletados)
-      ProjectTag.create({
-                        project_id: Project.last.id,
-                        tag_id: rand_tag.id
-                        })
-    end
-
-    # Instanciando membros do projeto
-    user_iterator = 0
-    users_excluding_founder = User.all.select do |user|
-      # Exclui o usuário founder do projeto
-      user unless user.id == Project.last.participants[0].user_id
-    end
-
-    # Randomiza a quantidade de participantes do projeto (sempre excluindo o founder)
-    rand(0..(user_imgs.length - 1)).times do
-      newParticipant = Participant.new({
-                                      user_id: users_excluding_founder[user_iterator].id,
-                                      project_id: Project.last.id,
-                                      is_founder: false,
-                                      invited_at: nowTime,
-                                      accepted_at: nowTime,
-                                      status: ["cofounder", "member", "invitee"].sample
-                                      })
-      newParticipant.save
-      user_iterator += 1 # Variável para evitar repetir usuários participantes de um projeto
-    end
-
-    # Mostrar detalhes do projeto criado no console
-    puts " "
-    puts "#"*23 + '  Project Created  ' + "#"*23
-    puts "Projeto: #{Project.last.name}"
-    puts "Founder: #{User.find(Project.last.user_id).name}"
-    puts "-"*10 + "Membros" + "-"*10
-    Project.last.participants.each_with_index do |participant, index|
-      puts "#{index + 1}: #{User.find(participant.user_id).name} | role: #{participant.status}"
-    end
-    puts "-"*10 + "Tags" + "-"*10
-    Project.last.tags.each_with_index do |tag, index|
-      puts "#{index + 1}: #{tag.name}"
-    end
-    
-    iterator = iterator + 1
+  end
+  
+  iterator = iterator + 1
 end
 puts "Finalizada sequencia de seed"
