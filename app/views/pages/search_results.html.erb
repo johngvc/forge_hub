@@ -1,6 +1,17 @@
 <%= form_tag("/search_result", method: "get") do %>
-  <%= label_tag(:name, "Project name") %>
-  <%= text_field_tag(:name) %>
+  <%= label_tag(:type_filter, "Type filter") %>
+  <%= select_tag(:type_filter, options_for_select(['', 'users', 'projects'], @type_chosen)) %>
+  <%= label_tag(:user_name, "User name") %>
+  <%= text_field_tag(:user_name) %>
+  <%= label_tag(:specialties, "User specialties") %>
+  <%= select_tag(:specialties, options_for_select(['', 'Code', 'Art', 'Sound', 'Design', 'Business', 'Finance', 'Marketing', 'Law'])) %>
+  <%= label_tag(:first_name, "User first name") %>
+  <%= text_field_tag(:first_name) %>
+  <%= label_tag(:last_name, "User last name") %>
+  <%= text_field_tag(:last_name) %>
+  <hr>
+  <%= label_tag(:project_name, "Project name") %>
+  <%= text_field_tag(:project_name) %>
   <%= label_tag(:category, "Project category") %>
   <%= select_tag(:category, options_for_select([[""],['Arts'], ['Comics & Illustration'], ['Design & Tech'], ['Film'], ['Food & Craft'], ['Games'], ['Music'], ['Publishing']])) %>
   <%= label_tag(:status_project, "Project status") %>
@@ -9,16 +20,29 @@
   <%= text_field_tag(:tags) %>
   <%= submit_tag("Search") %>
 <% end %>
+<hr>
 <ul>
-  <% @search_result_projects.each do |project| %>
-    <li>
-      <p><%= "Name: #{project.name}" %></p>
-      <p><%= "Category: #{project.category}" %></p>
-      <p><%= "Status: #{project.status_project}" %></p>
-      <p>tags:</p>
-      <% project.tags.each do |tag| %>
-        <p><%= tag.name %></p>
-      <% end %>
-    </li>
+  <% @search_result.each do |element| %>
+    <% if element.class.name == 'Project' %>
+      <li>
+        <p><%= "Project Name: #{element.name}" %></p>
+        <p><%= "Category: #{element.category}" %></p>
+        <p><%= "Status: #{element.status_project}" %></p>
+        <p>tags:</p>
+        <% element.tags.each do |tag| %>
+          <p><%= tag.name %></p>
+        <% end %>
+      </li>
+      <hr>
+    <% else %>
+      <li>
+        <p><%= "User Name: #{element.name}" %></p>
+        <p>Specialties:</p>
+        <% element.specialties.each do |specialty| %>
+          <p><%= specialty.name %></p>
+        <% end %>
+      </li>
+      <hr>
+    <% end %>
   <% end %>
 </ul>

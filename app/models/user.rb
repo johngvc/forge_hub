@@ -26,12 +26,17 @@ class User < ApplicationRecord
                   using: {
                     tsearch: { prefix: true, any_word: true }
                   }
-  pg_search_scope :global_search, lambda { |against_arr, query|
-    raise ArgumentError unless %i[name first_name last_name].include?(against_arr)
+  pg_search_scope :global_search, lambda { |against_arr = [], query|
+    against_arr.each do |element|
+      raise ArgumentError unless %i[name first_name last_name].include?(element)
+    end
 
     {
       against: against_arr,
-      query: query
+      query: query,
+      using: {
+        tsearch: { prefix: true }
+      }
     }
   }
 end
