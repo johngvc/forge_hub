@@ -27,9 +27,15 @@ class Project < ApplicationRecord
         associated_model.to_sym => associated_against_arr
       },
       query: query,
-      using: {
-        tsearch: { prefix: true }
-      }
+      using: { 
+        tsearch: { 
+                  prefix: true,
+                  dictionary: 'english'
+                  },
+        trigram: {
+                    word_similarity: true
+                  }
+       }
     }
   }
 
@@ -41,9 +47,15 @@ class Project < ApplicationRecord
     {
       against: against_arr,
       query: query,
-      using: {
-        tsearch: { prefix: true }
-      }
+      using: { 
+        tsearch: { 
+                  prefix: true,
+                  dictionary: 'english'
+                  },
+        trigram: {
+                    word_similarity: true
+                  }
+       }
     }
   }
 end

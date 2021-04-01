@@ -30,7 +30,13 @@ class User < ApplicationRecord
       },
       query: query,
       using: {
-        tsearch: { prefix: true }
+        tsearch: {
+          prefix: true,
+          dictionary: 'english'
+        },
+        trigram: {
+          word_similarity: true
+        }
       }
     }
   }
@@ -44,7 +50,13 @@ class User < ApplicationRecord
       against: against_arr,
       query: query,
       using: {
-        tsearch: { prefix: true }
+        tsearch: {
+          prefix: true,
+          dictionary: 'english'
+        },
+        trigram: {
+          word_similarity: true
+        }
       }
     }
   }
