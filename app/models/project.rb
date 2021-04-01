@@ -24,6 +24,23 @@ class Project < ApplicationRecord
                   using: {
                     tsearch: { prefix: true, any_word: true }
                   }
+
+  pg_search_scope :global_search_association, lambda { |associated_against_arr = [], associated_model, query|
+    associated_against_arr.each do |element|
+      raise ArgumentError unless %i[name].include?(element)
+    end
+
+    {
+      associated_against: {
+        associated_model.to_sym => associated_against_arr
+      },
+      query: query,
+      using: {
+        tsearch: { prefix: true }
+      }
+    }
+  }
+
   pg_search_scope :global_search, lambda { |against_arr = [], query|
     against_arr.each do |element|
       raise ArgumentError unless %i[name description status_project category].include?(element)

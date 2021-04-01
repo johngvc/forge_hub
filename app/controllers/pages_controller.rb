@@ -5,38 +5,18 @@ class PagesController < ApplicationController
   end
 
   def search_results
-    @search_result = []
-    search_result_projects_arr = []
-    search_result_users_arr = []
-    @type_choosen = ""
-
-    if params[:type_filter] == "users"
-      @search_result = search_users
-      @type_choosen = "users"
-    elsif params[:type_filter] == "projects"
-      @search_result = search_projects
-      @type_choosen = "projects"
-    else
-      search_result_projects_arr = search_projects
-      search_result_users_arr = search_users
-
-      if search_result_projects_arr.length >= search_result_users_arr.length
-        @search_result = search_result_projects_arr
-        @type_choosen = "projects"
-      else
-        @search_result = search_result_users_arr
-        @type_choosen = "users"
-      end
-    end
+    @search_result_projects = search_projects
+    @search_result_users = search_users
   end
 
   private
 
-  def search_projects
+  def search(_model_to_search, _search_params = {})
     search_result_projects = []
     search_fields_params = ['project_name', 'category', 'status_project', 'tags']
     search_fields_table_columns = %i[name description status_project category]
-    if params[:type_filter] == "" || params[:type_filter].nil?
+
+    if params[:global_search] == "" || params[:type_filter].nil?
       Project.search_by_tag(params[:search_arg]).each do |element|
         search_result_projects << element
       end

@@ -19,16 +19,25 @@ class User < ApplicationRecord
   validates :description, length: { maximum: 80 }
 
   # Configuracao para o search utilizando a gema "pg_search"
-  pg_search_scope :search_by_specialty,
-                  associated_against: {
-                    specialties: %i[name]
-                  },
-                  using: {
-                    tsearch: { prefix: true, any_word: true }
-                  }
+  pg_search_scope :global_search_association, lambda { |associated_against_arr = [], associated_model, query|
+    associated_against_arr.each do |element|
+      raise ArgumentError unless %i[name].include?(element)
+    end
+
+    {
+      associated_against: {
+        associated_model.to_sym => associated_against_arr
+      },
+      query: query,
+      using: {
+        tsearch: { prefix: true }
+      }
+    }
+  }
+
   pg_search_scope :global_search, lambda { |against_arr = [], query|
     against_arr.each do |element|
-      raise ArgumentError unless %i[name first_name last_name].include?(element)
+      raise ArgumentError unless %i[name description status_project category].include?(element)
     end
 
     {
