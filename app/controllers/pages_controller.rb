@@ -6,13 +6,13 @@ class PagesController < ApplicationController
 
   def search_results
     @search_result_projects = search_projects(Project, {
-                                                against__params_name_table_column: {
+                                                against_arg__params_name_table_column: {
                                                   project_name: 'name',
                                                   category: 'category',
                                                   status_project: 'status_project'
                                                 },
                                                 associated_model: 'tags',
-                                                associated_against__params_name_table_column: {
+                                                associated_against_arg__params_name_table_column: {
                                                   tag_name: 'name'
                                                 }
                                               })
