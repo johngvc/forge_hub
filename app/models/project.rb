@@ -17,14 +17,6 @@ class Project < ApplicationRecord
                                     message: "%{value} is not a valid project status" }
 
   # Configuracao para o search utilizando a gema "pg_search"
-  pg_search_scope :search_by_tag,
-                  associated_against: {
-                    tags: %i[name]
-                  },
-                  using: {
-                    tsearch: { prefix: true, any_word: true }
-                  }
-
   pg_search_scope :global_search_association, lambda { |associated_against_arr = [], associated_model, query|
     associated_against_arr.each do |element|
       raise ArgumentError unless %i[name].include?(element)
@@ -40,6 +32,8 @@ class Project < ApplicationRecord
       }
     }
   }
+
+  multisearchable against: %i[name description status_project category]
 
   pg_search_scope :global_search, lambda { |against_arr = [], query|
     against_arr.each do |element|
