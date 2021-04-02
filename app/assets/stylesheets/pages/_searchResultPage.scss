@@ -1,0 +1,33 @@
+.btn-tab:hover {
+  height: 95%;
+  margin-right: 36px;
+  border: none;
+  background-color: transparent;
+  color: $clr-primary;
+}
+
+.tab-content {
+  display: none;
+}
+
+.info-nav navbar {
+  height: 100%;
+}
+
+.info-nav {
+  height: 4rem;
+}
+
+.btn-tab.active {
+  color: $clr-primary;
+}
+
+.btn-tab.active div {
+  bottom: 0;
+  height: 5px;
+  width: 100%;
+  border-bottom: 3px black solid;
+  position: absolute;
+  animation-name: example;
+  animation-duration: 0.1s;
+}

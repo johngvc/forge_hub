@@ -26,7 +26,22 @@ class PagesController < ApplicationController
                                          tag_name: 'name'
                                        }
                                      })
-    # @search_result_users = search_users
+    @search_result_users = search(User, {
+                                    against_arg: [
+                                      'name'
+                                    ],
+                                    associated_model: 'specialties',
+                                    associated_against_arg: [
+                                      'name'
+                                    ],
+                                    filter_against_arg: {
+                                      user_name: 'name'
+                                    },
+                                    filter_associated_model: 'specialties',
+                                    filter_associated_against_arg: {
+                                      specialties_name: 'name'
+                                    }
+                                  })
   end
 
   private
@@ -54,7 +69,6 @@ class PagesController < ApplicationController
     if params[:global_query] == "" || params[:global_query].nil?
       search_results_arr = []
       tmp_result_arr = []
-
       search_params[:filter_associated_against_arg].each do |params_name, table_column_name|
         next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
 
@@ -81,9 +95,15 @@ class PagesController < ApplicationController
         end
       end
 
-      return search_results_arr.reduce(:&)
+      final_result = search_results_arr.reduce(:&)
+
+      if final_result.nil?
+        return []
+      else
+        return final_result
+      end
     end
-    # if global_query is present, search the it as the base search to apply the filters
+    # if global_query is present, search it as the base search to apply the filters
     unless search_params[:associated_model].nil?
       search_result_association_against = model_to_search.global_search_association(associated_against_arr, search_params[:associated_model],
                                                                                     params[:global_query])
@@ -126,6 +146,12 @@ class PagesController < ApplicationController
       search_result_against_arr << element
     end
 
-    return search_result_association_against_arr | search_result_against_arr
+    final_result = search_result_association_against_arr | search_result_against_arr
+
+    if final_result.nil?
+      return []
+    else
+      return final_result
+    end
   end
 end
