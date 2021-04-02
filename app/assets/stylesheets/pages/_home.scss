@@ -34,36 +34,29 @@
   margin-bottom: 50px;
 }
 
-.home-page .banner .start-btn {
-  color: rgb(27, 27, 27);
-  position: absolute;
-  bottom: 21vh;
-  left: 3.8vw;
-}
-
-.home-page .banner .start-btn button {
-  width: 195px;
-  height: 55px;
-  font-weight: 700;
-  background-color: $clr-primary;
-  border: none;
-  border-radius: 5px;
-  font-size: 28px;
-}
+$offset: 5px;
 
 .home-page .banner .start-btn {
   color: rgb(27, 27, 27);
   position: absolute;
   bottom: 21vh;
   left: 3.8vw;
-}
 
-.home-page .banner .start-btn button {
-  width: 195px;
-  height: 55px;
-  font-weight: 700;
-  background-color: $clr-primary;
-  border: none;
-  border-radius: 5px;
-  font-size: 28px;
+  button {
+    width: 195px;
+    height: 55px;
+    font-weight: 700;
+    font-size: 28px;
+    background-color: $clr-primary;
+    border: none;
+    outline: 2px solid $clr-primary;
+    outline-offset: $offset;
+    transition: 0.5s;
+
+    &:hover {
+      transform: scale(1.05);
+      outline: 2px solid transparent;
+      transition: 0.5s;
+    }
+  }
 }
