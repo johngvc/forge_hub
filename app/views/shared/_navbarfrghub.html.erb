@@ -7,7 +7,7 @@
   <div class="nav-bar-search-input">
     <i class="fas fa-search"></i>
     <%= form_tag("/search_result", method: "get") do %>
-      <%= text_field_tag(:search_arg) %>
+      <%= text_field_tag(:global_query) %>
     <% end %>
   </div>
   <% if user_signed_in? %>

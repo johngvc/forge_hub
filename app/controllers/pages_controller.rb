@@ -5,97 +5,153 @@ class PagesController < ApplicationController
   end
 
   def search_results
-    @search_result = []
-    search_result_projects_arr = []
-    search_result_users_arr = []
-    @type_choosen = ""
-
-    if params[:type_filter] == "users"
-      @search_result = search_users
-      @type_choosen = "users"
-    elsif params[:type_filter] == "projects"
-      @search_result = search_projects
-      @type_choosen = "projects"
-    else
-      search_result_projects_arr = search_projects
-      search_result_users_arr = search_users
-
-      if search_result_projects_arr.length >= search_result_users_arr.length
-        @search_result = search_result_projects_arr
-        @type_choosen = "projects"
-      else
-        @search_result = search_result_users_arr
-        @type_choosen = "users"
-      end
-    end
+    @search_result_projects = search(Project, {
+                                       against_arg: [
+                                         'name',
+                                         'description',
+                                         'category',
+                                         'status_project'
+                                       ],
+                                       associated_model: 'tags',
+                                       associated_against_arg: [
+                                         'name'
+                                       ],
+                                       filter_against_arg: {
+                                         project_name: 'name',
+                                         category: 'category',
+                                         status_project: 'status_project'
+                                       },
+                                       filter_associated_model: 'tags',
+                                       filter_associated_against_arg: {
+                                         tag_name: 'name'
+                                       }
+                                     })
+    @search_result_users = search(User, {
+                                    against_arg: [
+                                      'name'
+                                    ],
+                                    associated_model: 'specialties',
+                                    associated_against_arg: [
+                                      'name'
+                                    ],
+                                    filter_against_arg: {
+                                      user_name: 'name'
+                                    },
+                                    filter_associated_model: 'specialties',
+                                    filter_associated_against_arg: {
+                                      specialties_name: 'name'
+                                    }
+                                  })
   end
 
   private
 
-  def search_projects
-    search_result_projects = []
-    search_fields_params = ['project_name', 'category', 'status_project', 'tags']
-    search_fields_table_columns = %i[name description status_project category]
-    if params[:type_filter] == "" || params[:type_filter].nil?
-      Project.search_by_tag(params[:search_arg]).each do |element|
-        search_result_projects << element
-      end
+  def search(model_to_search, search_params = {})
+    # filters passed for filter_against and filter_assoociated_against should be formated as
+    # key = <param_name>
+    # value = <table_column_name>
+    search_result_associated_against = []
+    search_result_against = []
+    against_arr = []
+    associated_against_arr = []
 
-      Project.global_search(search_fields_table_columns, params[:search_arg]).each do |element|
-        search_result_projects << element
-      end
-      return search_result_projects.empty? ? [] : search_result_projects.uniq
-
+    # Get necessary info from parameters
+    search_params[:against_arg].each do |value|
+      against_arr << value.to_sym
     end
 
-    params.each do |key, value|
-      next if !search_fields_params.include?(key) || value == "" || value.nil?
+    search_params[:associated_against_arg].each do |value|
+      associated_against_arr << value.to_sym
+    end
 
-      if key.to_s == "tags"
-        Project.search_by_tag(value).each do |element|
-          search_result_projects << element
+    # Do the base search
+    # if global_query is absent, search the filters selected
+    if params[:global_query] == "" || params[:global_query].nil?
+      search_results_arr = []
+      tmp_result_arr = []
+      search_params[:filter_associated_against_arg].each do |params_name, table_column_name|
+        next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
+
+        params[params_name.to_sym].split('`').each do |value_to_search|
+          model_to_search.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                    value_to_search).each do |result|
+            tmp_result_arr << result
+          end
+          search_results_arr << tmp_result_arr
+          tmp_result_arr = []
         end
-        next
       end
 
-      Project.global_search(key == "project_name" ? [:name] : [key.to_sym], value).each do |element|
-        search_result_projects << element
-      end
-    end
-    return search_result_projects.empty? ? [] : search_result_projects.uniq
-  end
+      search_params[:filter_against_arg].each do |params_name, table_column_name|
+        next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
 
-  def search_users
-    search_result_users = []
-    search_fields_params = ["user_name", "first_name", "last_name", "specialties"]
-    search_fields_table_columns = %i[name first_name last_name]
-
-    if params[:type_filter] == "" || params[:type_filter].nil?
-      User.search_by_specialty(params[:search_arg]).each do |element|
-        search_result_users << element
-      end
-
-      User.global_search(search_fields_table_columns, params[:search_arg]).each do |element|
-        search_result_users << element
-      end
-      return search_result_users.empty? ? [] : search_result_users.uniq
-
-    end
-
-    params.each do |key, value|
-      next if !search_fields_params.include?(key) || value == "" || value.nil?
-
-      if key.to_s == "specialties"
-        User.search_by_specialty(value).each do |element|
-          search_result_users << element
+        params[params_name.to_sym].split('`').each do |value_to_search|
+          model_to_search.global_search([table_column_name.to_sym],
+                                        value_to_search).each do |result|
+            tmp_result_arr << result
+          end
+          search_results_arr << tmp_result_arr
+          tmp_result_arr = []
         end
-        next
       end
 
-      User.global_search(key == "user_name" ? [:name] : [key.to_sym], value).each do |element|
-        search_result_users << element
+      final_result = search_results_arr.reduce(:&)
+
+      if final_result.nil?
+        return []
+      else
+        return final_result
       end
     end
-    return search_result_users.empty? ? [] : search_result_users.uniq
+    # if global_query is present, search it as the base search to apply the filters
+    unless search_params[:associated_model].nil?
+      search_result_association_against = model_to_search.global_search_association(associated_against_arr, search_params[:associated_model],
+                                                                                    params[:global_query])
+    end
+    search_result_against = model_to_search.global_search(against_arr, params[:global_query])
+
+    # Apply filters if provided
+    # Do the filtering on the base search result
+    search_params[:filter_associated_against_arg].each do |params_name, table_column_name|
+      next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
+
+      params[params_name.to_sym].split('`').each do |value_to_search|
+        search_result_association_against = search_result_association_against.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                                                                        value_to_search)
+
+        search_result_against = search_result_against.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                                                value_to_search)
+      end
+    end
+
+    # Do the filtering on the base search result
+    search_params[:filter_against_arg].each do |params_name, table_column_name|
+      next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
+
+      params[params_name.to_sym].split('`').each do |value_to_search|
+        search_result_against = search_result_against.global_search([table_column_name.to_sym],
+                                                                    value_to_search)
+        search_result_association_against = search_result_association_against.global_search([table_column_name.to_sym],
+                                                                                            value_to_search)
+      end
+    end
+
+    # Return search
+    search_result_association_against_arr = []
+    search_result_against_arr = []
+    search_result_association_against.each do |element|
+      search_result_association_against_arr << element
+    end
+    search_result_against.each do |element|
+      search_result_against_arr << element
+    end
+
+    final_result = search_result_association_against_arr | search_result_against_arr
+
+    if final_result.nil?
+      return []
+    else
+      return final_result
+    end
   end
 end
