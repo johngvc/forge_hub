@@ -43,13 +43,16 @@
 }
 
 .Log-in-btn {
-  background-color: $clr-primary;
+  background-color: transparent;
   width: 100px;
   margin-right: 20px;
   height: 30px;
-  border-radius: 6px;
   text-align: center;
   border: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .controls {
