@@ -50,7 +50,7 @@ class PagesController < ApplicationController
     end
 
     # Do the base search
-    # if global_query is absent, search the filters
+    # if global_query is absent, search the filters selected
     if params[:global_query] == "" || params[:global_query].nil?
       search_results_arr = []
       tmp_result_arr = []
@@ -58,19 +58,24 @@ class PagesController < ApplicationController
       search_params[:filter_associated_against_arg].each do |params_name, table_column_name|
         next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
 
-        model_to_search.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
-                                                  params[params_name.to_sym]).each do |result|
-          tmp_result_arr << result
+        params[params_name.to_sym].split('`').each do |value_to_search|
+          model_to_search.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                    value_to_search).each do |result|
+            tmp_result_arr << result
+          end
         end
+
         search_results_arr << tmp_result_arr
       end
 
       search_params[:filter_against_arg].each do |params_name, table_column_name|
         next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
 
-        model_to_search.global_search([table_column_name.to_sym],
-                                      params[params_name.to_sym]).each do |result|
-          tmp_result_arr << result
+        params[params_name.to_sym].split('`').each do |value_to_search|
+          model_to_search.global_search([table_column_name.to_sym],
+                                        value_to_search).each do |result|
+            tmp_result_arr << result
+          end
         end
         search_results_arr << tmp_result_arr
         tmp_result_arr = []
@@ -90,21 +95,25 @@ class PagesController < ApplicationController
     search_params[:filter_associated_against_arg].each do |params_name, table_column_name|
       next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
 
-      search_result_association_against = search_result_association_against.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
-                                                                                                      params[params_name.to_sym])
+      params[params_name.to_sym].split('`').each do |value_to_search|
+        search_result_association_against = search_result_association_against.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                                                                        value_to_search)
 
-      search_result_against = search_result_against.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
-                                                                              params[params_name.to_sym])
+        search_result_against = search_result_against.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                                                value_to_search)
+      end
     end
 
     # Do the filtering on the base search result
     search_params[:filter_against_arg].each do |params_name, table_column_name|
       next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
 
-      search_result_against = search_result_against.global_search([table_column_name.to_sym],
-                                                                  params[params_name.to_sym])
-      search_result_association_against = search_result_association_against.global_search([table_column_name.to_sym],
-                                                                                          params[params_name.to_sym])
+      params[params_name.to_sym].split('`').each do |value_to_search|
+        search_result_against = search_result_against.global_search([table_column_name.to_sym],
+                                                                    value_to_search)
+        search_result_association_against = search_result_association_against.global_search([table_column_name.to_sym],
+                                                                                            value_to_search)
+      end
     end
 
     # Return search
