@@ -8,6 +8,7 @@ class PagesController < ApplicationController
     @search_result_projects = search(Project, {
                                        against_arg: [
                                          'name',
+                                         'description',
                                          'category',
                                          'status_project'
                                        ],
@@ -25,7 +26,7 @@ class PagesController < ApplicationController
                                          tag_name: 'name'
                                        }
                                      })
-    @search_result_users = search_users
+    # @search_result_users = search_users
   end
 
   private
@@ -36,7 +37,8 @@ class PagesController < ApplicationController
     # value = <table_column_name>
     search_result_associated_against = []
     search_result_against = []
-    search_result = []
+    against_arr = []
+    associated_against_arr = []
 
     # Get necessary info from parameters
     search_params[:against_arg].each do |value|
@@ -48,35 +50,73 @@ class PagesController < ApplicationController
     end
 
     # Do the base search
-    unless search_params[:associated_model].nil?
-      model_to_search.global_search_association(associated_against_arr, search_params[:associated_model],
-                                                params[:global_query]).each do |results_element|
-                                                  search_result_association << results_element
-                                                end
-    end
-    model_to_search.global_search(against_arr, params[:global_query]).each do |results_element|
-      search_result_against << results_element
-    end
+    # if global_query is absent, search the filters
+    if params[:global_query] == "" || params[:global_query].nil?
+      search_results_arr = []
+      tmp_result_arr = []
 
-    search_result = search_result_associated_against & search_result_against
+      search_params[:filter_associated_against_arg].each do |params_name, table_column_name|
+        next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
+
+        model_to_search.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                  params[params_name.to_sym]).each do |result|
+          tmp_result_arr << result
+        end
+        search_results_arr << tmp_result_arr
+      end
+
+      search_params[:filter_against_arg].each do |params_name, table_column_name|
+        next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
+
+        model_to_search.global_search([table_column_name.to_sym],
+                                      params[params_name.to_sym]).each do |result|
+          tmp_result_arr << result
+        end
+        search_results_arr << tmp_result_arr
+        tmp_result_arr = []
+      end
+
+      return search_results_arr.reduce(:&)
+    end
+    # if global_query is present, search the it as the base search to apply the filters
+    unless search_params[:associated_model].nil?
+      search_result_association_against = model_to_search.global_search_association(associated_against_arr, search_params[:associated_model],
+                                                                                    params[:global_query])
+    end
+    search_result_against = model_to_search.global_search(against_arr, params[:global_query])
 
     # Apply filters if provided
-    unless search_params[:filter_associated_model].nil? && search_params[:filter_associated_against_arg].nil?
-      # Do the filtering on the base search result
-      search_params[:filter_associated_against_arg].each do |params_name, table_column_name|
-        search_result.global_search_association(table_column_name, search_params[:filter_associated_model],
-                                                params[params_name.to_sym])
-      end
+    # Do the filtering on the base search result
+    search_params[:filter_associated_against_arg].each do |params_name, table_column_name|
+      next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
+
+      search_result_association_against = search_result_association_against.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                                                                      params[params_name.to_sym])
+
+      search_result_against = search_result_against.global_search_association([table_column_name.to_sym], search_params[:filter_associated_model],
+                                                                              params[params_name.to_sym])
     end
 
-    unless search_params[:filter_against_arg].nil?
-      # Do the filtering on the base search result
-      search_params[:filter_against_arg].each do |params_name, table_column_name|
-        search_result.global_search(table_column_name, params[params_name.to_sym])
-      end
+    # Do the filtering on the base search result
+    search_params[:filter_against_arg].each do |params_name, table_column_name|
+      next if params[params_name.to_sym].nil? || params[params_name.to_sym] == ""
+
+      search_result_against = search_result_against.global_search([table_column_name.to_sym],
+                                                                  params[params_name.to_sym])
+      search_result_association_against = search_result_association_against.global_search([table_column_name.to_sym],
+                                                                                          params[params_name.to_sym])
     end
 
     # Return search
-    return search_result
+    search_result_association_against_arr = []
+    search_result_against_arr = []
+    search_result_association_against.each do |element|
+      search_result_association_against_arr << element
+    end
+    search_result_against.each do |element|
+      search_result_against_arr << element
+    end
+
+    return search_result_association_against_arr | search_result_against_arr
   end
 end

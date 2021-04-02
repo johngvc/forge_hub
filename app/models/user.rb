@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   pg_search_scope :global_search, lambda { |against_arr = [], query|
     against_arr.each do |element|
-      raise ArgumentError unless %i[name description status_project category].include?(element)
+      raise ArgumentError unless %i[name].include?(element)
     end
 
     {

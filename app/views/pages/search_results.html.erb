@@ -1,6 +1,7 @@
 <%= form_tag("/search_result", method: "get") do %>
-  <%= label_tag(:type_filter, "Type filter") %>
-  <%= select_tag(:type_filter, options_for_select(['', 'users', 'projects'], @type_choosen)) %>
+  <%= label_tag(:global_query, "Search") %>
+  <%= text_field_tag(:global_query) %>
+  <hr>
   <%= label_tag(:user_name, "User name") %>
   <%= text_field_tag(:user_name) %>
   <%= label_tag(:specialties, "User specialties") %>
@@ -16,13 +17,13 @@
   <%= select_tag(:category, options_for_select([[""],['Arts'], ['Comics & Illustration'], ['Design & Tech'], ['Film'], ['Food & Craft'], ['Games'], ['Music'], ['Publishing']])) %>
   <%= label_tag(:status_project, "Project status") %>
   <%= select_tag(:status_project, options_for_select(['', 'idea', 'design', 'pre-production', 'development', 'growth'])) %>
-  <%= label_tag(:tags, "Project tags") %>
-  <%= text_field_tag(:tags) %>
+  <%= label_tag(:tag_name, "Project tags") %>
+  <%= text_field_tag(:tag_name) %>
   <%= submit_tag("Search") %>
 <% end %>
 <hr>
 <ul>
-  <% @search_result.each do |element| %>
+  <% @search_result_projects.each do |element| %>
     <% if element.class.name == 'Project' %>
       <li>
         <p><%= "Project Name: #{element.name}" %></p>
