@@ -52,14 +52,10 @@ $offset: 5px;
     outline: 2px solid $clr-primary;
     outline-offset: $offset;
     transition: 0.5s;
-    // border-radius: 5px;
 
     &:hover {
-      // width: calc(195px + 2 * #{$offset});
-      // height: calc(55px + 2 * #{$offset});
       transform: scale(1.05);
       outline: 2px solid transparent;
-      // outline-offset: 0;
       transition: 0.5s;
     }
   }
