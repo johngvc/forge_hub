@@ -63,9 +63,9 @@ class PagesController < ApplicationController
                                                     value_to_search).each do |result|
             tmp_result_arr << result
           end
+          search_results_arr << tmp_result_arr
+          tmp_result_arr = []
         end
-
-        search_results_arr << tmp_result_arr
       end
 
       search_params[:filter_against_arg].each do |params_name, table_column_name|
@@ -76,9 +76,9 @@ class PagesController < ApplicationController
                                         value_to_search).each do |result|
             tmp_result_arr << result
           end
+          search_results_arr << tmp_result_arr
+          tmp_result_arr = []
         end
-        search_results_arr << tmp_result_arr
-        tmp_result_arr = []
       end
 
       return search_results_arr.reduce(:&)
