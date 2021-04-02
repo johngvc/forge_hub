@@ -1,25 +1,27 @@
-<%= form_tag("/search_result", method: "get") do %>
-  <%= label_tag(:global_query, "Search") %>
-  <%= text_field_tag(:global_query) %>
-  <hr>
-  <%= label_tag(:user_name, "User name") %>
-  <%= text_field_tag(:user_name) %>
-  <%= label_tag(:specialties_name, "User specialties") %>
-  <%= select_tag(:specialties_name, options_for_select(['', 'Code', 'Art', 'Sound', 'Design', 'Business', 'Finance', 'Marketing', 'Law'])) %>
-  <hr>
-  <%= label_tag(:project_name, "Project name") %>
-  <%= text_field_tag(:project_name) %>
-  <%= label_tag(:category, "Project category") %>
-  <%= select_tag(:category, options_for_select([[""],['Arts'], ['Comics & Illustration'], ['Design & Tech'], ['Film'], ['Food & Craft'], ['Games'], ['Music'], ['Publishing']])) %>
-  <%= label_tag(:status_project, "Project status") %>
-  <%= select_tag(:status_project, options_for_select(['', 'idea', 'design', 'pre-production', 'development', 'growth'])) %>
-  <%= label_tag(:tag_name, "Project tags") %>
-  <%= text_field_tag(:tag_name) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<div class="container-new">
+  <%= form_tag("/search_result", method: "get") do %>
+    <%= label_tag(:global_query, "Search") %>
+    <%= text_field_tag(:global_query, params[:global_query]) %>
+    <hr>
+    <%= label_tag(:user_name, "User name") %>
+    <%= text_field_tag(:user_name, params[:user_name]) %>
+    <%= label_tag(:specialties_name, "User specialties") %>
+    <%= select_tag(:specialties_name, options_for_select(['', 'Code', 'Art', 'Sound', 'Design', 'Business', 'Finance', 'Marketing', 'Law'], params[:specialties_name])) %>
+    <hr>
+    <%= label_tag(:project_name, "Project name") %>
+    <%= text_field_tag(:project_name, params[:project_name]) %>
+    <%= label_tag(:category, "Project category") %>
+    <%= select_tag(:category, options_for_select([[""],['Arts'], ['Comics & Illustration'], ['Design & Tech'], ['Film'], ['Food & Craft'], ['Games'], ['Music'], ['Publishing']], params[:category])) %>
+    <%= label_tag(:status_project, "Project status") %>
+    <%= select_tag(:status_project, options_for_select(['', 'idea', 'design', 'pre-production', 'development', 'growth'], params[:status_project])) %>
+    <%= label_tag(:tag_name, "Project tags") %>
+    <%= text_field_tag(:tag_name, params[:tag_name]) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</div>
 <hr>
 <section class="info-tabs">
-  <div class="info-nav scrolling-wrapper">
+  <div class="info-nav scrolling-wrapper container-new">
     <navbar>
       <button class="btn-tab active" id="tab1">
         <div></div>
@@ -33,7 +35,7 @@
   </div>
 </section>
 <section id="info-contents">
-  <div class="tab-contents">
+  <div class="tab-contents container-new">
     <div class="tab-content" id="content-tab1" style="display: block;">
       <h2 class="center-text">Found <%= @search_result_projects.count %> projects</h2>
       <ul>
