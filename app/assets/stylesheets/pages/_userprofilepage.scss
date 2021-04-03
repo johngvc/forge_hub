@@ -60,7 +60,7 @@ $std-padding: 15px 0;
 
     h2 {
       font-size: 2.1rem;
-      text-align: center;
+      // text-align: center;
       font-weight: bold;
     }
 
@@ -77,9 +77,13 @@ $std-padding: 15px 0;
         padding-top: 25px;
       }
       .card-container {
-        @include flex-display-wrap(space-evenly, flex-start, row);
+        @include flex-display-wrap(null, flex-start, row);
         width: 100%;
         min-height: 38vh;
+
+        .project-card {
+          margin-right: 15px;
+        }
       }
     }
     .messages-section {
@@ -88,10 +92,7 @@ $std-padding: 15px 0;
       min-height: 28vh;
 
       .card-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: column;
+        @include flex-display();
         width: 100%;
         min-height: 38vh;
         margin-top: 16px;

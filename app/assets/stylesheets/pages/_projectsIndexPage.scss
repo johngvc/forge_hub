@@ -4,13 +4,13 @@
 
   .cards-container {
     @include flex-display-wrap(null, null, row);
-
+    padding: 10px 0 35px 0;
     .project-card {
       margin-right: 15px;
     }
   }
 
   h1 {
-    font-weight: 800;
+    font-family: inherit !important;
   }
 }
