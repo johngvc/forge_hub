@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_034120) do
+ActiveRecord::Schema.define(version: 2021_04_03_000701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -69,6 +69,12 @@ ActiveRecord::Schema.define(version: 2021_04_01_034120) do
     t.index ["user_sender_id"], name: "index_chat_messages_on_user_sender_id"
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "foreign_key_to_bootcamps_in_users", force: :cascade do |t|
   end
 
@@ -83,6 +89,16 @@ ActiveRecord::Schema.define(version: 2021_04_01_034120) do
     t.index ["participants_id"], name: "index_join_requests_on_participants_id"
     t.index ["project_id"], name: "index_join_requests_on_project_id"
     t.index ["user_id"], name: "index_join_requests_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -174,6 +190,8 @@ ActiveRecord::Schema.define(version: 2021_04_01_034120) do
   add_foreign_key "join_requests", "participants", column: "participants_id"
   add_foreign_key "join_requests", "projects"
   add_foreign_key "join_requests", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "participants", "participants", column: "invite_participant_id"
   add_foreign_key "participants", "projects"
   add_foreign_key "participants", "users"

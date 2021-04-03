@@ -9,7 +9,10 @@ import "bootstrap";
 import "jquery";
 import { event } from "jquery";
 import { initOpenTab } from "../components/tabs_project_show";
-import { map } from "../components/footer_map"
+import { map } from "../components/footer_map";
+import { initChatroomCable } from "../channels/chatroom_channel";
+import { ajaxNewMessageCall } from "../components/ajax_new_message_call";
+import { fetchWithToken } from "../components/fetch_with_token";
 
 require("@rails/ujs").start();
 require("turbolinks").start();
@@ -42,7 +45,9 @@ document.addEventListener("turbolinks:load", () => {
   msgModal();
   initOpenTab();
   //changeRoleModal();
+  ajaxNewMessageCall();
   map();
+  initChatroomCable();
 });
 
 require("trix");

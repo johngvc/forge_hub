@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get '/contact', to: 'pages#contact'
 
+  post '/message', to: 'messages#create'
+
   get '/search_result', to: 'pages#search_results'
 
   resources :profiles, only: %i[show index]

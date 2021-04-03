@@ -7,6 +7,10 @@ class User < ApplicationRecord
          :trackable
 
   devise :omniauthable, omniauth_providers: %i[linkedin]
+
+  has_many :chatrooms, through: :messages # Subject to change/delete
+  has_many :messages # Subject to change/delete
+
   has_many :projects, through: :participants, dependent: :delete_all
   has_many :user_specialties, dependent: :delete_all
   has_many :specialties, through: :user_specialties

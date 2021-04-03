@@ -1,0 +1,19 @@
+<div class="container-new">
+  <div style="position: absolute; overflow: scroll; bottom: 0px; right: 15px; height: 500px; width: 300px; background-color: white;">
+    <h1>#<%= Chatroom.find(1).name %></h1>
+    <div id="messages" data-chatroom-id="<%= 1 %>">
+      <% Chatroom.find(1).messages.each do |message| %>
+        <div class="message-container" id="message-<%= message.id %>">
+          <i class="author">
+            <span><%= message.user.name %></span>
+            <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+          </i>
+          <p><%= message.content %></p>
+        </div>
+      <% end %>
+    </div>
+    <button id="new-message-btn">
+      <p>New message</p>
+    </button>
+  </div>
+</div>
