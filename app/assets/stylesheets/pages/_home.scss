@@ -55,7 +55,8 @@ $offset: 5px;
 
     &:hover {
       transform: scale(1.05);
-      outline: 2px solid transparent;
+      // outline: 2px solid transparent;
+      outline-offset: 0;
       transition: 0.5s;
     }
   }
