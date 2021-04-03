@@ -2,8 +2,8 @@ class MessagesController < ApplicationController
   before_action :pundit_policy_authorized?
 
   def create
-    @chatroom = Chatroom.find(1)
-    @message = Message.new({ content: "Teste 123" })
+    @chatroom = Chatroom.find(params[:activeChatRoomId])
+    @message = Message.new({ content: params[:messageContent] })
     @message.chatroom = @chatroom
     @message.user = current_user
     if @message.save
