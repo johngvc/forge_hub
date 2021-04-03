@@ -4,10 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.master-container a {
-  color: $clr-gray-400;
+  a {
+    color: $clr-gray-400;
+  }
 }
 
 .form {
@@ -20,38 +20,63 @@
   background: $clr-gray-200;
   box-shadow: 0px 10px 11px -9px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-}
 
-.form div {
-  width: 25vw;
-}
+  h2 {
+    // margin: 10px 0px 25px 0px;
+    padding: 25px 0;
+    font-weight: 700;
+    text-align: center;
+  }
 
-.form .form-actions input {
-  background-color: $clr-primary;
-  width: 100%;
-  border-radius: 5px;
-  font-weight: 700;
-  font-size: 20px;
-  text-align: center;
-}
+  div {
+    width: 25vw;
+  }
 
-.form .support-links {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
+  .form-actions {
+    input {
+      background-color: $clr-primary;
+      width: 100%;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 20px;
+      text-align: center;
 
-.form .support-links a {
-  margin: 10px 5px;
-}
+      &:hover {
+        background-color: $clr-primary-darker;
+      }
+    }
+  }
 
-.form h2 {
-  margin: 10px 0px 25px 0px;
-  font-weight: 700;
+  .support-links {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      margin: 10px 5px;
+    }
+  }
+
+  .flex-column {
+    padding: 15px 0;
+  }
 }
 
 .cancel-acc {
   margin: 20px 0px 0px 0px;
   font-size: 15px;
+}
+
+.linked-in {
+  color: $linkedin !important;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.form-check-label,
+.form-control-file {
+  cursor: pointer;
 }

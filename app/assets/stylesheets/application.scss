@@ -23,7 +23,8 @@ body {
   font-family: Roboto, sans-serif;
   display: flex;
   flex-direction: column;
-  background-color: #e7e7e7;
+  // background-color: #e7e7e7;
+  background-color: white;
   div {
     margin: 0px;
     font-family: inherit;
@@ -56,33 +57,8 @@ ul {
   list-style: none;
 }
 
-// linkedin button css
-.support-links {
-  position: relative;
-  box-sizing: padding-box;
-  height: 40px;
-  width: 200px;
-  background-color: whitesmoke;
-  vertical-align: center;
-  font: 500 14px/40px Roboto;
-  letter-spacing: 0.65px;
-  color: white;
-  padding-left: 80px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  justify-content: flex-start;
-}
-
-.support-links:hover {
-  background-color: white;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-}
-
-.support-links:active {
-  background-color: #066093;
+.flex-column {
+  @include flex-display("center");
 }
 
 .btn-generic {
@@ -123,4 +99,9 @@ ul {
 ::selection {
   background: $clr-primary-80;
   color: black;
+}
+
+//não usar
+.hidden {
+  display: none !important;
 }
