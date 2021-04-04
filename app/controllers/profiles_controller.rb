@@ -1,7 +1,8 @@
 class ProfilesController < ApplicationController
-# require 'chat_messages_controller'
+  # require 'chat_messages_controller'
   # before_action :set_adoption_requests, only: %i[show]
   before_action :pundit_policy_scoped?
+  before_action :set_user
 
   def index
     @users = User.all
@@ -44,8 +45,8 @@ class ProfilesController < ApplicationController
   def index_messages
     @messages_received = ChatMessage.where(user_receiver_id: current_user.id)
     @messages_sent = ChatMessage.where(user_sender_id: current_user.id)
-    messages_received_sort = @messages_received.sort_by &:sent_at
-    messages_sent_sort = @messages_sent.sort_by &:sent_at
+    messages_received_sort = @messages_received.sort_by(&:sent_at)
+    messages_sent_sort = @messages_sent.sort_by(&:sent_at)
     @messages_received_sorted = messages_received_sort.reverse
     @messages_sent_sorted = messages_sent_sort.reverse
   end
@@ -62,10 +63,10 @@ class ProfilesController < ApplicationController
         message.save
       end
     end
-    unless @new_message_count.zero?
-      @new_message_alert = true
-    else
+    if @new_message_count.zero?
       @new_message_alert = false
+    else
+      @new_message_alert = true
     end
   end
 
@@ -74,5 +75,4 @@ class ProfilesController < ApplicationController
   def pundit_policy_scoped?
     true
   end
-
 end

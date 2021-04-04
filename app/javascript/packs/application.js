@@ -13,6 +13,7 @@ import { map } from "../components/footer_map";
 import { initChatroomCable } from "../channels/chatroom_channel";
 import { ajaxNewMessageCall } from "../components/ajax_new_message_call";
 import { fetchWithToken } from "../components/fetch_with_token";
+import { initCurrentUserChatrooms } from "../components/current_user_chatrooms";
 
 require("@rails/ujs").start();
 require("turbolinks").start();
@@ -47,6 +48,7 @@ document.addEventListener("turbolinks:load", () => {
   //changeRoleModal();
   ajaxNewMessageCall();
   map();
+  initCurrentUserChatrooms();
   initChatroomCable();
 });
 

@@ -1,10 +1,12 @@
 import { fetchWithToken } from "../components/fetch_with_token";
+import { initChatroomCable } from "../channels/chatroom_channel";
 
 const ajaxNewMessageCall = (event) => {
   // Get new message button
   const newMessageButton = document.getElementById("new-message-btn");
 
   newMessageButton.addEventListener("click", (event) => {
+    initChatroomCable();
     const data = {
       messageContent: document.getElementById("new-message-input").value,
       activeChatRoomId: document.getElementById("messages").dataset.chatroomId,

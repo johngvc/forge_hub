@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: %i[linkedin]
 
-  has_many :chatrooms, through: :messages # Subject to change/delete
+  has_many :chatroom_participants # Subject to change/delete
+  has_many :chatrooms, through: :chatroom_participants # Subject to change/delete
   has_many :messages # Subject to change/delete
 
   has_many :projects, through: :participants, dependent: :delete_all
