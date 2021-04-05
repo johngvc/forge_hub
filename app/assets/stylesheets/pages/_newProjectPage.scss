@@ -68,3 +68,13 @@
     margin-top: 6px;
   }
 }
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.rich-text-area trix-editor {
+  min-height: 75vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

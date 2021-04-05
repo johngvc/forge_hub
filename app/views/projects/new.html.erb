@@ -6,11 +6,13 @@
         <div class="container project-infos-2">
           <div class="container">
             <div class="main-infos">
-              <%=f.input :name, required: true, label: "Give your project a name" %>
+              <%=f.input :name, required: true, label: "Give it a cool name" %>
+
               <%= f.input :description, required: true, label: "What is it about? Brief explanation! (max 120 characters)" %>
+              
               <%= f.input :category, required: true, label: "In what category does your project fit?", :collection => ['Arts', 'Comics & Illustration', 'Design & Tech', 'Film', 'Food & Craft', 'Games', 'Music', 'Publishing'] %>
-              <%= f.input :photo, as: :file, label: "If you want, attach a photo for your project banner" %>
-              <%= f.input :status_project, :collection => ['idea', 'design', 'pre-production', 'development', 'growth'], label: "At what phase your project is currently at?" %>
+              <%= f.input :photo, as: :file, label: "If you want, attach a photo for the project banner" %>
+              <%= f.input :status_project, :collection => ['idea', 'design', 'pre-production', 'development', 'growth'], label: "What stage is your project in?" %>
             </div>
           </div>
           <div class="container">
