@@ -1,4 +1,5 @@
 import { fetchWithToken } from "./fetch_with_token";
+import { initChatroomCable } from "../channels/chatroom_channel";
 
 const updateChatroomMessages = (event) => {
   // Get new message button
@@ -26,6 +27,8 @@ const updateChatroomMessages = (event) => {
           `;
         messagesContainer.insertAdjacentHTML("beforeend", messageHTMLPartial);
       });
+      // Turn on the Chatroom Cable
+      initChatroomCable();
     });
 };
 

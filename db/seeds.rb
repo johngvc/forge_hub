@@ -70,6 +70,8 @@ Project.delete_all
 Bootcamp.delete_all
 ChatMessage.delete_all
 JoinRequest.delete_all
+ChatroomParticipant.delete_all
+Message.delete_all
 User.delete_all
 
 
