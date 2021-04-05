@@ -1,22 +1,23 @@
 <header class="sh-prj-pg" id="sh-prj-pg-header">
-  <div class="container-new center-text">
-    <h1><%=  @project.name %></h1>
-    <p><%= @project.description %></p>
-  </div>
-</header>
-<main class="sh-prj-pg">
-  <div class="container-new">
-    <section id="prj-photo-call-to-action">
-      <div class="split-flex">
-        <div class="image-container">
+<div class="image-container">
           <div class="image-wrapper">
             <% if @project.photo.attached? %>
               <%= cl_image_tag @project.photo.key%>
             <% else %>
               <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg"%>
             <% end %>
+            <div class="center-text project-show-title">
+              <h1><%=  @project.name %></h1>
+              <p><%= @project.description %></p>
+            </div>
           </div>
         </div>
+</header>
+<main class="sh-prj-pg">
+  <div class="container-new">
+    <section id="prj-photo-call-to-action">
+      <div class="split-flex">
+        
         <div class="center-text" id="text-call-to-action">
           <% if User.find(@project.user_id) == current_user %>
             <h2>Welcome back, <%= User.find(@project.user_id).name %>!</h2>

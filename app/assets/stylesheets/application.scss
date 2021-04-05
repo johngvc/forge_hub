@@ -42,6 +42,7 @@ body {
 .content {
   flex: 1 0 auto;
   // min-height: 50vh;
+  padding-top: $navbarheight;
 }
 
 .container-new {
