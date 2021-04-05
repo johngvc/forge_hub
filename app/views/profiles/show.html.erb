@@ -62,7 +62,7 @@
       </div>
     </div>
     <% if @user == current_user %>
-      <div class="messages-section">
+      <div class="messages-section hidden">
         <h2>Message inbox</h2>
         <%= link_to new_chat_message_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#sendNewMessageModal', :class => "new-message-icon" } do %>
           <i class="fas fa-edit"></i>
@@ -70,7 +70,7 @@
         <% end %>
         <%= render 'chat_messages/index_received', messages: @messages_received_sorted %>
       </div>
-      <div class="messages-section">
+      <div class="messages-section hidden">
         <h2>Sent messages</h2>
         <%= render 'chat_messages/index_sent', messages: @messages_sent_sorted %>
       </div>

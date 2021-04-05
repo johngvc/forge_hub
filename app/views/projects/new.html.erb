@@ -1,4 +1,4 @@
-<div class=container>
+<div class=container-new>
   <div class="form-project">
     <h2 class="heading text-center">Create a new project</h2>
     <%= simple_form_for(@project) do |f| %>
@@ -19,9 +19,7 @@
               <%= f.input :github_url, label: "Does it have a GitHub page?" %>
               <%= f.input :trello_url, label: "Does it have a Trello page?" %>
             </div>
-            <div class="form-actions project-submit-btn">
-              <%= f.submit "Create my new project!" %>
-            </div>
+            
           </div>
         </div>
         <div class="container project-rich-text">
@@ -29,6 +27,9 @@
             <%= f.input :content, required: true, as: :rich_text_area, label: "Thoroughly describe your project Goal and story, be creative!" %>
           </div>
         </div>
+      </div>
+      <div class="form-actions project-submit-btn">
+        <%= f.submit "Create my new project!" %>
       </div>
     <% end %>
   </div>
