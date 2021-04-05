@@ -1,12 +1,12 @@
 import { fetchWithToken } from "../components/fetch_with_token";
 import { getCookie } from "../components/get_cookie";
 import { updateChatroomId } from "../components/update_chatroom_id";
+import { initChatroomCable } from "../channels/chatroom_channel";
 
 const initCurrentUserChatrooms = (event) => {
   // Get combo box input with the room selected
   const comboBoxElement = document.getElementById("rooms");
   const currentUserId = parseInt(getCookie("user_id"), 10);
-
   fetchWithToken(`/api/v1/chatrooms/user_chatrooms/${currentUserId}`, {
     method: "GET",
     headers: {
@@ -19,6 +19,7 @@ const initCurrentUserChatrooms = (event) => {
       data.forEach((element) => {
         const comboBoxOption = `<option value="${element.id}">${element.name}</option>`;
         comboBoxElement.insertAdjacentHTML("beforeend", comboBoxOption);
+        initChatroomCable(element.id);
       });
       updateChatroomId();
     });

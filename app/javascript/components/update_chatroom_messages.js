@@ -1,5 +1,4 @@
 import { fetchWithToken } from "./fetch_with_token";
-import { initChatroomCable } from "../channels/chatroom_channel";
 
 const updateChatroomMessages = (event) => {
   // Get new message button
@@ -15,6 +14,7 @@ const updateChatroomMessages = (event) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      messagesContainer.textContent = "";
       data.messages.forEach((message) => {
         let messageHTMLPartial = `
           <div class="message-container" id="message-${message.id}">
@@ -27,8 +27,6 @@ const updateChatroomMessages = (event) => {
           `;
         messagesContainer.insertAdjacentHTML("beforeend", messageHTMLPartial);
       });
-      // Turn on the Chatroom Cable
-      initChatroomCable();
     });
 };
 

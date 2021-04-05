@@ -6,6 +6,8 @@ const updateChatroomId = (event) => {
   const roomId = document.getElementById("rooms").value;
   const title = document.getElementById("chatroom-title");
   const messagesContainer = document.getElementById("messages"); //para data-chatroom-id
+  messagesContainer.dataset.chatroomId = roomId; // Setar Room ID
+
   fetchWithToken(`/api/v1/chatrooms/${roomId}`, {
     method: "GET",
     headers: {
@@ -15,8 +17,8 @@ const updateChatroomId = (event) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      title.textContent = "";
       title.insertAdjacentHTML("beforeend", data.room.name);
-      messagesContainer.dataset.chatroomId = data.room.id;
       updateChatroomMessages();
     });
 };
