@@ -1,64 +1,66 @@
   <div class="bacontainer bauser-card" >
-    <div class="bacard-element baavatar-and-description">
-      <div class="baavatar-container">
-        <a href="<%= profile_path(participant.user) %>">
-          <% if participant.user && participant.user.photo.attached? %>
-              <%= cl_image_tag participant.user.photo.key, class: "baavatar" %>
-          <% elsif participant.user && participant.user.picture_url.present? %>
-              <%= image_tag participant.user.picture_url, class: "baavatar" %>
+    <div class="container-new">
+      <div class="bacard-element baavatar-and-description">
+        <div class="baavatar-container">
+          <a href="<%= profile_path(participant.user) %>">
+            <% if participant.user && participant.user.photo.attached? %>
+                <%= cl_image_tag participant.user.photo.key, class: "baavatar" %>
+            <% elsif participant.user && participant.user.picture_url.present? %>
+                <%= image_tag participant.user.picture_url, class: "baavatar" %>
+            <% else %>
+                <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "baavatar" %>
+            <% end %>
+          </a>
+        </div>
+
+        <div class="badescription-container">
+          <p class="badesc-title"><a href="<%= profile_path(participant.user) %>"><%= participant.user.name %></a></p>
+          <p class="badesc-subtitle"><%= participant.user.email %></p>
+
+          <% if participant.is_founder? %>
+              <p class="badesc-open-projects">Project Owner/founder</p>
           <% else %>
-              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "baavatar" %>
+              <p class="badesc-open-projects"><%= participant.status %></p>
           <% end %>
-        </a>
-      </div>
+          <div class="badesc-user-status">
 
-      <div class="badescription-container">
-        <p class="badesc-title"><a href="<%= profile_path(participant.user) %>"><%= participant.user.name %></a></p>
-        <p class="badesc-subtitle"><%= participant.user.email %></p>
-
-        <% if participant.is_founder? %>
-            <p class="badesc-open-projects">Project Owner/founder</p>
-        <% else %>
-            <p class="badesc-open-projects"><%= participant.status %></p>
-        <% end %>
-        <div class="badesc-user-status">
-
+          </div>
         </div>
       </div>
-    </div>
 
-    <% if participant.is_founder? || participant.status == "founder" %>
-      <div class="project-owner-icon">
-        <i class="fas fa-crown"></i>
-      </div>
-    <% elsif participant.status == "invitee" %>
-      <div class="normal-icon">
-        <i class="fas fa-envelope"></i>
-      </div>
-    <% elsif participant.status == "cofounder" %>
-      <div class="cofounder-icon">
-         <i class="fas fa-star"></i>
-      </div>
-    <% else %>
-      <div class="normal-icon">
-        <i class="fas fa-user-friends"></i>
-      </div>
-    <% end %>
+      <% if participant.is_founder? || participant.status == "founder" %>
+        <div class="project-owner-icon">
+          <i class="fas fa-crown"></i>
+        </div>
+      <% elsif participant.status == "invitee" %>
+        <div class="normal-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+      <% elsif participant.status == "cofounder" %>
+        <div class="cofounder-icon">
+          <i class="fas fa-star"></i>
+        </div>
+      <% else %>
+        <div class="normal-icon">
+          <i class="fas fa-user-friends"></i>
+        </div>
+      <% end %>
 
 
-    <div class="bacontainer">
-      <div class="user-description">
-        <p><%= participant.user.description %></p>
-      </div>
-    </div>
-
-    <div class="bacard-element bacard-btn">
-      <div class="babutton1">
-        <%= link_to 'send a message', chat_message_from_card_path(participant: participant), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#chatFromCardModal' } %>
+      <div class="container-new">
+        <div class="user-description">
+          <p><%= participant.user.description %></p>
+        </div>
       </div>
 
-      <div class="babutton2">
-        <a href="<%= profile_path(participant.user) %>">View profile</a>
+      <div class="bacard-element bacard-btn">
+        <div class="babutton1">
+          <%= link_to 'send a message', chat_message_from_card_path(participant: participant), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#chatFromCardModal' } %>
+        </div>
+
+        <div class="babutton2">
+          <a href="<%= profile_path(participant.user) %>">View profile</a>
+        </div>
       </div>
     </div>
   </div>

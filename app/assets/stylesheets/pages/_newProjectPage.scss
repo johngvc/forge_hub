@@ -1,9 +1,9 @@
 .form-project {
   margin: 25px 0;
-  background-color: white;
-  border-radius: 25px;
+  // background-color: white;
+  // border-radius: 25px;
   padding: 15px 0px;
-  box-shadow: 8px 10px 11px -9px rgba(0, 0, 0, 0.25%);
+  // box-shadow: 8px 10px 11px -9px rgba(0, 0, 0, 0.25%);
 }
 
 .input-area {
@@ -48,17 +48,33 @@
   min-width: 370px;
 }
 
-.project-submit-btn input {
-  border: none;
-  background-color: $clr-primary;
-  border-radius: 5px;
-  width: 100%;
-}
-
 .project-submit-btn {
   text-align: center;
+  width: 50%;
+  margin: 0 auto;
+
+  input {
+    border: none;
+    background-color: $clr-primary;
+    border-radius: 5px;
+    width: 100%;
+    padding: 15px;
+
+    &:hover {
+      background-color: $clr-primary-darker;
+    }
+  }
+  .delete-link-container {
+    margin-top: 6px;
+  }
 }
 
-.project-submit-btn .delete-link-container {
-  margin-top: 6px;
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.rich-text-area trix-editor {
+  min-height: 75vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
