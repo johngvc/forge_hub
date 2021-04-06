@@ -37,6 +37,7 @@ body {
 html,
 body {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 .content {
@@ -92,14 +93,14 @@ ul {
 
 //selection
 ::-moz-selection {
-  /* Code for Firefox */
-  background: $clr-primary-80;
   color: black;
+  background: transparent;
+  text-shadow: 2px 1px $clr-primary;
 }
-
 ::selection {
-  background: $clr-primary-80;
   color: black;
+  background: transparent;
+  text-shadow: 2px 1px $clr-primary;
 }
 
 //não usar

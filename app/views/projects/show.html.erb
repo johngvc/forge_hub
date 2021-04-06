@@ -7,8 +7,26 @@
               <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg"%>
             <% end %>
             <div class="center-text project-show-title">
-              <h1><%=  @project.name %></h1>
+              <div class="rellax" data-rellax-speed="2">
+                <h1><%=  @project.name %></h1>
               <p><%= @project.description %></p>
+              <div class="cta">
+                <% if @is_not_participant && @has_join_request == false %>
+                  <button id="join" data-toggle="modal" data-target="#projectAskModal" style="color: $clr-primary">
+                    Join this project!
+                  </button>
+                  <% elsif @is_not_participant && @has_join_request == true %>
+                  <button id="join" disabled>
+                    Pending
+                  </button>
+                  <% elsif @is_participant && @has_join_request == false %>
+                  <button id="join" disabled>
+                    Joined
+                  </button>
+                  <% end  %>
+                <button id="read-more">Read more...</button>
+              </div>
+              </div>
             </div>
           </div>
         </div>

@@ -9,7 +9,11 @@ import "bootstrap";
 import "jquery";
 import { event } from "jquery";
 import { initOpenTab } from "../components/tabs_project_show";
-import { map } from "../components/footer_map"
+import { map } from "../components/footer_map";
+import Rellax from "rellax";
+import { zIndexOnScroll } from "../components/project_header";
+import { getVPHeight } from "../components/project_header";
+import { readMore } from "../components/project_header";
 
 require("@rails/ujs").start();
 require("turbolinks").start();
@@ -43,6 +47,20 @@ document.addEventListener("turbolinks:load", () => {
   initOpenTab();
   //changeRoleModal();
   map();
+
+  //init rellax
+  let rellax = new Rellax(".rellax");
+
+  //projects show
+  let height = getVPHeight();
+  readMore(height);
+  window.addEventListener(
+    "scroll",
+    function () {
+      zIndexOnScroll(height);
+    },
+    false
+  );
 });
 
 require("trix");

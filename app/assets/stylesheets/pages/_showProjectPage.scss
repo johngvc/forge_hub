@@ -1,13 +1,18 @@
-.sh-prj-pg img {
-  max-width: 100%;
+.sh-prj-pg {
+  padding-top: 30px;
+  img {
+    max-width: 100%;
+  }
+  a,
+  button {
+    color: $clr-primary;
+  }
 }
 
-.sh-prj-pg a {
-  color: $clr-primary;
-}
-
-.sh-prj-pg button {
-  color: $clr-primary;
+main.sh-prj-pg {
+  background-color: white;
+  padding-top: $navbarheight;
+  // margin-top: calc(-2.5 * #{$navbarheight});
 }
 
 #prj-photo-call-to-action img {
@@ -147,7 +152,13 @@
     margin-left: 2em;
   }
 }
-
+#sh-prj-pg-header {
+  position: sticky;
+  width: 100%;
+  top: $navbarheight;
+  // z-index: -5;
+  max-height: calc(100vh - calc(#{$navbarheight}+20px));
+}
 #sh-prj-pg-header,
 .sh-prj-pg section {
   padding: 0.5rem 0;
@@ -180,12 +191,64 @@
 }
 
 .project-show-title {
-  @include flex-display(center, center, column);
+  // @include flex-display(center, center, column);
   position: absolute;
   top: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(
+    $black-25,
+    $black-50,
+    $black-60,
+    $black-50,
+    $black-25
+  );
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px $black-50;
+  padding-top: 40vh;
+
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+.rellax {
+  & > .cta {
+    // @include flex-display(space-between, center, row);
+    padding-top: 30px;
+    margin: 0 auto;
+    width: 50%;
+
+    button {
+      border-radius: 30px;
+      padding: 10px 20px;
+      margin: 0 25px;
+      background-color: $clr-primary;
+      color: white;
+      border: transparent 1px solid;
+      min-width: 150px;
+      transition: 0.5s;
+      text-shadow: 1px 1px $black-50;
+
+      &:disabled {
+        background-color: $clr-primary-60;
+      }
+
+      &:hover {
+        background-color: $clr-primary-darker;
+      }
+
+      &#read-more {
+        border: 2px solid white;
+        background-color: $black-25;
+
+        &:hover {
+          background-color: $clr-primary-80;
+          border: 2px solid $clr-primary-80;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 40em) {
@@ -194,7 +257,7 @@
   }
 
   #sh-prj-pg-header {
-    padding-top: 0;
+    padding: 0;
   }
 }
 
