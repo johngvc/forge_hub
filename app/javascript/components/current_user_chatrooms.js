@@ -5,7 +5,7 @@ import { initChatroomCable } from "../channels/chatroom_channel";
 
 const initCurrentUserChatrooms = (event) => {
   // Get combo box input with the room selected
-  const comboBoxElement = document.getElementById("rooms");
+  const chatRoomsContainer = document.getElementById("chatrooms");
   const currentUserId = parseInt(getCookie("user_id"), 10);
   fetchWithToken(`/api/v1/chatrooms/user_chatrooms/${currentUserId}`, {
     method: "GET",
@@ -17,8 +17,27 @@ const initCurrentUserChatrooms = (event) => {
     .then((response) => response.json())
     .then((data) => {
       data.forEach((element) => {
-        const comboBoxOption = `<option value="${element.id}">${element.name}</option>`;
-        comboBoxElement.insertAdjacentHTML("beforeend", comboBoxOption);
+        const chatroom_element = `<div class="single-chatroom" data-room-id="${element.id}">
+          <div class="chatroom-photo"></div>
+          <div class="chatroom-desc">
+            ${element.name}
+          </div>
+        </div>`;
+
+        chatRoomsContainer.insertAdjacentHTML("beforeend", chatroom_element);
+
+        const chatroomElements = document.querySelectorAll(".single-chatroom");
+
+        chatroomElements.forEach((chatRoom) => {
+          chatRoom.addEventListener("click", (event) => {
+            console.log("change chatroom");
+            chatroomElements.forEach((chatRoomInnerLoop) => {
+              chatRoomInnerLoop.classList.remove("active");
+            });
+            event.currentTarget.classList.toggle("active");
+            updateChatroomId();
+          });
+        });
         initChatroomCable(element.id);
       });
       updateChatroomId();

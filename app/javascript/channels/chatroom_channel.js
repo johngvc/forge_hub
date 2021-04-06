@@ -7,6 +7,7 @@ const initChatroomCable = (id) => {
     {
       received(data) {
         messagesContainer.insertAdjacentHTML("beforeend", data);
+        messagesContainer.scrollTo(0, messagesContainer.scrollHeight);
       },
     }
   );

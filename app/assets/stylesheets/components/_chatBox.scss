@@ -1,0 +1,38 @@
+#chat-box {
+  position: fixed;
+  z-index: 6;
+  bottom: 0px;
+  right: 305px;
+  height: 500px;
+  width: 386px;
+  background-color: white;
+}
+
+#messages {
+  height: 75%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#chat-box-container {
+  padding: 20px 0;
+  height: 100%;
+}
+
+#new-message-input {
+  flex-basis: 100%;
+}
+
+#new-message-btn {
+  text-align: center;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 20px;
+  color: $clr-primary;
+}
+
+#send-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

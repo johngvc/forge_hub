@@ -2,8 +2,9 @@ import { fetchWithToken } from "./fetch_with_token";
 
 const updateChatroomMessages = (event) => {
   // Get new message button
-  const roomId = document.getElementById("rooms").value;
-  const messagesContainer = document.getElementById("messages"); //para data-chatroom-id
+  const roomId = document.querySelector(".single-chatroom.active").dataset
+    .roomId;
+  const messagesContainer = document.getElementById("messages"); // Para data-chatroom-id
 
   fetchWithToken(`/api/v1/chatrooms/${roomId}`, {
     method: "GET",
@@ -27,6 +28,7 @@ const updateChatroomMessages = (event) => {
           `;
         messagesContainer.insertAdjacentHTML("beforeend", messageHTMLPartial);
       });
+      messagesContainer.scrollTo(0, messagesContainer.scrollHeight);
     });
 };
 

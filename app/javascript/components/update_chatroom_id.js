@@ -3,11 +3,11 @@ import { updateChatroomMessages } from "./update_chatroom_messages";
 
 const updateChatroomId = (event) => {
   // Get new message button
-  const roomId = document.getElementById("rooms").value;
+  const roomId = document.querySelector(".single-chatroom.active").dataset
+    .roomId;
   const title = document.getElementById("chatroom-title");
-  const messagesContainer = document.getElementById("messages"); //para data-chatroom-id
+  const messagesContainer = document.getElementById("messages"); // Para data-chatroom-id
   messagesContainer.dataset.chatroomId = roomId; // Setar Room ID
-
   fetchWithToken(`/api/v1/chatrooms/${roomId}`, {
     method: "GET",
     headers: {
