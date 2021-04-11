@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post '/message', to: 'messages#create'
 
+  post '/chatroom', to: 'chatrooms#create'
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :chatrooms, only: [:index, :show]
