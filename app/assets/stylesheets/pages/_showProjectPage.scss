@@ -31,6 +31,7 @@ main.sh-prj-pg {
 
 .prj-story h1 {
   font-size: 2.5rem !important;
+  font-family: inherit !important;
 }
 
 @media (min-width: 40em) {
@@ -75,6 +76,33 @@ main.sh-prj-pg {
     // position: absolute;
     object-fit: cover;
     width: 100%;
+  }
+
+  ul {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+
+    li {
+      display: inline-block;
+      margin: 0 5px;
+      opacity: 0.8;
+      transition: 0.5;
+      -webkit-transition: 0.5;
+      -moz-transition: 0.5;
+      -ms-transition: 0.5;
+      -o-transition: 0.5;
+      border-bottom: 1px solid transparent;
+      &:hover {
+        opacity: 1;
+        border-bottom: 1px solid white;
+      }
+      a,
+      i {
+        color: white !important;
+      }
+    }
   }
 }
 
@@ -206,7 +234,7 @@ main.sh-prj-pg {
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 1px 1px $black-50;
   // padding-top: 40vh;
-  padding-top: 40vh;
+  padding-top: 35vh;
 
   h1 {
     font-size: 3.5rem;
