@@ -8,6 +8,22 @@
   background-color: white;
 }
 
+.chatroom-box-title-and-new-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.chatroom-box-title-and-new-message i {
+  margin-left: 30px;
+}
+
+.chatroom-box-title-and-new-message h1 {
+  margin: 0;
+}
+
 .single-chatroom {
   display: flex;
   cursor: pointer;

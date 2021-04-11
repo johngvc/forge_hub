@@ -9,7 +9,10 @@ class MessagesController < ApplicationController
     if @message.save
       ChatroomChannel.broadcast_to(
         @chatroom,
-        render_to_string(partial: "shared/message", locals: { message: @message })
+        {
+          message: render_to_string(partial: "shared/message", locals: { message: @message }),
+          chatroom_id: params[:activeChatRoomId]
+        }
       )
     end
   end

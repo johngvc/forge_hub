@@ -6,8 +6,10 @@ const initChatroomCable = (id) => {
     { channel: "ChatroomChannel", id: id },
     {
       received(data) {
-        messagesContainer.insertAdjacentHTML("beforeend", data);
-        messagesContainer.scrollTo(0, messagesContainer.scrollHeight);
+        if (messagesContainer.dataset.chatroomId === data.chatroom_id) {
+          messagesContainer.insertAdjacentHTML("beforeend", data.message);
+          messagesContainer.scrollTo(0, messagesContainer.scrollHeight);
+        }
       },
     }
   );
