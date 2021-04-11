@@ -1,53 +1,59 @@
-
 <div class="form-project-2">
-  <h4 style="text-align: center;">Pending join requests:</h4>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Request by:</th>
-        <th scope="col">Request</th>
-        <th scope="col">authorize / refuse</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-  
-        <% unless @join_requests.first.nil? %>
-          <% @join_requests.each do |request| %>
-              <tr>
-                <td><%= @number += 1 %></td>
-                <td><%= request.user.name %></td>
-                <td><%= request.content %></td>
-                <td>
-                  <div style="display:inline-flex">
-                    <%= link_to project_join_request_authorize_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
-                      <i class="fas fa-check-circle yes-icon"></i>
-                    <% end %>
-                    <%= link_to project_join_request_refuse_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
-                      <i class="fas fa-times-circle no-icon"></i>
-                    <% end %>
-                  </div>
-                </td>
-                <td>
-                  <%= link_to "reply", reply_to_join_request_path(request: request, project_id: request.project.id), { :remote => true,  'data-toggle' => "modal", 'data-target' => '#messageBackModal' } %>
-                </td>
-              </tr>
-          <% end %>
-        <% end %>
-    </tbody>
-  </table>
-</div>
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="messageBackModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-
+  <div class="container-new">
+    <%=link_to project_path(@project.id) do%>
+      <i class="fas fa-arrow-left"></i>
+      &ensp;voltar
+    <% end %>
+    <h1 style="text-align: center;">Join Requests</h1>
+    <% unless @join_requests.first.nil? %>
+      <% @join_requests.each do |request| %>
+        <div class="request">
+          <div class="container-new">
+            <div class="element">
+              <p>
+                <%= @number += 1 %>
+              </p>
+            </div>
+            <div class="element">
+              <div class="message">
+                <%= link_to profile_path(request.user.id) do  %>
+                  <%= request.user.name %>
+                <% end %>
+              </div>
+              <div class="message">
+                <%= request.content %>
+              </div>
+            </div>
+            <div class="element">
+              <div class="actions">
+                <%= link_to project_join_request_authorize_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
+                  <i class="fas fa-check-circle yes-icon"></i>
+                <% end %>
+                <%= link_to project_join_request_refuse_path(project_id: request.project.id, join_request_id: request.id), method: :post do %>
+                  <i class="fas fa-times-circle no-icon"></i>
+                <% end %>
+              </div>
+              <div class="actions">
+                <%= link_to "reply", reply_to_join_request_path(request: request, project_id: request.project.id), { :remote => true,  'data-toggle' => "modal", 'data-target' => '#messageBackModal' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <%# Teoricamente, o usuário entraria nesta página apenas para ver o que tem pendente, mas caso ele entre de alguma forma no link, fica bonitinho com a mensagem :) %>
+      <div class="no-message">
+        <h3>No pending requests right now</h3>
       </div>
+    <% end %>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="messageBackModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
     </div>
   </div>
-  <!-- Modal -->
-
-
+</div>
+</div>
+<!-- Modal -->

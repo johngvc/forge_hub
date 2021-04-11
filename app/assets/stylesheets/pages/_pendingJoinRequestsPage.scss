@@ -1,24 +1,69 @@
 .form-project-2 {
-    margin: 25px auto;
-    width: 46vw;
-    background-color: white;
-    border-radius: 25px;
-    padding: 25px;
-    box-shadow: 8px 10px 11px -9px rgba(0, 0, 0, 0.25%);
+  padding-top: 50px;
+  h1,
+  h3 {
+    font-family: inherit !important;
+  }
+  .no-message {
+    padding: 10rem 0;
+    h3 {
+      color: $clr-gray-300;
+      text-align: center;
+    }
+  }
+  a {
+    color: $clr-primary;
+  }
 }
 
 .yes-icon {
-    color: greenyellow;
-    font-size: 25px;
+  color: $yes;
+  font-size: 25px;
 }
 
 .no-icon {
-    color: red;
-    font-size: 25px;
-    margin-left: 15px;
+  color: $no;
+  font-size: 25px;
+  margin-left: 15px;
 }
 
 .table {
-    width: 500px;
-    margin: 0 auto;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.request {
+  .container-new {
+    @include flex-display(null, flex-start, row);
+    width: 70%;
+    padding: 2rem 0;
+    border-top: 1px solid $clr-gray-200;
+  }
+}
+
+.element {
+  $join-padding: 10px;
+  &:nth-child(1) {
+    @include flex-display-self(center, center, column, center);
+    padding: 10px 0;
+    width: 10%;
+  }
+  &:nth-child(2) {
+    width: 70%;
+    border-left: 1px solid black;
+  }
+  &:nth-child(3) {
+    @include flex-display-self(center, center, column, center);
+    width: 20%;
+    padding-top: 20px;
+  }
+
+  .message {
+    padding: $join-padding;
+  }
+
+  .actions {
+    padding: $join-padding;
+    text-align: center;
+  }
 }
