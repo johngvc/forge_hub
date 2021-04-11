@@ -1,48 +1,40 @@
 <div class="bacontainer bauser-card" >
-
   <div class="bacard-element baavatar-and-description">
-
     <div class="baavatar-container">
       <a href="<%= profile_path(user) %>">
         <% if user.photo.attached? %>
-            <%= cl_image_tag user.photo.key, class: "baavatar" %>
+          <%= cl_image_tag user.photo.key, class: "baavatar" %>
         <% elsif user.picture_url.present? %>
-            <%= image_tag user.picture_url, class: "baavatar" %>
+          <%= image_tag user.picture_url, class: "baavatar" %>
         <% else %>
-            <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "baavatar" %>
+          <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "baavatar" %>
         <% end %>
       </a>
     </div>
-
     <div class="badescription-container">
       <p class="badesc-title"><a href="<%= profile_path(user) %>"><%= user.name %></a></p>
       <p class="badesc-subtitle"><%= user.email %></p>
     </div>
-
     <div class="user-description">
       <p><%= user.description %></p>
     </div>
-
-      <div class="bacard-element bacard-btn">
-        <% if user.id != current_user.id %>
-          <div class="babutton1">
-            <%= link_to 'send a message', reply_from_user_card_index_path(user: user), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#chatFromCardIndex' } %>
-          </div>
-        <% end %>
+    <div class="bacard-element bacard-btn">
+      <% if user.id != current_user.id %>
+        <div class="babutton1">
+          <%= link_to 'Send a message', reply_from_user_card_index_path(user: user), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#chatFromCardIndex' } %>
+        </div>
+      <% end %>
       <div class="babutton2">
         <a href="<%= profile_path(user) %>">View profile</a>
       </div>
     </div>
   </div>
 </div>
-
-
 <!-- Modal -->
-  <div id="chatFromCardIndex" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-
-      </div>
+<div id="chatFromCardIndex" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
     </div>
   </div>
+</div>
 <!-- Modal -->

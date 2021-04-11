@@ -21,6 +21,7 @@
   position: relative;
   margin: 15px 25px;
   text-align: center;
+  white-space: normal;
 }
 
 .bauser-card .baavatar-and-description {
@@ -59,7 +60,6 @@
   text-align: center;
   line-height: 13px;
   margin: 0px auto;
-  max-height: 51px;
 }
 
 .baavatar-container {
@@ -69,6 +69,7 @@
 .bauser-card .baavatar-and-description .badescription-container a {
   color: rgb(27, 27, 27);
   text-decoration: none;
+  line-height: 1rem;
 }
 
 .bauser-card .baavatar-and-description .badescription-container p {
@@ -76,7 +77,7 @@
 }
 
 .bauser-card .baavatar-and-description .badescription-container .badesc-title {
-  margin-top: 9px;
+  padding: 10px 0 5px 0;
   font-size: 16px;
   font-weight: 500;
 }
@@ -146,16 +147,15 @@
 .bauser-card .bacard-btn .babutton1 {
   width: 122px;
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   font-size: 13px;
   left: 5px;
 }
 
 .bauser-card .bacard-btn .babutton2 {
-  bottom: 10px;
+  bottom: 15px;
   width: 85px;
   font-size: 13px;
   position: absolute;
   right: 5px;
-  bottom: 10px;
 }

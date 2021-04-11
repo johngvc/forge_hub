@@ -93,14 +93,12 @@ ul {
 
 //selection
 ::-moz-selection {
-  color: black;
-  background: transparent;
-  text-shadow: 2px 1px $clr-primary;
+  color: white;
+  background: $clr-blue;
 }
 ::selection {
-  color: black;
-  background: transparent;
-  text-shadow: 2px 1px $clr-primary;
+  color: white;
+  background: $clr-blue;
 }
 
 //não usar
