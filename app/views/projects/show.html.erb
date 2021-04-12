@@ -6,10 +6,20 @@
       <% else %>
         <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614792257/Mesa_ikvzhp.jpg"%>
       <% end %>
-      <% if @is_participant && @participant.status == 'founder' %>
+      <% if @is_participant && (@participant.status == 'founder'|| @participant.status == 'cofounder') %>
         <ul id="menu-founder">
-          <li >
+          <li>
             <i class="fas fa-ellipsis-v"></i>
+          </li>
+        </ul>
+        <ul id="inside-menu-founder" class="hidden">
+          <li>
+            <%= link_to edit_project_path(id: @project.id) do %>
+              Edit your project
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "Pending requests", project_join_request_pending_path(@project.id) %>
           </li>
         </ul>
       <% end %>

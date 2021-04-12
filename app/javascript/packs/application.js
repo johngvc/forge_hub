@@ -14,6 +14,7 @@ import Rellax from "rellax";
 import { zIndexOnScroll } from "../components/project_header";
 import { getVPHeight } from "../components/project_header";
 import { readMore } from "../components/project_header";
+import { menuFounder } from "../components/founder_menu";
 
 require("@rails/ujs").start();
 require("turbolinks").start();
@@ -54,6 +55,7 @@ document.addEventListener("turbolinks:load", () => {
   //projects show
   let height = getVPHeight();
   readMore(height);
+  menuFounder();
   window.addEventListener(
     "scroll",
     function () {
