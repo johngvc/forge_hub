@@ -15,4 +15,43 @@ const ajaxNewChatroomCall = (chatroomName, participantsIds) => {
   });
 };
 
-export { ajaxNewChatroomCall };
+// Code by lvoelk start with some modifications, available at
+// <https://stackoverflow.com/questions/11821261/how-to-get-all-selected-values-from-select-multiple-multiple>
+const getSelectValues = (select) => {
+  let result = {};
+  const options = select && select.options;
+  let opt;
+
+  for (let i = 0, iLen = options.length; i < iLen; i++) {
+    opt = options[i];
+
+    if (opt.selected) {
+      result[opt.value] = opt.text;
+    }
+  }
+  return result;
+};
+// Code by lvoelk end
+
+const initNewChatroomEventListener = () => {
+  const newChatroomButton = document.querySelector(
+    ".chatroom-box-title-and-new-message i"
+  );
+  const usersSelectElement = document.querySelector(
+    "#chatroom-box form-select"
+  );
+
+  newChatroomButton.addEventListener("click", () => {
+    let chatroomName = "";
+    let chatroomUsersId = [];
+    let selectedUsers = getSelectValues(usersSelectElement);
+
+    selectedUsers.forEach((key, value) => {
+      chatroomName = `${chatroomName}, ${value}`;
+      chatroomUsersId.push(value);
+    });
+    ajaxNewChatroomCall(chatroomName, chatroomUsersId);
+  });
+};
+
+export { initNewChatroomEventListener };
