@@ -80,3 +80,11 @@
 .form-control-file {
   cursor: pointer;
 }
+
+.other-links {
+  padding: 30px 0;
+  @include flex-display();
+  & > * {
+    padding: 5px 0;
+  }
+}
