@@ -54,4 +54,30 @@ const initNewChatroomEventListener = () => {
   });
 };
 
+const updateUsersSelectElement = () => {
+  const usersSelectElement = document.querySelector(
+    "#chatroom-box form-select"
+  );
+
+  fetchWithToken(`/api/v1/users`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      usersSelectElement.textContent = "";
+      data.forEach((user) => {
+        usersSelectElement.insertAdjacentHTML(
+          "beforeend",
+          `<option value="${user.id}">${user.name}</option>`
+        );
+      });
+    });
+};
+
+export { updateUsersSelectElement };
+
 export { initNewChatroomEventListener };

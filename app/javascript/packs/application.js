@@ -51,6 +51,8 @@ document.addEventListener("turbolinks:load", () => {
   initCurrentUserChatrooms();
   initUpdateChatroomEvent();
   initNewChatroomEventListener();
+  updateUsersSelectElement();
+  5;
 });
 
 require("trix");
