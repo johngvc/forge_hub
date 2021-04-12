@@ -2,7 +2,7 @@ class Api::V1::ChatroomsController < Api::V1::BaseController
   before_action :set_chatroom, only: [:show]
 
   def index
-    @chatrooms = policy_scope(Chatroom)
+    @chatrooms = Chatroom
   end
 
   def show

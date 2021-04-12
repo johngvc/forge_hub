@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :chatrooms, only: [:index, :show]
       get 'chatrooms/user_chatrooms/:user_id', to: 'chatrooms#user_chatrooms'
+      resources :users, only: [:index]
     end
   end
 
