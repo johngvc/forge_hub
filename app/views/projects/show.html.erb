@@ -13,14 +13,12 @@
           </li>
         </ul>
         <ul id="inside-menu-founder" class="hidden">
-          <li>
-            <%= link_to edit_project_path(id: @project.id) do %>
-              Edit your project
-            <% end %>
-          </li>
-          <li>
-            <%= link_to "Pending requests", project_join_request_pending_path(@project.id) %>
-          </li>
+          <%= link_to edit_project_path(id: @project.id) do %>
+            <li>Edit your project</li>
+          <% end %>
+          <%= link_to project_join_request_pending_path(@project.id) do %>
+            <li>Pending requests</li>
+          <% end %>
         </ul>
       <% end %>
       <div class="center-text project-show-title">
@@ -77,30 +75,6 @@
 </header>
 <main class="sh-prj-pg">
   <div class="container-new">
-    <section id="prj-photo-call-to-action">
-      <div class="split-flex">
-        <div class="center-text" id="text-call-to-action">
-          <% project_owner = User.find(@project.user_id) %>
-          <% if project_owner == current_user %>
-            <h2>Welcome back, <%= project_owner.name %>!</h2>
-          <% else %>
-            <h2><%=project_owner.name %> wants to make <%= @project.name %> a reality</h2>
-          <% end %>
-          <% if @is_not_participant && @has_join_request == false %>
-            <button data-toggle="modal" data-target="#projectAskModal" style="color: $clr-primary">
-              Ask to join this project!
-            </button>
-          <% elsif @is_participant && @participant.status == 'founder' %>
-            <%= link_to edit_project_path(id: @project.id) do %>
-              Edit your project
-            <% end %>
-            <% unless @join_requests.first.nil? %>
-              <%= link_to "Pending join requests!", project_join_request_pending_path(@project.id) %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </section>
     <section class="project-info-tabs">
       <div class="project-info-nav scrolling-wrapper">
         <navbar>

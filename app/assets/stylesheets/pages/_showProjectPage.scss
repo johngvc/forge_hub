@@ -133,6 +133,13 @@ main.sh-prj-pg {
       margin: 0;
       padding: 0;
 
+      a {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        width: 100%;
+      }
+
       li {
         padding: 7px;
         width: 100%;
@@ -140,11 +147,6 @@ main.sh-prj-pg {
         border: none;
         &:hover {
           background-color: $black-25;
-        }
-        a {
-          color: inherit !important;
-          text-decoration: none !important;
-          font-size: inherit !important;
         }
       }
     }
