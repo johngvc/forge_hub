@@ -2,6 +2,7 @@ const menuFounder = () => {
   const body = document.getElementsByTagName("body")[0];
   const insideMenu = document.getElementById("inside-menu-founder");
   const menu = document.getElementById("menu-founder");
+  const className = "hidden";
   if (menu == undefined) return;
   body.addEventListener(
     "click",
@@ -10,9 +11,13 @@ const menuFounder = () => {
         evt.target == menu ||
         evt.target == menu.firstElementChild.firstElementChild
       ) {
-        insideMenu.classList.remove("hidden");
+        if (insideMenu.classList.contains(className)) {
+          insideMenu.classList.remove(className);
+        } else {
+          insideMenu.classList.add(className);
+        }
       } else {
-        insideMenu.classList.add("hidden");
+        insideMenu.classList.add(className);
       }
     },
     false
