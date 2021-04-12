@@ -17,6 +17,7 @@ const ajaxNewMessageCall = (event) => {
       },
       body: JSON.stringify(data),
     });
+    document.getElementById("new-message-input").value = "";
   });
 };
 

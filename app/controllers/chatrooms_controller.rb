@@ -12,10 +12,6 @@ class ChatroomsController < ApplicationController
                                      chatroom_id: @chatroom.id
                                    })
       end
-      ChatroomChannel.broadcast_to(
-        @chatroom,
-        render_to_string(partial: "shared/message", locals: { message: @message })
-      )
     end
   end
 

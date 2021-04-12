@@ -1,4 +1,5 @@
 import { fetchWithToken } from "./fetch_with_token";
+import { getCookie } from "../components/get_cookie";
 
 const ajaxNewChatroomCall = (chatroomName, participantsIds) => {
   const data = {
@@ -38,25 +39,28 @@ const initNewChatroomEventListener = () => {
     ".chatroom-box-title-and-new-message i"
   );
   const usersSelectElement = document.querySelector(
-    "#chatroom-box form-select"
+    "#chatroom-box .form-select"
   );
 
   newChatroomButton.addEventListener("click", () => {
     let chatroomName = "";
     let chatroomUsersId = [];
     let selectedUsers = getSelectValues(usersSelectElement);
+    const currentUserId = parseInt(getCookie("user_id"), 10);
 
-    selectedUsers.forEach((key, value) => {
-      chatroomName = `${chatroomName}, ${value}`;
-      chatroomUsersId.push(value);
+    chatroomUsersId.push(currentUserId);
+    Object.keys(selectedUsers).forEach((key) => {
+      chatroomName = `${chatroomName}, ${selectedUsers[key]}`;
+      chatroomUsersId.push(key);
     });
+    debugger;
     ajaxNewChatroomCall(chatroomName, chatroomUsersId);
   });
 };
 
 const updateUsersSelectElement = () => {
   const usersSelectElement = document.querySelector(
-    "#chatroom-box form-select"
+    "#chatroom-box .form-select"
   );
 
   fetchWithToken(`/api/v1/users`, {
@@ -68,16 +72,19 @@ const updateUsersSelectElement = () => {
   })
     .then((response) => response.json())
     .then((data) => {
+      const currentUserId = parseInt(getCookie("user_id"), 10);
+
       usersSelectElement.textContent = "";
       data.forEach((user) => {
-        usersSelectElement.insertAdjacentHTML(
-          "beforeend",
-          `<option value="${user.id}">${user.name}</option>`
-        );
+        if (user.id != currentUserId) {
+          usersSelectElement.insertAdjacentHTML(
+            "beforeend",
+            `<option value="${user.id}">${user.name}</option>`
+          );
+        }
       });
     });
 };
 
 export { updateUsersSelectElement };
-
 export { initNewChatroomEventListener };

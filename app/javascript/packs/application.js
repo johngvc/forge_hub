@@ -14,6 +14,7 @@ import { ajaxNewMessageCall } from "../components/ajax_new_message_call";
 import { initCurrentUserChatrooms } from "../components/current_user_chatrooms";
 import { initUpdateChatroomEvent } from "../components/update_chatroom_event";
 import { initNewChatroomEventListener } from "../components/ajax_new_chatroom";
+import { updateUsersSelectElement } from "../components/ajax_new_chatroom";
 
 require("@rails/ujs").start();
 require("turbolinks").start();
@@ -52,7 +53,6 @@ document.addEventListener("turbolinks:load", () => {
   initUpdateChatroomEvent();
   initNewChatroomEventListener();
   updateUsersSelectElement();
-  5;
 });
 
 require("trix");
