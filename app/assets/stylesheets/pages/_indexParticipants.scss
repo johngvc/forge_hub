@@ -1,10 +1,17 @@
 .participants-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+  @include flex-display-wrap(flex-start, flex-start, row, wrap);
 }
 
 .index-participants-title {
-    margin-top: 20px;
+  margin-top: 20px;
+  text-align: center;
+  font-family: inherit !important;
+  color: black;
+  a {
+    color: $clr-primary;
+  }
+}
 
+.members-showcase {
+  padding: 25px 0;
 }
