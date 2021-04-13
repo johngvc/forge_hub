@@ -10,10 +10,13 @@
 }
 
 .nav-bar {
-  height: 60px;
+  height: $navbarheight;
   background-color: $clr-gray-100;
   display: flex;
   justify-content: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
 }
 
 .nav-bar a {

@@ -1,13 +1,18 @@
-.sh-prj-pg img {
-  max-width: 100%;
+.sh-prj-pg {
+  padding-top: 30px;
+  img {
+    max-width: 100%;
+  }
+  a,
+  button {
+    color: $clr-primary;
+  }
 }
 
-.sh-prj-pg a {
-  color: $clr-primary;
-}
-
-.sh-prj-pg button {
-  color: $clr-primary;
+main.sh-prj-pg {
+  background-color: white;
+  padding-top: $navbarheight;
+  // margin-top: calc(-2.5 * #{$navbarheight});
 }
 
 #prj-photo-call-to-action img {
@@ -26,6 +31,7 @@
 
 .prj-story h1 {
   font-size: 2.5rem !important;
+  font-family: inherit !important;
 }
 
 @media (min-width: 40em) {
@@ -64,22 +70,104 @@
 
 .image-wrapper {
   position: relative;
-  padding-bottom: 56.2%;
-}
+  // padding-bottom: 56.2%;
 
-.image-wrapper img {
-  position: absolute;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+  img {
+    // position: absolute;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  ul {
+    cursor: pointer;
+
+    &#menu-founder {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      padding: 5px 10px;
+      border-radius: 50%;
+      &:active {
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      li {
+        border-bottom: 1px solid transparent;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &:not(#menu-founder) {
+      padding-top: 10px;
+    }
+    & > li {
+      display: inline-block;
+      margin: 0 5px;
+      opacity: 0.8;
+      border-bottom: 1px solid transparent;
+      &:hover {
+        opacity: 1;
+        border-bottom: 1px solid white;
+      }
+      a,
+      i {
+        color: white !important;
+        font-size: 1.5rem;
+      }
+    }
+
+    &#inside-menu-founder {
+      position: absolute;
+      top: 10px;
+      right: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      background-color: #e3e3e3;
+      width: max-content;
+      z-index: 5;
+      margin: 0;
+      padding: 0;
+
+      a {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        width: 100%;
+      }
+
+      li {
+        padding: 7px;
+        width: 100%;
+        margin: 0;
+        border: none;
+        &:hover {
+          background-color: $black-25;
+        }
+      }
+    }
+  }
 }
 
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+
   &::-webkit-scrollbar {
-    display: none;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $black-25;
+  }
+  @media screen and (max-width: 785px) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .btn-tab,
@@ -127,14 +215,14 @@
 
   .split-flex-row {
     flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+    // justify-content: center;
+    // flex-wrap: wrap;
   }
 
   .split-flex-normal {
     flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+    // justify-content: center;
+    // flex-wrap: wrap;
   }
 
   // Css selector to select the all the child elements after the first
@@ -148,7 +236,12 @@
     margin-left: 2em;
   }
 }
-
+#sh-prj-pg-header {
+  position: sticky;
+  width: 100%;
+  top: $navbarheight;
+  max-height: calc(100vh - calc(#{$navbarheight}+20px));
+}
 #sh-prj-pg-header,
 .sh-prj-pg section {
   padding: 0.5rem 0;
@@ -180,14 +273,78 @@
   margin: 0;
 }
 
+.project-show-title {
+  // @include flex-display(center, center, column);
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    $black-25,
+    $black-50,
+    $black-60,
+    $black-50,
+    $black-25
+  );
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px $black-50;
+  padding-top: 35vh;
+
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+.rellax {
+  & > .cta {
+    padding-top: 30px;
+    margin: 0 auto;
+    width: 50%;
+
+    button {
+      border-radius: 30px;
+      padding: 10px 20px;
+      margin: 0 25px;
+      background-color: $clr-primary;
+      color: white;
+      border: transparent 1px solid;
+      min-width: 150px;
+      transition: 0.5s;
+      text-shadow: 1px 1px $black-50;
+
+      &:disabled {
+        background-color: $clr-primary-60;
+      }
+
+      &:hover {
+        background-color: $clr-primary-darker;
+      }
+
+      &#read-more {
+        border: 2px solid white;
+        background-color: $black-25;
+
+        &:hover {
+          background-color: $clr-primary-80;
+          border: 2px solid $clr-primary-80;
+        }
+      }
+    }
+  }
+
+  ul {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
 @media (min-width: 40em) {
-  #sh-prj-pg-header,
   .sh-prj-pg section {
     padding: 0.5rem 0;
   }
 
   #sh-prj-pg-header {
-    padding-top: 1rem;
+    padding: 0;
   }
 }
 

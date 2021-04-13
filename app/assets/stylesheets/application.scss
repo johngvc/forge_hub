@@ -37,11 +37,13 @@ body {
 html,
 body {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 .content {
   flex: 1 0 auto;
   // min-height: 50vh;
+  padding-top: $navbarheight;
 }
 
 .container-new {
@@ -91,14 +93,12 @@ ul {
 
 //selection
 ::-moz-selection {
-  /* Code for Firefox */
-  background: $clr-primary-80;
-  color: black;
+  color: white;
+  background: $clr-blue;
 }
-
 ::selection {
-  background: $clr-primary-80;
-  color: black;
+  color: white;
+  background: $clr-blue;
 }
 
 //não usar

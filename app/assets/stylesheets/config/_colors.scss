@@ -12,12 +12,17 @@ $light-gray: #f4f4f4;
 //forge-hub template colors
 $clr-primary: #ed6347;
 $clr-primary-darker: #cc563d;
+$clr-primary-even-darker: #9b4230;
 // $clr-gray-100: #f5f6f6;
 $clr-gray-100: #ececec;
 $clr-gray-200: #f8f8f8;
 $clr-gray-300: #c4c4c4;
 $clr-gray-400: #979797;
 $body-bckg: #e7e7e7;
+
+//buttons
+$yes: #8ed65e;
+$no: #e03816;
 
 //branding colors
 $youtube: #ff0000;
@@ -26,8 +31,16 @@ $github: #333;
 $linkedin: #0077b5;
 
 //alpha colors
+$black-60: rgba(0, 0, 0, 0.6);
 $black-50: rgba(0, 0, 0, 0.5);
 $black-25: rgba(0, 0, 0, 0.25);
 $black-10: rgba(0, 0, 0, 0.1);
 $black-5: rgba(0, 0, 0, 0.05);
 $clr-primary-80: rgba(237, 99, 71, 0.8);
+$clr-primary-60: rgba(237, 99, 71, 0.6);
+
+//other colors - based on primary colors
+$clr-blue: #129cb8;
+
+//navbarheight
+$navbarheight: 60px;

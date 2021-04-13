@@ -1,17 +1,15 @@
-<div class="container">
-  <div class="container">
-    <h1 class="index-participants-title"><%= link_to "#{@project.name} Members:", project_path(id: @project.id) %></h1>
-  </div>
-
-
-  <div class="container">
+<div class="members-showcase">
+  <div class="container-new">
+    <h1 class="index-participants-title">
+      <%= link_to project_path(id: @project.id) do %>
+        <%= "#{@project.name}" %>
+      <% end %>
+      <p>Members</p>
+    </h1>
     <div class="participants-container">
       <% @participants.each_with_index do |participant, index| %>
-         <%= render 'shared/userCardDetailed', participant: participant, index: index %>
+        <%= render 'shared/userCardDetailed', participant: participant, index: index %>
       <% end %>
     </div>
   </div>
 </div>
-
-
- 

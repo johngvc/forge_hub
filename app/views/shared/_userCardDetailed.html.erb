@@ -1,156 +1,121 @@
-  <div class="bacontainer bauser-card<%= " outline-current-user" if participant.user_id == current_user.id %>" >
-    <div class="bacard-element baavatar-and-description">
-      <div class="baavatar-container">
-        <a href="<%= profile_path(participant.user) %>">
-          <% if participant.user && participant.user.photo.attached? %>
-              <%= cl_image_tag participant.user.photo.key, class: "baavatar" %>
-          <% elsif participant.user && participant.user.picture_url.present? %>
-              <%= image_tag participant.user.picture_url, class: "baavatar" %>
-          <% else %>
-              <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "baavatar" %>
-          <% end %>
-        </a>
-      </div>
-
-      <div class="badescription-container">
-        <p class="badesc-title"><a href="<%= profile_path(participant.user) %>"><%= participant.user.name %></a></p>
-        <p class="badesc-subtitle"><%= participant.user.email %></p>
-
-        <% if participant.is_founder? %>
-            <p class="badesc-open-projects">Project Owner/founder</p>
+<div class="bacontainer bauser-card<%= " outline-current-user" if participant.user_id == current_user.id %>" >
+  <div class="bacard-element baavatar-and-description">
+    <div class="baavatar-container">
+      <a href="<%= profile_path(participant.user) %>">
+        <% if participant.user && participant.user.photo.attached? %>
+          <%= cl_image_tag participant.user.photo.key, class: "baavatar" %>
+        <% elsif participant.user && participant.user.picture_url.present? %>
+          <%= image_tag participant.user.picture_url, class: "baavatar" %>
         <% else %>
-            <p class="badesc-open-projects"><%= participant.status %></p>
+          <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "baavatar" %>
         <% end %>
-        <div class="badesc-user-status">
-
-        </div>
+      </a>
+    </div>
+    <div class="badescription-container">
+      <p class="badesc-title"><a href="<%= profile_path(participant.user) %>"><%= participant.user.name %></a></p>
+      <p class="badesc-subtitle"><%= participant.user.email %></p>
+      <% if participant.is_founder? %>
+        <p class="badesc-open-projects">Project Owner/founder</p>
+      <% else %>
+        <p class="badesc-open-projects"><%= participant.status %></p>
+      <% end %>
+      <div class="badesc-user-status">
       </div>
     </div>
-
-
-
-
-      <div class="dropdown-a">
-        <a id="<%= "usr-card-#{index}" %>" class="dropbtn-a"><i class="fas fa-user-edit"></i></a>
-        <div class="myDropdown-a dropdown-content-a">
-
-          <% if (participant.is_founder? || participant.status == "founder" || participant.status == "cofounder") %>
-
-            <% if @more_than_one_founder && participant.id == current_user.id %>
-              <a data-toggle="modal" data-target="#changeStatusModal<%= index %>" >Change role</a>
-              <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-                Leave project
-              <% end %>
-
-            <% elsif participant.status == "cofounder" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
-              <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
-              <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
-
-            <% elsif participant.status == "cofounder" && participant.id == current_user.id %>
-              <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-                  Leave project
-              <% end %>
-            <% end %>
-
-          <% elsif participant.status == "invitee" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
-            <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
-            <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
-
-          <% elsif participant.status == "member" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
-              <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
-              <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
-
-          <% else %>
-            <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
-                  Leave project
-            <% end %>
+  </div>
+  <div class="dropdown-a">
+    <a id="<%= "usr-card-#{index}" %>" class="dropbtn-a"><i class="fas fa-user-edit"></i></a>
+    <div class="myDropdown-a dropdown-content-a">
+      <% if (participant.is_founder? || participant.status == "founder" || participant.status == "cofounder") %>
+        <% if @more_than_one_founder && participant.id == current_user.id %>
+          <a data-toggle="modal" data-target="#changeStatusModal<%= index %>" >Change role</a>
+          <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+            Leave project
           <% end %>
-
-        </div>
-      </div>
-
-
-    <% if participant.is_founder? || participant.status == "founder" %>
-      <div class="project-owner-icon">
-        <i class="fas fa-crown"></i>
-      </div>
-    <% elsif participant.status == "invitee" %>
-      <div class="normal-icon">
-        <i class="fas fa-envelope"></i>
-      </div>
-    <% elsif participant.status == "cofounder" %>
-      <div class="cofounder-icon">
-        <i class="fas fa-star"></i>
-      </div>
-    <% else %>
-      <div class="normal-icon">
-        <i class="fas fa-user-friends"></i>
-      </div>
-    <% end %>
-
-
-    <div class="bacontainer">
-      <div class="user-description">
-        <p><%= participant.user.description %></p>
-      </div>
-    </div>
-
-
-
-    <% if participant.user_id != current_user.id %>
-      <div class="bacard-element bacard-btn">
-        <div class="babutton1">
-          <%= link_to 'send a message', reply_from_message_card_big_path(participant: participant), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#replyFromMessageCardBigModal' } %>
-        </div>
-
-        <div class="babutton2">
-          <a href="<%= profile_path(participant.user) %>">View profile</a>
-        </div>
-      </div>
-    <% end %>
-
-  </div>
-
-
-<!-- modal -->
-  <div class="modal fade" id="changeStatusModal<%= index %>" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <div class="modal-dialog" role="document">
-
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Select the new role of <%= participant.user.name %></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <%= simple_form_for participant, url: participants_update_status_path(participant_id: participant.id), method: :patch do |f| %>
-
-          <div class="modal-body">
-
-            <div class="input-group">
-              <%= f.input :status, :collection => %w[invitee member cofounder], label: false %>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <%= f.submit "confirm change", class: "btn-generic" %>
-          </div>
+        <% elsif participant.status == "cofounder" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
+          <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
+          <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
+        <% elsif participant.status == "cofounder" && participant.id == current_user.id %>
+          <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+            Leave project
+          <% end %>
         <% end %>
-      </div>
+      <% elsif participant.status == "invitee" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
+        <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
+        <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
+      <% elsif participant.status == "member" && (@current_participant.is_founder? || @current_participant.status == "founder" || @current_participant.status == "cofounder") %>
+        <a data-toggle="modal" data-target="#changeStatusModal<%= index %>">Change role</a>
+        <%=  link_to "Remove from project", project_participant_destroy_path(participant_id: participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to exclude #{participant.user.name} from the project?" } %>
+      <% else %>
+        <%=  link_to project_participant_destroy_path(participant_id: @current_participant.id, project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to leave #{@project.name}?" } do %>
+          Leave project
+        <% end %>
+      <% end %>
     </div>
   </div>
-  <!-- modal -->
-
-<!-- Modal -->
-  <div id="replyFromMessageCardBigModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-
-      </div>
+  <% if participant.is_founder? || participant.status == "founder" %>
+    <div class="project-owner-icon">
+      <i class="fas fa-crown"></i>
+    </div>
+  <% elsif participant.status == "invitee" %>
+    <div class="normal-icon">
+      <i class="fas fa-envelope"></i>
+    </div>
+  <% elsif participant.status == "cofounder" %>
+    <div class="cofounder-icon">
+      <i class="fas fa-star"></i>
+    </div>
+  <% else %>
+    <div class="normal-icon">
+      <i class="fas fa-user-friends"></i>
+    </div>
+  <% end %>
+  <div class="bacontainer">
+    <div class="user-description">
+      <p><%= participant.user.description %></p>
     </div>
   </div>
+  <% if participant.user_id != current_user.id %>
+    <div class="bacard-element bacard-btn">
+      <div class="babutton1">
+        <%= link_to 'Send a message', reply_from_message_card_big_path(participant: participant), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#replyFromMessageCardBigModal' } %>
+      </div>
+      <div class="babutton2">
+        <a href="<%= profile_path(participant.user) %>">View profile</a>
+      </div>
+    </div>
+  <% end %>
+</div>
+<!-- modal -->
+<div class="modal fade" id="changeStatusModal<%= index %>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select the new role of <%= participant.user.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for participant, url: participants_update_status_path(participant_id: participant.id), method: :patch do |f| %>
+        <div class="modal-body">
+          <div class="input-group">
+            <%= f.input :status, :collection => %w[invitee member cofounder], label: false %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "confirm change", class: "btn-generic" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- modal -->
 <!-- Modal -->
+<div id="replyFromMessageCardBigModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+

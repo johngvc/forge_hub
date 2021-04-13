@@ -9,7 +9,7 @@ $std-padding: 15px 0;
     // @include cards;
     background-color: $clr-gray-200;
     position: sticky;
-    top: 0;
+    top: $navbarheight;
     min-height: 100vh;
     width: 30vw;
 

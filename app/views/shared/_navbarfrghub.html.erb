@@ -21,15 +21,15 @@
       <div class="nav-item">
         <%= link_to "New project", new_project_path, class: "nav-link" %>
       </div>
-      <div class="nav-item">
-        <%= link_to "Our users", profiles_path, class: "nav-link" %>
-      </div>
       <%# <div class="nav-item"> %>
-        <%# link_to "My profile", profile_path(current_user.id), class: "nav-link" %>
+      <%# link_to "Our users", profiles_path, class: "nav-link" %>
       <%# </div> %>
-      <div class="nav-item">
-        <%= link_to "Contact us", contact_path, class: "nav-link" %>
-      </div>
+      <%# <div class="nav-item"> %>
+      <%# link_to "My profile", profile_path(current_user.id), class: "nav-link" %>
+      <%# </div> %>
+      <%# <div class="nav-item"> %>
+      <%# link_to "Contact us", contact_path, class: "nav-link" %>
+      <%# </div> %>
       <div class="nav-item dropdown">
         <% if current_user && current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, class: "avatar-forgehub dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
