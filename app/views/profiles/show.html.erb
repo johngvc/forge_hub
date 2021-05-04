@@ -35,7 +35,7 @@
             Founded <%= Project.where({user_id: @user}).count %> project
           <% end %>
         </p>
-        <% if current_user.bootcamps_id.nil? %>
+        <% if current_user.bootcamps_id.nil? && @user == current_user%>
           <div style="">
             <p>
               Are you a coding bootcamp alumnus? 

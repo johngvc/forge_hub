@@ -73,13 +73,13 @@
     }
 
     .founder {
-      width: 250px;
-      margin-left: 0;
+      width: fit-content;
+      margin: 0;
       font-weight: 700;
       font-size: 10px;
       color: white;
       position: absolute;
-      bottom: -4px;
+      bottom: 11px;
       left: 44px;
       &:hover {
         text-decoration: underline;
