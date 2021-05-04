@@ -17,7 +17,7 @@
                 <%= image_tag "https://res.cloudinary.com/johngvc/image/upload/v1614782060/florencia-potter-yxmNWxi3wCo-unsplash_jhoyej.jpg", class: "avatar-and-name" %>
             <% end %>
           </a>
-          <a href="<%= profile_path(User.find(project.user_id)) %>"><p class="founder">Founded by <%= User.find(project.user_id).name %><p/></a>
+          <a href="<%= profile_path(User.find(project.user_id)) %>"><p class="founder">By <%= User.find(project.user_id).name %><p/></a>
 </div>
 </div>
 <div class="container-new">
