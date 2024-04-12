@@ -37,6 +37,11 @@
   * [@https:\/\/www.linkedin.com\/in\/pedro-car\/](https:\/\/www.linkedin.com\/in\/pedro-car\/)
   * [@https:\/\/www.linkedin.com\/in\/leonardo-oliveira-659263\/](https:\/\/www.linkedin.com\/in\/leonardo-oliveira-659263\/)
 
+## Starting the project
+
+* Remenber to add a .env file to the root path of the project with the Cloudnary environment variable found on the cloudinary console.
+    * Example Environment variable: CLOUDINARY_URL=cloudinary://1234:babunhac-nhacbabu@myusername
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/johngvc/forge_hub/issues). 
